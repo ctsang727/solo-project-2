@@ -1,0 +1,4 @@
+heroku run -a <app_name> flask db upgrade
+heroku run -a <app_name> flask seed all
+
+heroku run -a <app_name> flask db downgrade
