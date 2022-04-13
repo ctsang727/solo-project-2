@@ -3,17 +3,19 @@ from app.models import db, Task
 
 task_routes = Blueprint('tasks', __name__)
 
-@task_routes.route('')
-def tasks():
+@task_routes.route('/<int:id>')
+def tasks(id):
+    #user_id = request.json['userId']
+
     print('hello')
-    tasks = Task.query.all()
+    tasks = Task.query.filter_by(user_id = id)
     print(tasks)
     # for task in tasks: 
     #     print('--------------', task.task_to_dict(), '----------')
     return {'tasks': [task.task_to_dict() for task in tasks]}
 
 @task_routes.route('/new', methods=['POST'])
-def taskUpload():
+def new_task():
 
     user_id=request.json['userId']
     task_name = request.json['taskName']
@@ -38,4 +40,4 @@ def taskUpload():
     db.session.add(task)
     db.session.commit()
     
-    return task.to_dict()
+    return task.task_to_dict()

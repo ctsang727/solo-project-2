@@ -18,14 +18,30 @@ const getAllTasks = tasks => ({
     tasks
 })
 
-export const getAllTasksThunk = () => async dispatch => {
-    const res = await fetch('/api/tasks')
+export const getAllTasksThunk = (userId) => async dispatch => {
+    const res = await fetch(`/api/tasks/${userId}`)
     console.log('INSIDE GET ALL TASKS THUNK', res)
 
     if (res.ok){
         console.log('RES IS OK')
         const data = await res.json()
         dispatch(getAllTasks(data))
+        return data
+    }
+}
+
+export const createTaskThunk = (task) => async dispatch => {
+    const res = await fetch('/api/tasks/new', {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(task)
+    });
+
+
+    if (res.ok){
+        console.log('RES IS OK')
+        const data = await res.json()
+        dispatch(newTask(data))
         return data
     }
 }
@@ -43,6 +59,12 @@ const taskReducer = (state = {}, action) => {
               })
            
             return newState;
+        
+        case NEW_TASK:
+            newState = { ...state };
+            newState[action.task.id] = action.task
+            return newState;
+            
     }
 }
 
