@@ -54,7 +54,7 @@ const taskReducer = (state = {}, action) => {
         
         case GET_TASKS:
             newState = { ...state };
-            action.tasks.tasks?.forEach(task => {
+            action.tasks.tasks?.filter(task => {
                 newState[task.id] = task; 
               })
            

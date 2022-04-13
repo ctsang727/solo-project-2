@@ -9,6 +9,7 @@ import UsersList from './components/UsersList';
 import User from './components/User';
 import { authenticate } from './store/session';
 import HomePage from './components/Home/index';
+import Modal from './components/Modal/Modal'
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -24,24 +25,29 @@ function App() {
   if (!loaded) {
     return null;
   }
+  
 
   return (
     <BrowserRouter>
       <NavBar />
+      <Modal />
       <Switch>
-        <Route path='/login' exact={true}>
+        {/* <Route path='/login' exact={true}>
           <LoginForm />
         </Route>
         <Route path='/sign-up' exact={true}>
           <SignUpForm />
-        </Route>
+        </Route> */}
         <ProtectedRoute path='/users' exact={true} >
           <UsersList/>
         </ProtectedRoute>
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
         </ProtectedRoute>
-        <ProtectedRoute path='/' exact={true} >
+        <Route path='/' exact={true} >
+          <h1>My Home Page</h1>
+        </Route>
+        <ProtectedRoute path = '/app' exact={true} >
           <HomePage />
         </ProtectedRoute>
       </Switch>

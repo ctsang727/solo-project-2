@@ -24,28 +24,31 @@ const HomePage = () => {
 
     const dispatch = useDispatch()
 
+
+
     // useEffect(() => {
     //     console.log('USEEFFECT')
-    //     dispatch(getAllTasksThunk())
+    //     await dispatch(getAllTasksThunk(userId)
+    //     //dispatch(getAllTasksThunk(userId))
     // }, [dispatch])
+
 
     useEffect(() => {
 
         (async () => {
             console.log("USEEEFFFEEEECTTT")
-            await dispatch(getAllTasksThunk(userId));
+            await dispatch(getAllTasksThunk(userId))
         })();
     }, [dispatch]);
 
     const tasksObj = useSelector(state => state.task)
+    console.log('!!!', tasksObj)
 
+    //array
     const tasks = Object.values(tasksObj)
     console.log('hello', tasks)
-    console.log('user_id', tasks.user_id)
 
-
-
-
+    
 
     const createTask = e => {
         e.preventDefault()
@@ -72,8 +75,8 @@ const HomePage = () => {
             <div>
                 {tasks?.map(({ task_name, id }) => {
                     return (
-                        <ul>
-                            <li key={id}>{task_name}</li>
+                        <ul key={id}>
+                            <li>{task_name}</li>
                         </ul>
                     )
                 })}
