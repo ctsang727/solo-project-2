@@ -9,7 +9,7 @@ def tasks(id):
 
     print('hello')
     tasks = Task.query.filter_by(user_id = id)
-    print(tasks)
+    # print('999999999999', tasks)
     # for task in tasks: 
     #     print('--------------', task.task_to_dict(), '----------')
     return {'tasks': [task.task_to_dict() for task in tasks]}
@@ -92,4 +92,4 @@ def delete_task(id):
     db.session.delete(task)
     db.session.commit()
 
-    return 'hello world'
+    return task.task_to_dict()

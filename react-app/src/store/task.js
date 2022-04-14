@@ -95,6 +95,7 @@ export const deleteTaskThunk = taskId => async dispatch => {
     }
 }
 
+// reducer based off last group project
 const taskReducer = (state = {}, action) => {
     let newState;
     switch (action.type) {
@@ -103,6 +104,8 @@ const taskReducer = (state = {}, action) => {
 
         case GET_TASKS:
             newState = { ...state };
+            console.log('NEWSTATE', newState)
+            
             action.tasks.tasks?.filter(task => {
                 newState[task.id] = task;
             })
@@ -110,15 +113,14 @@ const taskReducer = (state = {}, action) => {
             return newState;
 
         case GET_TASK:
-            let thisState = {};
-            thisState[action.task.id] = action.task
-            return thisState
+            return {...state,
+            [action.task.id]: action.task }
+             
 
         // case EDIT_TASK:
         //     newState = {...state};
         //     newState[action.task.id] = action.task;
         //     return newState
-
 
         case NEW_TASK:
             newState = { ...state };
@@ -127,14 +129,64 @@ const taskReducer = (state = {}, action) => {
         
         case DEL_TASK:
             newState = { ...state };
-            console.log("NEWSTATESTSTST", newState)
-            console.log('NEXT NEWSTATETET', newState[action.taskId.tasks])
             delete newState[action.taskId.tasks];
             return newState;
-            //return { todos: state.todos.filter((todo) => todo.id !== action.payload)}
         
     }
 
 }
 
 export default taskReducer
+
+//reducer based off first solo project
+// const initialState = {
+//     tasks: {}
+// }
+// const taskReducer = (state = initialState, action) => {
+//     switch(action.type) {  
+//         case GET_TASKS:
+//           const allTasks = {};
+//           console.log(initialState)
+//           //console.log('ACTION', action)
+//           action.tasks.tasks.forEach(task => {
+//             allTasks[task.id] = task; 
+//           })
+//           console.log('ALL TASKS', allTasks)
+//           console.log({...state, tasks: allTasks})
+//           return allTasks
+
+//         case GET_TASK:
+//           // newState[action.business.id] = action.business
+//           // return newState
+//           return {
+
+//             ...state,
+//             [action.task.id]: action.task
+            
+//           };
+//         case NEW_TASK:
+//           let newState;
+//           newState={...state}
+//           newState[action.task.id] = action.task;
+//           return newState;
+        
+//         case EDIT_TASK:
+//           return {
+//             ...state,
+//             [action.task.id]: action.task,
+//           };
+
+//         case DEL_TASK:
+//           let removeState = {...state}
+//           delete removeState[action.taskId.id]
+//           return removeState
+
+
+
+//         default:
+//             return state;
+//     }
+
+// }
+
+

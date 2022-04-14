@@ -12,7 +12,7 @@ const HomePage = () => {
 
     const userId = useSelector(state => state.session.user.id)
 
-    const history = useHistory();
+    //const history = useHistory();
 
     const dispatch = useDispatch()
 
@@ -25,15 +25,15 @@ const HomePage = () => {
     }, [dispatch]);
 
     const tasksObj = useSelector(state => state.task)
-    console.log('!!!', tasksObj)
-    const track = Object.values(tasksObj)[0]
+    //console.log('!!!', tasksObj)
+    //const track = Object.values(tasksObj)[0]
     //const trackId = track.id
-    console.log('iDDDDDD', track)
+    //console.log('iDDDDDD', track)
 
-    //array
+    //
     const tasks = Object.values(tasksObj)
     console.log('hello', tasks)
-    console.log('TEST', tasks.task_name)
+    //console.log('TEST', tasks.task_name)
 
 
 
@@ -62,55 +62,13 @@ const HomePage = () => {
                             <ul>
                                 <li>{description}</li>
                             </ul>
-                            <NavLink to={`/app/task/${id}`}>More</NavLink>
-                            
+                            <NavLink to={`/app/task/${id}`}>More</NavLink>  
                         </ul>
                     )
                 })}
             </div>
 
-            {/* <form onSubmit={createTask}>
-                <div>
-                    <input
-                        type='text'
-                        name='taskName'
-                        value={taskName}
-                        placeholder='Add New Task'
-                        onChange={(e) => setTaskName(e.target.value)} />
-                </div>
-                <div>
-                    <textarea
-                        type='text'
-                        name='taskDesc'
-                        value={taskDesc}
-                        placeholder='Description'
-                        onChange={(e) => setTaskDesc(e.target.value)} />
-                </div>
-                <div>
-                    <input
-                        type='date'
-                        name='dueDate'
-                        value={dueDate}
-                        onChange={(e) => setDueDate(e.target.value)} />
-                </div>
-                <div>
-                    <label>Priority: </label>
-                    <select
-                        name='priority'
-                        value={priority}
-                        onChange={(e) => setPriority(e.target.value)}>
-                        <option value={0}>0</option>
-                        <option value={1}>1</option>
-                        <option value={2}>2</option>
-                        <option value={3}>3</option>
-                        <option value={4}>4</option>
-                    </select>
-                </div>
-                //do labels later
-                <div>
-                    <button type='submit'>Add Task</button>
-                </div>
-            </form> */}
+            
         </div>
     )
 

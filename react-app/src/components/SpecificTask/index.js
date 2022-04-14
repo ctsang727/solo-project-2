@@ -8,11 +8,16 @@ import EditTaskForm from '../TaskForms/EditTaskForm';
 import { setCurrentModal, showModal } from '../../store/modal';
 
 const SpecificTask = () => {
-
-    const userId = useSelector(state => state.session.user.id)
     const { taskId } = useParams()
-    const history = useHistory()
+
     const dispatch = useDispatch()
+    const userId = useSelector(state => state.session.user.id)
+    const tasksObj = useSelector(state => state.task)
+    console.log('HERERERERERERE', tasksObj)
+    console.log('111', Object.values(tasksObj))
+    console.log('222', Object.values(tasksObj).map(item => console.log('inside', item.tasks[0].description)))
+    
+    const history = useHistory()
 
     useEffect(() => {
 
@@ -20,38 +25,27 @@ const SpecificTask = () => {
             console.log("USEEEFFFEEEECTTT")
             await dispatch(getTaskThunk(taskId))
         })();
-    }, [dispatch]);
+    }, [dispatch,taskId]);
 
-    const tasksObj = useSelector(state => state.task)
-    console.log('!!!', tasksObj)
-    const task = Object.values(tasksObj)[0]
-    //const trackId = track.id
-    const taskDetails = task?.tasks[0]
-    console.log('iDDDDDD', task?.tasks[0].task_name)
-    console.log(typeof taskId)
-    console.log(typeof +taskId, taskId)
+    
+    // console.log('!!!', tasksObj)
+    // console.log('state', useSelector(state => state))
+    // const task = Object.values(tasksObj)[0]
+    // console.log('undefined?', task?.tasks[0].task_name)
+    // const trackId = track.id
+    // const taskDetails = task?.tasks[0]
+    // console.log('iDDDDDD', task?.tasks[0].task_name)
+    // console.log(typeof taskId)
+    // console.log(typeof +taskId, taskId)
 
     const onDelete = (e) => {
         e.preventDefault()
 
         dispatch(deleteTaskThunk(+taskId))
-            // .catch(async (res) => {
-            //     const data = await res.json();
-            //     await dispatch(getAllTasksThunk());
-            //     if (data && data.errors) return (data.errors)
-            // })
+        
         history.push('/app')
 
     }
-
-
-
-
-
-    // const showAddTaskForm = () => {
-    //     dispatch(setCurrentModal(AddTaskForm))
-    //     dispatch(showModal())
-    //   }
 
     const showEditTaskForm = () => {
         dispatch(setCurrentModal(EditTaskForm))
@@ -59,22 +53,19 @@ const SpecificTask = () => {
 
     }
 
-
-
-
     return (
         <div className='main-page'>
             <h1>HEY YOU HAVE STUFF TO DO!</h1>
+            <div>{Object.values(tasksObj).map(item => {
+                return (
+                    <>
+                    
+                    <div>{item.tasks[0].task_name}</div>
+                    <div>{item.tasks[0].description}</div>
+                    </>
+                )
+            })}</div>
 
-            <div>
-                {taskDetails?.task_name}
-            </div>
-            <div>
-                {taskDetails?.description}
-            </div>
-            <div>
-                {taskDetails?.due_date}
-            </div>
             <div>
                 <button onClick={showEditTaskForm}>Edit</button>
                 <button onClick={onDelete}>Delete</button>
