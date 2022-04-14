@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, jsonify, request, redirect, url_for
 from app.models import db, Task
 
 task_routes = Blueprint('tasks', __name__)
@@ -9,6 +9,17 @@ def tasks(id):
 
     print('hello')
     tasks = Task.query.filter_by(user_id = id)
+    print(tasks)
+    # for task in tasks: 
+    #     print('--------------', task.task_to_dict(), '----------')
+    return {'tasks': [task.task_to_dict() for task in tasks]}
+
+@task_routes.route('/specific/<int:id>')
+def specific_task(id):
+    #user_id = request.json['userId']
+
+    print('hello')
+    tasks = Task.query.filter_by(id = id)
     print(tasks)
     # for task in tasks: 
     #     print('--------------', task.task_to_dict(), '----------')
@@ -40,4 +51,40 @@ def new_task():
     db.session.add(task)
     db.session.commit()
     
+    return task.task_to_dict()
+
+@task_routes.route('/edit', methods = ['PUT'])
+def edit_task():
+    taskId=request.json['taskId']
+    task = Task.query.get(taskId)
+
+    user_id=request.json['userId']
+    task_name = request.json['taskName']
+    description = request.json['taskDesc']
+    due_date = request.json['dueDate']
+    project_id = request.json['projectId']
+    labels = request.json['labels']
+    priority = request.json['priority']
+
+    task.task_name = task_name
+    task.description = description,
+    task.due_date = due_date,
+    task.project_id = project_id,
+    task.labels = labels,
+    task.priority = priority
+   
+
+    db.session.add(task)
+    db.session.commit()
+    
+    return task.task_to_dict()
+@task_routes.route('/delete', methods = ['DELETE'])
+def delete_task():
+    
+    task_id = request.json['taskId']
+    task = Task.query.get(task_id)
+
+    db.session.delete(task)
+    db.session.commit
+
     return task.task_to_dict()

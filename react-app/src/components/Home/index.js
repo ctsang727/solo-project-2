@@ -1,37 +1,20 @@
 import { user } from 'pg/lib/defaults';
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import { createTaskThunk, getAllTasksThunk } from '../../store/task';
-
-
-
+import AddTaskForm from '../TaskForms/AddTaskForm';
+import EditTaskForm from '../TaskForms/EditTaskForm';
+import { setCurrentModal, showModal } from '../../store/modal';
 
 
 const HomePage = () => {
 
-    //Note for projectId implementation: when creating new task, cant assign to project
-    //must be in the project already, create new task, and the task will be assigned to the project
     const userId = useSelector(state => state.session.user.id)
-    const [taskName, setTaskName] = useState('')
-    const [taskDesc, setTaskDesc] = useState('')
-    const [dueDate, setDueDate] = useState('')
-    //care project
-    const [projectId, setProject] = useState(null)
-    //
-    const [labels, setLabels] = useState(null)
-    const [priority, setPriority] = useState(0)
+
+    const history = useHistory();
 
     const dispatch = useDispatch()
-
-
-
-    // useEffect(() => {
-    //     console.log('USEEFFECT')
-    //     await dispatch(getAllTasksThunk(userId)
-    //     //dispatch(getAllTasksThunk(userId))
-    // }, [dispatch])
-
 
     useEffect(() => {
 
@@ -43,46 +26,50 @@ const HomePage = () => {
 
     const tasksObj = useSelector(state => state.task)
     console.log('!!!', tasksObj)
+    const track = Object.values(tasksObj)[0]
+    //const trackId = track.id
+    console.log('iDDDDDD', track)
 
     //array
     const tasks = Object.values(tasksObj)
     console.log('hello', tasks)
+    console.log('TEST', tasks.task_name)
 
-    
 
-    const createTask = e => {
-        e.preventDefault()
-        const newTask = {
-            userId,
-            taskName,
-            taskDesc,
-            dueDate,
-            projectId,
-            labels,
-            priority
-        }
 
-        return dispatch(createTaskThunk(newTask))
+    const showAddTaskForm = () => {
+        dispatch(setCurrentModal(AddTaskForm))
+        dispatch(showModal())
+    }
 
+    const showEditTaskForm = () => {
+        dispatch(setCurrentModal(EditTaskForm))
+        dispatch(showModal())
 
     }
 
-
-
+    
 
     return (
         <div className='main-page'>
+            <h1>HEY YOU HAVE STUFF TO DO!</h1>
+            <button onClick={showAddTaskForm}>ADD TASK</button>
             <div>
-                {tasks?.map(({ task_name, id }) => {
+                {tasks?.map(({ task_name, description, id }) => {
                     return (
                         <ul key={id}>
                             <li>{task_name}</li>
+                            <ul>
+                                <li>{description}</li>
+                            </ul>
+                            <NavLink to={`/app/task/${id}`}>More</NavLink>
+                            
                         </ul>
                     )
                 })}
             </div>
 
-            <form onSubmit={createTask}>
+            {/* <form onSubmit={createTask}>
                 <div>
                     <input
                         type='text'
@@ -119,11 +106,11 @@ const HomePage = () => {
                         <option value={4}>4</option>
                     </select>
                 </div>
-                {/* Do labels later */}
+                //do labels later
                 <div>
                     <button type='submit'>Add Task</button>
                 </div>
-            </form>
+            </form> */}
         </div>
     )
 

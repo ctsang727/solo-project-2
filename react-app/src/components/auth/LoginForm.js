@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
+import { hideModal, setCurrentModal } from '../../store/modal';
+import SignUpForm from './SignUpForm';
+// import { getAllTasksThunk } from '../../store/task';
 
 const LoginForm = () => {
   const [errors, setErrors] = useState([]);
@@ -16,6 +19,8 @@ const LoginForm = () => {
     if (data) {
       setErrors(data);
     }
+    dispatch(hideModal())
+    
   };
 
   const updateEmail = (e) => {
@@ -27,7 +32,13 @@ const LoginForm = () => {
   };
 
   if (user) {
+    // console.log(user.id)
+    // dispatch(getAllTasksThunk(user.id))
     return <Redirect to='/app' />;
+  }
+
+  const showSignUpForm = () => {
+    dispatch(setCurrentModal(SignUpForm))
   }
 
   return (
@@ -57,6 +68,7 @@ const LoginForm = () => {
           onChange={updatePassword}
         />
         <button type='submit'>Login</button>
+        <button onClick={showSignUpForm}>Sign Up</button>
       </div>
     </form>
   );
