@@ -29,17 +29,18 @@ const SpecificTask = () => {
     const taskDetails = task?.tasks[0]
     console.log('iDDDDDD', task?.tasks[0].task_name)
     console.log(typeof taskId)
+    console.log(typeof +taskId, taskId)
 
     const onDelete = (e) => {
         e.preventDefault()
 
         dispatch(deleteTaskThunk(+taskId))
-            .catch(async (res) => {
-                const data = await res.json();
-                await dispatch(getAllTasksThunk());
-                if (data && data.errors) return (data.errors)
-            })
-        history.push('/')
+            // .catch(async (res) => {
+            //     const data = await res.json();
+            //     await dispatch(getAllTasksThunk());
+            //     if (data && data.errors) return (data.errors)
+            // })
+        history.push('/app')
 
     }
 

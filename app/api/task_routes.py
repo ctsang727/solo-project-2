@@ -78,13 +78,18 @@ def edit_task():
     db.session.commit()
     
     return task.task_to_dict()
-@task_routes.route('/delete', methods = ['DELETE'])
-def delete_task():
+@task_routes.route('/delete/<int:id>', methods = ['DELETE'])
+def delete_task(id):
     
-    task_id = request.json['taskId']
-    task = Task.query.get(task_id)
+    # task_id = request.json['taskId']
+    # task = Task.query.get(id)
+    # print('@@@@@@@@', task)
+    print('HERE')
+    
+    print(id)
+    task = Task.query.get(id)
 
     db.session.delete(task)
-    db.session.commit
+    db.session.commit()
 
-    return task.task_to_dict()
+    return 'hello world'

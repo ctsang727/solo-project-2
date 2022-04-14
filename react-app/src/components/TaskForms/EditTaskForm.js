@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { hideModal } from '../../store/modal';
-import { editTaskThunk } from '../../store/task';
+import { editTaskThunk, deleteTaskThunk } from '../../store/task';
 
 const EditTaskForm = () => {
     const dispatch = useDispatch();
+    const history = useHistory();
 
     const userId = useSelector(state => state.session.user.id)
     const tasksObj = useSelector(state => state.task)
@@ -35,6 +37,15 @@ const EditTaskForm = () => {
         }
         dispatch(hideModal())
         return dispatch(editTaskThunk(editTask))
+    }
+
+    const onDelete = (e) => {
+        e.preventDefault()
+
+        dispatch(deleteTaskThunk(+taskId))
+            //working but re-render issues
+        history.push('/app')
+
     }
 
     
@@ -83,6 +94,7 @@ const EditTaskForm = () => {
                 {/* Do labels later */}
                 <div>
                     <button type='submit'>Edit Task</button>
+                    <button onClick={onDelete}>Delete</button>
                 </div>
             </form>
             

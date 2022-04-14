@@ -24,9 +24,9 @@ const editTask = task => ({
     task
 })
 
-const deleteTask = task => ({
+const deleteTask = taskId => ({
     type: DEL_TASK,
-    task
+    taskId
 })
 
 export const getTaskThunk = (taskId) => async dispatch => {
@@ -81,13 +81,14 @@ export const editTaskThunk = (task) => async dispatch => {
 }
 
 export const deleteTaskThunk = taskId => async dispatch => {
-    const res = await fetch('/api/tasks/delete', {
+    console.log('top of delete thunk')
+    const res = await fetch(`/api/tasks/delete/${taskId}`, {
         method: 'DELETE',
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({taskId})
+        
     })
     
     if (res.ok) {
+        console.log('delete res is ok')
         const data = await res.json();
         dispatch(deleteTask(data));
         return data
@@ -126,8 +127,11 @@ const taskReducer = (state = {}, action) => {
         
         case DEL_TASK:
             newState = { ...state };
-            delete newState[action.taskId.id];
+            console.log("NEWSTATESTSTST", newState)
+            console.log('NEXT NEWSTATETET', newState[action.taskId.tasks])
+            delete newState[action.taskId.tasks];
             return newState;
+            //return { todos: state.todos.filter((todo) => todo.id !== action.payload)}
         
     }
 
