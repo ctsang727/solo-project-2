@@ -1,4 +1,4 @@
-import { user } from 'pg/lib/defaults';
+
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { NavLink, useHistory } from 'react-router-dom';
