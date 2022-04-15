@@ -86,7 +86,7 @@ const AddTaskForm = () => {
                     <input
                         type='text'
                         name='projectId'
-                        value={taskName}
+                        value={projectId}
                         placeholder='Project'
                         onChange={(e) => setProject(e.target.value)} />
                 </div>
