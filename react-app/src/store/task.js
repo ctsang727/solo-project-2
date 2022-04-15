@@ -1,3 +1,5 @@
+//add ending / to api fetch routes -Paul
+//fixes some heroku bugs maybe
 const GET_TASK = 'task/GET_TASK'
 const GET_TASKS = 'tasks/GET_TASKS'
 const NEW_TASK = 'tasks/NEW_TASK'
@@ -41,10 +43,8 @@ export const getTaskThunk = (taskId) => async dispatch => {
 
 export const getAllTasksThunk = (userId) => async dispatch => {
     const res = await fetch(`/api/tasks/${userId}`)
-    console.log('INSIDE GET ALL TASKS THUNK', res)
 
     if (res.ok) {
-        console.log('RES IS OK')
         const data = await res.json()
         dispatch(getAllTasks(data))
         return data
@@ -60,7 +60,6 @@ export const createTaskThunk = (task) => async dispatch => {
 
 
     if (res.ok) {
-        console.log('RES IS OK')
         const data = await res.json()
         dispatch(newTask(data))
         return data
@@ -81,14 +80,12 @@ export const editTaskThunk = (task) => async dispatch => {
 }
 
 export const deleteTaskThunk = taskId => async dispatch => {
-    console.log('top of delete thunk')
     const res = await fetch(`/api/tasks/delete/${taskId}`, {
         method: 'DELETE',
         
     })
     
     if (res.ok) {
-        console.log('delete res is ok')
         const data = await res.json();
         dispatch(deleteTask(data));
         return data
@@ -103,8 +100,7 @@ const taskReducer = (state = {}, action) => {
 
         case GET_TASKS:
             newState = { ...state };
-            console.log('NEWSTATE', newState)
-            
+
             action.tasks.tasks?.forEach(task => {
                 newState[task.id] = task;
             })
@@ -112,9 +108,11 @@ const taskReducer = (state = {}, action) => {
             return newState;
 
         case GET_TASK:
-            console.log('ACTION TASK CONSOLE LOG', action.task)
-            return {...state,
-            ...action.task }
+            // return {...state,
+            // action.task }
+            newState = {...state}
+            newState[action.task.id] = action.task 
+            return newState
              
 
         // case EDIT_TASK:
@@ -129,7 +127,7 @@ const taskReducer = (state = {}, action) => {
         
         case DEL_TASK:
             newState = { ...state };
-            delete newState[action.taskId.tasks];
+            delete newState[action.taskId.id];
             return newState;
 
         default:
