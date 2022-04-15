@@ -9,6 +9,8 @@ import { showModal, setCurrentModal } from '../store/modal';
 import LoginForm from './auth/LoginForm';
 import SignUpForm from './auth/SignUpForm';
 
+import './NavBar.css'
+
 
 const NavBar = () => {
   const dispatch = useDispatch();

@@ -19,11 +19,11 @@ def specific_task(id):
     #user_id = request.json['userId']
 
     print('hello')
-    tasks = Task.query.filter_by(id = id)
-    print(tasks)
+    task = Task.query.get(id)
+    print('!!!!!!!!', task)
     # for task in tasks: 
     #     print('--------------', task.task_to_dict(), '----------')
-    return {'tasks': [task.task_to_dict() for task in tasks]}
+    return task.task_to_dict()
 
 @task_routes.route('/new', methods=['POST'])
 def new_task():

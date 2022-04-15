@@ -99,22 +99,22 @@ export const deleteTaskThunk = taskId => async dispatch => {
 const taskReducer = (state = {}, action) => {
     let newState;
     switch (action.type) {
-        default:
-            return state
+        
 
         case GET_TASKS:
             newState = { ...state };
             console.log('NEWSTATE', newState)
             
-            action.tasks.tasks?.filter(task => {
+            action.tasks.tasks?.forEach(task => {
                 newState[task.id] = task;
             })
 
             return newState;
 
         case GET_TASK:
+            console.log('ACTION TASK CONSOLE LOG', action.task)
             return {...state,
-            [action.task.id]: action.task }
+            ...action.task }
              
 
         // case EDIT_TASK:
@@ -131,6 +131,9 @@ const taskReducer = (state = {}, action) => {
             newState = { ...state };
             delete newState[action.taskId.tasks];
             return newState;
+
+        default:
+            return state
         
     }
 

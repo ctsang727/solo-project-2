@@ -14,20 +14,21 @@ const SpecificTask = () => {
     const userId = useSelector(state => state.session.user.id)
     const tasksObj = useSelector(state => state.task)
     console.log('HERERERERERERE', tasksObj)
-    console.log('111', Object.values(tasksObj))
-    console.log('222', Object.values(tasksObj).map(item => console.log('inside', item.tasks[0].description)))
-    
+    //console.log('111', Object.values(tasksObj))
+    // console.log('222', Object.values(tasksObj).map(item => console.log('inside', item.tasks[0].description)))
+
     const history = useHistory()
 
     useEffect(() => {
+        console.log("USEEEFFFEEEECTTT")
+        dispatch(getTaskThunk(taskId))
+    }, [dispatch, taskId]);
 
-        (async () => {
-            console.log("USEEEFFFEEEECTTT")
-            await dispatch(getTaskThunk(taskId))
-        })();
-    }, [dispatch,taskId]);
+    useEffect(() => {
+        console.log('THIS IS TASKSOBJ', tasksObj)
+    }, [tasksObj])
 
-    
+    if (tasksObj === undefined) return <>We be loading...</>
     // console.log('!!!', tasksObj)
     // console.log('state', useSelector(state => state))
     // const task = Object.values(tasksObj)[0]
@@ -42,7 +43,7 @@ const SpecificTask = () => {
         e.preventDefault()
 
         dispatch(deleteTaskThunk(+taskId))
-        
+
         history.push('/app')
 
     }
@@ -56,20 +57,26 @@ const SpecificTask = () => {
     return (
         <div className='main-page'>
             <h1>HEY YOU HAVE STUFF TO DO!</h1>
-            <div>{Object.values(tasksObj).map(item => {
-                return (
-                    <>
-                    
-                    <div>{item.tasks[0].task_name}</div>
-                    <div>{item.tasks[0].description}</div>
-                    </>
-                )
-            })}</div>
+            {tasksObj && 
+            <p>I AM HERE</p>
+            }
+            {/* {tasksObj &&
+                <div>{Object.values(tasksObj).map(item => {
+                    return (
+                        <>
+
+                            <div>{item?.tasks[0].task_name}</div>
+                            <div>{item?.tasks[0].description}</div>
+                        </>
+                    )
+                })}</div>
+            } */}
 
             <div>
                 <button onClick={showEditTaskForm}>Edit</button>
                 <button onClick={onDelete}>Delete</button>
             </div>
+
 
 
         </div>

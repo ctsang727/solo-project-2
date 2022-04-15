@@ -6,6 +6,7 @@ import { createTaskThunk, getAllTasksThunk } from '../../store/task';
 import AddTaskForm from '../TaskForms/AddTaskForm';
 import EditTaskForm from '../TaskForms/EditTaskForm';
 import { setCurrentModal, showModal } from '../../store/modal';
+import './home.css'
 
 
 const HomePage = () => {
@@ -15,6 +16,8 @@ const HomePage = () => {
     //const history = useHistory();
 
     const dispatch = useDispatch()
+
+    const [tasks, setTasks] = useState([])
 
     useEffect(() => {
 
@@ -31,8 +34,11 @@ const HomePage = () => {
     //console.log('iDDDDDD', track)
 
     //
-    const tasks = Object.values(tasksObj)
-    console.log('hello', tasks)
+    useEffect(() => {
+        console.log(tasksObj)
+        setTasks(Object.values(tasksObj))
+    }, [tasksObj])
+
     //console.log('TEST', tasks.task_name)
 
 
@@ -48,27 +54,27 @@ const HomePage = () => {
 
     }
 
-    
+
 
     return (
         <div className='main-page'>
             <h1>HEY YOU HAVE STUFF TO DO!</h1>
             <button onClick={showAddTaskForm}>ADD TASK</button>
             <div>
-                {tasks?.map(({ task_name, description, id }) => {
-                    return (
-                        <ul key={id}>
-                            <li>{task_name}</li>
-                            <ul>
-                                <li>{description}</li>
-                            </ul>
-                            <NavLink to={`/app/task/${id}`}>More</NavLink>  
+                {tasks?.map(({ task_name, description, id }) => (
+
+                    <ul key={id}>
+                        <li>{task_name}</li>
+                        <ul>
+                            <li>{description}</li>
                         </ul>
-                    )
-                })}
+                        <NavLink to={`/app/task/${id}`}>More</NavLink>
+                    </ul>
+                )
+                )}
             </div>
 
-            
+
         </div>
     )
 
