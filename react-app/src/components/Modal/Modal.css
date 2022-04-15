@@ -5,7 +5,6 @@
     right: 0;
     bottom: 0;
     background: rgba(0,0,0,.75);
-    backdrop-filter: blur(5px);
     display:flex;
     justify-content: center;
     align-items: center;
@@ -14,8 +13,9 @@
 
 .modal-content {
     background-color: white;
-    height: 40vh;
-    width: 40vw;
+    border-radius: 5px;
+    height: 90%;
+    width: 40%;
     display: flex;  
     justify-content: center;
     align-items: center;

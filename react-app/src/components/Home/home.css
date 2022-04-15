@@ -1,0 +1,19 @@
+#h1-home{
+    font-family: 'Roboto', sans-serif;
+}
+
+.main-page{
+    font-family: 'Roboto', sans-serif;
+}
+
+#all-tasks-ul{
+    border-bottom: rgb(40, 219, 70) 1px solid;
+    padding-bottom: 10px;
+    
+}
+
+#all-tasks-ul li{
+    margin: 5px;
+}
+
+

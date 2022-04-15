@@ -58,11 +58,11 @@ const HomePage = () => {
 
     return (
         <div className='main-page'>
-            <h1>HEY YOU HAVE STUFF TO DO!</h1>
+            <h1 id='h1-home'>HEY YOU HAVE STUFF TO DO!</h1>
             <button onClick={showAddTaskForm}>ADD TASK</button>
             <div>
                 {tasks?.map(task => (
-                    <ul key={task?.id}>
+                    <ul id='all-tasks-ul' key={task?.id}>
                         <li>{task?.task_name}</li>
                         <ul key={task?.id}>
                         <li>{task?.description}</li>

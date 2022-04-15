@@ -3,13 +3,14 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from './auth/LogoutButton';
 import { useDispatch } from 'react-redux';
-
+import AddTaskForm from '../components/TaskForms/AddTaskForm'
 import { showModal, setCurrentModal } from '../store/modal';
 
 import LoginForm from './auth/LoginForm';
 import SignUpForm from './auth/SignUpForm';
 
 import './NavBar.css'
+
 
 
 const NavBar = () => {
@@ -24,21 +25,38 @@ const NavBar = () => {
     dispatch(setCurrentModal(SignUpForm));
     dispatch(showModal())
   }
+
+  const showAddTaskForm = () => {
+    dispatch(setCurrentModal(AddTaskForm))
+    dispatch(showModal())
+  }
   return (
-    <nav>
-      <ul>
-        <li>
+    
+      <nav id='navContainer'>
+
+        <div className='nav-div'>
           <NavLink to='/app' exact={true} activeClassName='active'>
             Home
           </NavLink>
-        </li>
-        <li>
+        </div>
+
+        <div className='nav-div'> 
           <div onClick={showLoginForm}>LOG IN</div>
-        </li>
-        <li>
           <div onClick={showSignUpForm}>SIGN UP</div>
-        </li>
-        {/* <li>
+        </div>
+
+        <div className='nav-div'>
+          <button onClick={showAddTaskForm}>ADD TASK</button>
+          <LogoutButton />
+        </div>
+
+      </nav>
+    
+  );
+}
+
+export default NavBar;
+/* <li>
           <NavLink to='/login' exact={true} activeClassName='active'>
             Login
           </NavLink>
@@ -47,18 +65,9 @@ const NavBar = () => {
           <NavLink to='/sign-up' exact={true} activeClassName='active'>
             Sign Up
           </NavLink>
-        </li> */}
-        <li>
-          <NavLink to='/users' exact={true} activeClassName='active'>
-            Users
-          </NavLink>
-        </li>
-        <li>
-          <LogoutButton />
-        </li>
-      </ul>
-    </nav>
-  );
-}
-
-export default NavBar;
+        </li> */
+        /* <li>
+            <NavLink to='/users' exact={true} activeClassName='active'>
+              Users
+            </NavLink>
+          </li> */
