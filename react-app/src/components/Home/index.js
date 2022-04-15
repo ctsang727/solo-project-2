@@ -34,8 +34,7 @@ const HomePage = () => {
 
     //
     useEffect(() => {
-        console.log(tasksObj)
-        console.log('useEffect 2 tasksObj')
+        console.log('useEffect 2 tasksObj', tasksObj)
         setTasks(Object.values(tasksObj))
     }, [tasksObj])
 
@@ -70,19 +69,7 @@ const HomePage = () => {
                         <NavLink to={`/app/task/${task?.id}`}>More</NavLink>
                     </ul>
                 ))
-
                 }
-                {/* {tasks?.map(({ task_name, description, id }) => (
-
-                    <ul key={id}>
-                        <li>{task_name}</li>
-                        <ul>
-                            <li>{description}</li>
-                        </ul>
-                        <NavLink to={`/app/task/${id}`}>More</NavLink>
-                    </ul>
-                )
-                )} */}
             </div>
 
 

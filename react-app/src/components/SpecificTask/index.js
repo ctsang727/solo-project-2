@@ -13,7 +13,7 @@ const SpecificTask = () => {
     const dispatch = useDispatch()
     //const userId = useSelector(state => state.session.user.id)
     const tasksObj = useSelector(state => state.task)
-    console.log('HERERERERERERE', tasksObj)
+    
     //console.log('111', Object.values(tasksObj))
     // console.log('222', Object.values(tasksObj).map(item => console.log('inside', item.tasks[0].description)))
 
@@ -38,7 +38,7 @@ const SpecificTask = () => {
 
     const onDelete = (e) => {
         e.preventDefault()
-
+        console.log('ONDELETE SPEECIFIC TASK', +taskId)
         dispatch(deleteTaskThunk(+taskId))
 
         history.push('/app')
@@ -50,6 +50,7 @@ const SpecificTask = () => {
         dispatch(showModal())
 
     }
+    console.log('HERERERERERERE', tasksObj)
 
     return (
         <div className='main-page'>
@@ -59,11 +60,11 @@ const SpecificTask = () => {
                     <div>
                         <ul id='task-ul'>
                             <li>
-                                {tasksObj.task_name}
+                                {tasksObj[taskId].task_name}
                             </li>
                             <ul>
                                 <li>
-                                    {tasksObj.description}
+                                    {tasksObj[taskId].description}
                                 </li>
                             </ul>
                         </ul>
