@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Redirect } from 'react-router-dom';
-import { login } from '../../store/session';
 import { hideModal } from '../../store/modal';
 import { createTaskThunk } from '../../store/task';
 
@@ -76,6 +74,23 @@ const AddTaskForm = () => {
                         <option value={4}>4</option>
                     </select>
                 </div>
+                <div>
+                    <input
+                        type='text'
+                        name='labels'
+                        value={labels}
+                        placeholder='Labels'
+                        onChange={(e) => setLabels(e.target.value)} />
+                </div>
+                <div>
+                    <input
+                        type='text'
+                        name='projectId'
+                        value={taskName}
+                        placeholder='Project'
+                        onChange={(e) => setProject(e.target.value)} />
+                </div>
+                
                 {/* Do labels later */}
                 <div>
                     <button type='submit'>Add Task</button>

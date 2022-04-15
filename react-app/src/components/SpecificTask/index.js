@@ -1,9 +1,9 @@
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { NavLink, useHistory, useParams } from 'react-router-dom';
-import { createTaskThunk, getAllTasksThunk, getTaskThunk, deleteTaskThunk } from '../../store/task';
-import AddTaskForm from '../TaskForms/AddTaskForm';
+import {useHistory, useParams } from 'react-router-dom';
+import {  getTaskThunk, deleteTaskThunk } from '../../store/task';
+
 import EditTaskForm from '../TaskForms/EditTaskForm';
 import { setCurrentModal, showModal } from '../../store/modal';
 
@@ -11,7 +11,7 @@ const SpecificTask = () => {
     const { taskId } = useParams()
 
     const dispatch = useDispatch()
-    const userId = useSelector(state => state.session.user.id)
+    //const userId = useSelector(state => state.session.user.id)
     const tasksObj = useSelector(state => state.task)
     console.log('HERERERERERERE', tasksObj)
     //console.log('111', Object.values(tasksObj))
