@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { hideModal } from '../../store/modal';
-import { editTaskThunk, deleteTaskThunk, getTaskThunk } from '../../store/task';
+import { editTaskThunk } from '../../store/task';
 
 const EditTaskForm = () => {
     const dispatch = useDispatch();
@@ -88,6 +88,22 @@ const EditTaskForm = () => {
                         <option value={3}>3</option>
                         <option value={4}>4</option>
                     </select>
+                </div>
+                <div>
+                    <input
+                        type='text'
+                        name='labels'
+                        value={labels}
+                        placeholder='Labels'
+                        onChange={(e) => setLabels(e.target.value)} />
+                </div>
+                <div>
+                    <input
+                        type='text'
+                        name='projectId'
+                        value={taskName}
+                        placeholder='Project'
+                        onChange={(e) => setProject(e.target.value)} />
                 </div>
                 {/* Do labels later */}
                 <div>

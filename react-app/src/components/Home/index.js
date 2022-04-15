@@ -1,10 +1,9 @@
 
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { NavLink, useHistory } from 'react-router-dom';
-import { createTaskThunk, getAllTasksThunk } from '../../store/task';
+import { NavLink } from 'react-router-dom';
+import { getAllTasksThunk } from '../../store/task';
 import AddTaskForm from '../TaskForms/AddTaskForm';
-import EditTaskForm from '../TaskForms/EditTaskForm';
 import { setCurrentModal, showModal } from '../../store/modal';
 import './home.css'
 
@@ -25,7 +24,7 @@ const HomePage = () => {
             console.log("USEEEFFFEEEECTTT")
             await dispatch(getAllTasksThunk(userId))
         })();
-    }, [dispatch]);
+    }, [dispatch, userId]);
 
     const tasksObj = useSelector(state => state.task)
     console.log('!!!', tasksObj)
@@ -49,11 +48,11 @@ const HomePage = () => {
         dispatch(showModal())
     }
 
-    const showEditTaskForm = () => {
-        dispatch(setCurrentModal(EditTaskForm))
-        dispatch(showModal())
+    // const showEditTaskForm = () => {
+    //     dispatch(setCurrentModal(EditTaskForm))
+    //     dispatch(showModal())
 
-    }
+    // }
 
 
 
