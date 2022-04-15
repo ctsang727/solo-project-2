@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom'
 
 import { hideModal } from '../../store/modal';
 import './Modal.css'
+import { getTaskThunk } from '../../store/task';
 export const Modal = () => {
 
     const dispatch = useDispatch();
@@ -14,6 +15,7 @@ export const Modal = () => {
 
     const closeModal = () => {
         dispatch(hideModal());
+       // dispatch(getTaskThunk())
     }
 
     return display && mount && ReactDOM.createPortal(

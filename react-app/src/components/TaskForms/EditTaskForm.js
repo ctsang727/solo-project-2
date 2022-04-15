@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { hideModal } from '../../store/modal';
-import { editTaskThunk, deleteTaskThunk } from '../../store/task';
+import { editTaskThunk, deleteTaskThunk, getTaskThunk } from '../../store/task';
 
 const EditTaskForm = () => {
     const dispatch = useDispatch();
@@ -10,18 +10,16 @@ const EditTaskForm = () => {
 
     const userId = useSelector(state => state.session.user.id)
     const tasksObj = useSelector(state => state.task)
-    const edittask = Object.values(tasksObj)[0]
-    const taskId = edittask?.tasks[0].id
-    const specificTask = edittask?.tasks[0]
-    console.log(taskId)
+    console.log(tasksObj)
+    const taskId = tasksObj.id
     
 
-    const [taskName, setTaskName] = useState(specificTask.task_name)
-    const [taskDesc, setTaskDesc] = useState(specificTask.description)
-    const [dueDate, setDueDate] = useState(specificTask.due_date)
-    const [projectId, setProject] = useState(null)
-    const [labels, setLabels] = useState(null)
-    const [priority, setPriority] = useState(specificTask.priority)
+    const [taskName, setTaskName] = useState(tasksObj.task_name)
+    const [taskDesc, setTaskDesc] = useState(tasksObj.description)
+    const [dueDate, setDueDate] = useState(tasksObj.due_date) 
+    const [projectId, setProject] = useState(tasksObj.project_id)
+    const [labels, setLabels] = useState(tasksObj.labels)
+    const [priority, setPriority] = useState(tasksObj.priority)
 
     const editTask = e => {
         e.preventDefault()
@@ -42,7 +40,7 @@ const EditTaskForm = () => {
     const onDelete = (e) => {
         e.preventDefault()
 
-        dispatch(deleteTaskThunk(+taskId))
+        //dispatch(deleteTaskThunk(+taskId))
             //working but re-render issues
         history.push('/app')
 

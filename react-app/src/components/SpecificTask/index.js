@@ -28,16 +28,13 @@ const SpecificTask = () => {
         console.log('THIS IS TASKSOBJ', tasksObj)
     }, [tasksObj])
 
-    if (tasksObj === undefined) return <>We be loading...</>
-    // console.log('!!!', tasksObj)
-    // console.log('state', useSelector(state => state))
-    // const task = Object.values(tasksObj)[0]
-    // console.log('undefined?', task?.tasks[0].task_name)
-    // const trackId = track.id
-    // const taskDetails = task?.tasks[0]
-    // console.log('iDDDDDD', task?.tasks[0].task_name)
-    // console.log(typeof taskId)
-    // console.log(typeof +taskId, taskId)
+    function isEmpty(obj) {
+        console.log('empty?')
+        return Object.keys(obj).length === 0;
+    }
+    // console.log(isEmpty(tasksObj))
+    // if (isEmpty(tasksObj)) console.log('EMPTY')
+
 
     const onDelete = (e) => {
         e.preventDefault()
@@ -57,20 +54,21 @@ const SpecificTask = () => {
     return (
         <div className='main-page'>
             <h1>HEY YOU HAVE STUFF TO DO!</h1>
-            {tasksObj && 
-            <p>I AM HERE</p>
+            {!isEmpty(tasksObj) &&
+                <><p>I AM HERE</p>
+                    <div>
+                        <ul>
+                            <li>
+                                {tasksObj.task_name}
+                            </li>
+                            <ul>
+                                <li>
+                                    {tasksObj.description}
+                                </li>
+                            </ul>
+                        </ul>
+                    </div></>
             }
-            {/* {tasksObj &&
-                <div>{Object.values(tasksObj).map(item => {
-                    return (
-                        <>
-
-                            <div>{item?.tasks[0].task_name}</div>
-                            <div>{item?.tasks[0].description}</div>
-                        </>
-                    )
-                })}</div>
-            } */}
 
             <div>
                 <button onClick={showEditTaskForm}>Edit</button>

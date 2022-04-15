@@ -28,7 +28,7 @@ const HomePage = () => {
     }, [dispatch]);
 
     const tasksObj = useSelector(state => state.task)
-    //console.log('!!!', tasksObj)
+    console.log('!!!', tasksObj)
     //const track = Object.values(tasksObj)[0]
     //const trackId = track.id
     //console.log('iDDDDDD', track)
@@ -36,10 +36,11 @@ const HomePage = () => {
     //
     useEffect(() => {
         console.log(tasksObj)
+        console.log('useEffect 2 tasksObj')
         setTasks(Object.values(tasksObj))
     }, [tasksObj])
 
-    //console.log('TEST', tasks.task_name)
+    console.log('THIS IS TASKS', tasks)
 
 
 
@@ -61,7 +62,18 @@ const HomePage = () => {
             <h1>HEY YOU HAVE STUFF TO DO!</h1>
             <button onClick={showAddTaskForm}>ADD TASK</button>
             <div>
-                {tasks?.map(({ task_name, description, id }) => (
+                {tasks?.map(task => (
+                    <ul key={task?.id}>
+                        <li>{task?.task_name}</li>
+                        <ul key={task?.id}>
+                        <li>{task?.description}</li>
+                        </ul>
+                        <NavLink to={`/app/task/${task?.id}`}>More</NavLink>
+                    </ul>
+                ))
+
+                }
+                {/* {tasks?.map(({ task_name, description, id }) => (
 
                     <ul key={id}>
                         <li>{task_name}</li>
@@ -71,7 +83,7 @@ const HomePage = () => {
                         <NavLink to={`/app/task/${id}`}>More</NavLink>
                     </ul>
                 )
-                )}
+                )} */}
             </div>
 
 
