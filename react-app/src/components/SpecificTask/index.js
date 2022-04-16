@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
-import { hideModal } from '../../store/modal';
 import { editTaskThunk, getTaskThunk, deleteTaskThunk } from '../../store/task';
 
 // import EditTaskForm from '../TaskForms/EditTaskForm';
@@ -51,7 +50,7 @@ const SpecificTask = () => {
             labels,
             priority
         }
-        dispatch(hideModal())
+        setShowEdit(!showEdit)
         return dispatch(editTaskThunk(editTask))
     }
 
