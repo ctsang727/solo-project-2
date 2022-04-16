@@ -5,8 +5,8 @@ import { useHistory, useParams } from 'react-router-dom';
 import { hideModal } from '../../store/modal';
 import { editTaskThunk, getTaskThunk, deleteTaskThunk } from '../../store/task';
 
-import EditTaskForm from '../TaskForms/EditTaskForm';
-import { setCurrentModal, showModal } from '../../store/modal';
+// import EditTaskForm from '../TaskForms/EditTaskForm';
+// import { setCurrentModal, showModal } from '../../store/modal';
 
 const SpecificTask = () => {
     const { taskId } = useParams()
@@ -14,14 +14,14 @@ const SpecificTask = () => {
     const dispatch = useDispatch()
     const userId = useSelector(state => state.session.user.id)
     const tasksObj = useSelector(state => state.task)
-    const [tasks, setTasks] = useState([])
+    // const [tasks, setTasks] = useState([])
 
     const history = useHistory()
 
     useEffect(() => {
         console.log('inside useEffect 1')
         dispatch(getTaskThunk(taskId))
-    }, [dispatch]);
+    }, [dispatch, taskId]);
 
 
     //edit related
@@ -69,12 +69,12 @@ const SpecificTask = () => {
 
     }
 
-    const showEditTaskForm = () => {
+    // const showEditTaskForm = () => {
 
-        dispatch(setCurrentModal(EditTaskForm))
-        dispatch(showModal())
+    //     dispatch(setCurrentModal(EditTaskForm))
+    //     dispatch(showModal())
 
-    }
+    // }
 
     return (
         <div className='main-page'>

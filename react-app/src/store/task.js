@@ -4,7 +4,7 @@ const GET_TASK = 'task/GET_TASK'
 const GET_TASKS = 'tasks/GET_TASKS'
 const NEW_TASK = 'tasks/NEW_TASK'
 const DEL_TASK = 'task/DEL_TASK'
-const EDIT_TASK = 'task/EDIT_TASK'
+// const EDIT_TASK = 'task/EDIT_TASK'
 
 const getTask = task => ({
     type: GET_TASK,
@@ -21,10 +21,10 @@ const getAllTasks = tasks => ({
     tasks
 })
 
-const editTask = task => ({
-    type: EDIT_TASK,
-    task
-})
+// const editTask = task => ({
+//     type: EDIT_TASK,
+//     task
+// })
 
 const deleteTask = taskId => ({
     type: DEL_TASK,

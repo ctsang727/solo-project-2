@@ -8,13 +8,13 @@ const EditTaskForm = () => {
     const dispatch = useDispatch();
     const history = useHistory();
     const taskId = useParams()
-    console.log(taskId)
+    //console.log(taskId)
     
     const userId = useSelector(state => state.session.user.id)
     const tasksObj = useSelector(state => state.task)
 
-    const [tasks, setTasks] = useState([])
-    console.log('111', tasksObj)
+    // const [tasks, setTasks] = useState([])
+    // console.log('111', tasksObj)
     //const [taskId, setTaskId] = useState()
     const [taskName, setTaskName] = useState(tasksObj.task_name)
     const [taskDesc, setTaskDesc] = useState(tasksObj.description)
