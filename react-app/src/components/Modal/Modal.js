@@ -1,9 +1,10 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import ReactDOM from 'react-dom'
-
+import { getTaskThunk } from '../../store/task';
 import { hideModal } from '../../store/modal';
 import './Modal.css'
+import { useParams } from 'react-router-dom';
 
 export const Modal = () => {
 
@@ -12,6 +13,7 @@ export const Modal = () => {
     const mount = useSelector(state => state.modals.modalMount);
     const display = useSelector(state => state.modals.display);
     const Current = useSelector(state => state.modals.currentModal);
+    
 
     const closeModal = () => {
         dispatch(hideModal());

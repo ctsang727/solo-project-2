@@ -1,25 +1,37 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { hideModal } from '../../store/modal';
-import { editTaskThunk } from '../../store/task';
+import { editTaskThunk, deleteTaskThunk, getTaskThunk } from '../../store/task';
 
 const EditTaskForm = () => {
     const dispatch = useDispatch();
     const history = useHistory();
-
+    const taskId = useParams()
+    console.log(taskId)
+    
     const userId = useSelector(state => state.session.user.id)
     const tasksObj = useSelector(state => state.task)
-    console.log(tasksObj)
-    const taskId = tasksObj.id
-    
 
+    const [tasks, setTasks] = useState([])
+    console.log('111', tasksObj)
+    //const [taskId, setTaskId] = useState()
     const [taskName, setTaskName] = useState(tasksObj.task_name)
     const [taskDesc, setTaskDesc] = useState(tasksObj.description)
     const [dueDate, setDueDate] = useState(tasksObj.due_date) 
-    const [projectId, setProject] = useState(tasksObj.project_id)
-    const [labels, setLabels] = useState(tasksObj.labels)
-    const [priority, setPriority] = useState(tasksObj.priority)
+    const [projectId, setProject] = useState(tasksObj.project_id || null)
+    const [labels, setLabels] = useState(tasksObj.labels || null)
+    const [priority, setPriority] = useState(tasksObj.priority || null)
+
+    useEffect(() => {
+        dispatch(getTaskThunk(taskId))
+        console.log(taskId)
+    }, [dispatch, taskId]);
+
+    // useEffect(() => {
+    //     console.log('useEffect 2', tasksObj)
+    //     setTasks(Object.values(tasksObj))
+    // }, [tasksObj])
 
     const editTask = e => {
         e.preventDefault()
@@ -39,9 +51,9 @@ const EditTaskForm = () => {
 
     const onDelete = (e) => {
         e.preventDefault()
+        dispatch(deleteTaskThunk(+taskId))
+        dispatch(hideModal())
 
-        //dispatch(deleteTaskThunk(+taskId))
-            //working but re-render issues
         history.push('/app')
 
     }
