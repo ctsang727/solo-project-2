@@ -1,10 +1,10 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import ReactDOM from 'react-dom'
-import { getTaskThunk } from '../../store/task';
+
 import { hideModal } from '../../store/modal';
 import './Modal.css'
-import { useParams } from 'react-router-dom';
+
 
 export const Modal = () => {
 
