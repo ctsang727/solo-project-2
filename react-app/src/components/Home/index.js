@@ -1,6 +1,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
 import { getAllTasksThunk } from '../../store/task';
 import AddTaskForm from '../TaskForms/AddTaskForm';
@@ -8,11 +9,12 @@ import { setCurrentModal, showModal } from '../../store/modal';
 import './home.css'
 
 
+
 const HomePage = () => {
 
     const userId = useSelector(state => state.session.user.id)
 
-    //const history = useHistory();
+    const history = useHistory();
 
     const dispatch = useDispatch()
 
@@ -37,7 +39,10 @@ const HomePage = () => {
 
     // console.log('THIS IS TASKS', tasks)
 
+    const redirect = (id) => {
 
+        history.push(`/app/task/${id}`)
+    }
 
     const showAddTaskForm = () => {
         dispatch(setCurrentModal(AddTaskForm))
@@ -56,15 +61,20 @@ const HomePage = () => {
         <div className='main-page'>
             <h1 id='h1-home'>HEY YOU HAVE STUFF TO DO!</h1>
             <button onClick={showAddTaskForm}>ADD TASK</button>
-            <div>
+            <div id='tasks-container'>
                 {tasks?.map(task => (
-                    <ul id='all-tasks-ul' key={task?.id}>
-                        <li>{task?.task_name}</li>
-                        <ul key={task?.id}>
-                            <li>{task?.description}</li>
-                        </ul>
-                        <NavLink to={`/app/task/${task?.id}`}>More</NavLink>
-                    </ul>
+                    <div className='one-task' key={task?.id}>
+                        <div onClick={() => redirect(task?.id)} className='task-name'>
+                            <h3>{task?.task_name}</h3>
+                            <div className='one-desc' key={task?.id}>
+                                <p>{task?.description}</p>
+                            </div>
+                        </div>
+                        <div className='more-div'>
+                            <NavLink to={`/app/task/${task?.id}`}>More</NavLink>
+                        </div>
+
+                    </div>
                 ))
                 }
             </div>

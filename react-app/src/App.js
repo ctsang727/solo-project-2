@@ -11,6 +11,7 @@ import { authenticate } from './store/session';
 import HomePage from './components/Home/index';
 import Modal from './components/Modal/Modal'
 import SpecificTask from './components/SpecificTask';
+import Sidebar from './components/Sidebar';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -32,6 +33,7 @@ function App() {
     <BrowserRouter>
       <NavBar />
       <Modal />
+      <Sidebar />
       <Switch>
         {/* <Route path='/login' exact={true}>
           <LoginForm />

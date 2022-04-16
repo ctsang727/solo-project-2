@@ -2,10 +2,9 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from './auth/LogoutButton';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import AddTaskForm from '../components/TaskForms/AddTaskForm'
 import { showModal, setCurrentModal } from '../store/modal';
-
 import LoginForm from './auth/LoginForm';
 import SignUpForm from './auth/SignUpForm';
 
@@ -15,6 +14,9 @@ import './NavBar.css'
 
 const NavBar = () => {
   const dispatch = useDispatch();
+
+  const user = useSelector(state => state.session.user);
+
 
   const showLoginForm = () => {
     dispatch(setCurrentModal(LoginForm));
@@ -39,11 +41,15 @@ const NavBar = () => {
             Home
           </NavLink>
         </div>
-
+        {!user && 
         <div className='nav-div'> 
           <div onClick={showLoginForm}>LOG IN</div>
           <div onClick={showSignUpForm}>SIGN UP</div>
         </div>
+        }
+        {user && 
+        <div></div>
+        }
 
         <div className='nav-div'>
           <button onClick={showAddTaskForm}>ADD TASK</button>

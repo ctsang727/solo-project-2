@@ -1,9 +1,62 @@
+body{
+    background-color: #1f1f1f;
+    color: white;
+}
+
 #h1-home{
     font-family: 'Roboto', sans-serif;
+    margin-left: 10%;
 }
 
 .main-page{
     font-family: 'Roboto', sans-serif;
+    border: 1px solid blue;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+
+#tasks-container{
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+.one-task{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin: 10px;
+}
+
+.more-div {
+    display: flex;
+    justify-content: flex-end;
+    margin-right:20%;
+
+}
+
+/* .one-task div{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+} */
+
+.task-name {
+    display: flex;
+    align-items: flex-start;
+    margin-left: 20%;
+    flex-direction: column;
+    padding: 5px;
+    border-radius: 5px;
+}
+.task-name:hover{
+    background-color: rgba(255, 255, 255, 0.144);
+}
+.task-name h3{
+    margin: 0;
+}
+
+.task-name p{
+    margin: 0;
 }
 
 #all-tasks-ul{
