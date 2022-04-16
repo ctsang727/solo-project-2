@@ -67,14 +67,15 @@ export const createTaskThunk = (task) => async dispatch => {
 }
 
 export const editTaskThunk = (task) => async dispatch => {
-    const res = await fetch('/api/tasks/edit', {
+    console.log('EDIT THUNK', task)
+    const res = await fetch(`/api/tasks/edit/${task.taskId}`, {
         method: 'PUT',
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(task)
     })
     if (res.ok) {
         const data = await res.json()
-        dispatch(editTask(data))
+        dispatch(newTask(data))
         return data
     }
 }
@@ -110,8 +111,16 @@ const taskReducer = (state = {}, action) => {
         case GET_TASK:
             // return {...state,
             // action.task }
+            // console.log('first state', state)
+            // let thisState = {}
             newState = {...state}
+            console.log('NEWSTATE REDUCER', newState)
+            console.log('ACTION?TASK?ID', action.task.id)
             newState[action.task.id] = action.task 
+            console.log('ANYTHING1234568789')
+            console.log('NEXTACTIONTASKIDTHING', newState[action.task.id])
+            console.log('last??????', action.task)
+            console.log('newState', newState)
             return newState
              
 

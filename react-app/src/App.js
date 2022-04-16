@@ -49,11 +49,12 @@ function App() {
           <h1>My Home Page</h1>
         </Route>
         <ProtectedRoute path = '/app/task/:taskId'>
-          <SpecificTask/>
+          <SpecificTask />
         </ProtectedRoute>
         <ProtectedRoute path = '/app' exact={true} >
           <HomePage />
         </ProtectedRoute>
+        
       </Switch>
     </BrowserRouter>
   );

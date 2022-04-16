@@ -19,15 +19,12 @@ const HomePage = () => {
     const [tasks, setTasks] = useState([])
 
     useEffect(() => {
-
-        (async () => {
-            console.log("USEEEFFFEEEECTTT")
-            await dispatch(getAllTasksThunk(userId))
-        })();
+        console.log("USEEEFFFEEEECTTT")
+        dispatch(getAllTasksThunk(userId))
     }, [dispatch, userId]);
 
     const tasksObj = useSelector(state => state.task)
-    console.log('!!!', tasksObj)
+    //console.log('!!!', tasksObj)
     //const track = Object.values(tasksObj)[0]
     //const trackId = track.id
     //console.log('iDDDDDD', track)
@@ -38,7 +35,7 @@ const HomePage = () => {
         setTasks(Object.values(tasksObj))
     }, [tasksObj])
 
-    console.log('THIS IS TASKS', tasks)
+    // console.log('THIS IS TASKS', tasks)
 
 
 
@@ -64,7 +61,7 @@ const HomePage = () => {
                     <ul id='all-tasks-ul' key={task?.id}>
                         <li>{task?.task_name}</li>
                         <ul key={task?.id}>
-                        <li>{task?.description}</li>
+                            <li>{task?.description}</li>
                         </ul>
                         <NavLink to={`/app/task/${task?.id}`}>More</NavLink>
                     </ul>

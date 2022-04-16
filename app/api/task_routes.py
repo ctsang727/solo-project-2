@@ -48,10 +48,10 @@ def new_task():
     
     return task.task_to_dict()
 
-@task_routes.route('/edit', methods = ['PUT'])
-def edit_task():
-    taskId=request.json['taskId']
-    task = Task.query.get(taskId)
+@task_routes.route('/edit/<int:id>', methods = ['PUT'])
+def edit_task(id):
+    
+    task = Task.query.get(id)
 
     user_id=request.json['userId']
     task_name = request.json['taskName']
