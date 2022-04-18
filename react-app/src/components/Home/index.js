@@ -90,7 +90,7 @@ const HomePage = () => {
                 }
             </div>
             <div id='new-task-button'>
-            <button onClick={showAddTaskForm}><i class="fa-regular fa-plus"></i> Add Task </button>
+            <button onClick={showAddTaskForm}><i style={{fontSize: '18px'}} class="material-icons">add</i> Add Task </button>
             </div>
 
 
