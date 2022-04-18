@@ -4,7 +4,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0,0,0,.75);
+    background: rgba(0, 0, 0, 0.411);
     display:flex;
     justify-content: center;
     align-items: center;
@@ -12,13 +12,13 @@
 }
 
 .modal-content {
-    background-color: white;
-    border-radius: 5px;
-    height: 90%;
-    width: 40%;
-    display: flex;  
+    background-color: #202020;
+    border-radius: 10px;
+    height: 30%;
+    width: 30%;
+    /* display: flex;  
     justify-content: center;
-    align-items: center;
+    align-items: center; */
     opacity:1;
 
 }

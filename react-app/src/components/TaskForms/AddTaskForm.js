@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { hideModal } from '../../store/modal';
 import { createTaskThunk } from '../../store/task';
+import './AddTaskForm.css'
 
 const AddTaskForm = () => {
 
@@ -36,14 +37,14 @@ const AddTaskForm = () => {
 
 
     return (
-        <div>
-            <form onSubmit={createTask}>
+        <div id='content'>
+            <form id='add-task' onSubmit={createTask}>
                 <div>
                     <input
                         type='text'
                         name='taskName'
                         value={taskName}
-                        placeholder='Add New Task'
+                        placeholder='Task name'
                         onChange={(e) => setTaskName(e.target.value)} />
                 </div>
                 <div>
@@ -54,46 +55,54 @@ const AddTaskForm = () => {
                         placeholder='Description'
                         onChange={(e) => setTaskDesc(e.target.value)} />
                 </div>
-                <div>
-                    <input
-                        type='date'
-                        name='dueDate'
-                        value={dueDate}
-                        onChange={(e) => setDueDate(e.target.value)} />
+                <div id='second-block'>
+                    <div id='date'>
+                        <input
+                            type='date'
+                            name='dueDate'
+                            value={dueDate}
+                            onChange={(e) => setDueDate(e.target.value)} />
+                    </div>
+
+                    <div id='third-block'>
+                        <div>
+                            <label>Priority: </label>
+                            <select
+                                name='priority'
+                                value={priority}
+                                onChange={(e) => setPriority(e.target.value)}>
+                                <option value={0}>0</option>
+                                <option value={1}>1</option>
+                                <option value={2}>2</option>
+                                <option value={3}>3</option>
+                                <option value={4}>4</option>
+                            </select>
+                        </div>
+                        <div>
+                            <input
+                                type='text'
+                                name='labels'
+                                value={labels}
+                                placeholder='Labels'
+                                onChange={(e) => setLabels(e.target.value)} />
+                        </div>
+                        <div>
+                            <input
+                                type='text'
+                                name='projectId'
+                                value={projectId}
+                                placeholder='Project'
+                                onChange={(e) => setProject(e.target.value)} />
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    <label>Priority: </label>
-                    <select
-                        name='priority'
-                        value={priority}
-                        onChange={(e) => setPriority(e.target.value)}>
-                        <option value={0}>0</option>
-                        <option value={1}>1</option>
-                        <option value={2}>2</option>
-                        <option value={3}>3</option>
-                        <option value={4}>4</option>
-                    </select>
-                </div>
-                <div>
-                    <input
-                        type='text'
-                        name='labels'
-                        value={labels}
-                        placeholder='Labels'
-                        onChange={(e) => setLabels(e.target.value)} />
-                </div>
-                <div>
-                    <input
-                        type='text'
-                        name='projectId'
-                        value={projectId}
-                        placeholder='Project'
-                        onChange={(e) => setProject(e.target.value)} />
-                </div>
-                
+
+
+
                 {/* Do labels later */}
                 <div>
                     <button type='submit'>Add Task</button>
+                    <button onClick={hideModal()}>Cancel</button>
                 </div>
             </form>
         </div>

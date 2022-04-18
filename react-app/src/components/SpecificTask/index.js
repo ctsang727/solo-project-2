@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
-import { hideModal } from '../../store/modal';
 import { editTaskThunk, getTaskThunk, deleteTaskThunk } from '../../store/task';
 
 // import EditTaskForm from '../TaskForms/EditTaskForm';
@@ -51,7 +50,7 @@ const SpecificTask = () => {
             labels,
             priority
         }
-        dispatch(hideModal())
+        setShowEdit(!showEdit)
         return dispatch(editTaskThunk(editTask))
     }
 
@@ -99,6 +98,7 @@ const SpecificTask = () => {
                         <input
                             type='text'
                             name='taskName'
+                            value={taskName}
                             defaultValue={tasksObj[taskId].task_name}
                             onChange={(e) => setTaskName(e.target.value)}
                         ></input>
@@ -107,6 +107,7 @@ const SpecificTask = () => {
                         <textarea
                             type='text'
                             name='taskDesc'
+                            value={taskDesc}
                             defaultValue={tasksObj[taskId].description}
                             onChange={(e) => setTaskDesc(e.target.value)} />
                     </div>
