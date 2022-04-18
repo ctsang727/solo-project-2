@@ -37,8 +37,8 @@ const NavBar = () => {
     <nav id='navContainer'>
 
       <div className='nav-div'>
-        <NavLink  to='/app' exact={true} activeClassName='active'>
-          <i class="fa-solid fa-house"></i>
+        <NavLink to='/app' exact={true} activeClassName='active'>
+          <i style={{fontSize: '18px'}} class="fa-solid fa-house"></i>
         </NavLink>
       </div>
       {!user &&
@@ -52,7 +52,9 @@ const NavBar = () => {
       }
 
       <div className='nav-div'>
-        <button onClick={showAddTaskForm}><i class="fa-regular fa-plus fa-2x"></i></button>
+        <button onClick={showAddTaskForm}>
+          <i style={{fontSize: '20px'}} class="material-icons">add</i>
+        </button>
         <LogoutButton />
       </div>
 
