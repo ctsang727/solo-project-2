@@ -38,3 +38,27 @@
     font-size: 14px;
     font-weight: 700;
 }
+
+#projects-header{
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    align-items: center;
+    
+}
+
+.sidebar-container:hover #project-button{
+    
+    visibility: visible;
+
+}
+
+#projects-text{
+    margin-right:30px;
+}
+
+#project-button{
+    
+    visibility: hidden;
+    margin-top: 3px;
+}

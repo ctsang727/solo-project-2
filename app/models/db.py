@@ -46,12 +46,11 @@ class Project(db.Model):
 
     tasks = db.relationship('Task', backref='projects', cascade='all, delete')
 
-    # def project_to_dict(self):
-    #     return {
-    #         'id': self.id,
-    #         'user_id': self.user_id,
-    #         'task_id': self.task_id,
-    #         'project_name':self.project_name,
-    #         'color': self.color, 
-    #         'tasks': [t_to_dict() for t in self.tasks]
-    #     }
+    def project_to_dict(self):
+        return {
+            'id': self.id,
+            'user_id': self.user_id,
+            'project_name':self.project_name,
+            'color': self.color, 
+            'tasks': [t_to_dict() for t in self.tasks]
+        }

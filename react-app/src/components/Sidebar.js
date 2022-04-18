@@ -1,7 +1,10 @@
 import React from 'react';
-
+import { useDispatch } from 'react-redux';
+import AddProjectForm from './Projects/AddProjectForm';
 import { NavLink } from 'react-router-dom';
 import './Sidebar.css'
+import { setCurrentModal, showModal } from '../store/modal'
+
 
 const navLinkStyle = {
   textDecoration: 'none',
@@ -9,7 +12,15 @@ const navLinkStyle = {
   margin: '10px'
 
 }
+
 const Sidebar = () => {
+  const dispatch = useDispatch()
+
+  const showAddProjectForm = () => {
+    dispatch(setCurrentModal(AddProjectForm))
+    dispatch(showModal())
+  }
+
   return (
     <div className='sidebar-container'>
       <div id='today-side-div'>
@@ -36,8 +47,18 @@ const Sidebar = () => {
         </div>
       </div>
       <div id='projects-side-div'>
+        <div id='projects-header'>
+          <div id='projects-text'>
+            <h3>Projects</h3>
+          </div>
+          <div id='project-button' >
+            <i onClick={showAddProjectForm} style={{fontSize: '18px'}} class="material-icons">add</i>
+          </div>
+          
+        </div>
         
-          Projects
+        
+          
         
       </div>
       <div></div>

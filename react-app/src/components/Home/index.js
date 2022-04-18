@@ -26,10 +26,7 @@ const HomePage = () => {
     }, [dispatch, userId]);
 
     const tasksObj = useSelector(state => state.task)
-    //console.log('!!!', tasksObj)
-    //const track = Object.values(tasksObj)[0]
-    //const trackId = track.id
-    //console.log('iDDDDDD', track)
+  
 
     //
     useEffect(() => {
