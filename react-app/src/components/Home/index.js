@@ -54,12 +54,21 @@ const HomePage = () => {
     //     dispatch(showModal())
 
     // }
+    const currentDate = () => {
+        const today = new Date();
+        const dd = String(today.getDate()).padStart(2, '0');
+        const mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+        const yyyy = today.getFullYear();
 
+        const current = mm + '/' + dd + '/' + yyyy;
+        return current
+    }
 
 
     return (
         <div className='main-page'>
             <h1 id='h1-home'>HEY YOU HAVE STUFF TO DO!</h1>
+            <h2>Today {currentDate()}</h2>
             <button onClick={showAddTaskForm}>ADD TASK</button>
             <div id='tasks-container'>
                 {tasks?.map(task => (
@@ -69,9 +78,12 @@ const HomePage = () => {
                             <div className='one-desc' key={task?.id}>
                                 <p>{task?.description}</p>
                             </div>
+                            <div>
+                                <p>{task?.due_date}</p>
+                            </div>
                         </div>
                         <div className='more-div'>
-                            <NavLink to={`/app/task/${task?.id}`}>More</NavLink>
+                            <NavLink to={`/app/task/${task?.id}`}><i class="fa-solid fa-ellipsis fa-2x"></i></NavLink>
                         </div>
 
                     </div>

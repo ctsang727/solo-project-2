@@ -1,7 +1,7 @@
-body{
+/* body{
     background-color: #1f1f1f;
     color: white;
-}
+} */
 
 #h1-home{
     font-family: 'Roboto', sans-serif;
@@ -32,6 +32,12 @@ body{
     justify-content: flex-end;
     margin-right:20%;
 
+}
+
+.more-div i{
+    color: white;
+    padding: 3px;
+    border-radius: 5px;
 }
 
 /* .one-task div{
@@ -68,5 +74,6 @@ body{
 #all-tasks-ul li{
     margin: 5px;
 }
+
 
 

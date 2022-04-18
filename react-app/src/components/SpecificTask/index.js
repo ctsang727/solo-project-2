@@ -98,6 +98,7 @@ const SpecificTask = () => {
                         <input
                             type='text'
                             name='taskName'
+                            value={taskName}
                             defaultValue={tasksObj[taskId].task_name}
                             onChange={(e) => setTaskName(e.target.value)}
                         ></input>
@@ -106,6 +107,7 @@ const SpecificTask = () => {
                         <textarea
                             type='text'
                             name='taskDesc'
+                            value={taskDesc}
                             defaultValue={tasksObj[taskId].description}
                             onChange={(e) => setTaskDesc(e.target.value)} />
                     </div>

@@ -33,31 +33,31 @@ const NavBar = () => {
     dispatch(showModal())
   }
   return (
-    
-      <nav id='navContainer'>
 
+    <nav id='navContainer'>
+
+      <div className='nav-div'>
+        <NavLink  to='/app' exact={true} activeClassName='active'>
+          <i class="fa-solid fa-house"></i>
+        </NavLink>
+      </div>
+      {!user &&
         <div className='nav-div'>
-          <NavLink to='/app' exact={true} activeClassName='active'>
-            Home
-          </NavLink>
-        </div>
-        {!user && 
-        <div className='nav-div'> 
           <div onClick={showLoginForm}>LOG IN</div>
           <div onClick={showSignUpForm}>SIGN UP</div>
         </div>
-        }
-        {user && 
+      }
+      {user &&
         <div></div>
-        }
+      }
 
-        <div className='nav-div'>
-          <button onClick={showAddTaskForm}>ADD TASK</button>
-          <LogoutButton />
-        </div>
+      <div className='nav-div'>
+        <button onClick={showAddTaskForm}><i class="fa-regular fa-plus fa-2x"></i></button>
+        <LogoutButton />
+      </div>
 
-      </nav>
-    
+    </nav>
+
   );
 }
 
@@ -72,8 +72,8 @@ export default NavBar;
             Sign Up
           </NavLink>
         </li> */
-        /* <li>
-            <NavLink to='/users' exact={true} activeClassName='active'>
-              Users
-            </NavLink>
-          </li> */
+/* <li>
+    <NavLink to='/users' exact={true} activeClassName='active'>
+      Users
+    </NavLink>
+  </li> */

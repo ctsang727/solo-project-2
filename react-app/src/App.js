@@ -12,6 +12,8 @@ import HomePage from './components/Home/index';
 import Modal from './components/Modal/Modal'
 import SpecificTask from './components/SpecificTask';
 import Sidebar from './components/Sidebar';
+//import ThemeProvider from 'styled-components';
+
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -27,6 +29,11 @@ function App() {
   if (!loaded) {
     return null;
   }
+
+  // const [theme, setTheme] = useState('light');
+  // const themeToggle = () => {
+  //   theme === 'light' ? setTheme('dark') : setTheme('light')
+  // }
   
 
   return (
