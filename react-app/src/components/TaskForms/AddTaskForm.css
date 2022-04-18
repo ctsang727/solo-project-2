@@ -1,0 +1,34 @@
+#add-task input{
+    background-color: #202020;
+    border: none;
+    margin: 10px;
+    
+    width: 80%;
+}
+
+#add-task textarea{
+    background-color: #202020;
+    color:white;
+    border: none;
+    margin: 10px;
+    width: 80%;
+    resize: none;
+    height: 75px;
+}
+
+#content {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+#second-block{
+    display: flex;
+    flex-direction: row;
+
+}
+
+#third-block{
+    display: flex;
+    
+}

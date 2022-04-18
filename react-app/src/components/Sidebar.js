@@ -4,36 +4,47 @@ import { NavLink } from 'react-router-dom';
 import './Sidebar.css'
 
 const navLinkStyle = {
-    textDecoration: 'none',
-    color:'white',
+  textDecoration: 'none',
+  color: 'white',
+  margin: '10px'
 
 }
 const Sidebar = () => {
   return (
     <div className='sidebar-container'>
-      <NavLink style={navLinkStyle} to='/'> 
-        Home
-      </NavLink>
+      <div id='today-side-div'>
+        <div className='navlink-div'>
+          <NavLink style={navLinkStyle} to='/'>
+            <i style={{ color: '#5297ff' }} class="fa-solid fa-note-sticky"></i> Inbox
+          </NavLink>
+        </div>
 
-      <NavLink style={navLinkStyle} to='/' > 
-        Laravel
-      </NavLink>
+        <div className='navlink-div'>
+          <NavLink style={navLinkStyle} to='/' >
+            <i style={{ color: '#25b84c' }} class="fa-solid fa-calendar"></i> Today
+          </NavLink>
+        </div>
+        <div className='navlink-div'>
+          <NavLink style={navLinkStyle} to='/' >
+            <i style={{ color: '#a970ff' }} class="fa-solid fa-calendar-days"></i> Upcoming
+          </NavLink>
+        </div>
+        <div className='navlink-div'>
+          <NavLink style={navLinkStyle} to='/' >
+            Filters and Labels
+          </NavLink>
+        </div>
+      </div>
+      <div id='projects-side-div'>
+        
+          Projects
+        
+      </div>
+      <div></div>
 
-      <NavLink style={navLinkStyle} to='/' > 
-        Angular
-      </NavLink>
 
-      <NavLink style={navLinkStyle} to='/' > 
-        React
-      </NavLink>
 
-      <NavLink style={navLinkStyle} to='/' > 
-        Vue
-      </NavLink>
 
-      <NavLink style={navLinkStyle} to='/' > 
-        Node
-      </NavLink>
     </div>
   );
 };

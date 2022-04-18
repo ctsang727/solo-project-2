@@ -68,8 +68,7 @@ const HomePage = () => {
     return (
         <div className='main-page'>
             <h1 id='h1-home'>HEY YOU HAVE STUFF TO DO!</h1>
-            <h2>Today {currentDate()}</h2>
-            <button onClick={showAddTaskForm}>ADD TASK</button>
+            <h2 id='h2-home'>Today {currentDate()}</h2>
             <div id='tasks-container'>
                 {tasks?.map(task => (
                     <div className='one-task' key={task?.id}>
@@ -89,6 +88,9 @@ const HomePage = () => {
                     </div>
                 ))
                 }
+            </div>
+            <div id='new-task-button'>
+            <button onClick={showAddTaskForm}><i class="fa-regular fa-plus"></i> Add Task </button>
             </div>
 
 
