@@ -5,7 +5,7 @@ project_routes = Blueprint('projects', __name__)
 
 @project_routes.route('/<int:id>')
 def get_projects(id):
-    print(id)
+    print('111111111111', id)
     projects = Project.query.filter_by(user_id = id)
     return {'projects': [project.project_to_dict() for project in projects]}
 

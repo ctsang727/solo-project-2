@@ -1,6 +1,6 @@
 // const GET_TASK = 'task/GET_TASK'
-const GET_PROJECTS = 'tasks/GET_PROJECTS'
-const NEW_PROJECT = 'tasks/NEW_PROJECT'
+const GET_PROJECTS = 'project/GET_PROJECTS'
+const NEW_PROJECT = 'project/NEW_PROJECT'
 // const DEL_TASK = 'task/DEL_TASK'
 
 const newProject = project => ({
@@ -30,9 +30,11 @@ export const createProjectThunk = project => async dispatch => {
 }
 
 export const getAllProjectsThunk = (userId) => async dispatch => {
-    const res = await fetch(`api/projects/${userId}`)
+    console.log('thunk', userId)
+    const res = await fetch(`/api/projects/${userId}`)
 
     if (res.ok) {
+        console.log('res is ok')
         const data = await res.json()
         dispatch(getAllProjects(data))
         return data 

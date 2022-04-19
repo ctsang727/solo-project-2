@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { createProjectThunk } from '../../store/project';
+import { hideModal } from '../../store/modal';
 
 const AddProjectForm = () => {
 
@@ -18,6 +19,7 @@ const AddProjectForm = () => {
             projectName,
             color,
         }
+        dispatch(hideModal())
         return dispatch(createProjectThunk(newProject))
         
     }
@@ -47,6 +49,7 @@ const AddProjectForm = () => {
             </div>
             <div>
                 <button type='submit'>Submit</button>
+                <button onClick={hideModal()}>Cancel</button>
             </div>
         </form>
         

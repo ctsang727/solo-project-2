@@ -12,7 +12,8 @@ import HomePage from './components/Home/index';
 import Modal from './components/Modal/Modal'
 import SpecificTask from './components/SpecificTask';
 import Sidebar from './components/Sidebar';
-//import ThemeProvider from 'styled-components';
+import ProjectPage from './components/Projects/ProjectPage';
+
 
 
 function App() {
@@ -40,7 +41,7 @@ function App() {
     <BrowserRouter>
       <NavBar />
       <Modal />
-      <Sidebar />
+      
       <Switch>
         {/* <Route path='/login' exact={true}>
           <LoginForm />
@@ -59,9 +60,15 @@ function App() {
         </Route>
         <ProtectedRoute path = '/app/task/:taskId'>
           <SpecificTask />
+          <Sidebar />
         </ProtectedRoute>
         <ProtectedRoute path = '/app' exact={true} >
           <HomePage />
+          <Sidebar />
+        </ProtectedRoute>
+        <ProtectedRoute path = '/app/projects/:id' exact={true} >
+          <ProjectPage />
+          <Sidebar />
         </ProtectedRoute>
         
       </Switch>

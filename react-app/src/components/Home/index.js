@@ -7,7 +7,7 @@ import { getAllTasksThunk } from '../../store/task';
 import AddTaskForm from '../TaskForms/AddTaskForm';
 import { setCurrentModal, showModal } from '../../store/modal';
 import './home.css'
-
+import Sidebar from '../Sidebar';
 
 
 const HomePage = () => {
@@ -26,7 +26,7 @@ const HomePage = () => {
     }, [dispatch, userId]);
 
     const tasksObj = useSelector(state => state.task)
-  
+
 
     //
     useEffect(() => {
@@ -64,6 +64,7 @@ const HomePage = () => {
 
     return (
         <div className='main-page'>
+            <Sidebar/>
             <h1 id='h1-home'>HEY YOU HAVE STUFF TO DO!</h1>
             <h2 id='h2-home'>Today {currentDate()}</h2>
             <div id='tasks-container'>
@@ -87,7 +88,7 @@ const HomePage = () => {
                 }
             </div>
             <div id='new-task-button'>
-            <button onClick={showAddTaskForm}><i style={{fontSize: '18px'}} class="material-icons">add</i> Add Task </button>
+                <button onClick={showAddTaskForm}><i style={{ fontSize: '18px' }} class="material-icons">add</i> Add Task </button>
             </div>
 
 

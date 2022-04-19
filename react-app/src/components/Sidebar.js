@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import AddProjectForm from './Projects/AddProjectForm';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import './Sidebar.css'
 import { getAllProjectsThunk } from '../store/project';
 import { setCurrentModal, showModal } from '../store/modal'
+
 
 
 const navLinkStyle = {
@@ -21,20 +22,20 @@ const Sidebar = () => {
     dispatch(setCurrentModal(AddProjectForm))
     dispatch(showModal())
   }
-
+  const history = useHistory()
   const [projects, setProjects] = useState([])
 
   const userId = useSelector(state => state.session.user.id)
   const projectsObj = useSelector(state => state.projects)
   
   useEffect(() => {
+    console.log('dispatching', userId)
     dispatch(getAllProjectsThunk(userId))
   }, [dispatch, userId])
 
   useEffect(() => {
     setProjects(Object.values(projectsObj))
 }, [projectsObj])
-
 
 
 
@@ -64,6 +65,7 @@ const Sidebar = () => {
           </NavLink>
         </div>
       </div>
+      
       <div id='projects-side-div'>
         <div id='projects-header'>
           <div id='projects-text'>
@@ -73,21 +75,19 @@ const Sidebar = () => {
             <i onClick={showAddProjectForm} style={{fontSize: '18px'}} class="material-icons">add</i>
           </div>
         </div>
-
+      
+        {userId && 
         <div id='current-projects'>
           {projects?.map(project => (
-            <div>{project.project_name}</div>
+            <div>
+              <NavLink to={`app/projects/${project.id}`}>{project.project_name}</NavLink>
+              </div>
           ))}
         </div>
-        
-        
-          
-        
+        }
+
       </div>
       <div></div>
-
-
-
 
     </div>
   );
