@@ -1,49 +1,103 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
-import { deleteProjectThunk, getAllProjectTasksThunk } from '../../store/project';
+import { deleteProjectThunk, getAllProjectTasksThunk, editProjectThunk } from '../../store/project';
+import { getTaskThunk } from '../../store/task';
 import Sidebar from '../Sidebar';
 
 
 const ProjectPage = () => {
     const dispatch = useDispatch()
+
     const [ptasks, setpTasks] = useState([])
+    const [showEdit, setShowEdit] = useState(false)
+    const [projectName, setProjectName] = useState('')
+    const [color, setColor] = useState('red')
+
     const history = useHistory()
-    const {id} = useParams()
-    console.log('IDDDDDDDD', id)
+    const { id } = useParams()
     const userId = useSelector(state => state.session.user.id)
     const projectsObj = useSelector(state => state?.projects)
-    console.log('@@@@', projectsObj)
+    console.log('111', projectsObj)
+    const projectTasks = Object.values(projectsObj).filter(i => i.project_id === +id)
+    console.log('222', Object.values(projectsObj).filter(i => i.project_id === +id))
+
+
+
 
     useEffect(() => {
-        console.log('USEEFFECT PROJECTPAGE')
+        // console.log('USEEFFECT PROJECTPAGE')
+        // console.log(projectsObj)
+        // console.log('PTASKS', ptasks)
         dispatch(getAllProjectTasksThunk(id))
     }, [dispatch, id]);
 
     useEffect(() => {
-        //console.log('useEffect 2 tasksObj', projectsObj)
         setpTasks(Object.values(projectsObj))
-    }, [projectsObj])
+    }, [setpTasks, projectsObj])
 
     const onDelete = (e) => {
         e.preventDefault()
         dispatch(deleteProjectThunk(+id))
-        history.push('/app')
+        console.log('ondelete')
+        history.push('/')
+    }
+
+    const clickEdit = () => {
+        setShowEdit(!showEdit)
+    }
+
+    const editProject = (e) => {
+        e.preventDefault()
+        const editProject = {
+            id,
+            projectName,
+            userId,
+            color
+        }
+        setShowEdit(!showEdit)
+        return dispatch(editProjectThunk(editProject))
     }
 
 
 
-    return(
+    return (
         <div>
-            <button style={{marginLeft: '500px'}} onClick={onDelete}>Delete</button>
-            {ptasks?.map(ptask => (
-                <p style={{marginLeft: '500px'}}>{ptask?.description}</p>
+            <button style={{ marginLeft: '500px' }} onClick={onDelete}>Delete</button>
+            <button style={{ marginLeft: '500px' }} onClick={clickEdit}>Edit</button>
+            <h1 style={{ marginLeft: '500px' }}>{projectsObj[id]?.project_name}</h1>
+            {projectTasks?.map(p => (
+                <div style={{ marginLeft: '500px' }}>
+                    {p.description}
+                </div>
             ))}
+            {showEdit &&
+                <form style={{ marginLeft: '500px' }} onSubmit={editProject} >
+                    <div>
+                        <input
+                            type='text'
+                            name='projectName'
+                            value={projectName}
+                            placeholder='Project name'
+                            onChange={(e) => setProjectName(e.target.value)} />
+                    </div>
+                    <div>
+                        <label>Color: </label>
+                        <select
+                            name='color'
+                            value={color}
+                            onChange={e => setColor(e.target.value)}>
+                            <option value={'red'}>Red</option>
+                            <option value={'blue'}>Blue</option>
+                            <option value={'yellow'}>Yellow</option>
+                        </select>
+                    </div>
+                    <button type='submit'>Submit</button>
+                </form>
+            }
+
         </div>
     )
-
-
-
 }
 
 export default ProjectPage

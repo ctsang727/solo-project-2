@@ -60,11 +60,11 @@ function App() {
         </Route>
         <ProtectedRoute path = '/app/task/:taskId'>
           <SpecificTask />
-          <Sidebar />
+          
         </ProtectedRoute>
         <ProtectedRoute path = '/app' exact={true} >
           <HomePage />
-          <Sidebar />
+          
         </ProtectedRoute>
         <ProtectedRoute path = '/app/projects/:id' exact={true} >
           <ProjectPage />

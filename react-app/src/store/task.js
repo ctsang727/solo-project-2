@@ -101,6 +101,9 @@ const taskReducer = (state = {}, action) => {
 
         case GET_TASKS:
             newState = { ...state };
+            console.log('NS', newState)
+            console.log('AT', action.tasks)
+            console.log('ATT', action.tasks.tasks)
 
             action.tasks.tasks?.forEach(task => {
                 newState[task.id] = task;

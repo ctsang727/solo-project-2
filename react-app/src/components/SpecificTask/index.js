@@ -77,19 +77,12 @@ const SpecificTask = () => {
 
     const onDelete = (e) => {
         e.preventDefault()
-        console.log('ONDELETE SPEECIFIC TASK', +taskId)
+        //console.log('ONDELETE SPEECIFIC TASK', +taskId)
         dispatch(deleteTaskThunk(+taskId))
 
         history.push('/app')
 
     }
-
-    // const showEditTaskForm = () => {
-
-    //     dispatch(setCurrentModal(EditTaskForm))
-    //     dispatch(showModal())
-
-    // }
 
     return (
         <div className='main-page'>
@@ -166,7 +159,6 @@ const SpecificTask = () => {
                     </div>
                     <div>
                         <button type='submit'>Edit Task</button>
-
                     </div>
                 </form>
 

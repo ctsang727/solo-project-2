@@ -23,17 +23,30 @@ def new_project():
     color = request.json['color']
     project_name = request.json['projectName']
     
-
     project = Project(
         user_id = user_id,
         project_name = project_name,
         color = color,
-
     )
 
     db.session.add(project)
     db.session.commit()
     
+    return project.project_to_dict()
+
+@project_routes.route('/edit/<int:id>', methods = ['PUT'])
+def edit_task(id):
+    project = Project.query.get(id)
+
+    user_id = request.json['userId']
+    project_name = request.json['projectName']
+    color = request.json['color']
+
+    project.project_name = project_name 
+    project.color = project.color 
+
+    db.session.add(project)
+    db.session.commit()
     return project.project_to_dict()
 
 @project_routes.route('/delete/<int:id>', methods=['DELETE'])
