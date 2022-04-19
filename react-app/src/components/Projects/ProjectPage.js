@@ -2,14 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import { deleteProjectThunk, getAllProjectTasksThunk, editProjectThunk } from '../../store/project';
-import { getTaskThunk } from '../../store/task';
-import Sidebar from '../Sidebar';
+
 
 
 const ProjectPage = () => {
     const dispatch = useDispatch()
 
-    const [ptasks, setpTasks] = useState([])
     const [showEdit, setShowEdit] = useState(false)
     const [projectName, setProjectName] = useState('')
     const [color, setColor] = useState('red')
@@ -18,24 +16,13 @@ const ProjectPage = () => {
     const { id } = useParams()
     const userId = useSelector(state => state.session.user.id)
     const projectsObj = useSelector(state => state?.projects)
-    console.log('111', projectsObj)
     const projectTasks = Object.values(projectsObj).filter(i => i.project_id === +id)
-    console.log('222', Object.values(projectsObj).filter(i => i.project_id === +id))
-
-
-
 
     useEffect(() => {
-        // console.log('USEEFFECT PROJECTPAGE')
-        // console.log(projectsObj)
-        // console.log('PTASKS', ptasks)
         dispatch(getAllProjectTasksThunk(id))
     }, [dispatch, id]);
 
-    useEffect(() => {
-        setpTasks(Object.values(projectsObj))
-    }, [setpTasks, projectsObj])
-
+    
     const onDelete = (e) => {
         e.preventDefault()
         dispatch(deleteProjectThunk(+id))

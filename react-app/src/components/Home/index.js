@@ -19,7 +19,6 @@ const HomePage = () => {
     const dispatch = useDispatch()
 
     const [tasks, setTasks] = useState([...Object.values(tasksObj)])
-    console.log('FIRST TASKS', tasks)
 
     useEffect(() => {
         console.log("USEEEFFFEEEECTTT")
@@ -29,10 +28,7 @@ const HomePage = () => {
     useEffect(() => {
 
         setTasks(Object.values(tasksObj))
-        console.log('SECOND TASKS IN USEEFF', tasks)
     }, [setTasks, tasksObj])
-
-    // console.log('THIS IS TASKS', tasks)
 
     const redirect = (id) => {
 

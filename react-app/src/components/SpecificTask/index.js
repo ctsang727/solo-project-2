@@ -21,22 +21,17 @@ const SpecificTask = () => {
     const history = useHistory()
 
     useEffect(() => {
-        console.log('inside useEffect 1')
+        
         dispatch(getTaskThunk(taskId))
     }, [dispatch, taskId]);
     
-    const [projects, setProjects] = useState([])
-
-    const projectsObj = useSelector(state => state?.projects)
 
     useEffect(() => {
-        console.log('dispatching 11111')
+        
         dispatch(getAllProjectsThunk(userId))
     }, [dispatch, userId])
 
-    useEffect(() => {
-        setProjects(Object.values(projectsObj))
-    }, [projectsObj])
+    
 
 
     //edit related

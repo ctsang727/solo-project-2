@@ -7,13 +7,22 @@ import './AddTaskForm.css'
 const AddTaskForm = () => {
 
     const dispatch = useDispatch();
+    const currentDate = () => {
+        const today = new Date();
+        const dd = String(today.getDate()).padStart(2, '0');
+        const mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+        const yyyy = today.getFullYear();
+
+        const current = mm + '/' + dd + '/' + yyyy;
+        return current
+    }
 
     //Note for projectId implementation: when creating new task, cant assign to project
     //must be in the project already, create new task, and the task will be assigned to the project
     const userId = useSelector(state => state.session.user.id)
     const [taskName, setTaskName] = useState('')
     const [taskDesc, setTaskDesc] = useState('')
-    const [dueDate, setDueDate] = useState('')
+    const [dueDate, setDueDate] = useState(currentDate)
     //care project
     const [projectId, setProject] = useState(null)
     //
