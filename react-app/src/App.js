@@ -13,6 +13,7 @@ import Modal from './components/Modal/Modal'
 import SpecificTask from './components/SpecificTask';
 import Sidebar from './components/Sidebar';
 import ProjectPage from './components/Projects/ProjectPage';
+import SplashPage from './components/Home/splashpage';
 
 
 
@@ -56,7 +57,7 @@ function App() {
           <User />
         </ProtectedRoute>
         <Route path='/' exact={true} >
-          <h1>My Home Page</h1>
+          <SplashPage />
         </Route>
         <ProtectedRoute path = '/app/task/:taskId'>
           <SpecificTask />
