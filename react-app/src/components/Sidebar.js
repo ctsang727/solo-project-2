@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import AddProjectForm from './Projects/AddProjectForm';
-import { NavLink, useHistory } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import './Sidebar.css'
 import { getAllProjectsThunk } from '../store/project';
 import { setCurrentModal, showModal } from '../store/modal'
@@ -22,7 +22,7 @@ const Sidebar = () => {
     dispatch(setCurrentModal(AddProjectForm))
     dispatch(showModal())
   }
-  const history = useHistory()
+ 
   const [projects, setProjects] = useState([])
 
   const userId = useSelector(state => state.session.user?.id)
