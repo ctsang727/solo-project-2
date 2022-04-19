@@ -4,9 +4,9 @@
     align-items: center;
     background-color: #282828;
     position: fixed;
-    /* top: 0; 
+    top: 0; 
     left: 0;
-    bottom: 0; */
+    bottom: 0; 
     height: 100%;
     padding-top: 60px;
     font-family: 'Roboto', sans-serif;
@@ -37,4 +37,28 @@
     margin-top: 60px;
     font-size: 14px;
     font-weight: 700;
+}
+
+#projects-header{
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    align-items: center;
+    
+}
+
+.sidebar-container:hover #project-button{
+    
+    visibility: visible;
+
+}
+
+#projects-text{
+    margin-right:30px;
+}
+
+#project-button{
+    
+    visibility: hidden;
+    margin-top: 3px;
 }

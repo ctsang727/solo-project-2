@@ -3,10 +3,12 @@ import thunk from 'redux-thunk';
 import session from './session'
 import taskReducer from './task';
 import modals from './modal'
+import projectReducer from './project';
 
 const rootReducer = combineReducers({
   session,
   task: taskReducer,
+  projects: projectReducer,
   modals
 });
 

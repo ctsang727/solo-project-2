@@ -1,5 +1,5 @@
 #add-task input{
-    background-color: #202020;
+    /* background-color: #202020; */
     border: none;
     margin: 10px;
     
@@ -7,8 +7,8 @@
 }
 
 #add-task textarea{
-    background-color: #202020;
-    color:white;
+    /* background-color: #202020; */
+    /* color:white; */
     border: none;
     margin: 10px;
     width: 80%;

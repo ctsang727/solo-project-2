@@ -3,6 +3,9 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import { editTaskThunk, getTaskThunk, deleteTaskThunk } from '../../store/task';
+import { getAllProjectsThunk } from '../../store/project';
+import Sidebar from '../Sidebar';
+
 
 // import EditTaskForm from '../TaskForms/EditTaskForm';
 // import { setCurrentModal, showModal } from '../../store/modal';
@@ -21,6 +24,19 @@ const SpecificTask = () => {
         console.log('inside useEffect 1')
         dispatch(getTaskThunk(taskId))
     }, [dispatch, taskId]);
+    
+    const [projects, setProjects] = useState([])
+
+    const projectsObj = useSelector(state => state?.projects)
+
+    useEffect(() => {
+        console.log('dispatching 11111')
+        dispatch(getAllProjectsThunk(userId))
+    }, [dispatch, userId])
+
+    useEffect(() => {
+        setProjects(Object.values(projectsObj))
+    }, [projectsObj])
 
 
     //edit related
@@ -61,22 +77,16 @@ const SpecificTask = () => {
 
     const onDelete = (e) => {
         e.preventDefault()
-        console.log('ONDELETE SPEECIFIC TASK', +taskId)
+        //console.log('ONDELETE SPEECIFIC TASK', +taskId)
         dispatch(deleteTaskThunk(+taskId))
 
         history.push('/app')
 
     }
 
-    // const showEditTaskForm = () => {
-
-    //     dispatch(setCurrentModal(EditTaskForm))
-    //     dispatch(showModal())
-
-    // }
-
     return (
         <div className='main-page'>
+            <Sidebar/>
 
             <h1>HEY YOU HAVE STUFF TO DO!</h1>
             {!isEmpty(tasksObj) && !showEdit &&
@@ -85,11 +95,11 @@ const SpecificTask = () => {
                         <h3>
                             {tasksObj[taskId].task_name}
                         </h3>
-                    <div>
-                        <h5>
-                            {tasksObj[taskId].description}
-                        </h5>
-                    </div>
+                        <div>
+                            <h5>
+                                {tasksObj[taskId].description}
+                            </h5>
+                        </div>
                     </div></>
             }
             {showEdit &&
@@ -149,7 +159,6 @@ const SpecificTask = () => {
                     </div>
                     <div>
                         <button type='submit'>Edit Task</button>
-
                     </div>
                 </form>
 

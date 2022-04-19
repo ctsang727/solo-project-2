@@ -101,6 +101,9 @@ const taskReducer = (state = {}, action) => {
 
         case GET_TASKS:
             newState = { ...state };
+            console.log('NS', newState)
+            console.log('AT', action.tasks)
+            console.log('ATT', action.tasks.tasks)
 
             action.tasks.tasks?.forEach(task => {
                 newState[task.id] = task;
@@ -114,13 +117,7 @@ const taskReducer = (state = {}, action) => {
             // console.log('first state', state)
             // let thisState = {}
             newState = {...state}
-            console.log('NEWSTATE REDUCER', newState)
-            console.log('ACTION?TASK?ID', action.task.id)
             newState[action.task.id] = action.task 
-            console.log('ANYTHING1234568789')
-            console.log('NEXTACTIONTASKIDTHING', newState[action.task.id])
-            console.log('last??????', action.task)
-            console.log('newState', newState)
             return newState
              
 

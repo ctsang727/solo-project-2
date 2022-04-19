@@ -12,7 +12,8 @@ import HomePage from './components/Home/index';
 import Modal from './components/Modal/Modal'
 import SpecificTask from './components/SpecificTask';
 import Sidebar from './components/Sidebar';
-//import ThemeProvider from 'styled-components';
+import ProjectPage from './components/Projects/ProjectPage';
+
 
 
 function App() {
@@ -59,9 +60,15 @@ function App() {
         </Route>
         <ProtectedRoute path = '/app/task/:taskId'>
           <SpecificTask />
+          
         </ProtectedRoute>
         <ProtectedRoute path = '/app' exact={true} >
           <HomePage />
+          
+        </ProtectedRoute>
+        <ProtectedRoute path = '/app/projects/:id' exact={true} >
+          <ProjectPage />
+          
         </ProtectedRoute>
         
       </Switch>

@@ -6,7 +6,7 @@ task_routes = Blueprint('tasks', __name__)
 @task_routes.route('/<int:id>')
 def tasks(id):
 
-    print('hello')
+    #print('hello')
     tasks = Task.query.filter_by(user_id = id)
     # for task in tasks: 
     #     print('--------------', task.task_to_dict(), '----------')

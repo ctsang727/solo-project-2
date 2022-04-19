@@ -7,35 +7,30 @@ import { getAllTasksThunk } from '../../store/task';
 import AddTaskForm from '../TaskForms/AddTaskForm';
 import { setCurrentModal, showModal } from '../../store/modal';
 import './home.css'
-
+import Sidebar from '../Sidebar';
 
 
 const HomePage = () => {
 
     const userId = useSelector(state => state.session.user.id)
-
+    const tasksObj = useSelector(state => state.task)
     const history = useHistory();
 
     const dispatch = useDispatch()
 
-    const [tasks, setTasks] = useState([])
+    const [tasks, setTasks] = useState([...Object.values(tasksObj)])
+    console.log('FIRST TASKS', tasks)
 
     useEffect(() => {
         console.log("USEEEFFFEEEECTTT")
         dispatch(getAllTasksThunk(userId))
     }, [dispatch, userId]);
 
-    const tasksObj = useSelector(state => state.task)
-    //console.log('!!!', tasksObj)
-    //const track = Object.values(tasksObj)[0]
-    //const trackId = track.id
-    //console.log('iDDDDDD', track)
-
-    //
     useEffect(() => {
-        console.log('useEffect 2 tasksObj', tasksObj)
+
         setTasks(Object.values(tasksObj))
-    }, [tasksObj])
+        console.log('SECOND TASKS IN USEEFF', tasks)
+    }, [setTasks, tasksObj])
 
     // console.log('THIS IS TASKS', tasks)
 
@@ -49,11 +44,6 @@ const HomePage = () => {
         dispatch(showModal())
     }
 
-    // const showEditTaskForm = () => {
-    //     dispatch(setCurrentModal(EditTaskForm))
-    //     dispatch(showModal())
-
-    // }
     const currentDate = () => {
         const today = new Date();
         const dd = String(today.getDate()).padStart(2, '0');
@@ -67,6 +57,7 @@ const HomePage = () => {
 
     return (
         <div className='main-page'>
+            <Sidebar />
             <h1 id='h1-home'>HEY YOU HAVE STUFF TO DO!</h1>
             <h2 id='h2-home'>Today {currentDate()}</h2>
             <div id='tasks-container'>
@@ -90,7 +81,7 @@ const HomePage = () => {
                 }
             </div>
             <div id='new-task-button'>
-            <button onClick={showAddTaskForm}><i style={{fontSize: '18px'}} class="material-icons">add</i> Add Task </button>
+                <button onClick={showAddTaskForm}><i style={{ fontSize: '18px' }} class="material-icons">add</i> Add Task </button>
             </div>
 
 
