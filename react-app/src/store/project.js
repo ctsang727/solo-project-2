@@ -1,7 +1,8 @@
 // const GET_TASK = 'task/GET_TASK'
 const GET_PROJECTS = 'project/GET_PROJECTS'
 const NEW_PROJECT = 'project/NEW_PROJECT'
-// const DEL_TASK = 'task/DEL_TASK'
+const GET_PROJECT_TASKS = 'project/GET_PROJECT_TASKS'
+const DEL_PROJECT = 'project/DEL_PROJECT'
 
 const newProject = project => ({
     type: NEW_PROJECT,
@@ -11,6 +12,16 @@ const newProject = project => ({
 const getAllProjects = projects => ({
     type: GET_PROJECTS,
     payload: projects
+})
+
+const getAllProjectTasks = tasks => ({
+    type: GET_PROJECT_TASKS,
+    payload: tasks
+})
+
+const deleteProject = project => ({
+    type: DEL_PROJECT,
+    payload: project
 })
 
 export const createProjectThunk = project => async dispatch => {
@@ -41,6 +52,29 @@ export const getAllProjectsThunk = (userId) => async dispatch => {
     }
 }
 
+export const getAllProjectTasksThunk = projectId => async dispatch => {
+    const res = await fetch(`/api/projects/tasks/${projectId}`)
+
+    if (res.ok) {
+        const data = await res.json()
+        dispatch(getAllProjectTasks(data))
+        return data
+    }
+}
+
+export const deleteProjectThunk = projectId => async dispatch => {
+    console.log('DELETE THIES', projectId)
+    const res = await fetch(`/api/projects/delete/${projectId}`, {
+        method: 'DELETE',
+    })
+
+    if (res.ok) {
+        const data = await res.json();
+        dispatch(deleteProject(data))
+        return data
+    }
+}
+
 const projectReducer = (state = {}, action) => {
     let newState;
     switch (action.type) {
@@ -55,10 +89,29 @@ const projectReducer = (state = {}, action) => {
         case GET_PROJECTS:
             newState = { ...state };
             console.log(action.payload)
-            action.payload.projects.forEach(project => {
+            action.payload.projects?.forEach(project => {
                 newState[project.id] = project
             })
             return newState;
+
+        case GET_PROJECT_TASKS:
+            newState = { ...state };
+            console.log('ACTIONPAYLOAD', action.payload)
+            console.log(action.payload.project_tasks.length === 0)
+            if (action.payload.project_tasks.length === 0) return state
+            else {
+                action.payload.project_tasks.forEach(task => {
+                newState[task.id] = task
+            })
+            
+            }
+            return newState;
+
+        case DEL_PROJECT:
+            newState = { ...state };
+            delete newState[action.payload.project]
+            return newState;
+
             
 
     }

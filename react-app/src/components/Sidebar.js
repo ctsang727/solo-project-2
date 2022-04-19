@@ -25,9 +25,9 @@ const Sidebar = () => {
   const history = useHistory()
   const [projects, setProjects] = useState([])
 
-  const userId = useSelector(state => state.session.user.id)
+  const userId = useSelector(state => state.session.user?.id)
   const projectsObj = useSelector(state => state.projects)
-  
+
   useEffect(() => {
     console.log('dispatching', userId)
     dispatch(getAllProjectsThunk(userId))
@@ -35,7 +35,7 @@ const Sidebar = () => {
 
   useEffect(() => {
     setProjects(Object.values(projectsObj))
-}, [projectsObj])
+  }, [projectsObj])
 
 
 
@@ -65,25 +65,25 @@ const Sidebar = () => {
           </NavLink>
         </div>
       </div>
-      
+
       <div id='projects-side-div'>
         <div id='projects-header'>
           <div id='projects-text'>
             <h3>Projects</h3>
           </div>
           <div id='project-button' >
-            <i onClick={showAddProjectForm} style={{fontSize: '18px'}} class="material-icons">add</i>
+            <i onClick={showAddProjectForm} style={{ fontSize: '18px' }} class="material-icons">add</i>
           </div>
         </div>
-      
-        {userId && 
-        <div id='current-projects'>
-          {projects?.map(project => (
-            <div>
-              <NavLink to={`app/projects/${project.id}`}>{project.project_name}</NavLink>
+
+        {userId &&
+          <div id='current-projects'>
+            {projects?.map(project => (
+              <div>
+                <NavLink to={`app/projects/${project.id}`}>{project.project_name}</NavLink>
               </div>
-          ))}
-        </div>
+            ))}
+          </div>
         }
 
       </div>

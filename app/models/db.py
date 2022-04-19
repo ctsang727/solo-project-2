@@ -52,5 +52,5 @@ class Project(db.Model):
             'user_id': self.user_id,
             'project_name':self.project_name,
             'color': self.color, 
-            'tasks': [t_to_dict() for t in self.tasks]
+            #'tasks': [t_to_dict() for t in self.tasks]
         }

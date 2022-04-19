@@ -41,7 +41,7 @@ function App() {
     <BrowserRouter>
       <NavBar />
       <Modal />
-      
+      <Sidebar />
       <Switch>
         {/* <Route path='/login' exact={true}>
           <LoginForm />
@@ -68,7 +68,7 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path = '/app/projects/:id' exact={true} >
           <ProjectPage />
-          <Sidebar />
+          
         </ProtectedRoute>
         
       </Switch>
