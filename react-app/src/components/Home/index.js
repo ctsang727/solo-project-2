@@ -14,6 +14,7 @@ const HomePage = () => {
 
     const userId = useSelector(state => state.session.user.id)
     const tasksObj = useSelector(state => state.task)
+    
     const history = useHistory();
 
     const dispatch = useDispatch()
@@ -49,7 +50,9 @@ const HomePage = () => {
         const current = mm + '/' + dd + '/' + yyyy;
         return current
     }
-
+    
+    console.log('111', tasksObj)
+    console.log('222', tasks)
 
     return (
         <div className='main-page'>

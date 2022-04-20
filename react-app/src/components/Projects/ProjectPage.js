@@ -27,7 +27,7 @@ const ProjectPage = () => {
         e.preventDefault()
         dispatch(deleteProjectThunk(+id))
         console.log('ondelete')
-        history.push('/')
+        history.push('/app')
     }
 
     const clickEdit = () => {

@@ -25,7 +25,7 @@ const deleteProject = project => ({
 })
 
 export const createProjectThunk = project => async dispatch => {
-    console.log('inside thunk')
+    //console.log('inside thunk')
     const res = await fetch('/api/projects/new', {
         method: 'POST',
         headers: { "Content-Type": "application/json" },
@@ -41,7 +41,7 @@ export const createProjectThunk = project => async dispatch => {
 }
 
 export const getAllProjectsThunk = (userId) => async dispatch => {
-    console.log('thunk', userId)
+    //console.log('thunk', userId)
     const res = await fetch(`/api/projects/${userId}`)
 
     if (res.ok) {
@@ -102,7 +102,7 @@ const projectReducer = (state = {}, action) => {
 
         case GET_PROJECTS:
             newState = { ...state };
-            console.log(action.payload)
+            //console.log(action.payload)
             action.payload.projects?.forEach(project => {
                 newState[project.id] = project
             })
@@ -111,7 +111,7 @@ const projectReducer = (state = {}, action) => {
         case GET_PROJECT_TASKS:
             newState = { ...state };
             // console.log('ACTIONPAYLOAD', action.payload)
-            console.log(action.payload.project_tasks.length === 0)
+            //console.log(action.payload.project_tasks.length === 0)
             if (action.payload.project_tasks.length === 0) return state
             else {
                 action.payload.project_tasks.forEach(task => {
@@ -123,7 +123,10 @@ const projectReducer = (state = {}, action) => {
 
         case DEL_PROJECT:
             newState = { ...state };
+            console.log('<<<<>>>>>', newState)
             delete newState[action.payload.id]
+            console.log('<<<<>>>>>', newState)
+            
             return newState;
 
             
