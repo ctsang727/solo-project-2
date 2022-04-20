@@ -41,6 +41,15 @@ const LoginForm = () => {
     dispatch(setCurrentModal(SignUpForm))
   }
 
+  const demoLogin = async (e) => {
+    e.preventDefault();
+    const email = 'demo@aa.io'
+    const password = 'password'
+
+    await dispatch(login(email, password))
+    dispatch(hideModal())
+  }
+
   return (
     <form onSubmit={onLogin}>
       <div>
@@ -69,6 +78,7 @@ const LoginForm = () => {
         />
         <button type='submit'>Login</button>
         <button onClick={showSignUpForm}>Sign Up</button>
+        <button onClick={demoLogin}>Demo</button>
       </div>
     </form>
   );

@@ -29,6 +29,19 @@ const AddTaskForm = () => {
     const [labels, setLabels] = useState(null)
     const [priority, setPriority] = useState(0)
 
+    // const [errors, setErrors] = useState([])
+
+    // const validate = () => {
+    //     if (taskName === '') {
+    //         taskName = 'empty'
+    //         errors.push(taskName)
+    //     } else if (taskDesc === ''){
+    //         taskDesc = 'empty'
+    //         errors.push(taskDesc)
+    //     }
+    //     return errors.length 
+    // }
+
     const createTask = e => {
         e.preventDefault()
         const newTask = {
@@ -40,8 +53,13 @@ const AddTaskForm = () => {
             labels,
             priority
         }
-        dispatch(hideModal())
-        return dispatch(createTaskThunk(newTask))
+        
+
+            dispatch(hideModal())
+            return dispatch(createTaskThunk(newTask))
+        
+        
+        
     }
 
 

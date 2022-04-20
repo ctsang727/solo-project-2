@@ -82,3 +82,25 @@ def delete_task(id):
     db.session.commit()
 
     return task.task_to_dict()
+
+
+# task = AddTaskForm()
+
+# if task.validate_on_submit():
+#     task = Task(
+#         user_id = user_id,
+#         task_name = task_name,
+#         description = description,
+#         due_date = due_date,
+#         project_id = project_id,
+#         labels = labels,
+#         priority = priority
+
+#     )
+
+#     db.session.add(task)
+#     db.session.commit()
+
+#     return task.task_to_dict()
+# else:
+#     return 'bad data'

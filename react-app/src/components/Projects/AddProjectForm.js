@@ -7,7 +7,8 @@ const AddProjectForm = () => {
 
     const dispatch = useDispatch();
     const userId = useSelector(state => state.session.user.id)
-
+    
+    
     const [projectName, setProjectName] = useState('')
     const [color, setColor] = useState('red')
 

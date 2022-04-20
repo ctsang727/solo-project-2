@@ -49,6 +49,7 @@ const SignUpForm = () => {
     return <Redirect to='/app' />;
   }
 
+
   return (
     <form onSubmit={onSignUp}>
       <div>
