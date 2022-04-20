@@ -79,7 +79,7 @@ const Sidebar = () => {
         {userId &&
           <div id='current-projects'>
             {projects?.map(project => (
-              <div>
+              <div key={project.id}>
                 <NavLink style={navLinkStyle} to={`/app/projects/${project.id}`}>{project.project_name}</NavLink>
               </div>
             ))}

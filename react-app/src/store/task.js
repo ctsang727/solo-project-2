@@ -33,7 +33,7 @@ const deleteTask = taskId => ({
 
 export const getTaskThunk = (taskId) => async dispatch => {
     const res = await fetch(`/api/tasks/specific/${taskId}`)
-
+    console.log('ABOVE THE IF STATEMENT \n\n\n\n\n\n')
     if (res.ok) {
         const data = await res.json()
         dispatch(getTask(data))
@@ -43,9 +43,11 @@ export const getTaskThunk = (taskId) => async dispatch => {
 
 export const getAllTasksThunk = (userId) => async dispatch => {
     const res = await fetch(`/api/tasks/${userId}`)
+    
 
     if (res.ok) {
         const data = await res.json()
+        console.log('GET ALL DATA \n\n\n\n\n', data)
         dispatch(getAllTasks(data))
         return data
     }
@@ -88,6 +90,7 @@ export const deleteTaskThunk = taskId => async dispatch => {
     
     if (res.ok) {
         const data = await res.json();
+        console.log('DATA DELETE TASK THUNK', data)
         dispatch(deleteTask(data));
         return data
     }
@@ -134,6 +137,7 @@ const taskReducer = (state = {}, action) => {
         
         case DEL_TASK:
             newState = { ...state };
+            console.log('!!!!!!', action.taskId)
             delete newState[action.taskId.id];
             return newState;
 

@@ -19,7 +19,8 @@ const HomePage = () => {
 
     const dispatch = useDispatch()
 
-    const [tasks, setTasks] = useState([...Object.values(tasksObj)])
+    const [tasks, setTasks] = useState(Object.values(tasksObj))
+    
 
     useEffect(() => {
         console.log("USEEEFFFEEEECTTT")
@@ -53,6 +54,12 @@ const HomePage = () => {
     
     console.log('111', tasksObj)
     console.log('222', tasks)
+
+    // console.log('sorted?', tasks.sort(function (a, b) {
+    //     return a.due_date - b.due_date
+    // }))
+
+
 
     return (
         <div className='main-page'>

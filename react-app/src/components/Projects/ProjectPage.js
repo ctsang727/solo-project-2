@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import { deleteProjectThunk, getAllProjectTasksThunk, editProjectThunk } from '../../store/project';
-
+import { deleteTaskThunk, getAllTasksThunk } from '../../store/task';
 
 
 const ProjectPage = () => {
@@ -17,16 +17,19 @@ const ProjectPage = () => {
     const userId = useSelector(state => state.session.user.id)
     const projectsObj = useSelector(state => state?.projects)
     const projectTasks = Object.values(projectsObj).filter(i => i.project_id === +id)
+    const projTasksFiltered = Object.values(projectsObj).filter(i => i.project_id)
 
     useEffect(() => {
         dispatch(getAllProjectTasksThunk(id))
     }, [dispatch, id]);
 
-    
-    const onDelete = (e) => {
+    //maybe refactor line 31 and related later
+
+    const onDelete = async (e) => {
         e.preventDefault()
-        dispatch(deleteProjectThunk(+id))
-        console.log('ondelete')
+        await projTasksFiltered.forEach(task => dispatch(deleteTaskThunk(task.id)))
+        await dispatch(deleteProjectThunk(+id))
+        await dispatch(getAllTasksThunk(userId))
         history.push('/app')
     }
 
