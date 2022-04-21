@@ -16,6 +16,8 @@ const SpecificTask = () => {
     const dispatch = useDispatch()
     const userId = useSelector(state => state.session.user.id)
     const tasksObj = useSelector(state => state.task)
+    const projectState = useSelector(state => state.projects)
+    const projectStateArr = Object.values(projectState)
     // const [tasks, setTasks] = useState([])
 
     const history = useHistory()
@@ -37,14 +39,14 @@ const SpecificTask = () => {
     //edit related
     const [showEdit, setShowEdit] = useState(false)
 
-    const [taskName, setTaskName] = useState(tasksObj[taskId].task_name)
-    const [taskDesc, setTaskDesc] = useState(tasksObj[taskId].description)
-    const [dueDate, setDueDate] = useState(tasksObj[taskId].due_date)
-    const [projectId, setProject] = useState(tasksObj[taskId].project_id || null)
-    const [labels, setLabels] = useState(tasksObj[taskId].labels || null)
-    const [priority, setPriority] = useState(tasksObj[taskId].priority || null)
+    const [taskName, setTaskName] = useState(tasksObj[taskId]?.task_name)
+    const [taskDesc, setTaskDesc] = useState(tasksObj[taskId]?.description)
+    const [dueDate, setDueDate] = useState(tasksObj[taskId]?.due_date)
+    const [projectId, setProject] = useState(projectStateArr.id)
+    const [labels, setLabels] = useState(tasksObj[taskId]?.labels || null)
+    const [priority, setPriority] = useState(tasksObj[taskId]?.priority || null)
     //edit related
-    console.log('test', tasksObj[taskId].description)
+    console.log('test', projectStateArr)
 
     const clickEdit = () => {
         setShowEdit(!showEdit)
@@ -146,13 +148,18 @@ const SpecificTask = () => {
                             onChange={(e) => setLabels(e.target.value)} />
                     </div>
                     <div>
-                        <input
-                            type='text'
-                            name='projectId'
-                            value={projectId}
-                            placeholder='Project'
-                            onChange={(e) => setProject(e.target.value)} />
-                    </div>
+                            <select
+                                name='projectId'
+                                value={+projectId}
+                                onChange={(e) => setProject(e.target.value)}>
+                                {projectStateArr.map(project =>
+                                    <option
+                                        value={project?.id}>
+                                        {project?.project_name}
+                                    </option>)}
+                                <option value={1}>Inbox</option>
+                            </select>
+                        </div>
                     <div>
                         <button type='submit'>Save</button>
                         <button onClick={clickEdit}>Cancel</button>

@@ -91,7 +91,7 @@ const HomePage = () => {
 
     return (
         <div className='main-page'>
-            <Sidebar />
+            
             <h1 id='h1-home'>HEY YOU HAVE STUFF TO DO!</h1>
             <h2 id='h2-home'>Today {currentDate()}</h2>
             <div id='tasks-container'>

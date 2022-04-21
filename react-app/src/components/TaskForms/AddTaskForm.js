@@ -22,9 +22,9 @@ const AddTaskForm = () => {
     //must be in the project already, create new task, and the task will be assigned to the project
     const userId = useSelector(state => state.session.user.id)
     const projectState = useSelector(state => state.projects)
-    console.log('555', projectState)
+    //console.log('555', projectState)
     useEffect(() => {
-        console.log('dispatching', userId)
+        //console.log('dispatching', userId)
         dispatch(getAllProjectsThunk(userId))
     }, [dispatch, userId])
     const projectStateArr = Object.values(projectState)
