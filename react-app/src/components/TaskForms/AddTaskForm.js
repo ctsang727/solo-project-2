@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { hideModal } from '../../store/modal';
 import { createTaskThunk } from '../../store/task';
+import { getAllProjectsThunk } from '../../store/project';
 import './AddTaskForm.css'
 
 const AddTaskForm = () => {
 
     const dispatch = useDispatch();
+
     const currentDate = () => {
         const today = new Date();
         const dd = String(today.getDate()).padStart(2, '0');
@@ -16,10 +18,16 @@ const AddTaskForm = () => {
         const current = mm + '/' + dd + '/' + yyyy;
         return current
     }
-
     //Note for projectId implementation: when creating new task, cant assign to project
     //must be in the project already, create new task, and the task will be assigned to the project
     const userId = useSelector(state => state.session.user.id)
+    const projectState = useSelector(state => state.projects)
+    console.log('555', projectState)
+    useEffect(() => {
+        console.log('dispatching', userId)
+        dispatch(getAllProjectsThunk(userId))
+    }, [dispatch, userId])
+    const projectStateArr = Object.values(projectState)
     const [taskName, setTaskName] = useState('')
     const [taskDesc, setTaskDesc] = useState('')
     const [dueDate, setDueDate] = useState(currentDate)
@@ -29,18 +37,23 @@ const AddTaskForm = () => {
     const [labels, setLabels] = useState(null)
     const [priority, setPriority] = useState(0)
 
-    // const [errors, setErrors] = useState([])
 
-    // const validate = () => {
-    //     if (taskName === '') {
-    //         taskName = 'empty'
-    //         errors.push(taskName)
-    //     } else if (taskDesc === ''){
-    //         taskDesc = 'empty'
-    //         errors.push(taskDesc)
-    //     }
-    //     return errors.length 
-    // }
+    const [errors, setErrors] = useState([])
+
+    useEffect(() => {
+        const errors = []
+
+        if (taskName === '') {
+            errors.push('No task name')
+        }
+        if (taskDesc === '') {
+            errors.push('description error')
+            console.log(errors)
+        }
+
+        setErrors(errors)
+    }, [taskName, taskDesc])
+    // 
 
     const createTask = e => {
         e.preventDefault()
@@ -53,15 +66,10 @@ const AddTaskForm = () => {
             labels,
             priority
         }
-        
+        dispatch(hideModal())
+        return dispatch(createTaskThunk(newTask))
 
-            dispatch(hideModal())
-            return dispatch(createTaskThunk(newTask))
-        
-        
-        
     }
-
 
     return (
         <div id='content'>
@@ -114,23 +122,31 @@ const AddTaskForm = () => {
                                 onChange={(e) => setLabels(e.target.value)} />
                         </div>
                         <div>
-                            <input
-                                type='text'
-                                name='projectId'
+                            <select
                                 value={projectId}
-                                placeholder='Project'
-                                onChange={(e) => setProject(e.target.value)} />
+                                onChange={(e) => setProject(e.target.value)}>
+                                {projectStateArr.map(project =>
+                                    <option
+                                        value={project?.id}>
+                                        {project?.project_name}
+                                    </option>)}
+                                <option value={1}>Inbox</option>
+                            </select>
                         </div>
                     </div>
                 </div>
 
+                {errors.length > 0 &&
+                    <div>
+                        <button style={{ backgroundColor: 'red', pointerEvents: 'none' }} type='submit'>Add Task</button>
+                        <button onClick={hideModal()}>Cancel</button>
+                    </div>}
+                {errors.length === 0 &&
+                    <div>
+                        <button style={{ backgroundColor: 'orange' }} type='submit'>Add Task</button>
+                        <button onClick={hideModal()}>Cancel</button>
+                    </div>}
 
-
-                {/* Do labels later */}
-                <div>
-                    <button type='submit'>Add Task</button>
-                    <button onClick={hideModal()}>Cancel</button>
-                </div>
             </form>
         </div>
     )

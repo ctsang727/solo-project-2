@@ -19,21 +19,14 @@ const LoginForm = () => {
     if (data) {
       setErrors(data);
     }
-    dispatch(hideModal())
     
-  };
-
-  const updateEmail = (e) => {
-    setEmail(e.target.value);
-  };
-
-  const updatePassword = (e) => {
-    setPassword(e.target.value);
+    
   };
 
   if (user) {
     // console.log(user.id)
     // dispatch(getAllTasksThunk(user.id))
+    dispatch(hideModal())
     return <Redirect to='/app' />;
   }
 
@@ -64,7 +57,7 @@ const LoginForm = () => {
           type='text'
           placeholder='Email'
           value={email}
-          onChange={updateEmail}
+          onChange={e => setEmail(e.target.value)}
         />
       </div>
       <div>
@@ -74,7 +67,7 @@ const LoginForm = () => {
           type='password'
           placeholder='Password'
           value={password}
-          onChange={updatePassword}
+          onChange={e => setPassword(e.target.value)}
         />
         <button type='submit'>Login</button>
         <button onClick={showSignUpForm}>Sign Up</button>

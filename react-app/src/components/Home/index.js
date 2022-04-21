@@ -14,11 +14,13 @@ const HomePage = () => {
 
     const userId = useSelector(state => state.session.user.id)
     const tasksObj = useSelector(state => state.task)
+    
     const history = useHistory();
 
     const dispatch = useDispatch()
 
-    const [tasks, setTasks] = useState([...Object.values(tasksObj)])
+    const [tasks, setTasks] = useState(Object.values(tasksObj))
+    
 
     useEffect(() => {
         console.log("USEEEFFFEEEECTTT")
@@ -49,6 +51,14 @@ const HomePage = () => {
         const current = mm + '/' + dd + '/' + yyyy;
         return current
     }
+    
+    console.log('111', tasksObj)
+    console.log('222', tasks)
+
+    // console.log('sorted?', tasks.sort(function (a, b) {
+    //     return a.due_date - b.due_date
+    // }))
+
 
 
     return (

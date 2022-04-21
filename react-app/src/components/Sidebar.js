@@ -29,7 +29,7 @@ const Sidebar = () => {
   const projectsObj = useSelector(state => state.projects)
 
   useEffect(() => {
-    console.log('dispatching', userId)
+    // console.log('dispatching', userId)
     dispatch(getAllProjectsThunk(userId))
   }, [dispatch, userId])
 
@@ -79,8 +79,8 @@ const Sidebar = () => {
         {userId &&
           <div id='current-projects'>
             {projects?.map(project => (
-              <div>
-                <NavLink to={`/app/projects/${project.id}`}>{project.project_name}</NavLink>
+              <div key={project.id}>
+                <NavLink style={navLinkStyle} to={`/app/projects/${project.id}`}>{project.project_name}</NavLink>
               </div>
             ))}
           </div>
