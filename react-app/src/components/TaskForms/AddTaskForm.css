@@ -1,12 +1,12 @@
-#add-task input{
+#add-task input {
     /* background-color: #202020; */
     border: none;
     margin: 10px;
-    
+
     width: 80%;
 }
 
-#add-task textarea{
+#add-task textarea {
     /* background-color: #202020; */
     /* color:white; */
     border: none;
@@ -22,13 +22,59 @@
     flex-direction: column;
 }
 
-#second-block{
+#second-block {
     display: flex;
     flex-direction: row;
 
 }
 
-#third-block{
+#third-block {
     display: flex;
-    
+
+}
+
+#add-task-cant-click {
+    background-color: red;
+    background-color: #de4c4a;
+    border-color: #de4c4a ;
+    color: #fff ;
+    padding:10px;
+    border-radius: 5px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    font-weight: lighter;
+    opacity: 30%;
+    margin: 10px;
+}
+
+#add-task-cant-click:hover {
+    cursor: not-allowed;
+}
+
+#add-task-click {
+    background-color: red;
+    background-color: #de4c4a;
+    border-color: #de4c4a ;
+    color: #fff ;
+    padding:10px;
+    border-radius: 5px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    font-weight: lighter;
+    margin: 10px;
+}
+
+#add-task-click:hover {
+    cursor: pointer;
+}
+
+.add-cancel-buttons {
+    display: flex;
+    align-items: center;
+
+}
+
+.add-cancel-buttons button {
+    margin: 10px;
+
 }

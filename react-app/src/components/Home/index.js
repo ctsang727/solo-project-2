@@ -107,7 +107,7 @@ const HomePage = () => {
                             </div>
                         </div>
 
-                        <div className='more-div'>
+                        {/* <div className='more-div'> */}
                             <div onClick={() => setEditIndex(editIndex => editIndex === task.id ? null : task.id)}><i class="fa-solid fa-ellipsis fa-2x"></i></div>
                             {editIndex === task.id &&
                                 <div className='task-dropdown'>
@@ -132,7 +132,7 @@ const HomePage = () => {
                                     </ul>
 
                                 </div>}
-                        </div>
+                        {/* </div> */}
 
                     </div>
                 ))

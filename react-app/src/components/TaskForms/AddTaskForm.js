@@ -46,10 +46,10 @@ const AddTaskForm = () => {
         if (taskName === '') {
             errors.push('No task name')
         }
-        if (taskDesc === '') {
-            errors.push('description error')
-            console.log(errors)
-        }
+        // if (taskDesc === '') {
+        //     errors.push('description error')
+        //     console.log(errors)
+        // }
 
         setErrors(errors)
     }, [taskName, taskDesc])
@@ -71,10 +71,17 @@ const AddTaskForm = () => {
 
     }
 
+    const closeModal = () => {
+        dispatch(hideModal());
+       // dispatch(getTaskThunk())
+    }
+
     return (
         <div id='content'>
             <form id='add-task' onSubmit={createTask}>
                 <div>
+                    {errors.includes('No task name') &&
+                        <div>*Please enter task name</div>}
                     <input
                         type='text'
                         name='taskName'
@@ -82,6 +89,8 @@ const AddTaskForm = () => {
                         placeholder='Task name'
                         onChange={(e) => setTaskName(e.target.value)} />
                 </div>
+                {/* {errors.includes('description error') && 
+                <div>*Please enter description</div>} */}
                 <div>
                     <textarea
                         type='text'
@@ -137,17 +146,17 @@ const AddTaskForm = () => {
                 </div>
 
                 {errors.length > 0 &&
-                    <div>
-                        <button style={{ backgroundColor: 'red', pointerEvents: 'none' }} type='submit'>Add Task</button>
-                        <button onClick={hideModal()}>Cancel</button>
+                    <div className='add-cancel-buttons'>
+                        <div id='add-task-cant-click'>Add Task</div>
+                        <button onClick={closeModal}>Cancel</button>
                     </div>}
                 {errors.length === 0 &&
-                    <div>
-                        <button style={{ backgroundColor: 'orange' }} type='submit'>Add Task</button>
-                        <button onClick={hideModal()}>Cancel</button>
+                    <div className='add-cancel-buttons'>
+                        <div id='add-task-click' onClick={createTask} >Add Task</div>
+                        <button onClick={closeModal}>Cancel</button>
                     </div>}
-
             </form>
+
         </div>
     )
 
