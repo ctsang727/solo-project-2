@@ -46,10 +46,10 @@ const AddTaskForm = () => {
         if (taskName === '') {
             errors.push('No task name')
         }
-        // if (taskDesc === '') {
-        //     errors.push('description error')
-        //     console.log(errors)
-        // }
+        if (taskDesc === '') {
+            errors.push('description error')
+            console.log(errors)
+        }
 
         setErrors(errors)
     }, [taskName, taskDesc])
@@ -89,8 +89,8 @@ const AddTaskForm = () => {
                         placeholder='Task name'
                         onChange={(e) => setTaskName(e.target.value)} />
                 </div>
-                {/* {errors.includes('description error') && 
-                <div>*Please enter description</div>} */}
+                {errors.includes('description error') && 
+                <div>*Please enter description</div>}
                 <div>
                     <textarea
                         type='text'
@@ -139,7 +139,6 @@ const AddTaskForm = () => {
                                         value={project?.id}>
                                         {project?.project_name}
                                     </option>)}
-                                <option value={1}>Inbox</option>
                             </select>
                         </div>
                     </div>

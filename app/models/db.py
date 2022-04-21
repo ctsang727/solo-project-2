@@ -11,7 +11,7 @@ class Task(db.Model):
     project_id = db.Column(db.Integer, db.ForeignKey("projects.id"))
     task_name = db.Column(db.String(255), nullable=False)
     description = db.Column(db.Text(), nullable=False)
-    due_date = db.Column(db.DateTime, nullable=False)
+    due_date = db.Column(db.Date, nullable=False)
     labels = db.Column(db.String(50))
     priority = db.Column(db.Integer)
     created_at = db.Column(db.DateTime, default=datetime.now(), nullable=False)

@@ -47,6 +47,21 @@ const SpecificTask = () => {
     const [projectId, setProject] = useState(currentTask?.project_id)
     const [labels, setLabels] = useState(tasksObj[taskId]?.labels || null)
     const [priority, setPriority] = useState(tasksObj[taskId]?.priority || null)
+
+    const [errors, setErrors] = useState([])
+
+    useEffect(() => {
+        const errors = []
+        if (taskName.length < 1) {
+            errors.push('No task name')
+        }
+
+        setErrors(errors)
+    }, [taskName])
+
+    //console.log(dueDate)
+    
+
     //edit related
     
     const clickEdit = () => {
@@ -103,12 +118,14 @@ const SpecificTask = () => {
             }
             {showEdit &&
                 <form onSubmit={editTask} >
+                    {errors.length > 0 &&
+                    <div>
+                        *Please enter task name</div>}
                     <div>
                         <input
                             type='text'
                             name='taskName'
                             value={taskName}
-                            //defaultValue={tasksObj[taskId].task_name}
                             onChange={(e) => setTaskName(e.target.value)}
                         ></input>
                     </div>
@@ -117,7 +134,6 @@ const SpecificTask = () => {
                             type='text'
                             name='taskDesc'
                             value={taskDesc}
-                            //defaultValue={tasksObj[taskId].description}
                             onChange={(e) => setTaskDesc(e.target.value)} />
                     </div>
                     <div>
