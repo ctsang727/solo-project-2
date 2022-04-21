@@ -18,6 +18,7 @@ const SpecificTask = () => {
     const tasksObj = useSelector(state => state.task)
     const projectState = useSelector(state => state.projects)
     const projectStateArr = Object.values(projectState)
+    
     // const [tasks, setTasks] = useState([])
 
     const history = useHistory()
@@ -34,7 +35,8 @@ const SpecificTask = () => {
     }, [dispatch, userId])
 
     
-
+    const currentTask = Object.values(tasksObj).find(task => task?.id === +taskId)
+//console.log('CURRENTTASK', currentTask?.project_id)
 
     //edit related
     const [showEdit, setShowEdit] = useState(false)
@@ -42,12 +44,11 @@ const SpecificTask = () => {
     const [taskName, setTaskName] = useState(tasksObj[taskId]?.task_name)
     const [taskDesc, setTaskDesc] = useState(tasksObj[taskId]?.description)
     const [dueDate, setDueDate] = useState(tasksObj[taskId]?.due_date)
-    const [projectId, setProject] = useState(projectStateArr.id)
+    const [projectId, setProject] = useState(currentTask?.project_id)
     const [labels, setLabels] = useState(tasksObj[taskId]?.labels || null)
     const [priority, setPriority] = useState(tasksObj[taskId]?.priority || null)
     //edit related
-    console.log('test', projectStateArr)
-
+    
     const clickEdit = () => {
         setShowEdit(!showEdit)
     }
