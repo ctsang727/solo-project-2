@@ -3,24 +3,27 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
-import { getAllTasksThunk } from '../../store/task';
+import { getAllTasksThunk, deleteTaskThunk } from '../../store/task';
 import AddTaskForm from '../TaskForms/AddTaskForm';
 import { setCurrentModal, showModal } from '../../store/modal';
 import './home.css'
 import Sidebar from '../Sidebar';
+import SpecificTask from '../SpecificTask';
 
 
 const HomePage = () => {
 
     const userId = useSelector(state => state.session.user.id)
     const tasksObj = useSelector(state => state.task)
-    
+
     const history = useHistory();
 
     const dispatch = useDispatch()
 
     const [tasks, setTasks] = useState(Object.values(tasksObj))
-    
+    const [editIndex, setEditIndex] = useState(null)
+    const [showEditForm, setShowEditIndex] = useState(null)
+
 
     useEffect(() => {
         console.log("USEEEFFFEEEECTTT")
@@ -51,13 +54,38 @@ const HomePage = () => {
         const current = mm + '/' + dd + '/' + yyyy;
         return current
     }
-    
-    console.log('111', tasksObj)
-    console.log('222', tasks)
+    // const [taskName, setTaskName] = useState(tasksObj.task_name)
+    // const [taskDesc, setTaskDesc] = useState(tasksObj.description)
+    // const [dueDate, setDueDate] = useState(tasksObj.due_date)
+    // const [projectId, setProject] = useState(tasksObj.project_id || null)
+    // const [labels, setLabels] = useState(tasksObj.labels || null)
+    // const [priority, setPriority] = useState(tasksObj.priority || null)
 
-    // console.log('sorted?', tasks.sort(function (a, b) {
-    //     return a.due_date - b.due_date
-    // }))
+    // const editTask = e => {
+    //     e.preventDefault()
+    //     const editTask = {
+    //         taskId,
+    //         userId,
+    //         taskName,
+    //         taskDesc,
+    //         dueDate,
+    //         projectId,
+    //         labels,
+    //         priority
+    //     }
+    //     setShowEdit(!showEdit)
+    //     return dispatch(editTaskThunk(editTask))
+    // }
+
+    // const onDelete = (e) => {
+    //     e.preventDefault()
+    //     //console.log('ONDELETE SPEECIFIC TASK', +taskId)
+    //     dispatch(deleteTaskThunk(+taskId))
+
+    //     history.push('/app')
+
+    // }
+
 
 
 
@@ -78,8 +106,32 @@ const HomePage = () => {
                                 <p>{task?.due_date}</p>
                             </div>
                         </div>
+
                         <div className='more-div'>
-                            <NavLink to={`/app/task/${task?.id}`}><i class="fa-solid fa-ellipsis fa-2x"></i></NavLink>
+                            <div onClick={() => setEditIndex(editIndex => editIndex === task.id ? null : task.id)}><i class="fa-solid fa-ellipsis fa-2x"></i></div>
+                            {editIndex === task.id &&
+                                <div className='task-dropdown'>
+                                    <ul key={task?.id}>
+                                        <li onClick={() => setShowEditIndex(showEditForm => showEditForm === task.id ? null : task.id)}>edit</li>
+                                        {showEditForm === task.id &&
+                                        <>hold</>
+                                            // <form onSubmit={editTask} >
+                                            // <div>
+                                            //     <input
+                                            //         type='text'
+                                            //         name='taskName'
+                                            //         value={taskName}
+                                            //         defaultValue={tasksObj[taskId].task_name}
+                                            //         onChange={(e) => setTaskName(e.target.value)}
+                                            //     ></input>
+                                            // </div>
+                                            // </form>
+                                        }
+                                        <li value={task?.id} onClick={e =>dispatch(deleteTaskThunk(e.target.value))}>Delete</li>
+                                        <li><NavLink to={`/app/task/${task?.id}`}>more</NavLink></li>
+                                    </ul>
+
+                                </div>}
                         </div>
 
                     </div>
