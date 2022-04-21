@@ -6,7 +6,7 @@ today = date.today()
 def seed_projects():
     project1 = Project(
         user_id = 1,
-        project_name = 'Morning routine' ,
+        project_name = 'Inbox' ,
         color = 'yellow',
         created_at = today.strftime("%B %d, %Y"),
         updated_at = today.strftime("%B %d, %Y")

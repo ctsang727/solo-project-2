@@ -11,6 +11,7 @@ const ProjectPage = () => {
     const [showEdit, setShowEdit] = useState(false)
     const [projectName, setProjectName] = useState('')
     const [color, setColor] = useState('red')
+   // const [isInbox, setIsInbox] = useState(false)
 
     const history = useHistory()
     const { id } = useParams()
@@ -37,6 +38,8 @@ const ProjectPage = () => {
         setShowEdit(!showEdit)
     }
 
+    
+
     const editProject = (e) => {
         e.preventDefault()
         const editProject = {
@@ -53,13 +56,20 @@ const ProjectPage = () => {
 
     return (
         <div>
-            <button style={{ marginLeft: '500px' }} onClick={onDelete}>Delete</button>
-            <button style={{ marginLeft: '500px' }} onClick={clickEdit}>Edit</button>
+            {+id !== 1 &&
+                <div>
+                    <button style={{ marginLeft: '500px' }} onClick={onDelete}>Delete</button>
+                    <button style={{ marginLeft: '500px' }} onClick={clickEdit}>Edit</button>
+                </div>
+            }
             <h1 style={{ marginLeft: '500px' }}>{projectsObj[id]?.project_name}</h1>
             {projectTasks?.map(p => (
                 <div style={{ marginLeft: '500px' }}>
-                    {p.description}
+                    <h3>{p?.task_name}</h3>
+                    <p>{p?.description}</p>
+                    <p>{p?.due_date}</p>
                 </div>
+                
             ))}
             {showEdit &&
                 <form style={{ marginLeft: '500px' }} onSubmit={editProject} >

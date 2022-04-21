@@ -26,7 +26,7 @@ const AddTaskForm = () => {
     useEffect(() => {
         console.log('dispatching', userId)
         dispatch(getAllProjectsThunk(userId))
-      }, [dispatch, userId])
+    }, [dispatch, userId])
     const projectStateArr = Object.values(projectState)
     const [taskName, setTaskName] = useState('')
     const [taskDesc, setTaskDesc] = useState('')
@@ -50,7 +50,7 @@ const AddTaskForm = () => {
             errors.push('description error')
             console.log(errors)
         }
-        
+
         setErrors(errors)
     }, [taskName, taskDesc])
     // 
@@ -122,15 +122,15 @@ const AddTaskForm = () => {
                                 onChange={(e) => setLabels(e.target.value)} />
                         </div>
                         <div>
-                            <select 
-                            value={projectId}
-                            onChange={(e) => setProject(e.target.value)}>
-                                {projectStateArr.map(project => 
-                                    <option 
-                                    value={project.id}>
-                                        {project.project_name}
+                            <select
+                                value={projectId}
+                                onChange={(e) => setProject(e.target.value)}>
+                                {projectStateArr.map(project =>
+                                    <option
+                                        value={project?.id}>
+                                        {project?.project_name}
                                     </option>)}
-                                <option value={projectId}>Today</option>
+                                <option value={1}>Inbox</option>
                             </select>
                         </div>
                     </div>

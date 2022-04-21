@@ -29,7 +29,7 @@ const Sidebar = () => {
   const projectsObj = useSelector(state => state.projects)
 
   useEffect(() => {
-    console.log('dispatching', userId)
+    // console.log('dispatching', userId)
     dispatch(getAllProjectsThunk(userId))
   }, [dispatch, userId])
 
