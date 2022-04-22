@@ -14,10 +14,7 @@ const HomePage = () => {
 
     const userId = useSelector(state => state.session.user.id)
     const tasksObj = useSelector(state => state.task)
-    console.log('tasksobj \n\n\n\n', tasksObj)
-
     const history = useHistory();
-
     const dispatch = useDispatch()
 
     const [tasks, setTasks] = useState(Object.values(tasksObj))
@@ -60,6 +57,21 @@ const HomePage = () => {
         const current = name + ' ' + dd + ', ' + yyyy;
         return current
     }
+    const compare = (a, b) => {
+        const taskA = a.task_name
+        const taskB = b.task_name
+        if (taskA < taskB) {
+            return -1;
+          }
+          if (taskA > taskB) {
+            return 1;
+          }
+        
+          // names must be equal
+          return 0;
+    }
+    console.log('unsorted', tasks)
+    console.log('sort this shit', tasks.sort(compare))
 
     return (
         <div className='main-page'>

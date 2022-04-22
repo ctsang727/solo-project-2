@@ -53,7 +53,7 @@ export const getAllTasksThunk = (userId) => async dispatch => {
 
     if (res.ok) {
         const data = await res.json()
-        console.log('GET ALL DATA \n\n\n\n\n', data)
+        //console.log('GET ALL DATA \n\n\n\n\n', data)
         dispatch(getAllTasks(data))
         return data
     }
@@ -110,8 +110,8 @@ const taskReducer = (state = {}, action) => {
 
         case GET_TASKS:
             newState = { ...state };
-            console.log('NS', newState)
-            console.log('AT', action.tasks)
+            // console.log('NS', newState)
+            // console.log('AT', action.tasks)
             // console.log('ATT', action.tasks.tasks)
 
 
@@ -120,7 +120,7 @@ const taskReducer = (state = {}, action) => {
                 newState[task.id] = task;
                 
             })
-            console.log('NNSS', newState)
+            // console.log('NNSS', newState)
 
             return newState;
 
