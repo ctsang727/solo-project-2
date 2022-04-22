@@ -14,6 +14,7 @@ const HomePage = () => {
 
     const userId = useSelector(state => state.session.user.id)
     const tasksObj = useSelector(state => state.task)
+    console.log('tasksobj \n\n\n\n', tasksObj)
 
     const history = useHistory();
 

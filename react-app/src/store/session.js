@@ -1,3 +1,6 @@
+import { clearProjects } from "./project";
+import { clearTasks } from "./task";
+
 // constants
 const SET_USER = 'session/SET_USER';
 const REMOVE_USER = 'session/REMOVE_USER';
@@ -66,6 +69,8 @@ export const logout = () => async (dispatch) => {
 
   if (response.ok) {
     dispatch(removeUser());
+    dispatch(clearTasks());
+    dispatch(clearProjects())
   }
 };
 
