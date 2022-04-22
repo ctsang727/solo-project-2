@@ -41,7 +41,8 @@ body {
 
 .one-task {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns:   1fr;
+    grid-template-rows: 1fr;
     margin: 10px;
 }
 
@@ -64,13 +65,18 @@ body {
     align-items: flex-end;
 } */
 
-.task-name {
+/* .task-name {
     display: flex;
     align-items: flex-start;
     margin-left: 20%;
     flex-direction: column;
     padding: 5px;
     border-radius: 5px;
+} */
+
+.task-name {
+    display: grid;
+    
 }
 
 .task-name:hover {
