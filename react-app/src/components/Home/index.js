@@ -74,7 +74,6 @@ const HomePage = () => {
 
                 {tasks?.map(task => (
                     <div className='one-task' key={task?.id}>
-                        
                         <div onClick={() => redirect(task?.id)} className='task-name'>
                         <div>
                             <i class="material-icons">check</i>
