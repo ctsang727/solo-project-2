@@ -8,8 +8,8 @@ def tasks(id):
 
     #print('hello')
     tasks = Task.query.filter_by(user_id = id)
-    for task in tasks:
-        print('-----------------', task.task_to_dict(), task.due_date, '------------')
+    # for task in tasks:
+    #     print('-----------------', task.task_to_dict(), task.due_date, '------------')
     # for task in tasks: 
     #     print('--------------', task.task_to_dict(), '----------')
     return {'tasks': [task.task_to_dict() for task in tasks]}
