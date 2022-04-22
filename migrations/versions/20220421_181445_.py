@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 6dd550e1e0da
+Revision ID: e67d3f556459
 Revises: ffdc0a98111c
-Create Date: 2022-04-12 23:55:06.622702
+Create Date: 2022-04-21 18:14:45.261907
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '6dd550e1e0da'
+revision = 'e67d3f556459'
 down_revision = 'ffdc0a98111c'
 branch_labels = None
 depends_on = None
@@ -28,14 +28,13 @@ def upgrade():
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
-    
     op.create_table('tasks',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('project_id', sa.Integer(), nullable=True),
     sa.Column('task_name', sa.String(length=255), nullable=False),
     sa.Column('description', sa.Text(), nullable=False),
-    sa.Column('due_date', sa.DateTime(), nullable=False),
+    sa.Column('due_date', sa.Date(), nullable=False),
     sa.Column('labels', sa.String(length=50), nullable=True),
     sa.Column('priority', sa.Integer(), nullable=True),
     sa.Column('created_at', sa.DateTime(), nullable=False),
@@ -44,7 +43,6 @@ def upgrade():
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
-    
     # ### end Alembic commands ###
 
 

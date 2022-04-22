@@ -16,6 +16,9 @@ const SpecificTask = () => {
     const dispatch = useDispatch()
     const userId = useSelector(state => state.session.user.id)
     const tasksObj = useSelector(state => state.task)
+    const projectState = useSelector(state => state.projects)
+    const projectStateArr = Object.values(projectState)
+    
     // const [tasks, setTasks] = useState([])
 
     const history = useHistory()
@@ -32,19 +35,35 @@ const SpecificTask = () => {
     }, [dispatch, userId])
 
     
-
+    const currentTask = Object.values(tasksObj).find(task => task?.id === +taskId)
+//console.log('CURRENTTASK', currentTask?.project_id)
 
     //edit related
     const [showEdit, setShowEdit] = useState(false)
 
-    const [taskName, setTaskName] = useState(tasksObj.task_name)
-    const [taskDesc, setTaskDesc] = useState(tasksObj.description)
-    const [dueDate, setDueDate] = useState(tasksObj.due_date)
-    const [projectId, setProject] = useState(tasksObj.project_id || null)
-    const [labels, setLabels] = useState(tasksObj.labels || null)
-    const [priority, setPriority] = useState(tasksObj.priority || null)
-    //edit related
+    const [taskName, setTaskName] = useState(tasksObj[taskId]?.task_name)
+    const [taskDesc, setTaskDesc] = useState(tasksObj[taskId]?.description)
+    const [dueDate, setDueDate] = useState(tasksObj[taskId]?.due_date)
+    const [projectId, setProject] = useState(currentTask?.project_id)
+    const [labels, setLabels] = useState(tasksObj[taskId]?.labels || null)
+    const [priority, setPriority] = useState(tasksObj[taskId]?.priority || null)
 
+    const [errors, setErrors] = useState([])
+
+    useEffect(() => {
+        const errors = []
+        if (taskName.length < 1) {
+            errors.push('No task name')
+        }
+
+        setErrors(errors)
+    }, [taskName])
+
+    //console.log(dueDate)
+    
+
+    //edit related
+    
     const clickEdit = () => {
         setShowEdit(!showEdit)
     }
@@ -81,7 +100,7 @@ const SpecificTask = () => {
 
     return (
         <div className='main-page'>
-            <Sidebar/>
+            
 
             <h1>HEY YOU HAVE STUFF TO DO!</h1>
             {!isEmpty(tasksObj) && !showEdit &&
@@ -99,12 +118,14 @@ const SpecificTask = () => {
             }
             {showEdit &&
                 <form onSubmit={editTask} >
+                    {errors.length > 0 &&
+                    <div>
+                        *Please enter task name</div>}
                     <div>
                         <input
                             type='text'
                             name='taskName'
                             value={taskName}
-                            defaultValue={tasksObj[taskId].task_name}
                             onChange={(e) => setTaskName(e.target.value)}
                         ></input>
                     </div>
@@ -113,7 +134,6 @@ const SpecificTask = () => {
                             type='text'
                             name='taskDesc'
                             value={taskDesc}
-                            defaultValue={tasksObj[taskId].description}
                             onChange={(e) => setTaskDesc(e.target.value)} />
                     </div>
                     <div>
@@ -145,27 +165,34 @@ const SpecificTask = () => {
                             onChange={(e) => setLabels(e.target.value)} />
                     </div>
                     <div>
-                        <input
-                            type='text'
-                            name='projectId'
-                            value={projectId}
-                            placeholder='Project'
-                            onChange={(e) => setProject(e.target.value)} />
-                    </div>
+                            <select
+                                name='projectId'
+                                value={+projectId}
+                                onChange={(e) => setProject(e.target.value)}>
+                                {projectStateArr.map(project =>
+                                    <option
+                                        value={project?.id}>
+                                        {project?.project_name}
+                                    </option>)}
+                                <option value={1}>Inbox</option>
+                            </select>
+                        </div>
                     <div>
-                        <button type='submit'>Edit Task</button>
+                        <button type='submit'>Save</button>
+                        <button onClick={clickEdit}>Cancel</button>
                     </div>
                 </form>
 
             }
 
 
-
+            {!showEdit &&
             <div>
-                <button onClick={clickEdit}>NEW EDIT</button>
+                <button onClick={clickEdit}>Edit</button>
                 {/* <button onClick={showEditTaskForm}>Edit</button> */}
                 <button onClick={onDelete}>Delete</button>
             </div>
+            }
         </div >
     )
 

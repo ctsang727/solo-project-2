@@ -22,9 +22,9 @@ const AddTaskForm = () => {
     //must be in the project already, create new task, and the task will be assigned to the project
     const userId = useSelector(state => state.session.user.id)
     const projectState = useSelector(state => state.projects)
-    console.log('555', projectState)
+    //console.log('555', projectState)
     useEffect(() => {
-        console.log('dispatching', userId)
+        //console.log('dispatching', userId)
         dispatch(getAllProjectsThunk(userId))
     }, [dispatch, userId])
     const projectStateArr = Object.values(projectState)
@@ -71,10 +71,17 @@ const AddTaskForm = () => {
 
     }
 
+    const closeModal = () => {
+        dispatch(hideModal());
+       // dispatch(getTaskThunk())
+    }
+
     return (
         <div id='content'>
             <form id='add-task' onSubmit={createTask}>
                 <div>
+                    {errors.includes('No task name') &&
+                        <div>*Please enter task name</div>}
                     <input
                         type='text'
                         name='taskName'
@@ -82,6 +89,8 @@ const AddTaskForm = () => {
                         placeholder='Task name'
                         onChange={(e) => setTaskName(e.target.value)} />
                 </div>
+                {errors.includes('description error') && 
+                <div>*Please enter description</div>}
                 <div>
                     <textarea
                         type='text'
@@ -130,24 +139,23 @@ const AddTaskForm = () => {
                                         value={project?.id}>
                                         {project?.project_name}
                                     </option>)}
-                                <option value={1}>Inbox</option>
                             </select>
                         </div>
                     </div>
                 </div>
 
                 {errors.length > 0 &&
-                    <div>
-                        <button style={{ backgroundColor: 'red', pointerEvents: 'none' }} type='submit'>Add Task</button>
-                        <button onClick={hideModal()}>Cancel</button>
+                    <div className='add-cancel-buttons'>
+                        <div id='add-task-cant-click'>Add Task</div>
+                        <button onClick={closeModal}>Cancel</button>
                     </div>}
                 {errors.length === 0 &&
-                    <div>
-                        <button style={{ backgroundColor: 'orange' }} type='submit'>Add Task</button>
-                        <button onClick={hideModal()}>Cancel</button>
+                    <div className='add-cancel-buttons'>
+                        <div id='add-task-click' onClick={createTask} >Add Task</div>
+                        <button onClick={closeModal}>Cancel</button>
                     </div>}
-
             </form>
+
         </div>
     )
 
