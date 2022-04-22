@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import { editTaskThunk, getTaskThunk, deleteTaskThunk } from '../../store/task';
 import { getAllProjectsThunk } from '../../store/project';
-import Sidebar from '../Sidebar';
+//import Sidebar from '../Sidebar';
 
 
 // import EditTaskForm from '../TaskForms/EditTaskForm';

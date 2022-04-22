@@ -7,8 +7,7 @@ import { getAllTasksThunk, deleteTaskThunk } from '../../store/task';
 import AddTaskForm from '../TaskForms/AddTaskForm';
 import { setCurrentModal, showModal } from '../../store/modal';
 import './home.css'
-import Sidebar from '../Sidebar';
-import SpecificTask from '../SpecificTask';
+
 
 
 const HomePage = () => {
@@ -54,7 +53,7 @@ const HomePage = () => {
 
         const today = new Date();
         const dd = String(today.getDate()).padStart(2, '0');
-        const mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+        //const mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
         const yyyy = today.getFullYear();
 
         const current = name + ' ' + dd + ', ' + yyyy;
