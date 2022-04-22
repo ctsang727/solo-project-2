@@ -57,21 +57,43 @@ const HomePage = () => {
         const current = name + ' ' + dd + ', ' + yyyy;
         return current
     }
+
+   
     const compare = (a, b) => {
-        const taskA = a.task_name
-        const taskB = b.task_name
-        if (taskA < taskB) {
+        const monthName = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+        const taskAMonth = a.due_date.split(' ').slice(1,4)[1]
+        const taskBMonth = b.due_date.split(' ').slice(1,4)[1]
+        const founda = monthName.find(month => month === taskAMonth)
+        const foundb = monthName.find(month => month === taskBMonth)
+        const foundIdxA = monthName.indexOf(founda)
+        const foundIdxB = monthName.indexOf(foundb)
+        
+        if (foundIdxA < foundIdxB) {
             return -1;
           }
-          if (taskA > taskB) {
+          if (foundIdxA > foundIdxB) {
             return 1;
           }
         
           // names must be equal
-          return 0;
+          else {
+           const dateNumA = a.due_date.split(' ').slice(0, 4)[1]
+           const dateNumB = b.due_date.split(' ').slice(0, 4)[1]
+           
+           if (dateNumA < dateNumB){
+               return -1;
+           }
+           if (dateNumA > dateNumB) {
+               return 1;
+           }
+           else {
+               return 0
+           }
+          }
     }
-    console.log('unsorted', tasks)
-    console.log('sort this shit', tasks.sort(compare))
+    tasks.sort(compare)
+    // console.log('unsorted', tasks)
+    // console.log('sort this shit', tasks.sort(compare))
 
     return (
         <div className='main-page'>
@@ -95,7 +117,7 @@ const HomePage = () => {
                                 <p>{task?.description}</p>
                             </div>
                             <div>
-                                <p>{task?.due_date.split(' ').slice(0, 4).join(' ')}</p>
+                                <p>{task?.due_date.split(' ').slice(1, 4).join(' ')}</p>
                             </div>
 
 
