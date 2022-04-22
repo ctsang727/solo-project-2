@@ -51,12 +51,14 @@ const NavBar = () => {
         <div></div>
       }
 
+      {user && 
       <div className='nav-div'>
         <button onClick={showAddTaskForm}>
           <i style={{fontSize: '20px'}} class="material-icons">add</i>
         </button>
         <LogoutButton />
       </div>
+      }
 
     </nav>
 
