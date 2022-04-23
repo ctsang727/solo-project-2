@@ -3,6 +3,7 @@ const GET_PROJECTS = 'project/GET_PROJECTS'
 const NEW_PROJECT = 'project/NEW_PROJECT'
 const GET_PROJECT_TASKS = 'project/GET_PROJECT_TASKS'
 const DEL_PROJECT = 'project/DEL_PROJECT'
+const CLEAR_PROJECTS = 'project/CLEAR_PROJECT'
 
 const newProject = project => ({
     type: NEW_PROJECT,
@@ -22,6 +23,10 @@ const getAllProjectTasks = tasks => ({
 const deleteProject = project => ({
     type: DEL_PROJECT,
     payload: project
+})
+
+export const clearProjects = () => ({
+    type: CLEAR_PROJECTS
 })
 
 export const createProjectThunk = project => async dispatch => {
@@ -128,6 +133,9 @@ const projectReducer = (state = {}, action) => {
             console.log('<<<<>>>>>', newState)
             
             return newState;
+
+        case CLEAR_PROJECTS:
+            return {}
 
             
 

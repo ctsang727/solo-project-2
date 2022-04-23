@@ -4,7 +4,7 @@ import { Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
 import { hideModal, setCurrentModal } from '../../store/modal';
 import SignUpForm from './SignUpForm';
-// import { getAllTasksThunk } from '../../store/task';
+import { getAllTasksThunk } from '../../store/task';
 
 const LoginForm = () => {
   const [errors, setErrors] = useState([]);
@@ -21,13 +21,17 @@ const LoginForm = () => {
     }
     
     
+    
   };
 
   if (user) {
-    // console.log(user.id)
-    // dispatch(getAllTasksThunk(user.id))
+    console.log(user.id)
+    dispatch(getAllTasksThunk(user.id))
+    
     dispatch(hideModal())
+    //window.location.reload(false);
     return <Redirect to='/app' />;
+    
   }
 
   const showSignUpForm = () => {

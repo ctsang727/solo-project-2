@@ -12,6 +12,7 @@ const ProjectPage = () => {
     const [projectName, setProjectName] = useState('')
     const [color, setColor] = useState('red')
     // const [isInbox, setIsInbox] = useState(false)
+    const [errors, setErrors] = useState([])
 
     const history = useHistory()
     const { id } = useParams()
@@ -21,8 +22,19 @@ const ProjectPage = () => {
     const projTasksFiltered = Object.values(projectsObj).filter(i => i.project_id)
 
     useEffect(() => {
+        console.log('hello?')
+        dispatch(getAllTasksThunk(userId))
         dispatch(getAllProjectTasksThunk(id))
-    }, [dispatch, id]);
+    }, [dispatch, id, userId]);
+
+    useEffect(() => {
+        const errors = []
+
+        if (projectName === '') {
+            errors.push('No project name')
+        }
+        setErrors(errors)
+    }, [projectName])
 
     //maybe refactor line 31 and related later
 
@@ -71,7 +83,11 @@ const ProjectPage = () => {
 
             ))}
             {showEdit &&
+
                 <form style={{ marginLeft: '500px' }} onSubmit={editProject} >
+                    {errors.length > 0 &&
+                        <div>Please enter project name</div>
+                    }
                     <div>
                         <input
                             type='text'

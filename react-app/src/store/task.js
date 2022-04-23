@@ -4,6 +4,7 @@ const GET_TASK = 'task/GET_TASK'
 const GET_TASKS = 'tasks/GET_TASKS'
 const NEW_TASK = 'tasks/NEW_TASK'
 const DEL_TASK = 'task/DEL_TASK'
+const CLEAR_ALL_TASKS = 'task/CLEAR_ALL_TASKS'
 // const EDIT_TASK = 'task/EDIT_TASK'
 
 const getTask = task => ({
@@ -19,6 +20,10 @@ const newTask = task => ({
 const getAllTasks = tasks => ({
     type: GET_TASKS,
     tasks
+})
+
+export const clearTasks = () => ({
+    type: CLEAR_ALL_TASKS
 })
 
 // const editTask = task => ({
@@ -42,10 +47,12 @@ export const getTaskThunk = (taskId) => async dispatch => {
 }
 
 export const getAllTasksThunk = (userId) => async dispatch => {
+    console.log('first', userId)
     const res = await fetch(`/api/tasks/${userId}`)
     
 
     if (res.ok) {
+        console.log('RES', res)
         const data = await res.json()
         console.log('GET ALL DATA \n\n\n\n\n', data)
         dispatch(getAllTasks(data))
@@ -108,10 +115,13 @@ const taskReducer = (state = {}, action) => {
             // console.log('AT', action.tasks)
             // console.log('ATT', action.tasks.tasks)
 
+
             action.tasks.tasks?.forEach(task => {
+                console.log('task.id')
                 newState[task.id] = task;
+                
             })
-            console.log('NNSS', newState)
+            // console.log('NNSS', newState)
 
             return newState;
 
@@ -123,6 +133,9 @@ const taskReducer = (state = {}, action) => {
             newState = {...state}
             newState[action.task.id] = action.task 
             return newState
+
+        case CLEAR_ALL_TASKS:
+            return {}
              
 
         // case EDIT_TASK:
