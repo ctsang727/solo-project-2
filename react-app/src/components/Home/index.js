@@ -105,7 +105,7 @@ const HomePage = () => {
                 <h4>{currentDate()}</h4>
             </div>
             <div>
-                <p style={{fontSize:'10px', color:'grey', marginLeft:'10%'}}>Double click the check to complete task!</p>
+                <p style={{fontSize:'10px', color:'grey', marginLeft:'10%'}}>Double click the check to mark the task complete!</p>
             </div>
             {/* dispatch(deleteTaskThunk(e.target.value) */}
             <div id='tasks-container'>

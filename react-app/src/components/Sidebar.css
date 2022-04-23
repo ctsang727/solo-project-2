@@ -62,3 +62,7 @@
     visibility: hidden;
     margin-top: 3px;
 }
+
+#one-project i{
+    size: tiny;
+}

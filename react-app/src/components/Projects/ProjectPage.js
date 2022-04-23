@@ -68,7 +68,7 @@ const ProjectPage = () => {
 
     return (
         <div>
-
+        
             <div>
                 <button style={{ marginLeft: '500px' }} onClick={onDelete}>Delete</button>
                 <button style={{ marginLeft: '500px' }} onClick={clickEdit}>Edit</button>

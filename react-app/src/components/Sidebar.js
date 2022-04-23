@@ -45,18 +45,18 @@ const Sidebar = () => {
       <div id='today-side-div'>
         <div className='navlink-div'>
           <NavLink style={navLinkStyle} to='/'>
-            <i style={{ color: '#5297ff' }} class="fa-solid fa-note-sticky"></i> Inbox
+            <i style={{ color: '#5297ff' }} className="fa-solid fa-note-sticky"></i> Inbox
           </NavLink>
         </div>
 
         <div className='navlink-div'>
           <NavLink style={navLinkStyle} to='/' >
-            <i style={{ color: '#25b84c' }} class="fa-solid fa-calendar"></i> Today
+            <i style={{ color: '#25b84c' }} className="fa-solid fa-calendar"></i> Today
           </NavLink>
         </div>
         <div className='navlink-div'>
           <NavLink style={navLinkStyle} to='/' >
-            <i style={{ color: '#a970ff' }} class="fa-solid fa-calendar-days"></i> Upcoming
+            <i style={{ color: '#a970ff' }} className="fa-solid fa-calendar-days"></i> Upcoming
           </NavLink>
         </div>
       </div>
@@ -67,15 +67,15 @@ const Sidebar = () => {
             <h3>Projects</h3>
           </div>
           <div id='project-button' >
-            <i onClick={showAddProjectForm} style={{ fontSize: '18px' }} class="material-icons">add</i>
+            <i onClick={showAddProjectForm} style={{ fontSize: '18px' }} className="material-icons">add</i>
           </div>
         </div>
 
         {userId &&
           <div id='current-projects'>
             {projects?.map(project => (
-              <div key={project.id}>
-                <NavLink style={navLinkStyle} to={`/app/projects/${project.id}`}>{project.project_name}</NavLink>
+              <div id='one-project' key={project.id}>
+                <NavLink style={navLinkStyle} to={`/app/projects/${project.id}`}><i style={{color:`${project.color}`}} className='material-icons'>fiber_manual_records</i>{project.project_name}</NavLink>
               </div>
             ))}
           </div>
