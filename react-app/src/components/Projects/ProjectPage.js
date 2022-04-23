@@ -68,21 +68,15 @@ const ProjectPage = () => {
 
     return (
         <div>
+
             <div>
                 <button style={{ marginLeft: '500px' }} onClick={onDelete}>Delete</button>
                 <button style={{ marginLeft: '500px' }} onClick={clickEdit}>Edit</button>
             </div>
 
-            <h1 style={{ marginLeft: '500px' }}>{projectsObj[id]?.project_name}</h1>
-            {projectTasks?.map(p => (
-                <div style={{ marginLeft: '500px' }}>
-                    <h3>{p?.task_name}</h3>
-                    <p>{p?.description}</p>
-                    <p>{p?.due_date}</p>
-                </div>
-
-            ))}
             {showEdit &&
+            <>
+            <h1 style={{ marginLeft: '500px' }}>{projectsObj[id]?.project_name}</h1>
 
                 <form style={{ marginLeft: '500px' }} onSubmit={editProject} >
                     {errors.length > 0 &&
@@ -107,9 +101,26 @@ const ProjectPage = () => {
                             <option value={'yellow'}>Yellow</option>
                         </select>
                     </div>
-                    <button type='submit'>Submit</button>
+                    {errors.length === 0 &&
+                        <button type='submit'>Submit</button>
+                    }
+                    
+                    <button onClick={() => setShowEdit(!showEdit)}>Cancel</button>
                 </form>
+                </>}
+            
+            {!showEdit && 
+            <h1 style={{ marginLeft: '500px' }}>{projectsObj[id]?.project_name}</h1>
             }
+            {projectTasks?.map(p => (
+                <div style={{ marginLeft: '500px' }}>
+                    <h3>{p?.task_name}</h3>
+                    <p>{p?.description}</p>
+                    <p>{p?.due_date}</p>
+                </div>
+
+            ))}
+
 
         </div>
     )
