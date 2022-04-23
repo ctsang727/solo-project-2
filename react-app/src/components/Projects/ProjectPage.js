@@ -22,9 +22,9 @@ const ProjectPage = () => {
     const projTasksFiltered = Object.values(projectsObj).filter(i => i.project_id)
 
     useEffect(() => {
-        console.log('hello?')
         dispatch(getAllTasksThunk(userId))
         dispatch(getAllProjectTasksThunk(id))
+        console.log('project dispatch')
     }, [dispatch, id, userId]);
 
     useEffect(() => {

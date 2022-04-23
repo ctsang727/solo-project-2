@@ -46,11 +46,9 @@ export const createProjectThunk = project => async dispatch => {
 }
 
 export const getAllProjectsThunk = (userId) => async dispatch => {
-    //console.log('thunk', userId)
     const res = await fetch(`/api/projects/${userId}`)
 
     if (res.ok) {
-        console.log('res is ok')
         const data = await res.json()
         dispatch(getAllProjects(data))
         return data 

@@ -56,6 +56,7 @@ const NavBar = () => {
         <button onClick={showAddTaskForm}>
           <i style={{fontSize: '20px'}} class="material-icons">add</i>
         </button>
+        <NavLink to='/about'><i style={{fontSize: '20px'}} class="material-icons">info_outline</i></NavLink>
         <LogoutButton />
       </div>
       }

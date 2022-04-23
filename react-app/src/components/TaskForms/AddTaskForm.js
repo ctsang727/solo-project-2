@@ -22,17 +22,18 @@ const AddTaskForm = () => {
     //must be in the project already, create new task, and the task will be assigned to the project
     const userId = useSelector(state => state.session.user.id)
     const projectState = useSelector(state => state.projects)
-    //console.log('555', projectState)
+    
     useEffect(() => {
         //console.log('dispatching', userId)
         dispatch(getAllProjectsThunk(userId))
     }, [dispatch, userId])
     const projectStateArr = Object.values(projectState)
+    
     const [taskName, setTaskName] = useState('')
     const [taskDesc, setTaskDesc] = useState('')
     const [dueDate, setDueDate] = useState(currentDate)
     //care project
-    const [projectId, setProject] = useState(null)
+    const [projectId, setProject] = useState(projectStateArr[0].id)
     //
     const [labels, setLabels] = useState(null)
     const [priority, setPriority] = useState(0)
