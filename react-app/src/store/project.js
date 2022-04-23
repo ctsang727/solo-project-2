@@ -117,6 +117,8 @@ const projectReducer = (state = {}, action) => {
             //console.log(action.payload.project_tasks.length === 0)
             if (action.payload.project_tasks.length === 0) return state
             else {
+                console.log('else')
+                console.log('ACTION PAYLOAD', action.payload)
                 action.payload.project_tasks.forEach(task => {
                 newState[task.id] = task
             })

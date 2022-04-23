@@ -22,11 +22,12 @@ const Sidebar = () => {
     dispatch(setCurrentModal(AddProjectForm))
     dispatch(showModal())
   }
- 
+
   const [projects, setProjects] = useState([])
 
   const userId = useSelector(state => state.session.user?.id)
   const projectsObj = useSelector(state => state.projects)
+  const projectsArr = Object.values(projectsObj)
 
   useEffect(() => {
     // console.log('dispatching', userId)
@@ -37,6 +38,19 @@ const Sidebar = () => {
     setProjects(Object.values(projectsObj))
   }, [projectsObj])
 
+  console.log('projects', projectsObj)
+
+  const isProject = () => {
+    const filterProject = []
+    projects.forEach(project => {
+      if (project.project_name !== undefined) {
+        filterProject.push(project)
+      }
+
+    })
+    return filterProject
+  }
+  console.log(isProject(projectsArr))
 
 
 
@@ -73,11 +87,19 @@ const Sidebar = () => {
 
         {userId &&
           <div id='current-projects'>
-            {projects?.map(project => (
-              <div id='one-project' key={project.id}>
+            {isProject(projectsArr).map(project => 
+            <div className='one-project' key={project.id}>
+              <NavLink style={navLinkStyle} to={`/app/projects/${project.id}`}><i style={{ color: `${project.color}` }} className='material-icons'>fiber_manual_records</i>{project.project_name}</NavLink>
+            </div>)
+
+            }
+            {/* {projects?.map(project => 
+            
+            (
+              <div className='one-project' key={project.id}>
                 <NavLink style={navLinkStyle} to={`/app/projects/${project.id}`}><i style={{color:`${project.color}`}} className='material-icons'>fiber_manual_records</i>{project.project_name}</NavLink>
               </div>
-            ))}
+            ))} */}
           </div>
         }
 

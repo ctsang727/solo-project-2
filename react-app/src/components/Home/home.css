@@ -37,6 +37,7 @@ body {
 #tasks-container {
     display: grid;
     grid-template-columns: 1fr;
+    margin-left: 10%;
 }
 
 .one-task {

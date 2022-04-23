@@ -107,7 +107,6 @@ const HomePage = () => {
             <div>
                 <p style={{fontSize:'10px', color:'grey', marginLeft:'10%'}}>Double click the check to mark the task complete!</p>
             </div>
-            {/* dispatch(deleteTaskThunk(e.target.value) */}
             <div id='tasks-container'>
 
                 {tasks?.map(task => (
@@ -128,12 +127,12 @@ const HomePage = () => {
                         </div>
 
                         <div className='task-info'>
-                            <h3>{task?.task_name}</h3>
+                            <h3> {task?.task_name} </h3>
                             <div className='one-desc' key={task?.id}>
-                                <p>{task?.description}</p>
+                                <p> {task?.description} </p>
                             </div>
                             <div>
-                                <p>{task?.due_date.split(' ').slice(1, 4).join(' ')}</p>
+                                <p> {task?.due_date.split(' ').slice(1, 4).join(' ')} </p>
                             </div>
                         </div>
 

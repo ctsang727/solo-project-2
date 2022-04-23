@@ -1,0 +1,55 @@
+#add-project-cant-click {
+    background-color: red;
+    background-color: #de4c4a;
+    border-color: #de4c4a;
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    font-weight: lighter;
+    opacity: 30%;
+    margin: 10px;
+    
+}
+
+#add-project-cant-click:hover {
+    cursor: not-allowed;
+}
+
+#add-project-clickable {
+    background-color: red;
+    background-color: #de4c4a;
+    border-color: #de4c4a ;
+    color: #fff ;
+    padding:10px;
+    border-radius: 5px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    font-weight: lighter;
+    margin: 10px;
+    
+}
+
+#project-buttons button{
+
+    font-size: .875rem;
+    color: white;
+    font-weight: 400;
+    line-height: 1.7;
+    box-sizing: border-box;
+    padding:5px;
+    border: 1px solid rgba(255, 255, 255, 0.555);
+    border-radius: 3px;
+    background-color: #1d1d1d7c;
+    
+}
+
+#project-buttons {
+    display: flex;
+    align-items: center;
+}
+
+#add-project-clickable:hover {
+    cursor: pointer;
+}

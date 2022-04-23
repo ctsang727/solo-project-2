@@ -140,6 +140,9 @@ const AddTaskForm = () => {
                                         value={project?.id}>
                                         {project?.project_name}
                                     </option>)}
+                                    <option
+                                        value={null}
+                                        >None</option>
                             </select>
                         </div>
                     </div>

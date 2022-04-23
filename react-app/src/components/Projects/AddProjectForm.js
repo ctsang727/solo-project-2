@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { createProjectThunk } from '../../store/project';
 import { hideModal} from '../../store/modal';
+import './AddProjectForm.css'
 
 const AddProjectForm = () => {
 
@@ -67,7 +68,7 @@ const AddProjectForm = () => {
                         <option value={'none'}>None</option>
                     </select>
                 </div>
-                <div>
+                <div id='project-buttons'>
                     {errors.length > 0 &&
                         <>
                             <div id='add-project-cant-click'>Add Project</div>
@@ -76,7 +77,7 @@ const AddProjectForm = () => {
                     }
                     {errors.length === 0 &&
                         <>
-                            <div id='add-project-cant-click' onClick={createProject}>Add Project</div>
+                            <div id='add-project-clickable' onClick={createProject}>Add Project</div>
                             <button type='none' onClick={closeModal}>Cancel</button>
                         </>
                     }
