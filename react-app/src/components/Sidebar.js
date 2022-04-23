@@ -59,11 +59,6 @@ const Sidebar = () => {
             <i style={{ color: '#a970ff' }} class="fa-solid fa-calendar-days"></i> Upcoming
           </NavLink>
         </div>
-        <div className='navlink-div'>
-          <NavLink style={navLinkStyle} to='/' >
-            Filters and Labels
-          </NavLink>
-        </div>
       </div>
 
       <div id='projects-side-div'>

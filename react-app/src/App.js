@@ -14,6 +14,7 @@ import SpecificTask from './components/SpecificTask';
 import Sidebar from './components/Sidebar';
 import ProjectPage from './components/Projects/ProjectPage';
 import SplashPage from './components/Home/splashpage';
+import AboutPage from './components/About';
 
 
 
@@ -69,7 +70,9 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path = '/app/projects/:id' exact={true} >
           <ProjectPage />
-          
+        </ProtectedRoute>
+        <ProtectedRoute>
+          <AboutPage/>
         </ProtectedRoute>
         
       </Switch>

@@ -64,7 +64,7 @@ const AddProjectForm = () => {
             </div>
             <div>
                 {errors && 
-                <button type='submit'>Nah</button>
+                <button type='submit'>Submit</button>
                 }
                 <button type='submit'>Submit</button>
                 <button onClick={hideModal()}>Cancel</button>
