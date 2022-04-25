@@ -1,5 +1,7 @@
-const AboutPage = () => {
+import React from 'react'
 
+const AboutPage = () => {
+    console.log('?????????????')
     
     return (
         <>

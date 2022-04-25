@@ -2,6 +2,7 @@
 //fixes some heroku bugs maybe
 const GET_TASK = 'task/GET_TASK'
 const GET_TASKS = 'tasks/GET_TASKS'
+const GET_TODAY_TASKS = 'tasks/GET_TODAY_TASKS'
 const NEW_TASK = 'tasks/NEW_TASK'
 const DEL_TASK = 'task/DEL_TASK'
 const CLEAR_ALL_TASKS = 'task/CLEAR_ALL_TASKS'
@@ -24,6 +25,11 @@ const getAllTasks = tasks => ({
 
 export const clearTasks = () => ({
     type: CLEAR_ALL_TASKS
+})
+
+export const getTodayTasks = today_tasks => ({
+    type: GET_TODAY_TASKS,
+    payload: today_tasks
 })
 
 // const editTask = task => ({
@@ -56,6 +62,17 @@ export const getAllTasksThunk = (userId) => async dispatch => {
         const data = await res.json()
         console.log('GET ALL DATA \n\n\n\n\n', data)
         dispatch(getAllTasks(data))
+        return data
+    }
+}
+
+export const getTodayTasksThunk = (userId) => async dispatch => {
+    const res = await fetch(`/api/tasks/today/${userId}`)
+
+    if (res.ok) {
+        console.log('res ok', res)
+        const data = await res.json()
+        dispatch(getTodayTasks(data))
         return data
     }
 }
@@ -134,6 +151,15 @@ const taskReducer = (state = {}, action) => {
             newState = {...state}
             newState[action.task.id] = action.task 
             return newState
+
+        case GET_TODAY_TASKS:
+            let state2={} 
+            let newState2 = {}
+            newState2 = { ...state2 };
+            action.payload.tasks?.forEach(task => {
+                newState2[task.id] = task
+            })
+            return newState2
 
         case CLEAR_ALL_TASKS:
             return {}

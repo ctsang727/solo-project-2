@@ -1,17 +1,25 @@
 from flask import Blueprint, jsonify, request, redirect, url_for
 from app.models import db, Task
+from datetime import date
 
+today = date.today()
 task_routes = Blueprint('tasks', __name__)
 
 @task_routes.route('/<int:id>')
 def tasks(id):
-
-    #print('hello')
     tasks = Task.query.filter_by(user_id = id)
-    # for task in tasks:
-    #     print('-----------------', task.task_to_dict(), task.due_date, '------------')
+
     # for task in tasks: 
     #     print('--------------', task.task_to_dict(), '----------')
+    return {'tasks': [task.task_to_dict() for task in tasks]}
+
+@task_routes.route('/today/<int:id>')
+def today_tasks(id):
+    tasks = Task.query.filter_by(user_id = id).filter_by(due_date = today)
+
+
+    for task in tasks: 
+        print('--------------', task.task_to_dict(), '----------')
     return {'tasks': [task.task_to_dict() for task in tasks]}
 
 @task_routes.route('/specific/<int:id>')

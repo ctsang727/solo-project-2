@@ -28,17 +28,16 @@ const Sidebar = () => {
   const userId = useSelector(state => state.session.user?.id)
   const projectsObj = useSelector(state => state.projects)
   const projectsArr = Object.values(projectsObj)
-
+  
 
 
 
   useEffect(() => {
-    console.log('dispatching', userId)    
+    //console.log('dispatching', userId)    
     dispatch(getAllProjectsThunk(userId))
   }, [dispatch, userId])
 
   useEffect(() => {
-    
     setProjects(Object.values(projectsObj))
   }, [projectsObj])
 
@@ -54,7 +53,7 @@ const Sidebar = () => {
     })
     return filterProject
   }
-  console.log('IS PROJECT?', isProject(projectsArr))
+
 
 
 
@@ -64,13 +63,13 @@ const Sidebar = () => {
     <div className='sidebar-container'>
       <div id='today-side-div'>
         <div className='navlink-div'>
-          <NavLink style={navLinkStyle} to='/'>
+          <NavLink style={navLinkStyle} to='/app'>
             <i style={{ color: '#5297ff' }} className="fa-solid fa-note-sticky"></i> Inbox
           </NavLink>
         </div>
 
         <div className='navlink-div'>
-          <NavLink style={navLinkStyle} to='/' >
+          <NavLink style={navLinkStyle} to='/app/today' >
             <i style={{ color: '#25b84c' }} className="fa-solid fa-calendar"></i> Today
           </NavLink>
         </div>

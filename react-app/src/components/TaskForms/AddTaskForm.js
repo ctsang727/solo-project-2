@@ -86,6 +86,7 @@ const AddTaskForm = () => {
             dispatch(hideModal())
             return dispatch(createTaskThunk(newTask))
         }
+        
 
         // dispatch(hideModal())
         // return dispatch(createTaskThunk(newTask))
