@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { Redirect } from 'react-router-dom';
 import { signUp } from '../../store/session';
 import { hideModal, setCurrentModal } from '../../store/modal';
 import LoginForm from './LoginForm';
+import { createProjectThunk } from '../../store/project';
 
 const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
@@ -14,6 +15,19 @@ const SignUpForm = () => {
   const [repeatPassword, setRepeatPassword] = useState('');
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
+  
+
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    async function fetchData() {
+      const response = await fetch('/api/users/');
+      const responseData = await response.json();
+      setUsers(responseData.users);
+    }
+    fetchData();
+  }, []);
+
 
   const onSignUp = async (e) => {
     e.preventDefault();
@@ -42,15 +56,26 @@ const SignUpForm = () => {
         setErrors(data)
       }
       //dispatch(hideModal())
+      const initialProjectData = {
+        userId: 1,
+        projectName: 'Inbox',
+        color: 'none'
+      }
+      return dispatch(createProjectThunk(initialProjectData))
     }
+    
   };
 
   const showLoginForm = () => {
     dispatch(setCurrentModal(LoginForm))
   }
 
+
+  
+
   if (user) {
     dispatch(hideModal())
+    // initialProject()
     return <Redirect to='/app' />;
   }
 

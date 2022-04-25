@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request, redirect, url_for
-from app.models import db, Task, Project 
+from app.models import db, Task, Project, user
 
 project_routes = Blueprint('projects', __name__)
 

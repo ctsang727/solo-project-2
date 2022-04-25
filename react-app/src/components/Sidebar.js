@@ -29,28 +29,33 @@ const Sidebar = () => {
   const projectsObj = useSelector(state => state.projects)
   const projectsArr = Object.values(projectsObj)
 
+
+
+
   useEffect(() => {
-    // console.log('dispatching', userId)
+    console.log('dispatching', userId)    
     dispatch(getAllProjectsThunk(userId))
   }, [dispatch, userId])
 
   useEffect(() => {
+    
     setProjects(Object.values(projectsObj))
   }, [projectsObj])
 
-  console.log('projects', projectsObj)
 
-  const isProject = () => {
+
+  const isProject = (array) => {
     const filterProject = []
     projects.forEach(project => {
-      if (project.project_name !== undefined) {
+      if (project?.project_name !== undefined) {
         filterProject.push(project)
       }
 
     })
     return filterProject
   }
-  console.log(isProject(projectsArr))
+  console.log('IS PROJECT?', isProject(projectsArr))
+
 
 
 
@@ -87,10 +92,10 @@ const Sidebar = () => {
 
         {userId &&
           <div id='current-projects'>
-            {isProject(projectsArr).map(project => 
-            <div className='one-project' key={project.id}>
-              <NavLink style={navLinkStyle} to={`/app/projects/${project.id}`}><i style={{ color: `${project.color}` }} className='material-icons'>fiber_manual_records</i>{project.project_name}</NavLink>
-            </div>)
+            {isProject(projectsArr).map(project =>
+              <div className='one-project' key={project.id}>
+                <NavLink style={navLinkStyle} to={`/app/projects/${project.id}`}><i style={{ color: `${project.color}` }} className='material-icons'>fiber_manual_records</i>{project.project_name}</NavLink>
+              </div>)
 
             }
             {/* {projects?.map(project => 

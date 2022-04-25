@@ -33,6 +33,7 @@ const HomePage = () => {
         setTasks(Object.values(tasksObj))
     }, [setTasks, tasksObj])
 
+
     // const redirect = (id) => {
 
     //     history.push(`/app/task/${id}`)

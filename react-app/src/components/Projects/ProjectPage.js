@@ -113,7 +113,7 @@ const ProjectPage = () => {
             <h1 style={{ marginLeft: '500px' }}>{projectsObj[id]?.project_name}</h1>
             }
             {projectTasks?.map(p => (
-                <div style={{ marginLeft: '500px' }}>
+                <div style={{ marginLeft: '500px' }} key={p.id}>
                     <h3>{p?.task_name}</h3>
                     <p>{p?.description}</p>
                     <p>{p?.due_date}</p>

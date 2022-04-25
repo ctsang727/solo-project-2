@@ -61,6 +61,7 @@ export const getAllTasksThunk = (userId) => async dispatch => {
 }
 
 export const createTaskThunk = (task) => async dispatch => {
+    console.log('THUNK TASK', JSON.stringify(task))
     const res = await fetch('/api/tasks/new', {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -162,56 +163,3 @@ const taskReducer = (state = {}, action) => {
 }
 
 export default taskReducer
-
-//reducer based off first solo project
-// const initialState = {
-//     tasks: {}
-// }
-// const taskReducer = (state = initialState, action) => {
-//     switch(action.type) {  
-//         case GET_TASKS:
-//           const allTasks = {};
-//           console.log(initialState)
-//           //console.log('ACTION', action)
-//           action.tasks.tasks.forEach(task => {
-//             allTasks[task.id] = task; 
-//           })
-//           console.log('ALL TASKS', allTasks)
-//           console.log({...state, tasks: allTasks})
-//           return allTasks
-
-//         case GET_TASK:
-//           // newState[action.business.id] = action.business
-//           // return newState
-//           return {
-
-//             ...state,
-//             [action.task.id]: action.task
-            
-//           };
-//         case NEW_TASK:
-//           let newState;
-//           newState={...state}
-//           newState[action.task.id] = action.task;
-//           return newState;
-        
-//         case EDIT_TASK:
-//           return {
-//             ...state,
-//             [action.task.id]: action.task,
-//           };
-
-//         case DEL_TASK:
-//           let removeState = {...state}
-//           delete removeState[action.taskId.id]
-//           return removeState
-
-
-
-//         default:
-//             return state;
-//     }
-
-// }
-
-
