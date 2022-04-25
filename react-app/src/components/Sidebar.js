@@ -59,6 +59,7 @@ const Sidebar = () => {
 
 
 
+
   return (
     <div className='sidebar-container'>
       <div id='today-side-div'>

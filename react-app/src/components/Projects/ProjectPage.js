@@ -36,8 +36,6 @@ const ProjectPage = () => {
         setErrors(errors)
     }, [projectName])
 
-    //maybe refactor line 31 and related later
-
     const onDelete = async (e) => {
         e.preventDefault()
         await projTasksFiltered.forEach(task => dispatch(deleteTaskThunk(task.id)))
