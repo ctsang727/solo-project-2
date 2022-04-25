@@ -7,7 +7,7 @@
     border-bottom: rgba(0, 0, 0, 0.137) solid 1px; 
     color: white; 
     background-color: #282828;
-    
+    position: sticky;
 }
 
 body{

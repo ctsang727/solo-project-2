@@ -76,5 +76,19 @@
 
 .add-cancel-buttons button {
     margin: 10px;
+    background-color: #383838;
+    border-color: #000000 ;
+    color: #fff ;
+    padding:10px;
+    border-radius: 5px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    font-weight: lighter;
+    
 
+}
+
+#date{
+    display: flex;
+    flex-direction: column;
 }

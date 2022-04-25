@@ -43,7 +43,7 @@ def edit_task(id):
     color = request.json['color']
 
     project.project_name = project_name 
-    project.color = project.color 
+    project.color = color
 
     db.session.add(project)
     db.session.commit()
