@@ -52,7 +52,7 @@ const SpecificTask = () => {
 
     useEffect(() => {
         const errors = []
-        if (taskName.length < 1) {
+        if (taskName?.length < 1) {
             errors.push('No task name')
         }
 

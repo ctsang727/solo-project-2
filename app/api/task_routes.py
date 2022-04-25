@@ -32,8 +32,6 @@ def new_task():
     project_id = request.json['projectId']
     labels = request.json['labels']
     priority = request.json['priority']
-
-    print('\n\n\n\n\n\n\n\n\n\n', due_date)
     
 
     task = Task(

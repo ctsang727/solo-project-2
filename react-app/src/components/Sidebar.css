@@ -11,7 +11,7 @@
     padding-top: 60px;
     font-family: 'Roboto', sans-serif;
     font-size: 14px;
-    width: 10%;
+    width: 15%;
     z-index: 0;
 }
 
@@ -53,12 +53,12 @@
 
 }
 
-#projects-text{
-    margin-right:30px;
-}
-
 #project-button{
-    
     visibility: hidden;
     margin-top: 3px;
+}
+
+.one-project{
+    display: flex;
+    
 }

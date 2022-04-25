@@ -22,19 +22,21 @@ const AddTaskForm = () => {
     //must be in the project already, create new task, and the task will be assigned to the project
     const userId = useSelector(state => state.session.user.id)
     const projectState = useSelector(state => state.projects)
-    
+
     useEffect(() => {
         //console.log('dispatching', userId)
         dispatch(getAllProjectsThunk(userId))
     }, [dispatch, userId])
     const projectStateArr = Object.values(projectState)
-    
+
     const [taskName, setTaskName] = useState('')
     const [taskDesc, setTaskDesc] = useState('')
     const [dueDate, setDueDate] = useState(currentDate)
     //care project
-    const [projectId, setProject] = useState(projectStateArr[0].id)
+    const [projectId, setProject] = useState(null)
+    console.log('CURRENT', projectId)
     //
+
     const [labels, setLabels] = useState(null)
     const [priority, setPriority] = useState(0)
 
@@ -58,23 +60,41 @@ const AddTaskForm = () => {
 
     const createTask = e => {
         e.preventDefault()
-        const newTask = {
-            userId,
-            taskName,
-            taskDesc,
-            dueDate,
-            projectId,
-            labels,
-            priority
+        console.log('PROJECTID', projectId)
+        if (projectId === 'None') {
+            const newTask = {
+                userId,
+                taskName,
+                taskDesc,
+                dueDate,
+                projectId: null,
+                labels,
+                priority
+            }
+            dispatch(hideModal())
+            return dispatch(createTaskThunk(newTask))
+        } else {
+            const newTask = {
+                userId,
+                taskName,
+                taskDesc,
+                dueDate,
+                projectId,
+                labels,
+                priority
+            }
+            dispatch(hideModal())
+            return dispatch(createTaskThunk(newTask))
         }
-        dispatch(hideModal())
-        return dispatch(createTaskThunk(newTask))
+
+        // dispatch(hideModal())
+        // return dispatch(createTaskThunk(newTask))
 
     }
 
     const closeModal = () => {
         dispatch(hideModal());
-       // dispatch(getTaskThunk())
+        // dispatch(getTaskThunk())
     }
 
     return (
@@ -90,8 +110,8 @@ const AddTaskForm = () => {
                         placeholder='Task name'
                         onChange={(e) => setTaskName(e.target.value)} />
                 </div>
-                {errors.includes('description error') && 
-                <div>*Please enter description</div>}
+                {errors.includes('description error') &&
+                    <div>*Please enter description</div>}
                 <div>
                     <textarea
                         type='text'
@@ -133,8 +153,12 @@ const AddTaskForm = () => {
                         </div>
                         <div>
                             <select
+                                name='projectId'
                                 value={projectId}
                                 onChange={(e) => setProject(e.target.value)}>
+                                <option
+                                    value={null}
+                                >None</option>
                                 {projectStateArr.map(project =>
                                     <option
                                         value={project?.id}>
