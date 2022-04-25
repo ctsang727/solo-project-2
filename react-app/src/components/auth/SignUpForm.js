@@ -16,6 +16,19 @@ const SignUpForm = () => {
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
+  const SignUpButtonStyle = {
+        
+    backgroundColor: '#de4c4a',
+    borderColor:' #de4c4a' ,
+    color: '#fff' ,
+    padding:'10px',
+    borderRadius: '5px',
+    fontFamily: "'Roboto', sans-serif",
+    fontSize: '14px',
+    fontWeight: 'lighter',
+    margin: '10px',
+    }
+
   const onSignUp = async (e) => {
     e.preventDefault();
     if (username.length < 1) {
@@ -75,7 +88,7 @@ const SignUpForm = () => {
         ))}
       </div>
       <div>
-        <label>User Name</label>
+        <label>User Name </label>
         <input
           type='text'
           name='username'
@@ -84,7 +97,7 @@ const SignUpForm = () => {
         ></input>
       </div>
       <div>
-        <label>Email</label>
+        <label>Email </label>
         <input
           type='text'
           name='email'
@@ -93,7 +106,7 @@ const SignUpForm = () => {
         ></input>
       </div>
       <div>
-        <label>Password</label>
+        <label>Password </label>
         <input
           type='password'
           name='password'
@@ -102,7 +115,7 @@ const SignUpForm = () => {
         ></input>
       </div>
       <div>
-        <label>Repeat Password</label>
+        <label>Repeat Password </label>
         <input
           type='password'
           name='repeat_password'
@@ -111,8 +124,8 @@ const SignUpForm = () => {
           
         ></input>
       </div>
-      <button type='submit'>Sign Up</button>
-      <button onClick={showLoginForm}>Already signed up? Log in!</button>
+      <button style={SignUpButtonStyle} type='submit'>Sign Up</button>
+      <button style={SignUpButtonStyle} onClick={showLoginForm}>Already signed up? Log in!</button>
     </form>
   );
 };
