@@ -3,7 +3,7 @@ import { showModal, setCurrentModal } from '../../store/modal'
 import { useDispatch } from 'react-redux';
 import LoginForm from '../auth/LoginForm';
 import SignUpForm from '../auth/SignUpForm';
-
+import './splash.css'
 
 const splashButtonStyle = {
     backgroundColor: ' #db4c3f',
@@ -29,7 +29,7 @@ const SplashPage = () => {
     }
 
     return (
-        <div style={{ backgroundImage: `url('https://www.shutterstock.com/image-photo/mother-child-having-fun-preparing-healthy-1562611987')`, marginLeft: '30%', fontFamily:'roboto, sans-serif' }}>
+        <div id = 'splash-main' >
             <h1>Welcome!</h1>
             <h2>Hey! You have stuff to do!</h2>
             <p>This web app is a clone of Todoist, a to-do list app.</p>
