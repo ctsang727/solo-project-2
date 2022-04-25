@@ -13,6 +13,18 @@ const LoginForm = () => {
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
+  const AuthButtons = {
+    backgroundColor: '#de4c4a',
+    borderColor:' #de4c4a' ,
+    color: '#fff' ,
+    padding:'10px',
+    borderRadius: '5px',
+    fontFamily: "'Roboto', sans-serif",
+    fontSize: '14px',
+    fontWeight: 'lighter',
+    margin: '10px',
+  }
+
   const onLogin = async (e) => {
     e.preventDefault();
     const data = await dispatch(login(email, password));
@@ -55,7 +67,7 @@ const LoginForm = () => {
         ))}
       </div>
       <div>
-        <label htmlFor='email'>Email</label>
+        <label htmlFor='email'>Email: </label>
         <input
           name='email'
           type='text'
@@ -65,7 +77,7 @@ const LoginForm = () => {
         />
       </div>
       <div>
-        <label htmlFor='password'>Password</label>
+        <label htmlFor='password'>Password: </label>
         <input
           name='password'
           type='password'
@@ -73,10 +85,11 @@ const LoginForm = () => {
           value={password}
           onChange={e => setPassword(e.target.value)}
         />
-        <button type='submit'>Login</button>
-        <button onClick={showSignUpForm}>Sign Up</button>
-        <button onClick={demoLogin}>Demo</button>
+        
       </div>
+      <button style={AuthButtons} type='submit'>Login</button>
+        <button style={AuthButtons} onClick={showSignUpForm}>Sign Up</button>
+        <button style={AuthButtons} onClick={demoLogin}>Demo</button>
     </form>
   );
 };
