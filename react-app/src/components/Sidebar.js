@@ -85,9 +85,11 @@ const Sidebar = () => {
           <div id='projects-text'>
             <h3>Projects</h3>
           </div>
+          {userId && 
           <div id='project-button' >
             <i onClick={showAddProjectForm} style={{ fontSize: '18px' }} className="material-icons">add</i>
           </div>
+          }
         </div>
 
         {userId &&
