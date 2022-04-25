@@ -6,6 +6,8 @@
 Hey! You Have Stuff To Do (Hey!) is a full stack app that allows users to keep track of all the things they need to do. Logged in users can quickly jot down what they need to get done and once the task is complete a simple double click will mark the task complete. Users can also create a project and have specific tasks under that project. This app should help users stay organized and become more productive whether it's something small like remembering to make a phone call or planning/executing a long-term project. 
 
 Access to live site: [Hey! You have stuff to do!](https://hey-stuff-to-do.herokuapp.com/)
+
+
 This app is a clone inspired by Todoist: [Todoist.com](https://todoist.com)
 
 
