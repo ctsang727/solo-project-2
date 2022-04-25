@@ -6,6 +6,7 @@ const GET_TODAY_TASKS = 'tasks/GET_TODAY_TASKS'
 const NEW_TASK = 'tasks/NEW_TASK'
 const DEL_TASK = 'task/DEL_TASK'
 const CLEAR_ALL_TASKS = 'task/CLEAR_ALL_TASKS'
+const GET_UPCOMING = 'task/GET_UPCOMING'
 // const EDIT_TASK = 'task/EDIT_TASK'
 
 const getTask = task => ({
@@ -31,6 +32,11 @@ export const getTodayTasks = today_tasks => ({
     type: GET_TODAY_TASKS,
     payload: today_tasks
 })
+
+// export const getUpcoming = upcoming => ({
+//     type: GET_UPCOMING,
+//     payload: upcoming 
+// })
 
 // const editTask = task => ({
 //     type: EDIT_TASK,
@@ -76,6 +82,17 @@ export const getTodayTasksThunk = (userId) => async dispatch => {
         return data
     }
 }
+
+// export const getUpcomingThunk = (userId) => async dispatch => {
+//     const res = await fetch(`/api/tasks/upcoming/${userId}`)
+
+//     if (res.ok) {
+//         console.log('res ok', res)
+//         const data = await res.json()
+//         dispatch(getUpcoming(data))
+//         return data
+//     }
+// }
 
 export const createTaskThunk = (task) => async dispatch => {
     console.log('THUNK TASK', JSON.stringify(task))
@@ -160,6 +177,15 @@ const taskReducer = (state = {}, action) => {
                 newState2[task.id] = task
             })
             return newState2
+        
+        // case GET_UPCOMING:
+        //     let state3={}
+        //     let newState3 = {}
+        //     newState3 = {...state3}
+        //     action.payload.upcoming?.forEach(task => {
+        //         newState3[task.id] = task
+        //     })
+        //     return newState3
 
         case CLEAR_ALL_TASKS:
             return {}

@@ -74,9 +74,9 @@ const Sidebar = () => {
           </NavLink>
         </div>
         <div className='navlink-div'>
-          <NavLink style={navLinkStyle} to='/' >
+          {/* <NavLink style={navLinkStyle} to='/upcoming' >
             <i style={{ color: '#a970ff' }} className="fa-solid fa-calendar-days"></i> Upcoming
-          </NavLink>
+          </NavLink> */}
         </div>
       </div>
 
@@ -98,13 +98,6 @@ const Sidebar = () => {
               </div>)
 
             }
-            {/* {projects?.map(project => 
-            
-            (
-              <div className='one-project' key={project.id}>
-                <NavLink style={navLinkStyle} to={`/app/projects/${project.id}`}><i style={{color:`${project.color}`}} className='material-icons'>fiber_manual_records</i>{project.project_name}</NavLink>
-              </div>
-            ))} */}
           </div>
         }
 

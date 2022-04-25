@@ -19,6 +19,7 @@ import TodayPage from './components/Home/today';
 
 
 
+
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
@@ -66,8 +67,8 @@ function App() {
 
         <ProtectedRoute path = '/app/task/:taskId'>
           <SpecificTask />
-          
         </ProtectedRoute>
+
         <ProtectedRoute path = '/app' exact={true} >
           <HomePage />
         </ProtectedRoute>
@@ -75,9 +76,9 @@ function App() {
         <ProtectedRoute path = '/app/projects/:id' exact={true} >
           <ProjectPage />
         </ProtectedRoute>
-        
+
         <ProtectedRoute>
-          <TodayPage path='/app/today/:id' exact={true}/>
+          <TodayPage path='/app/today/' exact={true}/>
         </ProtectedRoute>
 
         <ProtectedRoute>

@@ -4,8 +4,8 @@ import { useSelector, useDispatch } from 'react-redux';
 // import { useHistory } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
 import { getTodayTasksThunk, deleteTaskThunk } from '../../store/task';
-import AddTaskForm from '../TaskForms/AddTaskForm';
-import { setCurrentModal, showModal } from '../../store/modal';
+// import AddTaskForm from '../TaskForms/AddTaskForm';
+// import { setCurrentModal, showModal } from '../../store/modal';
 import './home.css'
 
 
@@ -29,15 +29,15 @@ const TodayPage = () => {
     }, [dispatch, userId]);
 
     useEffect(() => {
-        dispatch(getTodayTasksThunk(userId))
+        
         setTasks(Object.values(tasksObj))
-    }, [dispatch, userId, tasksObj ])
+    }, [ tasksObj, setTasks])
 
 
-    const showAddTaskForm = () => {
-        dispatch(setCurrentModal(AddTaskForm))
-        dispatch(showModal())
-    }
+    // const showAddTaskForm = () => {
+    //     dispatch(setCurrentModal(AddTaskForm))
+    //     dispatch(showModal())
+    // }
 
 
     const currentDate = () => {
@@ -163,9 +163,9 @@ const TodayPage = () => {
                 ))
                 }
             </div>
-            <div id='new-task-button'>
+            {/* <div id='new-task-button'>
                 <button onClick={showAddTaskForm}><i style={{ fontSize: '18px' }} class="material-icons">add</i> Add Task </button>
-            </div>
+            </div> */}
 
 
         </div>
