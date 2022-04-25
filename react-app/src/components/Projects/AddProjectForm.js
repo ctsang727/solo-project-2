@@ -39,6 +39,7 @@ const AddProjectForm = () => {
     const closeModal = () => {
         dispatch(hideModal());
        // dispatch(getTaskThunk())
+       
     }
 
 
