@@ -15,6 +15,7 @@ import Sidebar from './components/Sidebar';
 import ProjectPage from './components/Projects/ProjectPage';
 import SplashPage from './components/Home/splashpage';
 import AboutPage from './components/About';
+import TodayPage from './components/Home/today';
 
 
 
@@ -54,26 +55,35 @@ function App() {
         <Route path='/' exact={true} >
           <SplashPage />
         </Route>
+
         <ProtectedRoute path='/users' exact={true} >
           <UsersList/>
         </ProtectedRoute>
+
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
         </ProtectedRoute>
+
         <ProtectedRoute path = '/app/task/:taskId'>
           <SpecificTask />
           
         </ProtectedRoute>
         <ProtectedRoute path = '/app' exact={true} >
           <HomePage />
-          
         </ProtectedRoute>
+
         <ProtectedRoute path = '/app/projects/:id' exact={true} >
           <ProjectPage />
         </ProtectedRoute>
+        
         <ProtectedRoute>
-          <AboutPage/>
+          <TodayPage path='/app/today/:id' exact={true}/>
         </ProtectedRoute>
+
+        <ProtectedRoute>
+          <AboutPage path= '/about' exact={true}/>
+        </ProtectedRoute>
+
         
       </Switch>
     </BrowserRouter>
