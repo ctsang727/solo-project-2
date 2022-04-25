@@ -97,7 +97,7 @@ const AddTaskForm = () => {
         dispatch(hideModal());
         // dispatch(getTaskThunk())
     }
-
+    
     return (
         <div id='content'>
             <form id='add-task' onSubmit={createTask}>
