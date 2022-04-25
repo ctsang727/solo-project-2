@@ -6,7 +6,7 @@ const GET_TODAY_TASKS = 'tasks/GET_TODAY_TASKS'
 const NEW_TASK = 'tasks/NEW_TASK'
 const DEL_TASK = 'task/DEL_TASK'
 const CLEAR_ALL_TASKS = 'task/CLEAR_ALL_TASKS'
-const GET_UPCOMING = 'task/GET_UPCOMING'
+//const GET_UPCOMING = 'task/GET_UPCOMING'
 // const EDIT_TASK = 'task/EDIT_TASK'
 
 const getTask = task => ({

@@ -1,7 +1,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-// import { useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
 import { getAllTasksThunk, deleteTaskThunk } from '../../store/task';
 import AddTaskForm from '../TaskForms/AddTaskForm';
@@ -14,13 +14,13 @@ const HomePage = () => {
 
     const userId = useSelector(state => state.session.user.id)
     const tasksObj = useSelector(state => state.task)
-    // const history = useHistory();
+    const history = useHistory();
     const dispatch = useDispatch()
 
     const [tasks, setTasks] = useState(Object.values(tasksObj))
     const [editIndex, setEditIndex] = useState(null)
     const [deleteIndex, setDeleteIndex] = useState(null)
-    const [showEditForm, setShowEditIndex] = useState(null)
+  
 
 
     useEffect(() => {
@@ -34,10 +34,10 @@ const HomePage = () => {
     }, [setTasks, tasksObj])
 
 
-    // const redirect = (id) => {
+    const redirect = (id) => {
 
-    //     history.push(`/app/task/${id}`)
-    // }
+        history.push(`/app/task/${id}`)
+    }
 
     const showAddTaskForm = () => {
         dispatch(setCurrentModal(AddTaskForm))
@@ -127,7 +127,7 @@ const HomePage = () => {
                         } 
                         </div>
 
-                        <div className='task-info'>
+                        <div className='task-info' onClick={() => setEditIndex(editIndex => editIndex === task.id ? null : task.id)}>
                             <h3> {task?.task_name} </h3>
                             <div className='one-desc' key={task?.id}>
                                 <p> {task?.description} </p>
@@ -143,23 +143,9 @@ const HomePage = () => {
                         {editIndex === task.id &&
                             <div className='task-dropdown'>
                                 <ul key={task?.id}>
-                                    <li onClick={() => setShowEditIndex(showEditForm => showEditForm === task.id ? null : task.id)}>edit</li>
-                                    {showEditForm === task.id &&
-                                        <>hold</>
-                                        // <form onSubmit={editTask} >
-                                        // <div>
-                                        //     <input
-                                        //         type='text'
-                                        //         name='taskName'
-                                        //         value={taskName}
-                                        //         defaultValue={tasksObj[taskId].task_name}
-                                        //         onChange={(e) => setTaskName(e.target.value)}
-                                        //     ></input>
-                                        // </div>
-                                        // </form>
-                                    }
+                                    
                                     <li value={task?.id} onClick={e => dispatch(deleteTaskThunk(e.target.value))}>Delete</li>
-                                    <li><NavLink to={`/app/task/${task?.id}`}>more</NavLink></li>
+                                    <li><NavLink to={`/app/task/${task?.id}`}>More</NavLink></li>
                                 </ul>
                             </div>}
                         {/* </div> */}
