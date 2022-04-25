@@ -104,6 +104,7 @@ const AddTaskForm = () => {
                 <div>
                     {errors.includes('No task name') &&
                         <div>*Please enter task name</div>}
+                    <label>Task Name (required)</label>
                     <input
                         type='text'
                         name='taskName'
@@ -114,6 +115,7 @@ const AddTaskForm = () => {
                 {errors.includes('description error') &&
                     <div>*Please enter description</div>}
                 <div>
+                <label>Description (required)</label>
                     <textarea
                         type='text'
                         name='taskDesc'
@@ -123,8 +125,10 @@ const AddTaskForm = () => {
                 </div>
                 <div id='second-block'>
                     <div id='date'>
-                        <input
+                        <labels>Due Date</labels>
+                        <input 
                             type='date'
+                            min={new Date().toISOString().split('T')[0]}
                             name='dueDate'
                             value={dueDate}
                             onChange={(e) => setDueDate(e.target.value)} />
@@ -145,6 +149,7 @@ const AddTaskForm = () => {
                             </select>
                         </div>
                         <div>
+                        <label>Labels: </label>
                             <input
                                 type='text'
                                 name='labels'
@@ -153,6 +158,7 @@ const AddTaskForm = () => {
                                 onChange={(e) => setLabels(e.target.value)} />
                         </div>
                         <div>
+                        <label>Project: </label>
                             <select
                                 name='projectId'
                                 value={projectId}

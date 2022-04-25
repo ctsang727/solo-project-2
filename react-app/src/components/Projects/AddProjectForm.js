@@ -49,6 +49,7 @@ const AddProjectForm = () => {
                     <div> *Please enter project name </div>
                 }
                 <div>
+                    <label>Project name (required): </label>
                     <input
                         type='text'
                         name='projectName'

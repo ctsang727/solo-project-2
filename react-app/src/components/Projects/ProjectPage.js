@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import { deleteProjectThunk, getAllProjectTasksThunk, editProjectThunk } from '../../store/project';
 import { deleteTaskThunk, getAllTasksThunk } from '../../store/task';
-
+import './ProjectPage.css'
 
 const ProjectPage = () => {
     const dispatch = useDispatch()
@@ -19,7 +19,7 @@ const ProjectPage = () => {
     const projectsObj = useSelector(state => state?.projects)
     const projectTasks = Object.values(projectsObj).filter(i => i.project_id === +id)
     //const projTasksFiltered = Object.values(projectsObj).filter(i => i.project_id)
-    console.log('12314124124124', projectTasks)
+   
 
     const [projectName, setProjectName] = useState(projectsObj[id]?.project_name || '')
     const [color, setColor] = useState('red')
@@ -138,10 +138,10 @@ const ProjectPage = () => {
                         </select>
                     </div>
                     {errors.length === 0 &&
-                        <button type='submit'>Submit</button>
+                        <button id='project-edit-submit' type='submit'>Submit</button>
                     }
 
-                    <button onClick={() => setShowEdit(!showEdit)}>Cancel</button>
+                    <button id='project-edit-cancel' onClick={() => setShowEdit(!showEdit)}>Cancel</button>
                 </form>
                 </>}
 
@@ -159,14 +159,13 @@ const ProjectPage = () => {
 
             }
             {projectTasks?.map(p => (
-                <div key={p.id}>
+                <div className='ptask-info' key={p.id}>
                     <h3>{p?.task_name}</h3>
                     <p>{p?.description}</p>
-                    <p>{p?.due_date}</p>
+                    <p>{p?.due_date.split(' ').slice(1, 4).join(' ')}</p>
                 </div>
 
             ))}
-
 
         </div>
     )

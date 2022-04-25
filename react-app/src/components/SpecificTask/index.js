@@ -98,6 +98,33 @@ const SpecificTask = () => {
 
     }
 
+    const editButtonStyle = {
+        
+    backgroundColor: '#de4c4a',
+    borderColor:' #de4c4a' ,
+    color: '#fff' ,
+    padding:'10px',
+    borderRadius: '5px',
+    fontFamily: "'Roboto', sans-serif",
+    fontSize: '14px',
+    fontWeight: 'lighter',
+    margin: '10px',
+    }
+
+    const deleteButtonStyle = {
+        backgroundColor: '#383838',
+        borderColor:' #000000' ,
+        color: '#fff' ,
+        padding:'10px',
+        borderRadius: '5px',
+        fontFamily: "'Roboto', sans-serif",
+        fontSize: '14px',
+        fontWeight: 'lighter',
+        margin: '10px',
+    }
+
+
+
     return (
         <div className='main-page'>
             
@@ -117,11 +144,13 @@ const SpecificTask = () => {
                     </div></>
             }
             {showEdit &&
-                <form onSubmit={editTask} >
+            
+                <form style={{display:'flex', flexDirection: 'column'}} onSubmit={editTask} >
                     {errors.length > 0 &&
                     <div>
                         *Please enter task name</div>}
                     <div>
+                    <label>Task name (required): </label>
                         <input
                             type='text'
                             name='taskName'
@@ -130,6 +159,7 @@ const SpecificTask = () => {
                         ></input>
                     </div>
                     <div>
+                    <label>Description (required):  </label>
                         <textarea
                             type='text'
                             name='taskDesc'
@@ -137,6 +167,7 @@ const SpecificTask = () => {
                             onChange={(e) => setTaskDesc(e.target.value)} />
                     </div>
                     <div>
+                    <label>Due date: </label>
                         <input
                             type='date'
                             name='dueDate'
@@ -157,6 +188,7 @@ const SpecificTask = () => {
                         </select>
                     </div>
                     <div>
+                    <label>Labels </label>
                         <input
                             type='text'
                             name='labels'
@@ -165,6 +197,7 @@ const SpecificTask = () => {
                             onChange={(e) => setLabels(e.target.value)} />
                     </div>
                     <div>
+                    <label>Project: </label>
                             <select
                                 name='projectId'
                                 value={+projectId}
@@ -178,8 +211,8 @@ const SpecificTask = () => {
                             </select>
                         </div>
                     <div>
-                        <button type='submit'>Save</button>
-                        <button onClick={clickEdit}>Cancel</button>
+                        <button style={editButtonStyle} type='submit'>Save</button>
+                        <button style={deleteButtonStyle} onClick={clickEdit}>Cancel</button>
                     </div>
                 </form>
 
@@ -188,9 +221,9 @@ const SpecificTask = () => {
 
             {!showEdit &&
             <div>
-                <button onClick={clickEdit}>Edit</button>
+                <button style={editButtonStyle} onClick={clickEdit}>Edit</button>
                 {/* <button onClick={showEditTaskForm}>Edit</button> */}
-                <button onClick={onDelete}>Delete</button>
+                <button style={deleteButtonStyle} onClick={onDelete}>Delete</button>
             </div>
             }
         </div >

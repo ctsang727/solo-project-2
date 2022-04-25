@@ -94,7 +94,7 @@ const HomePage = () => {
         <div className='main-page'>
 
             <h1 id='h1-home'>HEY YOU HAVE STUFF TO DO!</h1>
-            <div id='date'>
+            <div id='home-date'>
                 <h2 id='h2-home'>Today</h2>
                 <h4>{currentDate()}</h4>
             </div>
@@ -120,7 +120,7 @@ const HomePage = () => {
                         } 
                         </div>
                         
-                        <NavLink id='task-info' to={`app/task/${task?.id}`}>
+                        <NavLink id='task-info' to={`/app/task/${task?.id}`}>
                         <div className='task-info'>
                             <h3> {task?.task_name} </h3>
                             <div className='one-desc' key={task?.id}>
@@ -133,7 +133,6 @@ const HomePage = () => {
                         </NavLink>
 
 
-                        {/* <div className='more-div'> */}
                         <div onClick={() => setEditIndex(editIndex => editIndex === task.id ? null : task.id)}><i className="fa-solid fa-ellipsis fa-2x"></i></div>
                         <div></div>
                         {editIndex === task.id &&
@@ -144,8 +143,6 @@ const HomePage = () => {
                                     <li><NavLink style={{ padding: '5px', textDecoration:'none', color:'white'}} to={`/app/task/${task?.id}`}>More</NavLink></li>
                                 </ul>
                             </div>}
-                        {/* </div> */}
-                        {/* </div> */}
                     </div>
                 ))
                 }
