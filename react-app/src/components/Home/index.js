@@ -1,7 +1,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+
 import { NavLink } from 'react-router-dom';
 import { getAllTasksThunk, deleteTaskThunk } from '../../store/task';
 import AddTaskForm from '../TaskForms/AddTaskForm';
@@ -14,7 +14,7 @@ const HomePage = () => {
 
     const userId = useSelector(state => state.session.user.id)
     const tasksObj = useSelector(state => state.task)
-    const history = useHistory();
+
     const dispatch = useDispatch()
 
     const [tasks, setTasks] = useState(Object.values(tasksObj))
@@ -33,11 +33,6 @@ const HomePage = () => {
         setTasks(Object.values(tasksObj))
     }, [setTasks, tasksObj])
 
-
-    const redirect = (id) => {
-
-        history.push(`/app/task/${id}`)
-    }
 
     const showAddTaskForm = () => {
         dispatch(setCurrentModal(AddTaskForm))
@@ -94,8 +89,6 @@ const HomePage = () => {
         }
     }
     tasks.sort(compare)
-    // console.log('unsorted', tasks)
-    // console.log('sort this shit', tasks.sort(compare))
 
     return (
         <div className='main-page'>
@@ -126,8 +119,9 @@ const HomePage = () => {
                             </div>
                         } 
                         </div>
-
-                        <div className='task-info' onClick={() => setEditIndex(editIndex => editIndex === task.id ? null : task.id)}>
+                        
+                        <NavLink id='task-info' to={`app/task/${task?.id}`}>
+                        <div className='task-info'>
                             <h3> {task?.task_name} </h3>
                             <div className='one-desc' key={task?.id}>
                                 <p> {task?.description} </p>
@@ -136,16 +130,18 @@ const HomePage = () => {
                                 <p> {task?.due_date.split(' ').slice(1, 4).join(' ')} </p>
                             </div>
                         </div>
+                        </NavLink>
 
 
                         {/* <div className='more-div'> */}
                         <div onClick={() => setEditIndex(editIndex => editIndex === task.id ? null : task.id)}><i className="fa-solid fa-ellipsis fa-2x"></i></div>
+                        <div></div>
                         {editIndex === task.id &&
                             <div className='task-dropdown'>
                                 <ul key={task?.id}>
                                     
-                                    <li value={task?.id} onClick={e => dispatch(deleteTaskThunk(e.target.value))}>Delete</li>
-                                    <li><NavLink to={`/app/task/${task?.id}`}>More</NavLink></li>
+                                    <li value={task?.id} style={{ borderRadius: '3px', padding: '5px', color:'#de4c4a', cursor:'pointer'}} onClick={e => dispatch(deleteTaskThunk(e.target.value))}>Delete</li>
+                                    <li><NavLink style={{ padding: '5px', textDecoration:'none', color:'white'}} to={`/app/task/${task?.id}`}>More</NavLink></li>
                                 </ul>
                             </div>}
                         {/* </div> */}
