@@ -30,6 +30,7 @@ const SignUpForm = () => {
     }
 
   const onSignUp = async (e) => {
+    const errors = []
     e.preventDefault();
     if (username.length < 1) {
       setErrors([...errors, 'Please enter username'])

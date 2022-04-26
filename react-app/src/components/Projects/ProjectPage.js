@@ -151,7 +151,7 @@ const ProjectPage = () => {
                                 <option value={'red'}>Red</option>
                                 <option value={'blue'}>Blue</option>
                                 <option value={'yellow'}>Yellow</option>
-                                <option value={'none'}>None</option>
+                                <option value={'white'}>None</option>
                             </select>
                         </div>
                         {errors.length === 0 &&

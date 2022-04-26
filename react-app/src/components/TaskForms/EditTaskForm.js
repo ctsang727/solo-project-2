@@ -12,6 +12,8 @@ const EditTaskForm = () => {
     
     const userId = useSelector(state => state.session.user.id)
     const tasksObj = useSelector(state => state.task)
+    const projectState = useSelector(state => state.projects)
+    const projectStateArr = Object.values(projectState)
 
     // const [tasks, setTasks] = useState([])
     // console.log('111', tasksObj)
@@ -57,10 +59,6 @@ const EditTaskForm = () => {
         history.push('/app')
 
     }
-
-    
-
-
 
     return (
         <div>
@@ -111,12 +109,20 @@ const EditTaskForm = () => {
                         onChange={(e) => setLabels(e.target.value)} />
                 </div>
                 <div>
-                    <input
-                        type='text'
-                        name='projectId'
-                        value={projectId}
-                        placeholder='Project'
-                        onChange={(e) => setProject(e.target.value)} />
+                <label>Project: </label>
+                            <select
+                                name='projectId'
+                                value={projectId}
+                                onChange={(e) => setProject(e.target.value)}>
+                                <option
+                                    value={null}
+                                >None</option>
+                                {projectStateArr.map(project =>
+                                    <option
+                                        value={project?.id}>
+                                        {project?.project_name}
+                                    </option>)}
+                            </select>
                 </div>
                 {/* Do labels later */}
                 <div>
