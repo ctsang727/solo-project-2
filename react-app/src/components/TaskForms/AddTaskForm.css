@@ -1,25 +1,46 @@
-#add-task input {
+#task-name {
     /* background-color: #202020; */
-    border: none;
-    margin: 10px;
-
-    width: 80%;
-}
-
-#add-task textarea {
-    /* background-color: #202020; */
-    /* color:white; */
-    border: none;
     margin: 10px;
     width: 80%;
     resize: none;
-    height: 75px;
+    
+    border: none;
+    background-color: transparent;
+    outline: none;
+    color:gray;
+    font-size: 12px;
+    font-family: Helvetica, Arial, sans-serif;
 }
+
+#task-name[type=text] {
+    color: white;
+}
+#text-area[type=text] {
+    color: white;
+}
+
+#add-task textarea {
+    margin: 10px;
+    width: 80%;
+    resize: none;
+    border: none;
+    background-color: transparent;
+    outline: none;
+    color:gray;
+    font-size: 12px;
+    font-family: Helvetica, Arial, sans-serif;
+}
+
 
 #content {
     display: flex;
     align-items: flex-start;
     flex-direction: column;
+    border: 1px solid rgba(128, 128, 128, 0.842);
+    border-radius: 5px;
+    box-shadow:  0px 0px 10px 10px #000000;
+    padding: 10px;
+      
 }
 
 #second-block {

@@ -20,7 +20,8 @@ const EditTaskForm = () => {
     //const [taskId, setTaskId] = useState()
     const [taskName, setTaskName] = useState(tasksObj.task_name)
     const [taskDesc, setTaskDesc] = useState(tasksObj.description)
-    const [dueDate, setDueDate] = useState(tasksObj.due_date) 
+    const [dueDate, setDueDate] = useState(tasksObj.due_date)
+    
     const [projectId, setProject] = useState(tasksObj.project_id || null)
     const [labels, setLabels] = useState(tasksObj.labels || null)
     const [priority, setPriority] = useState(tasksObj.priority || null)
@@ -28,12 +29,16 @@ const EditTaskForm = () => {
     useEffect(() => {
         dispatch(getTaskThunk(taskId))
         console.log(taskId)
+        
     }, [dispatch, taskId]);
+
+    
 
     // useEffect(() => {
     //     console.log('useEffect 2', tasksObj)
     //     setTasks(Object.values(tasksObj))
     // }, [tasksObj])
+    
 
     const editTask = e => {
         e.preventDefault()
@@ -47,6 +52,7 @@ const EditTaskForm = () => {
             labels,
             priority
         }
+        
         dispatch(hideModal())
         return dispatch(editTaskThunk(editTask))
     }
@@ -82,6 +88,7 @@ const EditTaskForm = () => {
                 </div>
                 <div>
                     <input
+                        id='due-date'
                         type='date'
                         name='dueDate'
                         value={dueDate}

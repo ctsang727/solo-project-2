@@ -13,9 +13,10 @@ import Modal from './components/Modal/Modal'
 import SpecificTask from './components/SpecificTask';
 import Sidebar from './components/Sidebar';
 import ProjectPage from './components/Projects/ProjectPage';
-import SplashPage from './components/Home/splashpage';
+import SplashPage from  './components/Splash/splashpage'
 import AboutPage from './components/About';
 import TodayPage from './components/Home/today';
+import TaskList from './components/Tasks';
 
 
 
@@ -57,7 +58,13 @@ function App() {
           <SplashPage />
         </Route>
 
-        <ProtectedRoute path='/users' exact={true} >
+
+        <Route exact path='/about' component={AboutPage}/>
+
+        
+        
+
+        <ProtectedRoute exact path='/users'  >
           <UsersList/>
         </ProtectedRoute>
 
@@ -65,8 +72,13 @@ function App() {
           <User />
         </ProtectedRoute>
 
+        
+
         <ProtectedRoute path = '/app/task/:taskId'>
           <SpecificTask />
+        </ProtectedRoute>
+
+        <ProtectedRoute exact path='/test' component={TaskList}>
         </ProtectedRoute>
 
         <ProtectedRoute path = '/app' exact={true} >
@@ -81,12 +93,18 @@ function App() {
           <TodayPage path='/app/today/' exact={true}/>
         </ProtectedRoute>
 
-        <ProtectedRoute>
-          <AboutPage path= '/about' exact={true}/>
-        </ProtectedRoute>
+        
+        
+
+        
+
+        
+
+        
 
         
       </Switch>
+      
     </BrowserRouter>
   );
 }

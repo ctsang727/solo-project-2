@@ -5,6 +5,7 @@ import { deleteProjectThunk, getAllProjectTasksThunk, editProjectThunk } from '.
 import { deleteTaskThunk, getAllTasksThunk } from '../../store/task';
 import './ProjectPage.css'
 import { NavLink } from 'react-router-dom';
+import HomePage from '../Home';
 
 
 const ProjectPage = () => {
@@ -64,6 +65,8 @@ const ProjectPage = () => {
     }
     projectTasks.sort(compare)
 
+    
+
     useEffect(() => {
         dispatch(getAllTasksThunk(userId))
         dispatch(getAllProjectTasksThunk(id))
@@ -73,7 +76,7 @@ const ProjectPage = () => {
     useEffect(() => {
         const errors = []
 
-        if (projectName?.length === 0) {
+        if (projectName?.replace(/\s+/g, '').length === 0) {
             errors.push('No project name')
         }
         setErrors(errors)
@@ -112,7 +115,7 @@ const ProjectPage = () => {
 
     return (
         <div className='main-page'>
-
+            
 
             {!showEdit &&
                 <div>
@@ -161,6 +164,7 @@ const ProjectPage = () => {
                         <button id='project-edit-cancel' onClick={() => setShowEdit(!showEdit)}>Cancel</button>
                     </form>
                     </>}
+            <HomePage/>
 
             <div id='tasks-container'>
 
