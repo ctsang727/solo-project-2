@@ -69,10 +69,9 @@ const AddTaskForm = ({ setAddTask, addTask, onClose, open, cancelFuncs, setIsOpe
                 labels,
                 priority
             }
-            dispatch(hideModal())
             if (addTask === true) setAddTask(false)
-            if (!open) onClose(e)
-            console.log('asdlfkjads')
+            else if (!open) onClose(e)
+            console.log('no project ID', projectId)
             return dispatch(createTaskThunk(newTask))
         } else {
             const newTask = {
@@ -84,11 +83,10 @@ const AddTaskForm = ({ setAddTask, addTask, onClose, open, cancelFuncs, setIsOpe
                 labels,
                 priority
             }
-            dispatch(hideModal())
             if (addTask === true) setAddTask(false)
             //ASK FOR HELP ON THIS 
-            //if (!open) cancelFuncs(e)
-            console.log('12312412455')
+            else if (!open) onClose(e)
+            console.log('there is a project ID', projectId)
             
             
             return dispatch(createTaskThunk(newTask))
