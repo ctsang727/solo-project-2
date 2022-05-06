@@ -7,7 +7,8 @@ import { getTodayTasksThunk, deleteTaskThunk } from '../../store/task';
 import AddTaskForm from '../TaskForms/AddTaskForm';
 import { setCurrentModal, showModal } from '../../store/modal';
 import './home.css'
-import HomePage from '.';
+import Modal2 from '../Modal2/modal2';
+
 import TaskList from '../Tasks';
 
 
@@ -18,7 +19,7 @@ const TodayPage = () => {
     const tasksObj = useSelector(state => state.task)
     // const history = useHistory();
     const dispatch = useDispatch()
-    console.log('on today page')
+    //console.log('on today page')
 
     const [tasks, setTasks] = useState(Object.values(tasksObj))
     const [editIndex, setEditIndex] = useState(null)
@@ -93,11 +94,14 @@ const TodayPage = () => {
     tasks.sort(compare)
     // console.log('unsorted', tasks)
     // console.log('sort this shit', tasks.sort(compare))
-
+    const [isOpen, setIsOpen] = useState(false)
     return (
         <div className='main-page'>
-            {/* <HomePage getToday={} */}
-
+            <button onClick={() => setIsOpen(true)}>Open Modal</button>
+            <Modal2 open={isOpen} setisOpen={setIsOpen} onClose={e => {e.stopPropagation();setIsOpen(false)}}>
+                <AddTaskForm open={isOpen} onClose={() => setIsOpen(false)}/>
+            </Modal2>
+            
             <h1 id='h1-home'>HEY YOU HAVE STUFF TO DO!</h1>
             <div id='home-date'>
                 <h2 id='h2-home'>Today</h2>

@@ -5,8 +5,8 @@ import { createTaskThunk } from '../../store/task';
 import { getAllProjectsThunk } from '../../store/project';
 import './AddTaskForm.css'
 
-const AddTaskForm = ({cancelFuncs, setAddTask, addTask}) => {
-
+const AddTaskForm = ({ setAddTask, addTask, onClose, open, cancelFuncs, setIsOpen }) => {
+    
     const dispatch = useDispatch();
 
     const currentDate = () => {
@@ -33,7 +33,7 @@ const AddTaskForm = ({cancelFuncs, setAddTask, addTask}) => {
     const [dueDate, setDueDate] = useState(currentDate)
     //care project
     const [projectId, setProject] = useState(null)
-   
+
 
     const [labels, setLabels] = useState(null)
     const [priority, setPriority] = useState(0)
@@ -54,7 +54,7 @@ const AddTaskForm = ({cancelFuncs, setAddTask, addTask}) => {
         setErrors(errors)
     }, [taskName, taskDesc])
 
-    
+
     // 
 
     const createTask = e => {
@@ -71,6 +71,8 @@ const AddTaskForm = ({cancelFuncs, setAddTask, addTask}) => {
             }
             dispatch(hideModal())
             if (addTask === true) setAddTask(false)
+            if (!open) onClose(e)
+            console.log('asdlfkjads')
             return dispatch(createTaskThunk(newTask))
         } else {
             const newTask = {
@@ -83,24 +85,19 @@ const AddTaskForm = ({cancelFuncs, setAddTask, addTask}) => {
                 priority
             }
             dispatch(hideModal())
-            if (addTask === true){
-                setAddTask(false)
-                console.log('hello')
-            } 
+            if (addTask === true) setAddTask(false)
+            //ASK FOR HELP ON THIS 
+            //if (!open) cancelFuncs(e)
+            console.log('12312412455')
+            
+            
             return dispatch(createTaskThunk(newTask))
         }
 
 
     }
-    console.log('2222222', cancelFuncs)
-    const closeModal = () => {
-        dispatch(hideModal());
-        console.log(setAddTask)
-        console.log('!!!', addTask)
-        
-        // dispatch(getTaskThunk())
-    }
-    
+
+
     return (
         <div id='content'>
             <form id='add-task' onSubmit={createTask}>
@@ -119,7 +116,7 @@ const AddTaskForm = ({cancelFuncs, setAddTask, addTask}) => {
                 {errors.includes('description error') &&
                     <div>*Please enter description</div>}
                 <div>
-                <label>Description (required)</label>
+                    <label>Description (required)</label>
                     <textarea
                         id='text-area'
                         type='text'
@@ -131,7 +128,7 @@ const AddTaskForm = ({cancelFuncs, setAddTask, addTask}) => {
                 <div id='second-block'>
                     <div id='date'>
                         <labels>Due Date</labels>
-                        <input 
+                        <input
                             type='date'
                             min={new Date().toISOString().split('T')[0]}
                             name='dueDate'
@@ -154,7 +151,7 @@ const AddTaskForm = ({cancelFuncs, setAddTask, addTask}) => {
                             </select>
                         </div>
                         <div>
-                        <label>Labels: </label>
+                            <label>Labels: </label>
                             <input
                                 type='text'
                                 name='labels'
@@ -163,7 +160,7 @@ const AddTaskForm = ({cancelFuncs, setAddTask, addTask}) => {
                                 onChange={(e) => setLabels(e.target.value)} />
                         </div>
                         <div>
-                        <label>Project: </label>
+                            <label>Project: </label>
                             <select
                                 name='projectId'
                                 value={projectId}
@@ -181,16 +178,32 @@ const AddTaskForm = ({cancelFuncs, setAddTask, addTask}) => {
                     </div>
                 </div>
 
-                {errors.length > 0 &&
+                {errors.length > 0 && !open && !addTask && 
                     <div className='add-cancel-buttons'>
+                        
+                        <div id='add-task-cant-click'>Add Task</div>
+                        <div onClick={onClose}>Cancel</div>
+                    </div>}
+                {errors.length === 0 && !open && !addTask && 
+                    <div className='add-cancel-buttons'>
+                        
+                        <div id='add-task-click' onClick={createTask} >Add Task</div>
+                        <div onClick={onClose}>Cancel</div>
+                    </div>}
+
+                {errors.length > 0 && addTask &&
+                    <div className='add-cancel-buttons'>
+                        
                         <div id='add-task-cant-click'>Add Task</div>
                         <div onClick={cancelFuncs}>Cancel</div>
                     </div>}
-                {errors.length === 0 &&
+                {errors.length === 0 && addTask && 
                     <div className='add-cancel-buttons'>
+                        
                         <div id='add-task-click' onClick={createTask} >Add Task</div>
                         <div onClick={cancelFuncs}>Cancel</div>
                     </div>}
+
             </form>
 
         </div>

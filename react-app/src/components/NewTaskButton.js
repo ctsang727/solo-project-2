@@ -23,7 +23,6 @@ const NewTaskButton = () => {
     const cancelFuncs = (e) => {
         e.preventDefault()
         console.log('working?')
-        closeModal();
         setAddTask(!addTask)
         console.log(addTask)
     }

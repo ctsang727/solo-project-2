@@ -7,13 +7,13 @@ import { setCurrentModal, showModal } from '../../store/modal';
 import NewTaskButton from '../NewTaskButton';
 
 const TaskList = () => {
-    
+
 
     const userId = useSelector(state => state.session.user.id)
     const tasksObj = useSelector(state => state.task)
     // const history = useHistory();
     const dispatch = useDispatch()
-    console.log('on today page')
+    //console.log('on today page')
 
     const [tasks, setTasks] = useState(Object.values(tasksObj))
     const [editIndex, setEditIndex] = useState(null)
