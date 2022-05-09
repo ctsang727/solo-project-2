@@ -2,9 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { getAllTasksThunk, deleteTaskThunk } from '../../store/task';
-import AddTaskForm from '../TaskForms/AddTaskForm';
-import { setCurrentModal, showModal } from '../../store/modal';
+import { getAllTasksThunk } from '../../store/task';
 import TaskList from '../Tasks';
 import './home.css'
 import NewTaskButton from '../NewTaskButton';
@@ -32,28 +30,6 @@ const HomePage = () => {
 
         setTasks(Object.values(tasksObj))
     }, [setTasks, tasksObj])
-
-
-    const showAddTaskForm = () => {
-        dispatch(setCurrentModal(AddTaskForm))
-        dispatch(showModal())
-    }
-
-
-    const currentDate = () => {
-        const month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-
-        const d = new Date();
-        let name = month[d.getMonth()];
-
-        const today = new Date();
-        const dd = String(today.getDate()).padStart(2, '0');
-        //const mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-        const yyyy = today.getFullYear();
-
-        const current = name + ' ' + dd + ', ' + yyyy;
-        return current
-    }
 
 
     const compare = (a, b) => {

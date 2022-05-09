@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import ReactDom from 'react-dom'
 import './modal2.css'
 

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { hideModal } from '../../store/modal';
 import { createTaskThunk } from '../../store/task';
 import { getAllProjectsThunk } from '../../store/project';
 import './AddTaskForm.css'

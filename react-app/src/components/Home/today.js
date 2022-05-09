@@ -1,14 +1,10 @@
 
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-// import { useHistory } from 'react-router-dom';
-import { NavLink } from 'react-router-dom';
-import { getTodayTasksThunk, deleteTaskThunk } from '../../store/task';
+import { getTodayTasksThunk } from '../../store/task';
 import AddTaskForm from '../TaskForms/AddTaskForm';
-import { setCurrentModal, showModal } from '../../store/modal';
 import './today.css'
 import Modal2 from '../Modal2/modal2';
-
 import TaskList from '../Tasks';
 
 
@@ -22,8 +18,8 @@ const TodayPage = () => {
     //console.log('on today page')
 
     const [tasks, setTasks] = useState(Object.values(tasksObj))
-    const [editIndex, setEditIndex] = useState(null)
-    const [deleteIndex, setDeleteIndex] = useState(null)
+    // const [editIndex, setEditIndex] = useState(null)
+    // const [deleteIndex, setDeleteIndex] = useState(null)
     //const [showEditForm, setShowEditIndex] = useState(null)
 
     useEffect(() => {
@@ -35,13 +31,6 @@ const TodayPage = () => {
         
         setTasks(Object.values(tasksObj))
     }, [ tasksObj, setTasks])
-
-
-    const showAddTaskForm = () => {
-        dispatch(setCurrentModal(AddTaskForm))
-        dispatch(showModal())
-    }
-
 
     const currentDate = () => {
         const month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];

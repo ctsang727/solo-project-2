@@ -13,7 +13,7 @@ export const Modal = () => {
     const mount = useSelector(state => state.modals.modalMount);
     const display = useSelector(state => state.modals.display);
     const Current = useSelector(state => state.modals.currentModal);
-    const user = useSelector(state => state.session.user)
+    //const user = useSelector(state => state.session.user)
     
     
 

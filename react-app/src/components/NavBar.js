@@ -29,10 +29,6 @@ const NavBar = ({ toggleTheme, theme }) => {
     dispatch(showModal())
   }
 
-  const showAddTaskForm = () => {
-    dispatch(setCurrentModal(AddTaskForm))
-    dispatch(showModal())
-  }
   const [isOpen, setIsOpen] = useState(false)
 
 

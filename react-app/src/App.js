@@ -17,7 +17,6 @@ import SplashPage from './components/Splash/splashpage'
 import AboutPage from './components/About';
 import TodayPage from './components/Home/today';
 import TaskList from './components/Tasks';
-import ReactSwitch from 'react-switch'
 import './index.css'
 
 

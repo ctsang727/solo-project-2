@@ -29,20 +29,20 @@ const TaskList = () => {
     }, [tasksObj, setTasks])
 
 
-    const currentDate = () => {
-        const month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    // const currentDate = () => {
+    //     const month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
-        const d = new Date();
-        let name = month[d.getMonth()];
+    //     const d = new Date();
+    //     let name = month[d.getMonth()];
 
-        const today = new Date();
-        const dd = String(today.getDate()).padStart(2, '0');
-        //const mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-        const yyyy = today.getFullYear();
+    //     const today = new Date();
+    //     const dd = String(today.getDate()).padStart(2, '0');
+    //     //const mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    //     const yyyy = today.getFullYear();
 
-        const current = name + ' ' + dd + ', ' + yyyy;
-        return current
-    }
+    //     const current = name + ' ' + dd + ', ' + yyyy;
+    //     return current
+    // }
 
 
     const compare = (a, b) => {
