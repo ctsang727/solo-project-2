@@ -13,76 +13,102 @@ import Modal from './components/Modal/Modal'
 import SpecificTask from './components/SpecificTask';
 import Sidebar from './components/Sidebar';
 import ProjectPage from './components/Projects/ProjectPage';
-import SplashPage from  './components/Splash/splashpage'
+import SplashPage from './components/Splash/splashpage'
 import AboutPage from './components/About';
 import TodayPage from './components/Home/today';
 import TaskList from './components/Tasks';
+import ReactSwitch from 'react-switch'
+import './index.css'
 
 
 export const ThemeContext = createContext(null)
 
 function App() {
   const [loaded, setLoaded] = useState(false);
+  const storedDarkMode = localStorage.getItem("DARK_MODE");
+
+  const [theme, setTheme] = useState(storedDarkMode);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
-    (async() => {
+    (async () => {
       await dispatch(authenticate());
       setLoaded(true);
     })();
   }, [dispatch]);
 
+  
+
+  const toggleTheme = () => {
+    setTheme((currTheme) => (currTheme === "light" ? "dark" : "light"));
+    
+  }
+
+  useEffect(() => {
+    console.log(`Is in dark mode? ${theme}`);
+  }, [theme]);
+
   if (!loaded) {
     return null;
   }
 
+  localStorage.setItem("DARK_MODE", theme);
+
+  
+
   return (
     <BrowserRouter>
-      <NavBar />
-      <Modal />
-      <Sidebar />
-      <Switch>
-        {/* <Route path='/login' exact={true}>
+      <ThemeContext.Provider value={{ theme, setTheme }}>
+        <div id={theme}>
+        <NavBar id={theme} toggleTheme={toggleTheme} theme={theme} setTheme={setTheme} >
+        
+        </NavBar>
+        <Modal />
+        <Sidebar />
+        <Switch>
+          {/* <Route path='/login' exact={true}>
           <LoginForm />
         </Route>
         <Route path='/sign-up' exact={true}>
           <SignUpForm />
         </Route> */}
-        <Route path='/' exact={true} >
-          <SplashPage />
-        </Route>
+          <Route path='/' exact={true} >
+            <SplashPage />
+          </Route>
 
-        <Route exact path='/about' component={AboutPage}/>
+          <Route exact path='/about' component={AboutPage} />
 
-        <ProtectedRoute exact path='/users'  >
-          <UsersList/>
-        </ProtectedRoute>
+          <ProtectedRoute exact path='/users'  >
+            <UsersList />
+          </ProtectedRoute>
 
-        <ProtectedRoute path='/users/:userId' exact={true} >
-          <User />
-        </ProtectedRoute>
+          <ProtectedRoute path='/users/:userId' exact={true} >
+            <User />
+          </ProtectedRoute>
 
-        <ProtectedRoute path = '/app/task/:taskId'>
-          <SpecificTask />
-        </ProtectedRoute>
+          <ProtectedRoute path='/app/task/:taskId'>
+            <SpecificTask />
+          </ProtectedRoute>
 
-        <ProtectedRoute exact path='/test' component={TaskList}>
-        </ProtectedRoute>
+          <ProtectedRoute exact path='/test' component={TaskList}>
+          </ProtectedRoute>
 
-        <ProtectedRoute path = '/app' exact={true} >
-          <HomePage />
-        </ProtectedRoute>
+          <ProtectedRoute path='/app' exact={true} >
+            <HomePage />
+          </ProtectedRoute>
 
-        <ProtectedRoute path = '/app/projects/:id' exact={true} >
-          <ProjectPage />
-        </ProtectedRoute>
+          <ProtectedRoute path='/app/projects/:id' exact={true} >
+            <ProjectPage />
+          </ProtectedRoute>
 
-        <ProtectedRoute>
-          <TodayPage path='/app/today/' exact={true}/>
-        </ProtectedRoute>
-        
-      </Switch>
-      
+          <ProtectedRoute>
+            <TodayPage path='/app/today/' exact={true} />
+          </ProtectedRoute>
+
+        </Switch>
+        </div>
+      </ThemeContext.Provider>
     </BrowserRouter>
   );
 }

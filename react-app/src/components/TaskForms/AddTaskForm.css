@@ -11,12 +11,6 @@
     font-family: Helvetica, Arial, sans-serif;
 }
 
-#task-name[type=text] {
-    color: white;
-}
-#text-area[type=text] {
-    color: white;
-}
 
 #add-task textarea {
     margin: 10px;

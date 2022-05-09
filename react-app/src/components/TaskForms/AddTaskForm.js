@@ -194,26 +194,26 @@ const AddTaskForm = ({ setAddTask, addTask, onClose, open, cancelFuncs, setIsOpe
                 {errors.length > 0 && !open && !addTask &&
                     <div className='add-cancel-buttons'>
 
-                        <div id='add-task-cant-click'>Add Task</div>
+                        <div id='add-task-cant-click' style={{color:'white'}}>Add Task</div>
                         <div onClick={onClose}>Cancel</div>
                     </div>}
                 {errors.length === 0 && !open && !addTask &&
                     <div className='add-cancel-buttons'>
 
-                        <div id='add-task-click' onClick={createTask} >Add Task</div>
+                        <div id='add-task-click' style={{color:'white'}} onClick={createTask} >Add Task</div>
                         <div onClick={onClose}>Cancel</div>
                     </div>}
 
                 {errors.length > 0 && addTask &&
                     <div className='add-cancel-buttons'>
 
-                        <div id='add-task-cant-click'>Add Task</div>
+                        <div id='add-task-cant-click' style={{color:'white'}}>Add Task</div>
                         <div onClick={cancelFuncs}>Cancel</div>
                     </div>}
                 {errors.length === 0 && addTask &&
                     <div className='add-cancel-buttons'>
 
-                        <div id='add-task-click' onClick={createTask} >Add Task</div>
+                        <div id='add-task-click' style={{color:'white'}} onClick={createTask} >Add Task</div>
                         <div onClick={cancelFuncs}>Cancel</div>
                     </div>}
 

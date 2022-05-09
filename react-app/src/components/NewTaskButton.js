@@ -1,20 +1,17 @@
 import React, { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux';
+
 import AddTaskForm from '../components/TaskForms/AddTaskForm'
-import { setCurrentModal, showModal, hideModal } from '../store/modal'
-import { createTaskThunk } from '../store/task';
 
 
+const addTaskButtonDivStyle = {
+    display:'flex',
+    alignItems:'center',
+    padding: '3px'
+}
 
 const NewTaskButton = () => {
-    const dispatch = useDispatch();
-    const userId = useSelector(state => state.session.user.id)
     const [addTask, setAddTask] = useState(false);
 
-    const showAddTaskForm = () => {
-        dispatch(setCurrentModal(AddTaskForm))
-        dispatch(showModal())
-    }
 
     const clickAddNew = () => {
         setAddTask(!addTask)
@@ -26,10 +23,7 @@ const NewTaskButton = () => {
         setAddTask(!addTask)
         console.log(addTask)
     }
-    const closeModal = () => {
-        dispatch(hideModal());
-        // dispatch(getTaskThunk())
-    }
+
 
 
 
@@ -38,16 +32,25 @@ const NewTaskButton = () => {
 
             {!addTask &&
                 <>
-                    <button onClick={clickAddNew}><i style={{ fontSize: '18px' }} class="material-icons">add</i>
-                        Test Add Task </button>
+                    <div  className='add-task-button'>
+                        <div style ={addTaskButtonDivStyle} id='actual-button' onClick={clickAddNew}>
+                            
+
+                            <i style={{ fontSize: '18px' }} class="material-icons">add</i> 
+                            &nbsp;
+                            Add Task
+                            </div>
+                    </div>
 
                 </>
             }
 
             {addTask &&
                 <>
-                    <AddTaskForm cancelFuncs={cancelFuncs} setAddTask={setAddTask} addTask={addTask} />
-                    
+                    <div className='add-task-button'>
+                        <AddTaskForm cancelFuncs={cancelFuncs} setAddTask={setAddTask} addTask={addTask} />
+
+                    </div>
                 </>
             }
         </>

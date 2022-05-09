@@ -104,7 +104,7 @@ const TodayPage = () => {
             
             <h1 id='h1-home'>HEY YOU HAVE STUFF TO DO!</h1>
             <div id='home-date'>
-                <h2 id='h2-home'>Today</h2>
+                <h2 >Today</h2>
                 <h4>{currentDate()}</h4>
             </div>
             <div>

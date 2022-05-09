@@ -10,7 +10,7 @@ import { setCurrentModal, showModal } from '../store/modal'
 
 const navLinkStyle = {
   textDecoration: 'none',
-  color: 'white',
+  // color: 'white',
   margin: '10px'
 
 }
