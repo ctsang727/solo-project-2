@@ -6,4 +6,101 @@
     font-size: 62.5%;
   }
    */
+
+body{
+  margin: 0;
+}
+
+#light h1{
+  color: black;
+
+}
+#light h2{
+  color: black;
+
+}
+
+#light h3{
+  color: black;
+
+}
+
+#light h4{
+  color: black;
+
+}
+
+#light h5{
+  color: black;
+
+}
+
+#light h6{
+  color: black;
+
+}
+
+#dark h1, h2, h3, h4, h5, h6 {
+  color: white;
+}
+
+#light nav {
+  background-color: #de4c4a;
+}
+
+#dark nav {
+  background-color: #282828;
+}
+
+#light label{
+  color: black;
+}
+
+#dark label{
+  color: white;
+}
+#light .main-page .add-task-button button{
+  color: black;
+}
+#light .main-page .add-task-button #actual-button:hover{
+  color: #de4c4a;
+  cursor: pointer;
   
+  
+}
+#light .main-page .add-task-button #actual-button:hover i{
+  color: white;
+  background-color: #de4c4a;
+  border-radius: 50%;
+  
+}
+
+#dark .add-task-button{
+  color: white;
+}
+
+#dark .main-page .add-task-button #actual-button:hover{
+  color: #de4c4a;
+  cursor: pointer;
+  
+  
+}
+#dark .main-page .add-task-button #actual-button:hover i{
+  color: white;
+  background-color: #de4c4a;
+  border-radius: 50%;
+  
+}
+
+#dark {
+  background-color: #1f1f1f;
+  height: 100vh;
+  width: 100vw;
+  
+}
+
+#light {
+  background-color: #ffffff;
+  height: 100vh;
+  width: 100vw;
+}

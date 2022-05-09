@@ -17,7 +17,7 @@ const AddProjectForm = () => {
     useEffect(() => {
         const errors = []
 
-        if (projectName === '') {
+        if (projectName.replace(/\s+/g, '').length === 0) {
             errors.push('No project name')
         }
         setErrors(errors)

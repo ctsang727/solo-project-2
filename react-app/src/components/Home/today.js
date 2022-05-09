@@ -1,12 +1,11 @@
 
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-// import { useHistory } from 'react-router-dom';
-import { NavLink } from 'react-router-dom';
-import { getTodayTasksThunk, deleteTaskThunk } from '../../store/task';
+import { getTodayTasksThunk } from '../../store/task';
 import AddTaskForm from '../TaskForms/AddTaskForm';
-import { setCurrentModal, showModal } from '../../store/modal';
-import './home.css'
+import './today.css'
+import Modal2 from '../Modal2/modal2';
+import TaskList from '../Tasks';
 
 
 
@@ -16,11 +15,11 @@ const TodayPage = () => {
     const tasksObj = useSelector(state => state.task)
     // const history = useHistory();
     const dispatch = useDispatch()
-    console.log('on today page')
+    //console.log('on today page')
 
     const [tasks, setTasks] = useState(Object.values(tasksObj))
-    const [editIndex, setEditIndex] = useState(null)
-    const [deleteIndex, setDeleteIndex] = useState(null)
+    // const [editIndex, setEditIndex] = useState(null)
+    // const [deleteIndex, setDeleteIndex] = useState(null)
     //const [showEditForm, setShowEditIndex] = useState(null)
 
     useEffect(() => {
@@ -32,13 +31,6 @@ const TodayPage = () => {
         
         setTasks(Object.values(tasksObj))
     }, [ tasksObj, setTasks])
-
-
-    const showAddTaskForm = () => {
-        dispatch(setCurrentModal(AddTaskForm))
-        dispatch(showModal())
-    }
-
 
     const currentDate = () => {
         const month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -91,69 +83,23 @@ const TodayPage = () => {
     tasks.sort(compare)
     // console.log('unsorted', tasks)
     // console.log('sort this shit', tasks.sort(compare))
-
+    const [isOpen, setIsOpen] = useState(false)
     return (
         <div className='main-page'>
-
+            
+            <Modal2 open={isOpen} setisOpen={setIsOpen} onClose={e => {e.stopPropagation();setIsOpen(false)}}>
+                <AddTaskForm open={isOpen} setIsOpen={setIsOpen} onClose={() => setIsOpen(false)}/>
+            </Modal2>
+            
             <h1 id='h1-home'>HEY YOU HAVE STUFF TO DO!</h1>
             <div id='home-date'>
-                <h2 id='h2-home'>Today</h2>
+                <h2 >Today</h2>
                 <h4>{currentDate()}</h4>
             </div>
             <div>
-                <p style={{fontSize:'10px', color:'grey', marginLeft:'10%'}}>Double click the check to mark the task complete!</p>
+                <p style={{fontSize:'10px', color:'grey'}}>Double click the check to mark the task complete!</p>
             </div>
-            <div id='tasks-container'>
-
-                {tasks?.map(task => (
-                    <div className='one-task' key={task?.id}>
-                        {/* <div onClick={() => redirect(task?.id)} className='task-name'> */}
-                        <div id='task-check' onClick={() => setDeleteIndex(deleteIndex => deleteIndex === task.id ? null : task.id)}>
-                            {deleteIndex === task.id &&
-                                <div value={task?.id} >
-                                    <i key={task?.id} onClick={() => dispatch(deleteTaskThunk(task.id))} className="material-icons">check</i>
-                                </div>
-                            }
-                       
-                        {deleteIndex !== task.id &&
-                            <div>
-                                <i className="material-icons">check</i>
-                            </div>
-                        } 
-                        </div>
-
-                        <NavLink id='task-info' to={`/app/task/${task?.id}`}>
-                        <div className='task-info'>
-                            <h3> {task?.task_name} </h3>
-                            <div className='one-desc' key={task?.id}>
-                                <p> {task?.description} </p>
-                            </div>
-                            <div>
-                                <p> {task?.due_date.split(' ').slice(1, 4).join(' ')} </p>
-                            </div>
-                        </div>
-                        </NavLink>
-
-
-                        <div onClick={() => setEditIndex(editIndex => editIndex === task.id ? null : task.id)}><i className="fa-solid fa-ellipsis fa-2x"></i></div>
-                        <div></div>
-                        {editIndex === task.id &&
-                            <div className='task-dropdown'>
-                                <ul key={task?.id}>
-                                    
-                                    <li value={task?.id} style={{ borderRadius: '3px', padding: '5px', color:'#de4c4a', cursor:'pointer'}} onClick={e => dispatch(deleteTaskThunk(e.target.value))}>Delete</li>
-                                    <li><NavLink style={{ padding: '5px', textDecoration:'none', color:'white'}} to={`/app/task/${task?.id}`}>More</NavLink></li>
-                                </ul>
-                            </div>}
-                    </div>
-                ))
-                }
-            </div>
-            <div id='new-task-button'>
-                <button onClick={showAddTaskForm}><i style={{ fontSize: '18px' }} class="material-icons">add</i> Add Task </button>
-            </div>
-
-
+            <TaskList/>
         </div>
     )
 

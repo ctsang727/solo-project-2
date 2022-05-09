@@ -1,0 +1,40 @@
+#light #content {
+    background-color: white;
+}
+
+#dark #content {
+    background-color: #1f1f1f;
+}
+
+#light p{
+    color: black;
+}
+
+#dark p{
+    color: white;
+}
+
+#light div{
+    color: black;
+}
+
+#dark div{
+    color: white;
+}
+
+#light #task-name[type=text] {
+    color: black;
+}
+#dark #task-name[type=text] {
+    color: white;
+}
+
+#light #text-area[type=text] {
+    color: black;
+}
+#dark #text-area[type=text] {
+    color: white;
+}
+
+
+

@@ -1,0 +1,44 @@
+
+#light .main-page{
+    background-color: white;
+}
+
+#dark .main-page{
+    background-color: #1f1f1f;
+}
+
+h3{
+    font-weight: 100;
+    text-decoration: none;
+}
+
+.main-page {
+    font-family: 'Roboto', sans-serif;
+    margin-left: 30%;
+    margin-right: 10%;
+}
+
+#tasks-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    
+}
+
+
+.task-info{
+    display:flex;
+    flex-direction: column;
+    padding: 10px;
+    margin-right: 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    
+}
+#task-info{
+    text-decoration: none;
+
+}
+
+.task-info:hover{
+    background-color: rgba(65, 65, 65, 0.301);
+}

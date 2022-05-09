@@ -14,8 +14,7 @@
 .modal-content {
     background-color: #202020;
     border-radius: 10px;
-    height: 35%;
-    width: 35%;
+    
     display: flex;  
     justify-content: center;
     align-items: center;

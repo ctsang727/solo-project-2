@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { hideModal } from '../../store/modal';
 import { createTaskThunk } from '../../store/task';
 import { getAllProjectsThunk } from '../../store/project';
 import './AddTaskForm.css'
 
-const AddTaskForm = () => {
+const AddTaskForm = ({ setAddTask, addTask, onClose, open, cancelFuncs, setIsOpen }) => {
 
     const dispatch = useDispatch();
 
@@ -24,7 +23,6 @@ const AddTaskForm = () => {
     const projectState = useSelector(state => state.projects)
 
     useEffect(() => {
-        //console.log('dispatching', userId)
         dispatch(getAllProjectsThunk(userId))
     }, [dispatch, userId])
     const projectStateArr = Object.values(projectState)
@@ -34,8 +32,7 @@ const AddTaskForm = () => {
     const [dueDate, setDueDate] = useState(currentDate)
     //care project
     const [projectId, setProject] = useState(null)
-    console.log('CURRENT', projectId)
-    //
+
 
     const [labels, setLabels] = useState(null)
     const [priority, setPriority] = useState(0)
@@ -46,21 +43,22 @@ const AddTaskForm = () => {
     useEffect(() => {
         const errors = []
 
-        if (taskName === '') {
+        if (taskName.replace(/\s+/g, '').length === 0) {
             errors.push('No task name')
         }
-        if (taskDesc === '') {
+        //if taskname is too long
+        if (taskDesc.replace(/\s+/g, '').length === 0) {
             errors.push('description error')
-            console.log(errors)
         }
 
         setErrors(errors)
     }, [taskName, taskDesc])
+
+
     // 
 
     const createTask = e => {
         e.preventDefault()
-        console.log('PROJECTID', projectId)
         if (projectId === 'None') {
             const newTask = {
                 userId,
@@ -71,7 +69,9 @@ const AddTaskForm = () => {
                 labels,
                 priority
             }
-            dispatch(hideModal())
+            if (addTask === true) setAddTask(false)
+            else if (!open) onClose(e)
+            console.log('no project ID', projectId)
             return dispatch(createTaskThunk(newTask))
         } else {
             const newTask = {
@@ -83,21 +83,33 @@ const AddTaskForm = () => {
                 labels,
                 priority
             }
-            dispatch(hideModal())
+            if (addTask === true) setAddTask(false)
+            //ASK FOR HELP ON THIS 
+            else if (!open) onClose(e)
+            console.log('there is a project ID', projectId)
+
+
             return dispatch(createTaskThunk(newTask))
         }
-        
 
-        // dispatch(hideModal())
-        // return dispatch(createTaskThunk(newTask))
 
     }
 
-    const closeModal = () => {
-        dispatch(hideModal());
-        // dispatch(getTaskThunk())
-    }
-    
+    // //autoexpand textarea
+    // const tx = document.getElementsByTagName("textarea");
+    // console.log(tx)
+    // for (let i = 0; i < tx.length; i++) {
+    //     tx[i].setAttribute("style", "height:" + (tx[i].scrollHeight) + "px;overflow-y:hidden;");
+    //     tx[i].addEventListener("input", OnInput, false);
+    // }
+
+    // function OnInput() {
+    //     this.style.height = "auto";
+    //     this.style.height = (this.scrollHeight) + "px";
+    // }
+
+
+
     return (
         <div id='content'>
             <form id='add-task' onSubmit={createTask}>
@@ -106,6 +118,7 @@ const AddTaskForm = () => {
                         <div>*Please enter task name</div>}
                     <label>Task Name (required)</label>
                     <input
+                        id='task-name'
                         type='text'
                         name='taskName'
                         value={taskName}
@@ -115,8 +128,9 @@ const AddTaskForm = () => {
                 {errors.includes('description error') &&
                     <div>*Please enter description</div>}
                 <div>
-                <label>Description (required)</label>
+                    <label>Description (required)</label>
                     <textarea
+                        id='text-area'
                         type='text'
                         name='taskDesc'
                         value={taskDesc}
@@ -126,7 +140,7 @@ const AddTaskForm = () => {
                 <div id='second-block'>
                     <div id='date'>
                         <labels>Due Date</labels>
-                        <input 
+                        <input
                             type='date'
                             min={new Date().toISOString().split('T')[0]}
                             name='dueDate'
@@ -149,7 +163,7 @@ const AddTaskForm = () => {
                             </select>
                         </div>
                         <div>
-                        <label>Labels: </label>
+                            <label>Labels: </label>
                             <input
                                 type='text'
                                 name='labels'
@@ -158,7 +172,7 @@ const AddTaskForm = () => {
                                 onChange={(e) => setLabels(e.target.value)} />
                         </div>
                         <div>
-                        <label>Project: </label>
+                            <label>Project: </label>
                             <select
                                 name='projectId'
                                 value={projectId}
@@ -176,16 +190,32 @@ const AddTaskForm = () => {
                     </div>
                 </div>
 
-                {errors.length > 0 &&
+                {errors.length > 0 && !open && !addTask &&
                     <div className='add-cancel-buttons'>
-                        <div id='add-task-cant-click'>Add Task</div>
-                        <button onClick={closeModal}>Cancel</button>
+
+                        <div id='add-task-cant-click' style={{color:'white'}}>Add Task</div>
+                        <div onClick={onClose}>Cancel</div>
                     </div>}
-                {errors.length === 0 &&
+                {errors.length === 0 && !open && !addTask &&
                     <div className='add-cancel-buttons'>
-                        <div id='add-task-click' onClick={createTask} >Add Task</div>
-                        <button onClick={closeModal}>Cancel</button>
+
+                        <div id='add-task-click' style={{color:'white'}} onClick={createTask} >Add Task</div>
+                        <div onClick={onClose}>Cancel</div>
                     </div>}
+
+                {errors.length > 0 && addTask &&
+                    <div className='add-cancel-buttons'>
+
+                        <div id='add-task-cant-click' style={{color:'white'}}>Add Task</div>
+                        <div onClick={cancelFuncs}>Cancel</div>
+                    </div>}
+                {errors.length === 0 && addTask &&
+                    <div className='add-cancel-buttons'>
+
+                        <div id='add-task-click' style={{color:'white'}} onClick={createTask} >Add Task</div>
+                        <div onClick={cancelFuncs}>Cancel</div>
+                    </div>}
+
             </form>
 
         </div>
