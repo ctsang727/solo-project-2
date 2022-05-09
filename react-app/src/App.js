@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, createContext } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 // import LoginForm from './components/auth/LoginForm';
@@ -19,7 +19,7 @@ import TodayPage from './components/Home/today';
 import TaskList from './components/Tasks';
 
 
-
+export const ThemeContext = createContext(null)
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -35,12 +35,6 @@ function App() {
   if (!loaded) {
     return null;
   }
-
-  // const [theme, setTheme] = useState('light');
-  // const themeToggle = () => {
-  //   theme === 'light' ? setTheme('dark') : setTheme('light')
-  // }
-  
 
   return (
     <BrowserRouter>
@@ -58,11 +52,7 @@ function App() {
           <SplashPage />
         </Route>
 
-
         <Route exact path='/about' component={AboutPage}/>
-
-        
-        
 
         <ProtectedRoute exact path='/users'  >
           <UsersList/>
@@ -71,8 +61,6 @@ function App() {
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
         </ProtectedRoute>
-
-        
 
         <ProtectedRoute path = '/app/task/:taskId'>
           <SpecificTask />
@@ -92,16 +80,6 @@ function App() {
         <ProtectedRoute>
           <TodayPage path='/app/today/' exact={true}/>
         </ProtectedRoute>
-
-        
-        
-
-        
-
-        
-
-        
-
         
       </Switch>
       

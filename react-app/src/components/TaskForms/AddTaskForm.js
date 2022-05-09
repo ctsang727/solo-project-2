@@ -6,7 +6,7 @@ import { getAllProjectsThunk } from '../../store/project';
 import './AddTaskForm.css'
 
 const AddTaskForm = ({ setAddTask, addTask, onClose, open, cancelFuncs, setIsOpen }) => {
-    
+
     const dispatch = useDispatch();
 
     const currentDate = () => {
@@ -47,6 +47,7 @@ const AddTaskForm = ({ setAddTask, addTask, onClose, open, cancelFuncs, setIsOpe
         if (taskName.replace(/\s+/g, '').length === 0) {
             errors.push('No task name')
         }
+        //if taskname is too long
         if (taskDesc.replace(/\s+/g, '').length === 0) {
             errors.push('description error')
         }
@@ -87,13 +88,27 @@ const AddTaskForm = ({ setAddTask, addTask, onClose, open, cancelFuncs, setIsOpe
             //ASK FOR HELP ON THIS 
             else if (!open) onClose(e)
             console.log('there is a project ID', projectId)
-            
-            
+
+
             return dispatch(createTaskThunk(newTask))
         }
 
 
     }
+
+    // //autoexpand textarea
+    // const tx = document.getElementsByTagName("textarea");
+    // console.log(tx)
+    // for (let i = 0; i < tx.length; i++) {
+    //     tx[i].setAttribute("style", "height:" + (tx[i].scrollHeight) + "px;overflow-y:hidden;");
+    //     tx[i].addEventListener("input", OnInput, false);
+    // }
+
+    // function OnInput() {
+    //     this.style.height = "auto";
+    //     this.style.height = (this.scrollHeight) + "px";
+    // }
+
 
 
     return (
@@ -176,28 +191,28 @@ const AddTaskForm = ({ setAddTask, addTask, onClose, open, cancelFuncs, setIsOpe
                     </div>
                 </div>
 
-                {errors.length > 0 && !open && !addTask && 
+                {errors.length > 0 && !open && !addTask &&
                     <div className='add-cancel-buttons'>
-                        
+
                         <div id='add-task-cant-click'>Add Task</div>
                         <div onClick={onClose}>Cancel</div>
                     </div>}
-                {errors.length === 0 && !open && !addTask && 
+                {errors.length === 0 && !open && !addTask &&
                     <div className='add-cancel-buttons'>
-                        
+
                         <div id='add-task-click' onClick={createTask} >Add Task</div>
                         <div onClick={onClose}>Cancel</div>
                     </div>}
 
                 {errors.length > 0 && addTask &&
                     <div className='add-cancel-buttons'>
-                        
+
                         <div id='add-task-cant-click'>Add Task</div>
                         <div onClick={cancelFuncs}>Cancel</div>
                     </div>}
-                {errors.length === 0 && addTask && 
+                {errors.length === 0 && addTask &&
                     <div className='add-cancel-buttons'>
-                        
+
                         <div id='add-task-click' onClick={createTask} >Add Task</div>
                         <div onClick={cancelFuncs}>Cancel</div>
                     </div>}

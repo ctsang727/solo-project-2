@@ -2,12 +2,12 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { NavLink } from 'react-router-dom';
 import { getAllTasksThunk, deleteTaskThunk } from '../../store/task';
 import AddTaskForm from '../TaskForms/AddTaskForm';
 import { setCurrentModal, showModal } from '../../store/modal';
 import TaskList from '../Tasks';
 import './home.css'
+import NewTaskButton from '../NewTaskButton';
 
 
 
@@ -19,16 +19,8 @@ const HomePage = () => {
     const dispatch = useDispatch()
 
     const [tasks, setTasks] = useState(Object.values(tasksObj))
-    const [editIndex, setEditIndex] = useState(null)
-    const [deleteIndex, setDeleteIndex] = useState(null)
 
-    // const getToday = () => {
-    //     useEffect(() => {
-    //         console.log("getToday")
-    //         dispatch(getTodayTasksThunk(userId))
-    //     }, [dispatch, userId]);
-    // }
-  
+
 
 
     useEffect(() => {
@@ -99,66 +91,9 @@ const HomePage = () => {
     tasks.sort(compare)
 
     return (
-        <div className='main-page'>
-
-            <h1 id='h1-home'>HEY YOU HAVE STUFF TO DO!</h1>
-            <div id='home-date'>
-                <h2 id='h2-home'>Today</h2>
-                <h4>{currentDate()}</h4>
-            </div>
-            <div>
-                <p style={{fontSize:'10px', color:'grey', marginLeft:'10%'}}>Double click the check to mark the task complete!</p>
-            </div>
-            <div id='tasks-container'>
-
-                {tasks?.map(task => (
-                    <div className='one-task' key={task?.id}>
-                        {/* <div onClick={() => redirect(task?.id)} className='task-name'> */}
-                        <div id='task-check' onClick={() => setDeleteIndex(deleteIndex => deleteIndex === task.id ? null : task.id)}>
-                            {deleteIndex === task.id &&
-                                <div value={task?.id} >
-                                    <i key={task?.id} onClick={() => dispatch(deleteTaskThunk(task.id))} className="material-icons">check</i>
-                                </div>
-                            }
-                       
-                        {deleteIndex !== task.id &&
-                            <div>
-                                <i className="material-icons">check</i>
-                            </div>
-                        } 
-                        </div>
-                        
-                        <NavLink id='task-info' to={`/app/task/${task?.id}`}>
-                        <div className='task-info'>
-                            <h3> {task?.task_name} </h3>
-                            <div className='one-desc' key={task?.id}>
-                                <p> {task?.description} </p>
-                            </div>
-                            <div>
-                                <p> {task?.due_date.split(' ').slice(1, 4).join(' ')} </p>
-                            </div>
-                        </div>
-                        </NavLink>
-
-
-                        <div onClick={() => setEditIndex(editIndex => editIndex === task.id ? null : task.id)}><i className="fa-solid fa-ellipsis fa-2x"></i></div>
-                        <div></div>
-                        {editIndex === task.id &&
-                            <div className='task-dropdown'>
-                                <ul key={task?.id}>
-                                    
-                                    <li value={task?.id} style={{ borderRadius: '3px', padding: '5px', color:'#de4c4a', cursor:'pointer'}} onClick={e => dispatch(deleteTaskThunk(e.target.value))}>Delete</li>
-                                    <li><NavLink style={{ padding: '5px', textDecoration:'none', color:'white'}} to={`/app/task/${task?.id}`}>More</NavLink></li>
-                                </ul>
-                            </div>}
-                    </div>
-                ))
-                }
-            </div>
+        <div id='inbox-container'>
             <TaskList/>
-            
-
-
+            <NewTaskButton/>
         </div>
     )
 

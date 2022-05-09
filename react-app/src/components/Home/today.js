@@ -6,7 +6,7 @@ import { NavLink } from 'react-router-dom';
 import { getTodayTasksThunk, deleteTaskThunk } from '../../store/task';
 import AddTaskForm from '../TaskForms/AddTaskForm';
 import { setCurrentModal, showModal } from '../../store/modal';
-import './home.css'
+import './today.css'
 import Modal2 from '../Modal2/modal2';
 
 import TaskList from '../Tasks';
@@ -97,9 +97,9 @@ const TodayPage = () => {
     const [isOpen, setIsOpen] = useState(false)
     return (
         <div className='main-page'>
-            <button onClick={() => setIsOpen(true)}>Open Modal</button>
+            
             <Modal2 open={isOpen} setisOpen={setIsOpen} onClose={e => {e.stopPropagation();setIsOpen(false)}}>
-                <AddTaskForm open={isOpen} onClose={() => setIsOpen(false)}/>
+                <AddTaskForm open={isOpen} setIsOpen={setIsOpen} onClose={() => setIsOpen(false)}/>
             </Modal2>
             
             <h1 id='h1-home'>HEY YOU HAVE STUFF TO DO!</h1>
@@ -108,7 +108,7 @@ const TodayPage = () => {
                 <h4>{currentDate()}</h4>
             </div>
             <div>
-                <p style={{fontSize:'10px', color:'grey', marginLeft:'10%'}}>Double click the check to mark the task complete!</p>
+                <p style={{fontSize:'10px', color:'grey'}}>Double click the check to mark the task complete!</p>
             </div>
             <TaskList/>
         </div>

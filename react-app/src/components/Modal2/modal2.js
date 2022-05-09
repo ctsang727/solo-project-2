@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDom from 'react-dom'
-import AddTaskForm from '../TaskForms/AddTaskForm'
+
 
 const MODAL_STYLES = {
     position: 'fixed', 
@@ -8,7 +8,6 @@ const MODAL_STYLES = {
     left: '50%',
     transform: 'translate(-50%, -50%)',
     backgroundColor: '#000',
-    
     zIndex: 1000
 }
 
@@ -27,7 +26,7 @@ const Modal2 = ({ children, open, onClose }) => {
     if (!open) return null
     return ReactDom.createPortal(
         <>
-        <div style={OVERLAY_STYLES}></div>
+        <div style={OVERLAY_STYLES} onClick={onClose}></div>
         
         <div style={MODAL_STYLES}>
             {/* <button onClick={onClose}>Close Modal</button> */}

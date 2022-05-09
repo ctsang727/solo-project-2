@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import { getAllTasksThunk, deleteTaskThunk, getTodayTasks } from '../../store/task';
-import AddTaskForm from '../TaskForms/AddTaskForm';
-import { setCurrentModal, showModal } from '../../store/modal';
+import { deleteTaskThunk, getTodayTasks } from '../../store/task';
 import NewTaskButton from '../NewTaskButton';
 
 const TaskList = () => {
@@ -29,12 +27,6 @@ const TaskList = () => {
 
         setTasks(Object.values(tasksObj))
     }, [tasksObj, setTasks])
-
-
-    const showAddTaskForm = () => {
-        dispatch(setCurrentModal(AddTaskForm))
-        dispatch(showModal())
-    }
 
 
     const currentDate = () => {
@@ -91,9 +83,7 @@ const TaskList = () => {
 
     return (
         <>
-
             <div id='tasks-container'>
-
                 {tasks?.map(task => (
                     <div className='one-task' key={task?.id}>
                         {/* <div onClick={() => redirect(task?.id)} className='task-name'> */}

@@ -3,7 +3,6 @@
     margin: 10px;
     width: 80%;
     resize: none;
-    
     border: none;
     background-color: transparent;
     outline: none;
@@ -21,7 +20,8 @@
 
 #add-task textarea {
     margin: 10px;
-    width: 80%;
+    width: 90%;
+    height:100px;
     resize: none;
     border: none;
     background-color: transparent;
@@ -40,6 +40,7 @@
     border-radius: 5px;
     box-shadow:  0px 0px 10px 10px #000000;
     padding: 10px;
+    background-color: #1f1f1f;
       
 }
 
