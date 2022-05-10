@@ -2,7 +2,7 @@
 
 .one-task {
     display: grid;
-    grid-template-columns:   1fr 20fr 3fr;
+    grid-template-columns:   1fr 20fr;
     grid-template-rows: 1fr;
     margin: 10px;
 }
@@ -20,35 +20,15 @@
     border-radius: 5px;
 }
 
-#task-check:hover i{
-    color: green;
-    border-radius: 50%;
-    cursor: pointer;
-    background-color: none;
-}
-
-#task-check div{
-    display: flex;
-    padding: 20px;
-}
 
 
-.task-info{
-    display:flex;
-    flex-direction: column;
-    padding: 10px;
-    margin-right: 10px;
-    border-radius: 5px;
-    text-decoration: none;
-}
+
+
+
 
 #task-info{
     text-decoration: none;
 
-}
-
-.task-info:hover{
-    background-color: rgba(65, 65, 65, 0.301);
 }
 
 
@@ -64,9 +44,7 @@
     
 }
 
-.task-name:hover {
-    background-color: rgba(255, 255, 255, 0.144);
-}
+
 
 .task-name h3 {
     margin: 0;
@@ -86,34 +64,3 @@
     margin: 5px;
 }
 
-.main-page button {
-    background: none;
-    border: none;
-    color: white;
-}
-
-#new-task-button i {
-    background: none;
-    border: none;
-    color: #de4c4a;
-    font-size: 16px;
-}
-
-#new-task-button button {
-    margin-left: 10%;
-    color: gray;
-    font-size: 16px;
-    margin-bottom: 10%;
-}
-
-#new-task-button:hover button {
-    color: #ff7066;
-
-}
-
-#new-task-button:hover i {
-    background-color: #ff7066;
-    color: white;
-    border-radius: 10px;
-
-} 

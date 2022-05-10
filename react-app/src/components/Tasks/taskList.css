@@ -1,0 +1,63 @@
+.task-info{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 5px;
+}
+
+.task-info h4{
+    padding: 0px;
+    font-weight: 200;
+}
+
+#task-info-grid-1{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+#task-info-grid-2{
+    display: flex;
+    justify-content: flex-end;
+}
+
+#task-info-grid-2 i:hover{
+    background-color: rgba(255, 255, 255, 0.178);
+    border-radius: 3px;
+    
+    cursor: pointer;
+}
+
+#task-info-grid-2 i{
+    margin: 3px; 
+    padding: 3px;
+}
+
+#task-check{
+    display: flex;
+    align-items: center;
+   
+}
+
+#task-check i:hover{
+    color: green;
+    border-radius: 50%;
+    cursor: pointer;
+    background-color: none;
+}
+
+#light #edit-tooltip {
+    background-color: rgb(202, 202, 202);   
+}
+
+#light #delete-tooltip {
+    background-color: rgb(202, 202, 202);
+}
+
+#light #more-tooltip {
+    background-color: rgb(202, 202, 202);
+}
+
+.one-task {
+    border-bottom: 1px solid gray;
+}

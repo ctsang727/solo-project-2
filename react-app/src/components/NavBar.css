@@ -30,9 +30,27 @@ body{
     
 }
 
-i:hover {
+.nav-div i:hover {
     background-color: gray;
     cursor: pointer;
+}
+
+#light .nav-div i{
+    padding: 5px;
+    border-radius: 3px;
+    color:white;
+    background-color: none;
+    
+}
+
+#light .nav-div i:hover {
+    background-color: rgba(255, 255, 255, 0.178);
+    cursor: pointer;
+}
+
+#light .nav-div button{
+    background:none;
+    border:none;
 }
 
 .nav-div button{
@@ -43,7 +61,10 @@ i:hover {
 }
 .nav-div button:hover{
     cursor: pointer;
+    background-color: gray;
 }
+
+
 
 
 
