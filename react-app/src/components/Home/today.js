@@ -96,9 +96,9 @@ const TodayPage = () => {
                 <h2 >Today</h2>
                 <h4>{currentDate()}</h4>
             </div>
-            <div>
+            {/* <div>
                 <p style={{fontSize:'10px', color:'grey'}}>Double click the check to mark the task complete!</p>
-            </div>
+            </div> */}
             <TaskList/>
         </div>
     )

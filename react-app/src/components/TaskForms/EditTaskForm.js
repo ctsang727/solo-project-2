@@ -32,14 +32,6 @@ const EditTaskForm = () => {
         
     }, [dispatch, taskId]);
 
-    
-
-    // useEffect(() => {
-    //     console.log('useEffect 2', tasksObj)
-    //     setTasks(Object.values(tasksObj))
-    // }, [tasksObj])
-    
-
     const editTask = e => {
         e.preventDefault()
         const editTask = {

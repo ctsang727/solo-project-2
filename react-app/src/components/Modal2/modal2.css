@@ -6,6 +6,17 @@
     background-color: #1f1f1f;
 }
 
+#light #content2 {
+    background-color: white;
+}
+#dark #content2{
+    background-color: #1f1f1f;
+}
+
+
+
+
+
 #light p{
     color: black;
 }

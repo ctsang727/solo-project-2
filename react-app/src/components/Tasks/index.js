@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { deleteTaskThunk, getTodayTasks } from '../../store/task';
 import NewTaskButton from '../NewTaskButton';
+import EditTaskForm from '../TaskForms/EditTaskForm'
 
 const TaskList = () => {
 
@@ -78,16 +79,15 @@ const TaskList = () => {
         }
     }
     tasks.sort(compare)
-    // console.log('unsorted', tasks)
-    // console.log('sort this shit', tasks.sort(compare))
 
     return (
         <>
             <div id='tasks-container'>
                 {tasks?.map(task => (
-                    <div className='one-task' key={task?.id}>
+                    <div className='one-task' key={task?.id} onMouseEnter={() => setDeleteIndex(task.id)} onMouseLeave={() => setDeleteIndex(null)}>
                         {/* <div onClick={() => redirect(task?.id)} className='task-name'> */}
-                        <div id='task-check' onClick={() => setDeleteIndex(deleteIndex => deleteIndex === task.id ? null : task.id)}>
+                        {/* onClick={() => setDeleteIndex(deleteIndex => deleteIndex === task.id ? null : task.id)} */}
+                        <div id='task-check' >
                             {deleteIndex === task.id &&
                                 <div value={task?.id} >
                                     <i key={task?.id} onClick={() => dispatch(deleteTaskThunk(task.id))} className="material-icons">check</i>
@@ -119,9 +119,15 @@ const TaskList = () => {
                         {editIndex === task.id &&
                             <div className='task-dropdown'>
                                 <ul key={task?.id}>
+                                    <li value={task?.id} style={{ borderRadius: '3px', padding: '5px', color: '#de4c4a', cursor: 'pointer' }} 
+                                        onClick={e => dispatch(deleteTaskThunk(e.target.value))}>Delete</li>
 
-                                    <li value={task?.id} style={{ borderRadius: '3px', padding: '5px', color: '#de4c4a', cursor: 'pointer' }} onClick={e => dispatch(deleteTaskThunk(e.target.value))}>Delete</li>
-                                    <li><NavLink style={{ padding: '5px', textDecoration: 'none', color: 'white' }} to={`/app/task/${task?.id}`}>More</NavLink></li>
+                                    <li>
+                                        <NavLink style={{ padding: '5px', textDecoration: 'none', color: 'white' }} to={`/app/task/${task?.id}`}>More</NavLink></li>
+                                    
+                                    <li>
+                                        <EditTaskForm/>
+                                    </li>
                                 </ul>
                             </div>}
                     </div>

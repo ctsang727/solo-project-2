@@ -64,7 +64,7 @@ function App() {
         
         </NavBar>
         <Modal />
-        <Sidebar />
+        <Sidebar id={theme} toggleTheme={toggleTheme} theme={theme} setTheme={setTheme}/>
         <Switch>
           {/* <Route path='/login' exact={true}>
           <LoginForm />

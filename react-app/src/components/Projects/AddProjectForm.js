@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { createProjectThunk } from '../../store/project';
-import { hideModal} from '../../store/modal';
+import { hideModal } from '../../store/modal';
 import './AddProjectForm.css'
 
 const AddProjectForm = () => {
@@ -38,14 +38,14 @@ const AddProjectForm = () => {
 
     const closeModal = () => {
         dispatch(hideModal());
-       // dispatch(getTaskThunk())
-       
+        // dispatch(getTaskThunk())
+
     }
 
 
     return (
-        <>
-            <form onSubmit={createProject}>
+        <div id='content2'>
+            <form id='add-project-form' onSubmit={createProject}>
                 {errors.length > 0 &&
                     <div> *Please enter project name </div>
                 }
@@ -85,7 +85,7 @@ const AddProjectForm = () => {
                     }
                 </div>
             </form>
-        </>
+        </div>
     )
 
 }

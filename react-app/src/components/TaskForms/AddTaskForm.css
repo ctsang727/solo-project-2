@@ -26,7 +26,7 @@
 }
 
 
-#content {
+#light #content {
     display: flex;
     align-items: flex-start;
     flex-direction: column;
@@ -37,6 +37,19 @@
     background-color: #1f1f1f;
       
 }
+
+#dark #content {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    border: 1px solid rgba(128, 128, 128, 0.658);
+    border-radius: 5px;
+    box-shadow:  0px 0px 10px 10px #000000;
+    padding: 10px;
+    background-color: white;
+      
+}
+
 
 #second-block {
     display: flex;
