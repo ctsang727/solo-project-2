@@ -5,6 +5,8 @@ import { NavLink } from 'react-router-dom';
 import './Sidebar.css'
 import { getAllProjectsThunk } from '../store/project';
 import { setCurrentModal, showModal } from '../store/modal'
+import Modal2 from './Modal2/modal2';
+import AddTaskForm from './TaskForms/AddTaskForm';
 
 
 
@@ -15,8 +17,9 @@ const navLinkStyle = {
 
 }
 
-const Sidebar = () => {
+const Sidebar = ( { toggleTheme, theme } ) => {
   const dispatch = useDispatch()
+  console.log('theme?', theme)
 
   const showAddProjectForm = () => {
     dispatch(setCurrentModal(AddProjectForm))
@@ -56,7 +59,7 @@ const Sidebar = () => {
 
 
 
-
+  const [isOpen, setIsOpen] = useState(false)
 
 
   return (
@@ -87,7 +90,12 @@ const Sidebar = () => {
           </div>
           {userId && 
           <div id='project-button' >
-            <i onClick={showAddProjectForm} style={{ fontSize: '18px' }} className="material-icons">add</i>
+            
+            <i onClick={() => setIsOpen(true)} style={{ fontSize: '18px' }} className="material-icons">add</i>
+            <Modal2 theme={theme} open={isOpen} setisOpen={setIsOpen} onClose={e => { e.stopPropagation(); setIsOpen(false) }}>
+              <AddProjectForm theme={theme}></AddProjectForm>
+            </Modal2>
+            {/* <i onClick={showAddProjectForm} style={{ fontSize: '18px' }} className="material-icons">add</i> */}
           </div>
           }
         </div>
