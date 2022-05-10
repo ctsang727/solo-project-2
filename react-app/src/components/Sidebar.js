@@ -4,9 +4,8 @@ import AddProjectForm from './Projects/AddProjectForm';
 import { NavLink } from 'react-router-dom';
 import './Sidebar.css'
 import { getAllProjectsThunk } from '../store/project';
-import { setCurrentModal, showModal } from '../store/modal'
 import Modal2 from './Modal2/modal2';
-import AddTaskForm from './TaskForms/AddTaskForm';
+
 
 
 
@@ -21,10 +20,7 @@ const Sidebar = ( { toggleTheme, theme } ) => {
   const dispatch = useDispatch()
   console.log('theme?', theme)
 
-  const showAddProjectForm = () => {
-    dispatch(setCurrentModal(AddProjectForm))
-    dispatch(showModal())
-  }
+
 
   const [projects, setProjects] = useState([])
 
