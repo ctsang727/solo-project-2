@@ -4,6 +4,8 @@ import { NavLink } from 'react-router-dom';
 import { deleteTaskThunk, getTodayTasks } from '../../store/task';
 import NewTaskButton from '../NewTaskButton';
 import EditTaskForm from '../TaskForms/EditTaskForm'
+import ReactTooltip from 'react-tooltip';
+import './taskList.css'
 
 const TaskList = () => {
 
@@ -22,28 +24,13 @@ const TaskList = () => {
     useEffect(() => {
         console.log("USEEEFFFEEEECTTT")
         getTodayTasks(userId)
-    }, [dispatch, userId]);
+    }, [userId]);
 
     useEffect(() => {
 
         setTasks(Object.values(tasksObj))
     }, [tasksObj, setTasks])
 
-
-    // const currentDate = () => {
-    //     const month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-
-    //     const d = new Date();
-    //     let name = month[d.getMonth()];
-
-    //     const today = new Date();
-    //     const dd = String(today.getDate()).padStart(2, '0');
-    //     //const mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-    //     const yyyy = today.getFullYear();
-
-    //     const current = name + ' ' + dd + ', ' + yyyy;
-    //     return current
-    // }
 
 
     const compare = (a, b) => {
@@ -80,6 +67,7 @@ const TaskList = () => {
     }
     tasks.sort(compare)
 
+
     return (
         <>
             <div id='tasks-container'>
@@ -103,33 +91,55 @@ const TaskList = () => {
 
                         <NavLink id='task-info' to={`/app/task/${task?.id}`}>
                             <div className='task-info'>
-                                <h3> {task?.task_name} </h3>
-                                <div className='one-desc' key={task?.id}>
-                                    <p> {task?.description} </p>
+                                <div id='task-info-grid-1'>
+                                    <div>
+                                       <h4> {task?.task_name} </h4> 
+                                    </div>
+                                    <div className='one-desc' key={task?.id}>
+                                        <p> {task?.description} </p>
+                                    </div>
+                                    <div>
+                                        <p> {task?.due_date.split(' ').slice(1, 4).join(' ')} </p>
+                                    </div>
                                 </div>
-                                <div>
-                                    <p> {task?.due_date.split(' ').slice(1, 4).join(' ')} </p>
+                                <div id='task-info-grid-2' >
+                                    {deleteIndex === task.id &&
+                                        <div onClick={e => e.preventDefault()}>
+                                            <i data-tip data-for='edit-tooltip' className="material-icons">edit</i>
+                                            <ReactTooltip id="edit-tooltip" place="top" effect="solid">
+                                                Edit
+                                            </ReactTooltip>
+                                            <i value={task.id} data-tip data-for='delete-tooltip' onClick={() => dispatch(deleteTaskThunk(task.id))} className="material-icons">delete</i>
+                                            <ReactTooltip id="delete-tooltip" place="top" effect="solid">
+                                                Delete
+                                            </ReactTooltip>
+                                            <i data-tip data-for='more-tooltip' className="material-icons">forward</i>
+                                            <ReactTooltip id="more-tooltip" place="top" effect="solid">
+                                                More
+                                            </ReactTooltip>
+                                        </div>
+                                    }
                                 </div>
                             </div>
                         </NavLink>
 
 
-                        <div onClick={() => setEditIndex(editIndex => editIndex === task.id ? null : task.id)}><i className="fa-solid fa-ellipsis fa-2x"></i></div>
+                        {/* <div onClick={() => setEditIndex(editIndex => editIndex === task.id ? null : task.id)}><i className="fa-solid fa-ellipsis fa-2x"></i></div>
                         <div></div>
                         {editIndex === task.id &&
                             <div className='task-dropdown'>
                                 <ul key={task?.id}>
-                                    <li value={task?.id} style={{ borderRadius: '3px', padding: '5px', color: '#de4c4a', cursor: 'pointer' }} 
+                                    <li value={task?.id} style={{ borderRadius: '3px', padding: '5px', color: '#de4c4a', cursor: 'pointer' }}
                                         onClick={e => dispatch(deleteTaskThunk(e.target.value))}>Delete</li>
 
                                     <li>
                                         <NavLink style={{ padding: '5px', textDecoration: 'none', color: 'white' }} to={`/app/task/${task?.id}`}>More</NavLink></li>
-                                    
+
                                     <li>
-                                        <EditTaskForm/>
+                                        <EditTaskForm />
                                     </li>
                                 </ul>
-                            </div>}
+                            </div>} */}
                     </div>
                 ))
                 }

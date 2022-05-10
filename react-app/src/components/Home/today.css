@@ -25,20 +25,9 @@ h3{
 }
 
 
-.task-info{
-    display:flex;
-    flex-direction: column;
-    padding: 10px;
-    margin-right: 10px;
-    border-radius: 5px;
-    text-decoration: none;
-    
-}
+
 #task-info{
     text-decoration: none;
 
 }
 
-.task-info:hover{
-    background-color: rgba(65, 65, 65, 0.301);
-}
