@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { deleteTaskThunk, getTodayTasks } from '../../store/task';
 import NewTaskButton from '../NewTaskButton';
-import EditTaskForm from '../TaskForms/EditTaskForm'
+// import EditTaskForm from '../TaskForms/EditTaskForm'
 import ReactTooltip from 'react-tooltip';
 import './taskList.css'
 
@@ -17,7 +17,7 @@ const TaskList = () => {
     //console.log('on today page')
 
     const [tasks, setTasks] = useState(Object.values(tasksObj))
-    const [editIndex, setEditIndex] = useState(null)
+    //const [editIndex, setEditIndex] = useState(null)
     const [deleteIndex, setDeleteIndex] = useState(null)
     //const [showEditForm, setShowEditIndex] = useState(null)
 
