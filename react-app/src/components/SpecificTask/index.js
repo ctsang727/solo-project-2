@@ -57,8 +57,27 @@ const SpecificTask = () => {
         setErrors(errors)
     }, [taskName, taskDesc])
 
-    const dateValue = tasksObj[taskId]?.due_date
-    console.log('CHANGE THIS', dateValue)
+
+    const convertDate = (date) => {
+        const dateValue = tasksObj[taskId]?.due_date
+        const monthName = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+        const taskMonth = dateValue.split(' ').slice(1, 4)[1]
+        const monthNameIdx = monthName.find(month => month === taskMonth)
+        const monthNum = () => {
+            const number = monthName.indexOf(monthNameIdx) + 1
+            if (number < 10) {
+                let newNum = '0' + number.toString()
+                return newNum
+            } else {
+                return number.toString()
+            }
+        }
+        const dayNum = dateValue.split(' ').slice(1, 4)[0]
+        const yearNum = dateValue.split(' ').slice(1, 4)[2]
+        const stringSetDueDate = yearNum + '-' + monthNum() + '-' + dayNum
+        return stringSetDueDate
+    }
+
 
 
     //edit related
@@ -124,6 +143,8 @@ const SpecificTask = () => {
 
 
 
+
+
     return (
         <div className='main-page'>
             <h1>HEY YOU HAVE STUFF TO DO!</h1>
@@ -174,7 +195,7 @@ const SpecificTask = () => {
                             <input
                                 type='date'
                                 name='dueDate'
-                                value={dueDate}
+                                value={convertDate(tasksObj[taskId]?.due_date)}
                                 onChange={(e) => setDueDate(e.target.value)} />
                         </div>
                         <div>
@@ -218,13 +239,13 @@ const SpecificTask = () => {
                                 <button style={deleteButtonStyle} onClick={clickEdit}>Cancel</button>
                             </div>
                         }
-                        {errors.length === 0 && 
-                        <div>
-                            <button style={editButtonStyle} type='submit'>Save</button>
-                            <button style={deleteButtonStyle} onClick={clickEdit}>Cancel</button>
-                        </div>
+                        {errors.length === 0 &&
+                            <div>
+                                <button style={editButtonStyle} type='submit'>Save</button>
+                                <button style={deleteButtonStyle} onClick={clickEdit}>Cancel</button>
+                            </div>
                         }
-                        
+
                     </form>
 
                 </>}

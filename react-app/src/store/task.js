@@ -59,7 +59,6 @@ export const getTaskThunk = (taskId) => async dispatch => {
 }
 
 export const getAllTasksThunk = (userId) => async dispatch => {
-    console.log('first', userId)
     const res = await fetch(`/api/tasks/${userId}`)
     
 
@@ -152,7 +151,7 @@ const taskReducer = (state = {}, action) => {
 
 
             action.tasks.tasks?.forEach(task => {
-                console.log('task.id')
+                //console.log('task.id')
                 newState[task.id] = task;
                 
             })

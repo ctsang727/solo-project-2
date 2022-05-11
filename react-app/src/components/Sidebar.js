@@ -18,7 +18,7 @@ const navLinkStyle = {
 
 const Sidebar = ( { toggleTheme, theme } ) => {
   const dispatch = useDispatch()
-  console.log('theme?', theme)
+
 
 
 

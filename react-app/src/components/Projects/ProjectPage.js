@@ -22,15 +22,15 @@ const ProjectPage = () => {
     const { id } = useParams()
     const userId = useSelector(state => state.session.user.id)
     const projectsObj = useSelector(state => state?.projects)
+    const testProjectsObj = useSelector(state => state?.projects[id])
     const projectTasks = Object.values(projectsObj).filter(i => i.project_id === +id)
     
     //const projTasksFiltered = Object.values(projectsObj).filter(i => i.project_id)
 
-
     const [projectName, setProjectName] = useState(projectsObj[+id]?.project_name)
     const [color, setColor] = useState('red')
 
-    console.log('TEST', projectsObj[id]?.project_name)
+    console.log('TEST', testProjectsObj)
     console.log('TEST2', +id)
 
     const compare = (a, b) => {
@@ -72,8 +72,8 @@ const ProjectPage = () => {
     useEffect(() => {
         dispatch(getAllTasksThunk(userId))
         dispatch(getAllProjectTasksThunk(id))
-        console.log('project dispatch')
-    }, [dispatch, id, userId]);
+        setProjectName(projectsObj[+id]?.project_name)
+    }, [dispatch, setProjectName, id, userId]);
 
     useEffect(() => {
         const errors = []
