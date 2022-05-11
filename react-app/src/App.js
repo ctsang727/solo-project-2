@@ -24,7 +24,10 @@ export const ThemeContext = createContext(null)
 
 function App() {
   const [loaded, setLoaded] = useState(false);
-  const storedDarkMode = localStorage.getItem("DARK_MODE");
+  const storedDarkMode = () => {
+    if (localStorage.getItem("DARK_MODE") === null) return 'light'
+    else return localStorage.getItem("DARK_MODE")
+  }
 
   const [theme, setTheme] = useState(storedDarkMode);
 
