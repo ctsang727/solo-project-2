@@ -46,6 +46,9 @@ const NavBar = ({ toggleTheme, theme }) => {
         <div className='nav-div'>
           <div onClick={showLoginForm}>LOG IN</div>
           <div onClick={showSignUpForm}>SIGN UP</div>
+          <div>
+            <ReactSwitch onChange={toggleTheme} checked={theme === 'dark'} />
+          </div>
         </div>
       }
       {user &&

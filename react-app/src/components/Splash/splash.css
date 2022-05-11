@@ -1,6 +1,10 @@
-#splash-main{
+#light #splash-main{
     margin-left: 35%;
     background-repeat: no-repeat;
     font-family: "roboto", sans-serif;
    background-image: url('https://sswlhc.org/wp-content/uploads/2021/08/Reminder.png');
 }   
+
+#dark #splash-main{
+    background-color: #282828;
+}
