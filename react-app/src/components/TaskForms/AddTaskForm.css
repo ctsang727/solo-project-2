@@ -125,3 +125,17 @@
 #add-task{
     width: 90%;
 }
+
+#light .cancel-add-task{
+    font-family: 'Roboto', sans-serif;
+    border: 1px solid black;
+    padding: 8px;
+    border-radius: 5px;
+}
+
+#dark .cancel-add-task{
+    font-family: 'Roboto', sans-serif;
+    border: 1px solid white;
+    padding: 8px;
+    border-radius: 5px;
+}

@@ -5,7 +5,7 @@ import { deleteProjectThunk, getAllProjectTasksThunk, editProjectThunk } from '.
 import { deleteTaskThunk, getAllTasksThunk } from '../../store/task';
 import './ProjectPage.css'
 import { NavLink } from 'react-router-dom';
-import HomePage from '../Home';
+
 
 
 const ProjectPage = () => {
@@ -23,13 +23,15 @@ const ProjectPage = () => {
     const userId = useSelector(state => state.session.user.id)
     const projectsObj = useSelector(state => state?.projects)
     const projectTasks = Object.values(projectsObj).filter(i => i.project_id === +id)
+    
     //const projTasksFiltered = Object.values(projectsObj).filter(i => i.project_id)
 
 
-    const [projectName, setProjectName] = useState(projectsObj[id]?.project_name || '')
+    const [projectName, setProjectName] = useState(projectsObj[+id]?.project_name)
     const [color, setColor] = useState('red')
 
-
+    console.log('TEST', projectsObj[id]?.project_name)
+    console.log('TEST2', +id)
 
     const compare = (a, b) => {
         const monthName = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
@@ -82,7 +84,7 @@ const ProjectPage = () => {
         setErrors(errors)
     }, [projectName])
 
-    console.log('?>?>', projectTasks)
+    // console.log('?>?>', projectTasks)
 
     const onDelete = async (e) => {
         e.preventDefault()
@@ -164,10 +166,10 @@ const ProjectPage = () => {
                         <button id='project-edit-cancel' onClick={() => setShowEdit(!showEdit)}>Cancel</button>
                     </form>
                     </>}
-            <HomePage/>
+            
 
             <div id='tasks-container'>
-
+                {/* tasklist component but with projectTasks */}
                 {projectTasks?.map(task => (
                     <div className='one-task' key={task?.id}>
                         {/* <div onClick={() => redirect(task?.id)} className='task-name'> */}

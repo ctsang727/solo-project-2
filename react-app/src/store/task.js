@@ -64,9 +64,9 @@ export const getAllTasksThunk = (userId) => async dispatch => {
     
 
     if (res.ok) {
-        console.log('RES', res)
+        //console.log('RES', res)
         const data = await res.json()
-        console.log('GET ALL DATA \n\n\n\n\n', data)
+        //console.log('GET ALL DATA \n\n\n\n\n', data)
         dispatch(getAllTasks(data))
         return data
     }
