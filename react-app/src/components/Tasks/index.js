@@ -8,8 +8,6 @@ import ReactTooltip from 'react-tooltip';
 import './taskList.css'
 
 const TaskList = () => {
-
-
     const userId = useSelector(state => state.session.user.id)
     const tasksObj = useSelector(state => state.task)
     // const history = useHistory();
@@ -21,14 +19,56 @@ const TaskList = () => {
     const [deleteIndex, setDeleteIndex] = useState(null)
     //const [showEditForm, setShowEditIndex] = useState(null)
 
+    const convertDate = (task) => {
+
+        const monthName = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+        const taskMonth = task?.due_date.split(' ').slice(1, 4)[1]
+        const monthNameIdx = monthName.find(month => month === taskMonth)
+        const monthNum = () => {
+            const number = monthName.indexOf(monthNameIdx) + 1
+            if (number < 10) {
+                let newNum = '0' + number.toString()
+                return newNum
+            } else {
+                return number.toString()
+            }
+        }
+        const dayNum = task?.due_date.split(' ').slice(1, 4)[0]
+        const yearNum = task?.due_date.split(' ').slice(1, 4)[2]
+        const stringSetDueDate = yearNum + '-' + monthNum() + '-' + dayNum
+        console.log(stringSetDueDate)
+        return stringSetDueDate
+    }
+
+
+    const currentDate = () => {
+        const month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+        const d = new Date();
+        let name = month[d.getMonth()];
+
+        const today = new Date();
+        const dd = String(today.getDate()).padStart(2, '0');
+        const mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+        const yyyy = today.getFullYear();
+
+        const current = yyyy + '-' + mm + '-' + dd;
+        console.log(current)
+        return current
+    }
+
+
     useEffect(() => {
         console.log("USEEEFFFEEEECTTT")
+        console.log(tasksObj)
         getTodayTasks(userId)
-    }, [userId]);
+    }, [tasksObj, userId]);
 
     useEffect(() => {
 
         setTasks(Object.values(tasksObj))
+        console.log('useeffect2222', tasksObj)
+
     }, [tasksObj, setTasks])
 
 
@@ -68,63 +108,90 @@ const TaskList = () => {
     tasks.sort(compare)
 
 
+
+
+
     return (
         <>
             <div id='tasks-container'>
-                {tasks?.map(task => (
-                    <div className='one-task' key={task?.id} onMouseEnter={() => setDeleteIndex(task.id)} onMouseLeave={() => setDeleteIndex(null)}>
-                        {/* <div onClick={() => redirect(task?.id)} className='task-name'> */}
-                        {/* onClick={() => setDeleteIndex(deleteIndex => deleteIndex === task.id ? null : task.id)} */}
-                        <div id='task-check' >
-                            {deleteIndex === task.id &&
-                                <div value={task?.id} >
-                                    <i key={task?.id} onClick={() => dispatch(deleteTaskThunk(task.id))} className="material-icons">check</i>
-                                </div>
-                            }
 
-                            {deleteIndex !== task.id &&
-                                <div>
-                                    <i className="material-icons">check</i>
-                                </div>
-                            }
-                        </div>
+                {tasks?.map(task => {
+                    if (convertDate(task) === currentDate()) {
+                        console.log('test', convertDate(task) === currentDate())
+                    return <>
+                        <div className='one-task' key={task?.id} onMouseEnter={() => setDeleteIndex(task.id)} onMouseLeave={() => setDeleteIndex(null)}>
+                            {/* <div onClick={() => redirect(task?.id)} className='task-name'> */}
+                            {/* onClick={() => setDeleteIndex(deleteIndex => deleteIndex === task.id ? null : task.id)} */}
+                            <div id='task-check' >
+                                {deleteIndex === task.id &&
+                                    <div value={task?.id} >
+                                        <i key={task?.id} onClick={() => dispatch(deleteTaskThunk(task.id))} className="material-icons">check</i>
+                                    </div>
+                                }
 
-                        <NavLink id='task-info' to={`/app/task/${task?.id}`}>
-                            <div className='task-info'>
-                                <div id='task-info-grid-1'>
+                                {deleteIndex !== task.id &&
                                     <div>
-                                       <h4> {task?.task_name} </h4> 
+                                        <i className="material-icons">check</i>
                                     </div>
-                                    <div className='one-desc' key={task?.id}>
-                                        <p> {task?.description} </p>
-                                    </div>
-                                    <div>
-                                        <p> {task?.due_date.split(' ').slice(1, 4).join(' ')} </p>
-                                    </div>
-                                </div>
-                                <div id='task-info-grid-2' >
-                                    {deleteIndex === task.id &&
-                                        <div onClick={e => e.preventDefault()}>
-                                            <i data-tip data-for='edit-tooltip' className="material-icons">edit</i>
-                                            <ReactTooltip id="edit-tooltip" place="top" effect="solid">
-                                                Edit
-                                            </ReactTooltip>
-                                            <i value={task.id} data-tip data-for='delete-tooltip' onClick={() => dispatch(deleteTaskThunk(task.id))} className="material-icons">delete</i>
-                                            <ReactTooltip id="delete-tooltip" place="top" effect="solid">
-                                                Delete
-                                            </ReactTooltip>
-                                            <i data-tip data-for='more-tooltip' className="material-icons">forward</i>
-                                            <ReactTooltip id="more-tooltip" place="top" effect="solid">
-                                                More
-                                            </ReactTooltip>
-                                        </div>
-                                    }
-                                </div>
+                                }
                             </div>
-                        </NavLink>
+
+                            <NavLink id='task-info' to={`/app/task/${task?.id}`}>
+                                <div className='task-info'>
+                                    <div id='task-info-grid-1'>
+                                        <div>
+                                            <h4> {task?.task_name} </h4>
+                                        </div>
+                                        <div className='one-desc' key={task?.id}>
+                                            <p> {task?.description} </p>
+                                        </div>
+                                        <div>
+                                            <p> {task?.due_date.split(' ').slice(1, 4).join(' ')} </p>
+                                        </div>
+                                    </div>
+                                    <div id='task-info-grid-2' >
+                                        {deleteIndex === task.id &&
+                                            <div onClick={e => e.preventDefault()}>
+                                                <i data-tip data-for='edit-tooltip' className="material-icons">edit</i>
+                                                <ReactTooltip id="edit-tooltip" place="top" effect="solid">
+                                                    Edit
+                                                </ReactTooltip>
+                                                <i value={task.id} data-tip data-for='delete-tooltip' onClick={() => dispatch(deleteTaskThunk(task.id))} className="material-icons">delete</i>
+                                                <ReactTooltip id="delete-tooltip" place="top" effect="solid">
+                                                    Delete
+                                                </ReactTooltip>
+                                                <i data-tip data-for='more-tooltip' className="material-icons">forward</i>
+                                                <ReactTooltip id="more-tooltip" place="top" effect="solid">
+                                                    More
+                                                </ReactTooltip>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            </NavLink>
+
+                        </div>
+                    </>
+
+                }
 
 
-                        {/* <div onClick={() => setEditIndex(editIndex => editIndex === task.id ? null : task.id)}><i className="fa-solid fa-ellipsis fa-2x"></i></div>
+            })}
+
+
+
+            </div>
+            <NewTaskButton></NewTaskButton>
+        </>
+    )
+}
+
+export default TaskList
+
+
+
+
+{/* <div onClick={() => setEditIndex(editIndex => editIndex === task.id ? null : task.id)}><i className="fa-solid fa-ellipsis fa-2x"></i></div>
                         <div></div>
                         {editIndex === task.id &&
                             <div className='task-dropdown'>
@@ -140,13 +207,3 @@ const TaskList = () => {
                                     </li>
                                 </ul>
                             </div>} */}
-                    </div>
-                ))
-                }
-            </div>
-            <NewTaskButton></NewTaskButton>
-        </>
-    )
-}
-
-export default TaskList

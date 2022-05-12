@@ -54,13 +54,47 @@
     cursor: pointer;
 }
 
-/* #light #content {
-    background-color: white;
+.add-project-cancel:hover{
+   cursor: pointer;
 }
 
-#dark #content {
-    background-color: #1f1f1f;
-} */
+.add-project-cancel{
+
+    font-size: .875rem;
+    color: white;
+    font-weight: 400;
+    line-height: 1.7;
+    box-sizing: border-box;
+    padding:5px;
+    border: 1px solid rgba(255, 255, 255, 0.555);
+    border-radius: 3px;
+    background-color: #1d1d1d7c;
+    
+}
+
+#content2{
+    padding: 30px;
+    border-radius: 5px;
+    font-family: 'Roboto', 'sans-serif';
+}
+
+#content2 input{
+    border: 1px solid rgba(128, 128, 128, 0.5);
+    border-radius: 5px;
+    background-color: white;
+    height:20px;
+}
+
+#content2 select{
+    border: 1px solid rgba(128, 128, 128, 0.5);
+    border-radius: 5px;
+    background-color: white;
+    
+}
+
+#content2 form div{
+    margin: 20px;
+}
 
 
 

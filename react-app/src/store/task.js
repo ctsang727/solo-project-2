@@ -59,14 +59,13 @@ export const getTaskThunk = (taskId) => async dispatch => {
 }
 
 export const getAllTasksThunk = (userId) => async dispatch => {
-    console.log('first', userId)
     const res = await fetch(`/api/tasks/${userId}`)
     
 
     if (res.ok) {
-        console.log('RES', res)
+        //console.log('RES', res)
         const data = await res.json()
-        console.log('GET ALL DATA \n\n\n\n\n', data)
+        //console.log('GET ALL DATA \n\n\n\n\n', data)
         dispatch(getAllTasks(data))
         return data
     }
@@ -152,7 +151,7 @@ const taskReducer = (state = {}, action) => {
 
 
             action.tasks.tasks?.forEach(task => {
-                console.log('task.id')
+                //console.log('task.id')
                 newState[task.id] = task;
                 
             })
@@ -178,14 +177,6 @@ const taskReducer = (state = {}, action) => {
             })
             return newState2
         
-        // case GET_UPCOMING:
-        //     let state3={}
-        //     let newState3 = {}
-        //     newState3 = {...state3}
-        //     action.payload.upcoming?.forEach(task => {
-        //         newState3[task.id] = task
-        //     })
-        //     return newState3
 
         case CLEAR_ALL_TASKS:
             return {}

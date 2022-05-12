@@ -18,7 +18,7 @@ const navLinkStyle = {
 
 const Sidebar = ( { toggleTheme, theme } ) => {
   const dispatch = useDispatch()
-  console.log('theme?', theme)
+
 
 
 
@@ -89,7 +89,7 @@ const Sidebar = ( { toggleTheme, theme } ) => {
             
             <i onClick={() => setIsOpen(true)} style={{ fontSize: '18px' }} className="material-icons">add</i>
             <Modal2 theme={theme} open={isOpen} setisOpen={setIsOpen} onClose={e => { e.stopPropagation(); setIsOpen(false) }}>
-              <AddProjectForm theme={theme}></AddProjectForm>
+              <AddProjectForm onClose={e => { e.stopPropagation(); setIsOpen(false) }} theme={theme}></AddProjectForm>
             </Modal2>
             {/* <i onClick={showAddProjectForm} style={{ fontSize: '18px' }} className="material-icons">add</i> */}
           </div>

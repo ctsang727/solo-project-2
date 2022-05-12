@@ -25,7 +25,7 @@ const OVERLAY_STYLES = {
 
 
 const Modal2 = ({ children, open, onClose, theme }) => {
-    console.log('modal2', open, onClose)
+    
     
     if (!open) return null
 

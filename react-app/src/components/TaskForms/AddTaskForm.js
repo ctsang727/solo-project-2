@@ -24,7 +24,7 @@ const AddTaskForm = ({ setAddTask, addTask, onClose, open, cancelFuncs, setIsOpe
 
     useEffect(() => {
         dispatch(getAllProjectsThunk(userId))
-    }, [dispatch, userId])
+    }, [onClose, dispatch, userId])
     const projectStateArr = Object.values(projectState)
 
     const [taskName, setTaskName] = useState('')
@@ -84,7 +84,6 @@ const AddTaskForm = ({ setAddTask, addTask, onClose, open, cancelFuncs, setIsOpe
                 priority
             }
             if (addTask === true) setAddTask(false)
-            //ASK FOR HELP ON THIS 
             else if (!open) onClose(e)
             console.log('there is a project ID', projectId)
 
@@ -194,26 +193,26 @@ const AddTaskForm = ({ setAddTask, addTask, onClose, open, cancelFuncs, setIsOpe
                     <div className='add-cancel-buttons'>
 
                         <div id='add-task-cant-click' style={{color:'white'}}>Add Task</div>
-                        <div onClick={onClose}>Cancel</div>
+                        <div className='cancel-add-task' onClick={onClose}>Cancel</div>
                     </div>}
                 {errors.length === 0 && !open && !addTask &&
                     <div className='add-cancel-buttons'>
 
                         <div id='add-task-click' style={{color:'white'}} onClick={createTask} >Add Task</div>
-                        <div onClick={onClose}>Cancel</div>
+                        <div className='cancel-add-task' onClick={onClose}>Cancel</div>
                     </div>}
 
                 {errors.length > 0 && addTask &&
                     <div className='add-cancel-buttons'>
 
                         <div id='add-task-cant-click' style={{color:'white'}}>Add Task</div>
-                        <div onClick={cancelFuncs}>Cancel</div>
+                        <div className='cancel-add-task' onClick={cancelFuncs}>Cancel</div>
                     </div>}
                 {errors.length === 0 && addTask &&
                     <div className='add-cancel-buttons'>
 
                         <div id='add-task-click' style={{color:'white'}} onClick={createTask} >Add Task</div>
-                        <div onClick={cancelFuncs}>Cancel</div>
+                        <div className='cancel-add-task' onClick={cancelFuncs}>Cancel</div>
                     </div>}
 
             </form>

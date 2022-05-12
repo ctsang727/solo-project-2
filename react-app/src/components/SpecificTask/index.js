@@ -4,11 +4,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import { editTaskThunk, getTaskThunk, deleteTaskThunk } from '../../store/task';
 import { getAllProjectsThunk } from '../../store/project';
-//import Sidebar from '../Sidebar';
-
-
-// import EditTaskForm from '../TaskForms/EditTaskForm';
-// import { setCurrentModal, showModal } from '../../store/modal';
 
 const SpecificTask = () => {
     const { taskId } = useParams()
@@ -43,8 +38,8 @@ const SpecificTask = () => {
 
     const [taskName, setTaskName] = useState(tasksObj[taskId]?.task_name)
     const [taskDesc, setTaskDesc] = useState(tasksObj[taskId]?.description)
-    const [dueDate, setDueDate] = useState(tasksObj[taskId]?.due_date)
-    const [projectId, setProject] = useState(currentTask?.project_id)
+
+    const [projectId, setProject] = useState(currentTask?.project_id || null)
     const [labels, setLabels] = useState(tasksObj[taskId]?.labels || null)
     const [priority, setPriority] = useState(tasksObj[taskId]?.priority || null)
 
@@ -62,8 +57,27 @@ const SpecificTask = () => {
         setErrors(errors)
     }, [taskName, taskDesc])
 
-    const dateValue = tasksObj[taskId]?.due_date
-    console.log('CHANGE THIS', dateValue)
+
+    const convertDate = (date) => {
+        const dateValue = tasksObj[taskId]?.due_date
+        const monthName = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+        const taskMonth = dateValue.split(' ').slice(1, 4)[1]
+        const monthNameIdx = monthName.find(month => month === taskMonth)
+        const monthNum = () => {
+            const number = monthName.indexOf(monthNameIdx) + 1
+            if (number < 10) {
+                let newNum = '0' + number.toString()
+                return newNum
+            } else {
+                return number.toString()
+            }
+        }
+        const dayNum = dateValue.split(' ').slice(1, 4)[0]
+        const yearNum = dateValue.split(' ').slice(1, 4)[2]
+        const stringSetDueDate = yearNum + '-' + monthNum() + '-' + dayNum
+        return stringSetDueDate
+    }
+    const [dueDate, setDueDate] = useState(convertDate(tasksObj[taskId]?.due_date))
 
 
     //edit related
@@ -126,6 +140,8 @@ const SpecificTask = () => {
         fontWeight: 'lighter',
         margin: '10px',
     }
+
+
 
 
 
@@ -208,14 +224,16 @@ const SpecificTask = () => {
                             <label>Project: </label>
                             <select
                                 name='projectId'
-                                value={+projectId}
+                                value={projectId}
                                 onChange={(e) => setProject(e.target.value)}>
                                 {projectStateArr.map(project =>
                                     <option
                                         value={project?.id}>
                                         {project?.project_name}
                                     </option>)}
-                                <option value={1}>Inbox</option>
+                                <option
+                                    value={null}
+                                >None</option>
                             </select>
                         </div>
                         {errors.length > 0 &&
@@ -223,13 +241,13 @@ const SpecificTask = () => {
                                 <button style={deleteButtonStyle} onClick={clickEdit}>Cancel</button>
                             </div>
                         }
-                        {errors.length === 0 && 
-                        <div>
-                            <button style={editButtonStyle} type='submit'>Save</button>
-                            <button style={deleteButtonStyle} onClick={clickEdit}>Cancel</button>
-                        </div>
+                        {errors.length === 0 &&
+                            <div>
+                                <button style={editButtonStyle} type='submit'>Save</button>
+                                <button style={deleteButtonStyle} onClick={clickEdit}>Cancel</button>
+                            </div>
                         }
-                        
+
                     </form>
 
                 </>}

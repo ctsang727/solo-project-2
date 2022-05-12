@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getTodayTasksThunk } from '../../store/task';
 import AddTaskForm from '../TaskForms/AddTaskForm';
+import { getTodayTasks } from '../../store/task';
 import './today.css'
 import Modal2 from '../Modal2/modal2';
 import TaskList from '../Tasks';
@@ -30,6 +31,7 @@ const TodayPage = () => {
     useEffect(() => {
         
         setTasks(Object.values(tasksObj))
+        console.log('test', tasksObj)
     }, [ tasksObj, setTasks])
 
     const currentDate = () => {
