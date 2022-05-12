@@ -38,8 +38,8 @@ const SpecificTask = () => {
 
     const [taskName, setTaskName] = useState(tasksObj[taskId]?.task_name)
     const [taskDesc, setTaskDesc] = useState(tasksObj[taskId]?.description)
-    const [dueDate, setDueDate] = useState(tasksObj[taskId]?.due_date)
-    const [projectId, setProject] = useState(currentTask?.project_id)
+
+    const [projectId, setProject] = useState(currentTask?.project_id || null)
     const [labels, setLabels] = useState(tasksObj[taskId]?.labels || null)
     const [priority, setPriority] = useState(tasksObj[taskId]?.priority || null)
 
@@ -77,7 +77,7 @@ const SpecificTask = () => {
         const stringSetDueDate = yearNum + '-' + monthNum() + '-' + dayNum
         return stringSetDueDate
     }
-
+    const [dueDate, setDueDate] = useState(convertDate(tasksObj[taskId]?.due_date))
 
 
     //edit related
@@ -195,7 +195,7 @@ const SpecificTask = () => {
                             <input
                                 type='date'
                                 name='dueDate'
-                                value={convertDate(tasksObj[taskId]?.due_date)}
+                                value={dueDate}
                                 onChange={(e) => setDueDate(e.target.value)} />
                         </div>
                         <div>
@@ -224,14 +224,16 @@ const SpecificTask = () => {
                             <label>Project: </label>
                             <select
                                 name='projectId'
-                                value={+projectId}
+                                value={projectId}
                                 onChange={(e) => setProject(e.target.value)}>
                                 {projectStateArr.map(project =>
                                     <option
                                         value={project?.id}>
                                         {project?.project_name}
                                     </option>)}
-                                <option value={1}>Inbox</option>
+                                <option
+                                    value={null}
+                                >None</option>
                             </select>
                         </div>
                         {errors.length > 0 &&

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { createProjectThunk } from '../../store/project';
-import { hideModal } from '../../store/modal';
 import './AddProjectForm.css'
 
 const AddProjectForm = ({ onClose, open, cancelFuncs }) => {
@@ -32,14 +31,8 @@ const AddProjectForm = ({ onClose, open, cancelFuncs }) => {
             color,
         }
         if (!open) onClose(e)
-        dispatch(hideModal())
+        
         return dispatch(createProjectThunk(newProject))
-
-    }
-
-    const closeModal = () => {
-        dispatch(hideModal());
-        // dispatch(getTaskThunk())
 
     }
 

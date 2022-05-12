@@ -23,12 +23,15 @@ const TaskList = () => {
 
     useEffect(() => {
         console.log("USEEEFFFEEEECTTT")
+        console.log(tasksObj)
         getTodayTasks(userId)
-    }, [userId]);
+    }, [tasksObj, userId]);
 
     useEffect(() => {
 
         setTasks(Object.values(tasksObj))
+        console.log('useeffect2222', tasksObj)
+        
     }, [tasksObj, setTasks])
 
 

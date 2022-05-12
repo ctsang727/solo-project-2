@@ -24,7 +24,7 @@ const AddTaskForm = ({ setAddTask, addTask, onClose, open, cancelFuncs, setIsOpe
 
     useEffect(() => {
         dispatch(getAllProjectsThunk(userId))
-    }, [dispatch, userId])
+    }, [onClose, dispatch, userId])
     const projectStateArr = Object.values(projectState)
 
     const [taskName, setTaskName] = useState('')
