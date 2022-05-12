@@ -3,16 +3,14 @@ import { useSelector, useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { deleteTaskThunk, getTodayTasks } from '../../store/task';
 import NewTaskButton from '../NewTaskButton';
-// import EditTaskForm from '../TaskForms/EditTaskForm'
 import ReactTooltip from 'react-tooltip';
 import './taskList.css'
 
 const TaskList = () => {
     const userId = useSelector(state => state.session.user.id)
     const tasksObj = useSelector(state => state.task)
-    // const history = useHistory();
+
     const dispatch = useDispatch()
-    //console.log('on today page')
 
     const [tasks, setTasks] = useState(Object.values(tasksObj))
     //const [editIndex, setEditIndex] = useState(null)
@@ -36,16 +34,15 @@ const TaskList = () => {
         const dayNum = task?.due_date.split(' ').slice(1, 4)[0]
         const yearNum = task?.due_date.split(' ').slice(1, 4)[2]
         const stringSetDueDate = yearNum + '-' + monthNum() + '-' + dayNum
-        console.log(stringSetDueDate)
         return stringSetDueDate
     }
 
 
     const currentDate = () => {
-        const month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        //const month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
-        const d = new Date();
-        let name = month[d.getMonth()];
+        //const d = new Date();
+        //let name = month[d.getMonth()];
 
         const today = new Date();
         const dd = String(today.getDate()).padStart(2, '0');
@@ -53,22 +50,16 @@ const TaskList = () => {
         const yyyy = today.getFullYear();
 
         const current = yyyy + '-' + mm + '-' + dd;
-        console.log(current)
         return current
     }
 
 
     useEffect(() => {
-        console.log("USEEEFFFEEEECTTT")
-        console.log(tasksObj)
         getTodayTasks(userId)
     }, [tasksObj, userId]);
 
     useEffect(() => {
-
         setTasks(Object.values(tasksObj))
-        console.log('useeffect2222', tasksObj)
-
     }, [tasksObj, setTasks])
 
 
@@ -108,16 +99,11 @@ const TaskList = () => {
     tasks.sort(compare)
 
 
-
-
-
     return (
         <>
             <div id='tasks-container'>
-
                 {tasks?.map(task => {
                     if (convertDate(task) === currentDate()) {
-                        console.log('test', convertDate(task) === currentDate())
                     return <>
                         <div className='one-task' key={task?.id} onMouseEnter={() => setDeleteIndex(task.id)} onMouseLeave={() => setDeleteIndex(null)}>
                             {/* <div onClick={() => redirect(task?.id)} className='task-name'> */}
@@ -172,14 +158,9 @@ const TaskList = () => {
 
                         </div>
                     </>
-
                 }
-
-
-            })}
-
-
-
+            }
+            )}
             </div>
             <NewTaskButton></NewTaskButton>
         </>
@@ -188,10 +169,7 @@ const TaskList = () => {
 
 export default TaskList
 
-
-
-
-{/* <div onClick={() => setEditIndex(editIndex => editIndex === task.id ? null : task.id)}><i className="fa-solid fa-ellipsis fa-2x"></i></div>
+/* <div onClick={() => setEditIndex(editIndex => editIndex === task.id ? null : task.id)}><i className="fa-solid fa-ellipsis fa-2x"></i></div>
                         <div></div>
                         {editIndex === task.id &&
                             <div className='task-dropdown'>
@@ -206,4 +184,4 @@ export default TaskList
                                         <EditTaskForm />
                                     </li>
                                 </ul>
-                            </div>} */}
+                            </div>} */
