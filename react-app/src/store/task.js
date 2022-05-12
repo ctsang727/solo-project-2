@@ -177,14 +177,6 @@ const taskReducer = (state = {}, action) => {
             })
             return newState2
         
-        // case GET_UPCOMING:
-        //     let state3={}
-        //     let newState3 = {}
-        //     newState3 = {...state3}
-        //     action.payload.upcoming?.forEach(task => {
-        //         newState3[task.id] = task
-        //     })
-        //     return newState3
 
         case CLEAR_ALL_TASKS:
             return {}
