@@ -6,7 +6,7 @@ import NewTaskButton from '../NewTaskButton';
 import ReactTooltip from 'react-tooltip';
 import './taskList.css'
 
-const TaskList = () => {
+const TaskList = ({condition, projectId}) => {
     const userId = useSelector(state => state.session.user.id)
     const tasksObj = useSelector(state => state.task)
 
@@ -97,13 +97,25 @@ const TaskList = () => {
         }
     }
     tasks.sort(compare)
+    
 
 
     return (
         <>
             <div id='tasks-container'>
                 {tasks?.map(task => {
-                    if (convertDate(task) === currentDate()) {
+                    // if date is today render all tasks with today date
+                    // inbox page: no condition
+                    // project page: if task project_id === useParams(projectId)
+                    // if ({props}) { 
+                    //     return 
+                    // }
+                    //convertDate(task) === currentDate()
+                    
+                    if ((condition === 'today' && convertDate(task) === currentDate()) ||
+                        (condition === 'project' && task?.project_id === +projectId) ||
+                        condition === 'inbox')
+                         {
                     return <>
                         <div className='one-task' key={task?.id} onMouseEnter={() => setDeleteIndex(task.id)} onMouseLeave={() => setDeleteIndex(null)}>
                             {/* <div onClick={() => redirect(task?.id)} className='task-name'> */}
@@ -125,8 +137,8 @@ const TaskList = () => {
                             <NavLink id='task-info' to={`/app/task/${task?.id}`}>
                                 <div className='task-info'>
                                     <div id='task-info-grid-1'>
-                                        <div>
-                                            <h4> {task?.task_name} </h4>
+                                        <div id='task-name'>
+                                            <p> {task?.task_name} </p>
                                         </div>
                                         <div className='one-desc' key={task?.id}>
                                             <p> {task?.description} </p>

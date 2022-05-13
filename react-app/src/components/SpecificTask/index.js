@@ -19,18 +19,18 @@ const SpecificTask = () => {
     const history = useHistory()
 
     useEffect(() => {
-
+        
         dispatch(getTaskThunk(taskId))
     }, [dispatch, taskId]);
 
 
     useEffect(() => {
-
+        
         dispatch(getAllProjectsThunk(userId))
     }, [dispatch, userId])
 
 
-    const currentTask = Object.values(tasksObj).find(task => task?.id === +taskId)
+    //const currentTask = Object.values(tasksObj).find(task => task?.id === +taskId)
     //console.log('CURRENTTASK', currentTask?.project_id)
 
     //edit related
@@ -39,7 +39,8 @@ const SpecificTask = () => {
     const [taskName, setTaskName] = useState(tasksObj[taskId]?.task_name)
     const [taskDesc, setTaskDesc] = useState(tasksObj[taskId]?.description)
 
-    const [projectId, setProject] = useState(currentTask?.project_id || null)
+    const [projectId, setProject] = useState(tasksObj[taskId]?.project_id || null)
+    console.log(projectId)
     const [labels, setLabels] = useState(tasksObj[taskId]?.labels || null)
     const [priority, setPriority] = useState(tasksObj[taskId]?.priority || null)
 
@@ -61,7 +62,7 @@ const SpecificTask = () => {
     const convertDate = (date) => {
         const dateValue = tasksObj[taskId]?.due_date
         const monthName = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-        const taskMonth = dateValue.split(' ').slice(1, 4)[1]
+        const taskMonth = dateValue?.split(' ').slice(1, 4)[1]
         const monthNameIdx = monthName.find(month => month === taskMonth)
         const monthNum = () => {
             const number = monthName.indexOf(monthNameIdx) + 1
@@ -72,8 +73,8 @@ const SpecificTask = () => {
                 return number.toString()
             }
         }
-        const dayNum = dateValue.split(' ').slice(1, 4)[0]
-        const yearNum = dateValue.split(' ').slice(1, 4)[2]
+        const dayNum = dateValue?.split(' ').slice(1, 4)[0]
+        const yearNum = dateValue?.split(' ').slice(1, 4)[2]
         const stringSetDueDate = yearNum + '-' + monthNum() + '-' + dayNum
         return stringSetDueDate
     }

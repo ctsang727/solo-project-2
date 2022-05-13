@@ -85,6 +85,11 @@ const TodayPage = () => {
     // console.log('unsorted', tasks)
     // console.log('sort this shit', tasks.sort(compare))
     const [isOpen, setIsOpen] = useState(false)
+    
+
+    
+    const condition = 'today' 
+
     return (
         <div className='main-page'>
             
@@ -97,10 +102,7 @@ const TodayPage = () => {
                 <h2 >Today</h2>
                 <h4>{currentDate()}</h4>
             </div>
-            {/* <div>
-                <p style={{fontSize:'10px', color:'grey'}}>Double click the check to mark the task complete!</p>
-            </div> */}
-            <TaskList/>
+            <TaskList condition={condition}/>
         </div>
     )
 
