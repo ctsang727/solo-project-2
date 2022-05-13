@@ -82,8 +82,7 @@ const TodayPage = () => {
         }
     }
     tasks.sort(compare)
-    // console.log('unsorted', tasks)
-    // console.log('sort this shit', tasks.sort(compare))
+    
     const [isOpen, setIsOpen] = useState(false)
     
 

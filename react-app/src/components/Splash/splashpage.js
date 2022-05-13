@@ -1,9 +1,10 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { showModal, setCurrentModal } from '../../store/modal'
 import { useDispatch } from 'react-redux';
 import LoginForm from '../auth/LoginForm';
 import SignUpForm from '../auth/SignUpForm';
 import './splash.css'
+import Modal2 from '../Modal2/modal2';
 
 const splashButtonStyle = {
     backgroundColor: ' #db4c3f',
@@ -15,8 +16,9 @@ const splashButtonStyle = {
     justifyContent: 'center'
 }
 
-const SplashPage = () => {
+const SplashPage = ({theme}) => {
     const dispatch = useDispatch()
+    const [isOpen, setIsOpen] = useState(false)
 
     const showLoginForm = () => {
         dispatch(setCurrentModal(LoginForm));
@@ -41,7 +43,10 @@ const SplashPage = () => {
             </p>
             <p>Log in or sign up to start!</p>
             <div style={{ display: 'flex' }}>
-                <div style={splashButtonStyle} onClick={showLoginForm}>LOG IN</div>
+                <div style={splashButtonStyle} onClick={() => setIsOpen(true)}>LOG IN</div>
+                <Modal2 theme={theme} open={isOpen} setisOpen={setIsOpen} onClose={e => { e.stopPropagation(); setIsOpen(false) }}>
+                    <LoginForm />
+                </Modal2>
                 <div style={splashButtonStyle} onClick={showSignUpForm}>SIGN UP</div>
             </div>
             <p >Made by Christopher Tsang</p>

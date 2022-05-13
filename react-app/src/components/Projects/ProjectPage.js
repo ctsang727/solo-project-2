@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import { deleteProjectThunk, getAllProjectTasksThunk, editProjectThunk } from '../../store/project';
 import { deleteTaskThunk, getAllTasksThunk } from '../../store/task';
+import { getAllProjectsThunk } from '../../store/project';
 import './ProjectPage.css'
 import TaskList from '../Tasks';
 
@@ -19,15 +20,14 @@ const ProjectPage = () => {
     const { id } = useParams()
     const userId = useSelector(state => state.session.user.id)
     const projectsObj = useSelector(state => state.projects)
-    console.log(id)
-    console.log(projectsObj[+id]?.project_name)
-    console.log(projectsObj[+id]?.color)
-    const projectTasks = Object.values(projectsObj).filter(i => i.project_id === +id)
+    console.log('PROJECTSOBJ!!!!', projectsObj)
+    console.log('ID!!!!', id)
+    console.log('PROJECT NAME!!!', projectsObj[+id]?.project_name)
+    console.log('COLORRRR!!!', projectsObj[+id]?.color)   
     const [projectName, setProjectName] = useState(projectsObj[+id]?.project_name)
-    
-
     const [color, setColor] = useState(projectsObj[+id]?.color)
 
+    const projectTasks = Object.values(projectsObj).filter(i => i.project_id === +id)
 
     const compare = (a, b) => {
         const monthName = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
@@ -63,11 +63,17 @@ const ProjectPage = () => {
     }
     projectTasks.sort(compare)
 
-    
+    useEffect(() => {
+        //console.log('projectName change??', projectName)
+        // const projectName = projectsObj[id]?.project_name
+        setProjectName(projectsObj[+id]?.project_name)
+        setColor(projectsObj[+id]?.color)
+        // console.log(projectName)
+    }, [showEdit, id]);
 
     useEffect(() => {
-        console.log('dispatch')
-        dispatch(getAllTasksThunk(userId))
+        //console.log('useeffect')
+        //dispatch(getAllTasksThunk(userId))
         dispatch(getAllProjectTasksThunk(id))
 
     }, [dispatch, id, userId]);
@@ -92,8 +98,7 @@ const ProjectPage = () => {
     const clickEdit = () => {
         setShowEdit(!showEdit)
     }
-
-
+    
 
     const editProject = (e) => {
         e.preventDefault()
@@ -120,8 +125,6 @@ const ProjectPage = () => {
                     </div>
 
                 </div>
-
-
             }
             {showEdit &&
                 <><form onSubmit={editProject} >
@@ -158,11 +161,9 @@ const ProjectPage = () => {
                 </form>
                 </>}
 
-
             <div id='tasks-container'>
                 {/* tasklist component but with projectTasks */}
-                <TaskList condition={'project'} projectId={id}/>
-                
+                <TaskList condition={'project'} projectId={id}/>             
             </div>
         </div>
     )
