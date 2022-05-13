@@ -20,10 +20,10 @@ const SplashPage = ({theme}) => {
     const dispatch = useDispatch()
     const [isOpen, setIsOpen] = useState(false)
 
-    const showLoginForm = () => {
-        dispatch(setCurrentModal(LoginForm));
-        dispatch(showModal())
-    }
+    // const showLoginForm = () => {
+    //     dispatch(setCurrentModal(LoginForm));
+    //     dispatch(showModal())
+    // }
 
     const showSignUpForm = () => {
         dispatch(setCurrentModal(SignUpForm));
