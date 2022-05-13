@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import { deleteProjectThunk, getAllProjectTasksThunk, editProjectThunk } from '../../store/project';
 import { deleteTaskThunk, getAllTasksThunk } from '../../store/task';
-import { getAllProjectsThunk } from '../../store/project';
 import './ProjectPage.css'
 import TaskList from '../Tasks';
 
@@ -69,7 +68,7 @@ const ProjectPage = () => {
         setProjectName(projectsObj[+id]?.project_name)
         setColor(projectsObj[+id]?.color)
         // console.log(projectName)
-    }, [showEdit, id]);
+    }, [showEdit, id, projectsObj]);
 
     useEffect(() => {
         //console.log('useeffect')
