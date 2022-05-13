@@ -85,6 +85,27 @@ const TodayPage = () => {
     // console.log('unsorted', tasks)
     // console.log('sort this shit', tasks.sort(compare))
     const [isOpen, setIsOpen] = useState(false)
+    
+    
+
+
+    const newCurrentDate = () => {
+        //const month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+        //const d = new Date();
+        //let name = month[d.getMonth()];
+
+        const today = new Date();
+        const dd = String(today.getDate()).padStart(2, '0');
+        const mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+        const yyyy = today.getFullYear();
+
+        const current = yyyy + '-' + mm + '-' + dd;
+        return current
+    }
+    
+    const condition = 'today' 
+
     return (
         <div className='main-page'>
             
@@ -97,10 +118,7 @@ const TodayPage = () => {
                 <h2 >Today</h2>
                 <h4>{currentDate()}</h4>
             </div>
-            {/* <div>
-                <p style={{fontSize:'10px', color:'grey'}}>Double click the check to mark the task complete!</p>
-            </div> */}
-            <TaskList/>
+            <TaskList condition={condition}/>
         </div>
     )
 

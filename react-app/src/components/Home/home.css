@@ -1,10 +1,14 @@
+#inbox-container{
+    margin-left:30%;
+    margin-right: 20%;
+    font-family: 'Roboto', sans-serif;
+}
 
 
 .one-task {
     display: grid;
-    grid-template-columns:   1fr 20fr;
+    grid-template-columns: 1fr 20fr;
     grid-template-rows: 1fr;
-    margin: 10px;
 }
 
 .more-div {

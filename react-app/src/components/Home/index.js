@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getAllTasksThunk } from '../../store/task';
 import TaskList from '../Tasks';
 import './home.css'
-import NewTaskButton from '../NewTaskButton';
+
 
 
 
@@ -65,11 +65,12 @@ const HomePage = () => {
         }
     }
     tasks.sort(compare)
-
+    const condition = 'inbox';
     return (
         <div id='inbox-container'>
-            <TaskList/>
-            <NewTaskButton/>
+            <h1>Inbox</h1>
+            <TaskList condition={condition}/>
+           
         </div>
     )
 

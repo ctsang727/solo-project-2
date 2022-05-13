@@ -5,6 +5,8 @@ import { deleteProjectThunk, getAllProjectTasksThunk, editProjectThunk } from '.
 import { deleteTaskThunk, getAllTasksThunk } from '../../store/task';
 import './ProjectPage.css'
 import { NavLink } from 'react-router-dom';
+import TaskList from '../Tasks';
+import ReactTooltip from 'react-tooltip';
 
 
 
@@ -22,11 +24,10 @@ const ProjectPage = () => {
     const { id } = useParams()
     const userId = useSelector(state => state.session.user.id)
     const projectsObj = useSelector(state => state?.projects)
+    const tasksObj = useSelector(state => state.task)
     //const testProjectsObj = useSelector(state => state?.projects[id])
     const projectTasks = Object.values(projectsObj).filter(i => i.project_id === +id)
-    
     //const projTasksFiltered = Object.values(projectsObj).filter(i => i.project_id)
-
     const [projectName, setProjectName] = useState(projectsObj[+id]?.project_name)
     const [color, setColor] = useState('red')
 
@@ -65,12 +66,16 @@ const ProjectPage = () => {
     }
     projectTasks.sort(compare)
 
-    
+    // useEffect(() => {
+        
+    //     console.log(projectTasks)
+    //     console.log(tasksObj)
+    // }, [ projectTasks, tasksObj])
 
     useEffect(() => {
         dispatch(getAllTasksThunk(userId))
         dispatch(getAllProjectTasksThunk(id))
-        
+
     }, [dispatch, id, userId]);
 
     useEffect(() => {
@@ -112,11 +117,8 @@ const ProjectPage = () => {
     }
 
 
-
     return (
         <div className='main-page'>
-            
-
             {!showEdit &&
                 <div>
                     <h1>{projectsObj[id]?.project_name}</h1>
@@ -131,87 +133,44 @@ const ProjectPage = () => {
 
             }
             {showEdit &&
-                    <><form onSubmit={editProject} >
-                        {errors.length > 0 &&
-                            <div>Please enter project name</div>
-                        }
-                        <div id='project-change-name'>
-                            <input
-                                type='text'
-                                name='projectName'
-                                value={projectName}
-                                placeholder='Project name'
-                                onChange={e => setProjectName(e.target.value)}>
-                            </input>
-                        </div>
+                <><form onSubmit={editProject} >
+                    {errors.length > 0 &&
+                        <div>Please enter project name</div>
+                    }
+                    <div id='project-change-name'>
+                        <input
+                            type='text'
+                            name='projectName'
+                            value={projectName}
+                            placeholder='Project name'
+                            onChange={e => setProjectName(e.target.value)}>
+                        </input>
+                    </div>
 
-                        <div>
-                            <label>Color: </label>
-                            <select
-                                name='color'
-                                value={color}
-                                onChange={e => setColor(e.target.value)}>
-                                <option value={'red'}>Red</option>
-                                <option value={'blue'}>Blue</option>
-                                <option value={'yellow'}>Yellow</option>
-                                <option value={'white'}>None</option>
-                            </select>
-                        </div>
-                        {errors.length === 0 &&
-                            <button id='project-edit-submit' type='submit'>Submit</button>
-                        }
+                    <div>
+                        <label>Color: </label>
+                        <select
+                            name='color'
+                            value={color}
+                            onChange={e => setColor(e.target.value)}>
+                            <option value={'red'}>Red</option>
+                            <option value={'blue'}>Blue</option>
+                            <option value={'yellow'}>Yellow</option>
+                            <option value={'white'}>None</option>
+                        </select>
+                    </div>
+                    {errors.length === 0 &&
+                        <button id='project-edit-submit' type='submit'>Submit</button>
+                    }
 
-                        <button id='project-edit-cancel' onClick={() => setShowEdit(!showEdit)}>Cancel</button>
-                    </form>
-                    </>}
-            
+                    <button id='project-edit-cancel' onClick={() => setShowEdit(!showEdit)}>Cancel</button>
+                </form>
+                </>}
+
 
             <div id='tasks-container'>
                 {/* tasklist component but with projectTasks */}
-                {projectTasks?.map(task => (
-                    <div className='one-task' key={task?.id}>
-                        {/* <div onClick={() => redirect(task?.id)} className='task-name'> */}
-                        <div id='task-check' onClick={() => setDeleteIndex(deleteIndex => deleteIndex === task.id ? null : task.id)}>
-                            {deleteIndex === task.id &&
-                                <div value={task?.id} >
-                                    <i key={task?.id} onClick={() => dispatch(deleteTaskThunk(task.id))} className="material-icons">check</i>
-                                </div>
-                            }
-
-                            {deleteIndex !== task.id &&
-                                <div>
-                                    <i className="material-icons">check</i>
-                                </div>
-                            }
-                        </div>
-
-                        <NavLink id='task-info' to={`/app/task/${task?.id}`}>
-                            <div className='task-info'>
-                                <h3> {task?.task_name} </h3>
-                                <div className='one-desc' key={task?.id}>
-                                    <p> {task?.description} </p>
-                                </div>
-                                <div>
-                                    <p> {task?.due_date.split(' ').slice(1, 4).join(' ')} </p>
-                                </div>
-                            </div>
-                        </NavLink>
-
-
-                        <div onClick={() => setEditIndex(editIndex => editIndex === task.id ? null : task.id)}><i className="fa-solid fa-ellipsis fa-2x"></i></div>
-                        <div></div>
-                        {editIndex === task.id &&
-                            <div className='task-dropdown'>
-                                <ul key={task?.id}>
-
-                                    <li value={task?.id} style={{ borderRadius: '3px', padding: '5px', color: '#de4c4a', cursor: 'pointer' }} onClick={e => dispatch(deleteTaskThunk(e.target.value))}>Delete</li>
-                                    <li><NavLink style={{ padding: '5px', textDecoration: 'none', color: 'white' }} to={`/app/task/${task?.id}`}>More</NavLink></li>
-                                </ul>
-                            </div>}
-                    </div>
-                ))
-                }
-
+                <TaskList condition={'project'} projectId={id}/>
                 
             </div>
         </div>

@@ -8,6 +8,14 @@
     padding: 0px;
     font-weight: 200;
 }
+#task-name {
+    margin: 0;
+}
+#task-name p{
+    font-size:16px;
+    margin-bottom: 10px;
+    margin-top:10px;
+}
 
 #task-info-grid-1{
     display: flex;
@@ -19,6 +27,7 @@
 #task-info-grid-2{
     display: flex;
     justify-content: flex-end;
+    margin:0;
 }
 
 #task-info-grid-2 i:hover{
