@@ -4,9 +4,7 @@ import { useHistory, useParams } from 'react-router-dom';
 import { deleteProjectThunk, getAllProjectTasksThunk, editProjectThunk } from '../../store/project';
 import { deleteTaskThunk, getAllTasksThunk } from '../../store/task';
 import './ProjectPage.css'
-import { NavLink } from 'react-router-dom';
 import TaskList from '../Tasks';
-import ReactTooltip from 'react-tooltip';
 
 
 
@@ -14,22 +12,21 @@ const ProjectPage = () => {
     const dispatch = useDispatch()
 
     const [showEdit, setShowEdit] = useState(false)
-    const [editIndex, setEditIndex] = useState(null)
-    const [deleteIndex, setDeleteIndex] = useState(null)
 
-    // const [isInbox, setIsInbox] = useState(false)
     const [errors, setErrors] = useState([])
 
     const history = useHistory()
     const { id } = useParams()
     const userId = useSelector(state => state.session.user.id)
-    const projectsObj = useSelector(state => state?.projects)
-    const tasksObj = useSelector(state => state.task)
-    //const testProjectsObj = useSelector(state => state?.projects[id])
+    const projectsObj = useSelector(state => state.projects)
+    console.log(id)
+    console.log(projectsObj[+id]?.project_name)
+    console.log(projectsObj[+id]?.color)
     const projectTasks = Object.values(projectsObj).filter(i => i.project_id === +id)
-    //const projTasksFiltered = Object.values(projectsObj).filter(i => i.project_id)
     const [projectName, setProjectName] = useState(projectsObj[+id]?.project_name)
-    const [color, setColor] = useState('red')
+    
+
+    const [color, setColor] = useState(projectsObj[+id]?.color)
 
 
     const compare = (a, b) => {
@@ -66,13 +63,10 @@ const ProjectPage = () => {
     }
     projectTasks.sort(compare)
 
-    // useEffect(() => {
-        
-    //     console.log(projectTasks)
-    //     console.log(tasksObj)
-    // }, [ projectTasks, tasksObj])
+    
 
     useEffect(() => {
+        console.log('dispatch')
         dispatch(getAllTasksThunk(userId))
         dispatch(getAllProjectTasksThunk(id))
 
@@ -86,8 +80,6 @@ const ProjectPage = () => {
         }
         setErrors(errors)
     }, [projectName])
-
-    // console.log('?>?>', projectTasks)
 
     const onDelete = async (e) => {
         e.preventDefault()
@@ -111,7 +103,6 @@ const ProjectPage = () => {
             userId,
             color
         }
-        console.log('COLOR', color)
         setShowEdit(!showEdit)
         return dispatch(editProjectThunk(editProject))
     }
@@ -143,7 +134,7 @@ const ProjectPage = () => {
                             name='projectName'
                             value={projectName}
                             placeholder='Project name'
-                            onChange={e => setProjectName(e.target.value)}>
+                            onChange={(e) => setProjectName(e.target.value)}>
                         </input>
                     </div>
 
@@ -152,7 +143,7 @@ const ProjectPage = () => {
                         <select
                             name='color'
                             value={color}
-                            onChange={e => setColor(e.target.value)}>
+                            onChange={(e)=> setColor(e.target.value)}>
                             <option value={'red'}>Red</option>
                             <option value={'blue'}>Blue</option>
                             <option value={'yellow'}>Yellow</option>

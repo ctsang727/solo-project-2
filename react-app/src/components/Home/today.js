@@ -86,23 +86,7 @@ const TodayPage = () => {
     // console.log('sort this shit', tasks.sort(compare))
     const [isOpen, setIsOpen] = useState(false)
     
-    
 
-
-    const newCurrentDate = () => {
-        //const month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-
-        //const d = new Date();
-        //let name = month[d.getMonth()];
-
-        const today = new Date();
-        const dd = String(today.getDate()).padStart(2, '0');
-        const mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-        const yyyy = today.getFullYear();
-
-        const current = yyyy + '-' + mm + '-' + dd;
-        return current
-    }
     
     const condition = 'today' 
 

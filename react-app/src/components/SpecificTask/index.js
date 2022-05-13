@@ -19,18 +19,18 @@ const SpecificTask = () => {
     const history = useHistory()
 
     useEffect(() => {
-
+        
         dispatch(getTaskThunk(taskId))
     }, [dispatch, taskId]);
 
 
     useEffect(() => {
-
+        
         dispatch(getAllProjectsThunk(userId))
     }, [dispatch, userId])
 
 
-    const currentTask = Object.values(tasksObj).find(task => task?.id === +taskId)
+    //const currentTask = Object.values(tasksObj).find(task => task?.id === +taskId)
     //console.log('CURRENTTASK', currentTask?.project_id)
 
     //edit related

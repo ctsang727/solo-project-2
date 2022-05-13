@@ -99,9 +99,7 @@ const TaskList = ({condition, projectId}) => {
     tasks.sort(compare)
     
 
-    const checkId = (task) => {
-        if (task?.project_id === +projectId) return true 
-    }
+
     return (
         <>
             <div id='tasks-container'>
