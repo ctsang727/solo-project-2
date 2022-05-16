@@ -212,6 +212,7 @@ const SpecificTask = () => {
                             <input
                                 type='date'
                                 name='dueDate'
+                                min={new Date().toISOString().split('T')[0]}
                                 value={dueDate}
                                 onChange={(e) => setDueDate(e.target.value)} />
                         </div>
