@@ -19,13 +19,13 @@ const SpecificTask = () => {
     const history = useHistory()
 
     useEffect(() => {
-        
+
         dispatch(getTaskThunk(taskId))
     }, [dispatch, taskId]);
 
 
     useEffect(() => {
-        
+
         dispatch(getAllProjectsThunk(userId))
     }, [dispatch, userId])
 
@@ -89,18 +89,35 @@ const SpecificTask = () => {
 
     const editTask = e => {
         e.preventDefault()
-        const editTask = {
+        console.log('test')
+        if (projectId === 'None'){
+          const editTask = {
             taskId,
             userId,
             taskName,
             taskDesc,
             dueDate,
-            projectId,
+            projectId: null,
             labels,
             priority
         }
         setShowEdit(!showEdit)
-        return dispatch(editTaskThunk(editTask))
+        return dispatch(editTaskThunk(editTask))  
+        } else {
+            const editTask = {
+                taskId,
+                userId,
+                taskName,
+                taskDesc,
+                dueDate,
+                projectId,
+                labels,
+                priority
+            }
+            setShowEdit(!showEdit)
+            return dispatch(editTaskThunk(editTask)) 
+        }
+        
     }
 
     function isEmpty(obj) {
@@ -110,7 +127,6 @@ const SpecificTask = () => {
 
     const onDelete = (e) => {
         e.preventDefault()
-        //console.log('ONDELETE SPEECIFIC TASK', +taskId)
         dispatch(deleteTaskThunk(+taskId))
 
         history.push('/app')
@@ -227,14 +243,15 @@ const SpecificTask = () => {
                                 name='projectId'
                                 value={projectId}
                                 onChange={(e) => setProject(e.target.value)}>
+                                    <option
+                                    value={null}
+                                >None</option>
                                 {projectStateArr.map(project =>
                                     <option
                                         value={project?.id}>
                                         {project?.project_name}
                                     </option>)}
-                                <option
-                                    value={null}
-                                >None</option>
+                                
                             </select>
                         </div>
                         {errors.length > 0 &&

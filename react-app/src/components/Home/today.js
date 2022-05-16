@@ -6,6 +6,7 @@ import AddTaskForm from '../TaskForms/AddTaskForm';
 import './today.css'
 import Modal2 from '../Modal2/modal2';
 import TaskList from '../Tasks';
+import NewTaskButton from '../NewTaskButton';
 
 
 
@@ -102,6 +103,7 @@ const TodayPage = () => {
                 <h4>{currentDate()}</h4>
             </div>
             <TaskList condition={condition}/>
+            <NewTaskButton/>
         </div>
     )
 

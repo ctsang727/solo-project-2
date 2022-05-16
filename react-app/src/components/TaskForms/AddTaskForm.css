@@ -1,28 +1,30 @@
 #task-name {
-    /* background-color: #202020; */
-    margin: 10px;
+    margin-top: 10px;
     width: 100%;
+    height: 30px;
     resize: none;
     border: none;
+    padding: 5px;
     background-color: transparent;
     outline: none;
     color:gray;
     font-size: 12px;
-    font-family: Helvetica, Arial, sans-serif;
+    font-family: 'Roboto', sans-serif;
 }
 
 
 #add-task textarea {
-    margin: 10px;
+    margin-top: 10px;
     width: 100%;
-    height:50px;
+    height: 50px;
     resize: none;
     border: none;
     background-color: transparent;
     outline: none;
     color:gray;
     font-size: 12px;
-    font-family: Helvetica, Arial, sans-serif;
+    font-family: 'Roboto', sans-serif;
+    
 }
 
 
@@ -32,9 +34,10 @@
     flex-direction: column;
     border: 1px solid rgba(128, 128, 128, 0.842);
     border-radius: 5px;
-    box-shadow:  0px 0px 10px 10px #000000;
+    box-shadow:  0px 0px 10px 10px #0000004b;
     padding: 10px;
     background-color: #1f1f1f;
+    font-family: 'Roboto', sans-serif;
       
 }
 
@@ -44,22 +47,20 @@
     flex-direction: column;
     border: 1px solid rgba(128, 128, 128, 0.658);
     border-radius: 5px;
-    box-shadow:  0px 0px 10px 10px #000000;
+    box-shadow:  0px 0px 10px 10px #00000086;
     padding: 10px;
     background-color: white;
+    font-family: 'Roboto', sans-serif;
       
 }
-
 
 #second-block {
     display: flex;
     flex-direction: row;
-
 }
 
 #third-block {
     display: flex;
-
 }
 
 #add-task-cant-click {
@@ -113,7 +114,6 @@
     font-family: 'Roboto', sans-serif;
     font-size: 14px;
     font-weight: lighter;
-    
 
 }
 

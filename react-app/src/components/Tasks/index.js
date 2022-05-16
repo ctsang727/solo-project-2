@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { deleteTaskThunk, getTodayTasks } from '../../store/task';
-import NewTaskButton from '../NewTaskButton';
 import ReactTooltip from 'react-tooltip';
 import './taskList.css'
 
@@ -150,18 +149,25 @@ const TaskList = ({condition, projectId}) => {
                                     <div id='task-info-grid-2' >
                                         {deleteIndex === task.id &&
                                             <div onClick={e => e.preventDefault()}>
+                                                
+                                                <NavLink to={`/app/task/${task?.id}`}>
                                                 <i data-tip data-for='edit-tooltip' className="material-icons">edit</i>
                                                 <ReactTooltip id="edit-tooltip" place="top" effect="solid">
                                                     Edit
                                                 </ReactTooltip>
+                                                </NavLink>
+
                                                 <i value={task.id} data-tip data-for='delete-tooltip' onClick={() => dispatch(deleteTaskThunk(task.id))} className="material-icons">delete</i>
                                                 <ReactTooltip id="delete-tooltip" place="top" effect="solid">
                                                     Delete
                                                 </ReactTooltip>
+
+                                                <NavLink to={`/app/task/${task?.id}`}>
                                                 <i data-tip data-for='more-tooltip' className="material-icons">forward</i>
                                                 <ReactTooltip id="more-tooltip" place="top" effect="solid">
                                                     More
                                                 </ReactTooltip>
+                                                </NavLink>
                                             </div>
                                         }
                                     </div>
@@ -177,7 +183,7 @@ const TaskList = ({condition, projectId}) => {
             }
             )}
             </div>
-            <NewTaskButton></NewTaskButton>
+            {/* <NewTaskButton></NewTaskButton> */}
         </>
     )
 }

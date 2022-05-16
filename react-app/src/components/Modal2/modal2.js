@@ -9,6 +9,7 @@ const MODAL_STYLES = {
     left: '50%',
     transform: 'translate(-50%, -50%)',
     backgroundColor: '#000',
+    borderRadius: '5px', 
     zIndex: 1000
 }
 
@@ -27,8 +28,10 @@ const OVERLAY_STYLES = {
 const Modal2 = ({ children, open, onClose, theme }) => {
     
     
-    if (!open) return null
-
+    if (!open) {
+        console.log('not open')
+        return null
+    }
 
 
     return ReactDom.createPortal(
@@ -37,7 +40,7 @@ const Modal2 = ({ children, open, onClose, theme }) => {
                 <div style={OVERLAY_STYLES} onClick={onClose}></div>
 
                 <div style={MODAL_STYLES}>
-                    {/* <button onClick={onClose}>Close Modal</button> */}
+                   
                     <div>{children}</div>
 
                 </div>

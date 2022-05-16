@@ -80,6 +80,7 @@ def edit_task(id):
     task_name = request.json['taskName']
     description = request.json['taskDesc']
     due_date = request.json['dueDate']
+    
     project_id = request.json['projectId']
     labels = request.json['labels']
     priority = request.json['priority']

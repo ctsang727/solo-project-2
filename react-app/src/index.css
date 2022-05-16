@@ -59,16 +59,16 @@ body{
 #dark label{
   color: white;
 }
-#light .main-page .add-task-button button{
+#light .add-task-button button{
   color: black;
 }
-#light .main-page .add-task-button #actual-button:hover{
+#light .add-task-button #actual-button:hover{
   color: #de4c4a;
   cursor: pointer;
   
   
 }
-#light .main-page .add-task-button #actual-button:hover i{
+#light .add-task-button #actual-button:hover i{
   color: white;
   background-color: #de4c4a;
   border-radius: 50%;
@@ -79,17 +79,41 @@ body{
   color: white;
 }
 
-#dark .main-page .add-task-button #actual-button:hover{
+#dark .add-task-button #actual-button:hover{
   color: #de4c4a;
   cursor: pointer;
   
   
 }
-#dark .main-page .add-task-button #actual-button:hover i{
+#dark .add-task-button #actual-button:hover i{
   color: white;
   background-color: #de4c4a;
   border-radius: 50%;
   
+}
+
+#log-in-form{
+  background-color: gray;
+  padding: 20px;
+  border-radius: 5px;
+  font-family: "Roboto", "sans-serif";
+}
+
+#sign-up-form{
+  background-color: gray;
+  padding: 20px;
+  border-radius: 5px;
+  font-family: "Roboto", "sans-serif";
+}
+
+
+
+#dark #sign-up-form{
+  color:white;
+}
+
+#light #sign-up-form{
+  color: black;
 }
 
 #dark {

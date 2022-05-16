@@ -37,9 +37,16 @@
     cursor: pointer;
 }
 
-#task-info-grid-2 i{
+#light #task-info-grid-2 i{
     margin: 3px; 
     padding: 3px;
+    color: black;
+}
+
+#dark #task-info-grid-2 i{
+    margin: 3px; 
+    padding: 3px;
+    color:white;
 }
 
 #task-check{

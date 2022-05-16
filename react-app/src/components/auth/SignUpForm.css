@@ -1,0 +1,10 @@
+#dark #sign-up-form{
+    color:white;
+    background-color: #1f1f1f;
+    
+  }
+  
+  #light #sign-up-form{
+    color: black;
+    background-color: white;
+  }

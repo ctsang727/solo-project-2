@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { getAllTasksThunk } from '../../store/task';
+import NewTaskButton from '../NewTaskButton';
 import TaskList from '../Tasks';
 import './home.css'
 
@@ -70,6 +71,7 @@ const HomePage = () => {
         <div id='inbox-container'>
             <h1>Inbox</h1>
             <TaskList condition={condition}/>
+            <NewTaskButton/>
            
         </div>
     )

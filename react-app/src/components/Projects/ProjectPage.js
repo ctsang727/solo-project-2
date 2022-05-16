@@ -5,6 +5,7 @@ import { deleteProjectThunk, getAllProjectTasksThunk, editProjectThunk } from '.
 import { deleteTaskThunk, getAllTasksThunk } from '../../store/task';
 import './ProjectPage.css'
 import TaskList from '../Tasks';
+import NewTaskButton from '../NewTaskButton';
 
 
 
@@ -19,10 +20,6 @@ const ProjectPage = () => {
     const { id } = useParams()
     const userId = useSelector(state => state.session.user.id)
     const projectsObj = useSelector(state => state.projects)
-    console.log('PROJECTSOBJ!!!!', projectsObj)
-    console.log('ID!!!!', id)
-    console.log('PROJECT NAME!!!', projectsObj[+id]?.project_name)
-    console.log('COLORRRR!!!', projectsObj[+id]?.color)   
     const [projectName, setProjectName] = useState(projectsObj[+id]?.project_name)
     const [color, setColor] = useState(projectsObj[+id]?.color)
 
@@ -162,7 +159,8 @@ const ProjectPage = () => {
 
             <div id='tasks-container'>
                 {/* tasklist component but with projectTasks */}
-                <TaskList condition={'project'} projectId={id}/>             
+                <TaskList condition={'project'} projectId={id}/>
+                <NewTaskButton PID={id}/>        
             </div>
         </div>
     )
