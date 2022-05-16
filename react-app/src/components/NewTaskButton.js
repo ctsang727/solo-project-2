@@ -9,9 +9,8 @@ const addTaskButtonDivStyle = {
     padding: '3px'
 }
 
-const NewTaskButton = () => {
+const NewTaskButton = ({PID}) => {
     const [addTask, setAddTask] = useState(false);
-
 
     const clickAddNew = () => {
         setAddTask(!addTask)
@@ -32,7 +31,7 @@ const NewTaskButton = () => {
 
             {!addTask &&
                 <>
-                    <div  className='add-task-button'>
+                    <div className='add-task-button'>
                         <div style ={addTaskButtonDivStyle} id='actual-button' onClick={clickAddNew}>
                             
 
@@ -48,7 +47,7 @@ const NewTaskButton = () => {
             {addTask &&
                 <>
                     <div className='add-task-button'>
-                        <AddTaskForm cancelFuncs={cancelFuncs} setAddTask={setAddTask} addTask={addTask} />
+                        <AddTaskForm PID={PID} cancelFuncs={cancelFuncs} setAddTask={setAddTask} addTask={addTask} />
 
                     </div>
                 </>

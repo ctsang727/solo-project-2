@@ -1,0 +1,15 @@
+#dark #log-in-form {
+    color: white;
+    background-color: #1f1f1f;
+    padding: 20px;
+    border-radius: 5px;
+    font-family: "Roboto", "sans-serif";
+}
+
+#light #log-in-form {
+    color: black;
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    font-family: "Roboto", "sans-serif";
+}
