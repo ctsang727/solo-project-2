@@ -7,6 +7,7 @@
   #light #sign-up-form{
     color: black;
     background-color: white;
+    
   }
 
   #dark .form-div-submit input{
@@ -17,6 +18,7 @@
     margin-bottom: 5px;
     padding: 5px;
     border: 1px solid gray;
+    border-radius: 5px;
   }
   
   #light .form-div-submit input{
@@ -27,4 +29,5 @@
     margin-bottom: 5px;
     padding: 5px;
     border: 1px solid gray;
+    border-radius: 5px;
   }

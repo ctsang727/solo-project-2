@@ -17,7 +17,7 @@ const AddTaskForm = ({ setAddTask, addTask, onClose, open, cancelFuncs, setIsOpe
         const current = yyyy + '-' + mm + '-' + dd;
         return current
     }
-    
+
     //Note for projectId implementation: when creating new task, cant assign to project
     //must be in the project already, create new task, and the task will be assigned to the project
     const userId = useSelector(state => state.session.user.id)
@@ -109,7 +109,7 @@ const AddTaskForm = ({ setAddTask, addTask, onClose, open, cancelFuncs, setIsOpe
     // }
 
 
-    
+
     return (
         <div id='content'>
             <form id='add-task' onSubmit={createTask}>
@@ -127,16 +127,16 @@ const AddTaskForm = ({ setAddTask, addTask, onClose, open, cancelFuncs, setIsOpe
                 </div>
                 {errors.includes('description error') &&
                     <div>*Please enter description</div>}
-                
-                    <label>Description (required)</label>
-                    <textarea
-                        id='text-area'
-                        type='text'
-                        name='taskDesc'
-                        value={taskDesc}
-                        placeholder='Description'
-                        onChange={(e) => setTaskDesc(e.target.value)} />
-                
+
+                <label>Description (required)</label>
+                <textarea
+                    id='text-area'
+                    type='text'
+                    name='taskDesc'
+                    value={taskDesc}
+                    placeholder='Description'
+                    onChange={(e) => setTaskDesc(e.target.value)} />
+
                 <div id='second-block'>
                     <div id='date'>
                         <labels>Due Date</labels>
@@ -164,15 +164,18 @@ const AddTaskForm = ({ setAddTask, addTask, onClose, open, cancelFuncs, setIsOpe
                         </div>
                         <div>
                             <label>Labels: </label>
-                            <input
-                                type='text'
-                                name='labels'
-                                value={labels}
-                                placeholder='Labels'
-                                onChange={(e) => setLabels(e.target.value)} />
+                            <div>
+                                <input
+                                    type='text'
+                                    name='labels'
+                                    value={labels}
+                                    placeholder='Labels'
+                                    onChange={(e) => setLabels(e.target.value)} />
+                            </div>
                         </div>
                         <div>
                             <label>Project: </label>
+                            <div>
                             <select
                                 name='projectId'
                                 value={projectId}
@@ -186,6 +189,7 @@ const AddTaskForm = ({ setAddTask, addTask, onClose, open, cancelFuncs, setIsOpe
                                         {project?.project_name}
                                     </option>)}
                             </select>
+                            </div>  
                         </div>
                     </div>
                 </div>
@@ -193,26 +197,26 @@ const AddTaskForm = ({ setAddTask, addTask, onClose, open, cancelFuncs, setIsOpe
                 {errors.length > 0 && !open && !addTask &&
                     <div className='add-cancel-buttons'>
 
-                        <div id='add-task-cant-click' style={{color:'white'}}>Add Task</div>
+                        <div id='add-task-cant-click' style={{ color: 'white' }}>Add Task</div>
                         <div className='cancel-add-task' onClick={onClose}>Cancel</div>
                     </div>}
                 {errors.length === 0 && !open && !addTask &&
                     <div className='add-cancel-buttons'>
 
-                        <div id='add-task-click' style={{color:'white'}} onClick={createTask} >Add Task</div>
+                        <div id='add-task-click' style={{ color: 'white' }} onClick={createTask} >Add Task</div>
                         <div className='cancel-add-task' onClick={onClose}>Cancel</div>
                     </div>}
 
                 {errors.length > 0 && addTask &&
                     <div className='add-cancel-buttons'>
 
-                        <div id='add-task-cant-click' style={{color:'white'}}>Add Task</div>
+                        <div id='add-task-cant-click' style={{ color: 'white' }}>Add Task</div>
                         <div className='cancel-add-task' onClick={cancelFuncs}>Cancel</div>
                     </div>}
                 {errors.length === 0 && addTask &&
                     <div className='add-cancel-buttons'>
 
-                        <div id='add-task-click' style={{color:'white'}} onClick={createTask} >Add Task</div>
+                        <div id='add-task-click' style={{ color: 'white' }} onClick={createTask} >Add Task</div>
                         <div className='cancel-add-task' onClick={cancelFuncs}>Cancel</div>
                     </div>}
 
