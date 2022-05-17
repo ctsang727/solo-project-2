@@ -68,8 +68,15 @@
 
 #third-block {
     display: flex;
+    
 }
 
+#third-block select {
+    width: 100%;
+}
+#content select {
+    width: 100%;
+}
 #add-task-cant-click {
     background-color: red;
     background-color: #de4c4a;
