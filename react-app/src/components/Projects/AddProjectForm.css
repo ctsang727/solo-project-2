@@ -85,10 +85,11 @@
     height:20px;
 }
 
-#content2 select{
+#content2 form select{
     border: 1px solid rgba(128, 128, 128, 0.5);
     border-radius: 5px;
     background-color: white;
+    
     
 }
 

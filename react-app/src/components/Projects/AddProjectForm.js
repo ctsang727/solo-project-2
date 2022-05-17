@@ -24,14 +24,14 @@ const AddProjectForm = ({ onClose, open, cancelFuncs }) => {
 
     const createProject = e => {
         e.preventDefault()
-        
+
         const newProject = {
             userId,
             projectName,
             color,
         }
         if (!open) onClose(e)
-        
+
         return dispatch(createProjectThunk(newProject))
 
     }
@@ -39,7 +39,7 @@ const AddProjectForm = ({ onClose, open, cancelFuncs }) => {
 
     return (
         <div id='content2'>
-            
+
             <form id='add-project-form' onSubmit={createProject}>
                 {errors.length > 0 &&
                     <div> *Please enter project name </div>
@@ -61,14 +61,14 @@ const AddProjectForm = ({ onClose, open, cancelFuncs }) => {
                         name='color'
                         value={color}
                         onChange={e => setColor(e.target.value)}>
+                        <option value={'white'}>None</option>
                         <option value={'Red'}>Red</option>
-                            <option value={'Blue'}>Blue</option>
-                            <option value={'Yellow'}>Yellow</option>
-                            <option value={'Green'}>Green</option>
-                            <option value={'Purple'}>Purple</option>
-                            <option value={'Orange'}>Orange</option>
-                            <option value={'Pink'}>Pink</option>
-                            <option value={'white'}>None</option>
+                        <option value={'Blue'}>Blue</option>
+                        <option value={'Yellow'}>Yellow</option>
+                        <option value={'Green'}>Green</option>
+                        <option value={'Purple'}>Purple</option>
+                        <option value={'Orange'}>Orange</option>
+                        <option value={'Pink'}>Pink</option>
                     </select>
                 </div>
 

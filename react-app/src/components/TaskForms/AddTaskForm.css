@@ -68,6 +68,11 @@
 
 #third-block {
     display: flex;
+    
+}
+
+#third-block select {
+    width: 100%;
 }
 
 #add-task-cant-click {
