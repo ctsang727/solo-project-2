@@ -29,6 +29,7 @@ const SplashPage = ({ theme }) => {
     //     dispatch(setCurrentModal(SignUpForm));
     //     dispatch(showModal())
     // }
+    console.log(theme)
     const [loginOpen, setloginOpen] = useState(false)
     const [signUpOpen, setSignUpOpen] = useState(false)
     return (
@@ -55,9 +56,9 @@ const SplashPage = ({ theme }) => {
                 </Modal2>
             </div>
             <p >Made by Christopher Tsang</p>
-            <p ><a style={{ fontWeight: 'bold', color: 'white' }} href="https://github.com/ctsang727">Github </a></p>
-            <p ><a style={{ fontWeight: 'bold', color: 'white' }} href="https://github.com/ctsang727/solo-project-2">Project Repo </a></p>
-            <p ><a style={{ fontWeight: 'bold', color: 'white' }} href="https://www.linkedin.com/in/christopher-tsang-827b1b127/">LinkedIn </a></p>
+            <p ><a style={{ fontWeight: 'bold' }} href="https://github.com/ctsang727">Github </a></p>
+            <p ><a style={{ fontWeight: 'bold' }} href="https://github.com/ctsang727/solo-project-2">Project Repo </a></p>
+            <p ><a style={{ fontWeight: 'bold' }} href="https://www.linkedin.com/in/christopher-tsang-827b1b127/">LinkedIn </a></p>
 
         </div>
     )

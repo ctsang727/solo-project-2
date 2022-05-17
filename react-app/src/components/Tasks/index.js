@@ -122,7 +122,10 @@ const TaskList = ({condition, projectId}) => {
                             <div id='task-check' >
                                 {deleteIndex === task.id &&
                                     <div value={task?.id} >
-                                        <i key={task?.id} onClick={() => dispatch(deleteTaskThunk(task.id))} className="material-icons">check</i>
+                                        <i data-tip data-for='check-tooltip' key={task?.id} onClick={() => dispatch(deleteTaskThunk(task.id))} className="material-icons">check</i>
+                                        <ReactTooltip id="check-tooltip" place="top" effect="solid">
+                                        Mark as Complete
+                                        </ReactTooltip>
                                     </div>
                                 }
 

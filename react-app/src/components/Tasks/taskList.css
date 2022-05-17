@@ -26,6 +26,8 @@
     flex-direction: column;
 }
 
+
+
 #task-info-grid-2{
     display: flex;
     justify-content: flex-end;
@@ -73,6 +75,10 @@
 }
 
 #light #more-tooltip {
+    background-color: rgb(202, 202, 202);
+}
+
+#light #check-tooltip {
     background-color: rgb(202, 202, 202);
 }
 

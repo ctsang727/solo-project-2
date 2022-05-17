@@ -32,7 +32,7 @@ const LoginForm = ({ setSignUpOpen, setloginOpen }) => {
       setErrors(data);
     } else {
       setloginOpen(false)
-      history.push('/app/today') 
+      history.push('/app/today')
     }
   };
 
@@ -68,24 +68,27 @@ const LoginForm = ({ setSignUpOpen, setloginOpen }) => {
       </div>
       <div>
         <label htmlFor='email'>Email: </label>
-        <input
-          name='email'
-          type='text'
-          placeholder='Email'
-          value={email}
-          onChange={e => setEmail(e.target.value)}
-        />
+        <div className='form-div-login'>
+          <input
+            name='email'
+            type='text'
+            placeholder='Email'
+            value={email}
+            onChange={e => setEmail(e.target.value)}
+          />
+        </div>
       </div>
       <div>
         <label htmlFor='password'>Password: </label>
-        <input
-          name='password'
-          type='password'
-          placeholder='Password'
-          value={password}
-          onChange={e => setPassword(e.target.value)}
-        />
-
+        <div className='form-div-login'>
+          <input
+            name='password'
+            type='password'
+            placeholder='Password'
+            value={password}
+            onChange={e => setPassword(e.target.value)}
+          />
+        </div>
       </div>
       <button style={AuthButtons} type='submit'>Login</button>
       <button style={AuthButtons} onClick={() => { setloginOpen(false); setSignUpOpen(true) }}>Sign Up</button>

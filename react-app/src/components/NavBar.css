@@ -20,6 +20,13 @@ body{
     align-items: center;
     z-index: 1;
     
+    
+}
+
+.nav-div div h3{
+    cursor: pointer;
+    font-family: "Roboto, sans-serif";
+    
 }
 
 .nav-div i{
@@ -64,7 +71,15 @@ body{
     background-color: gray;
 }
 
+#light #add-tooltip {
+    background-color: rgb(202, 202, 202);
+    font-family: "Roboto", "sans-serif";
+}
 
+#dark #add-tooltip {
+    
+    font-family: "Roboto", "sans-serif";
+}
 
 
 
