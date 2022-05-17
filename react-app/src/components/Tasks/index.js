@@ -136,7 +136,7 @@ const TaskList = ({condition, projectId}) => {
                             <NavLink id='task-info' to={`/app/task/${task?.id}`}>
                                 <div className='task-info'>
                                     <div id='task-info-grid-1'>
-                                        <div id='task-name'>
+                                        <div id='tasklist-task-name'>
                                             <p> {task?.task_name} </p>
                                         </div>
                                         <div className='one-desc' key={task?.id}>
