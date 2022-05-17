@@ -94,7 +94,7 @@ const ProjectPage = () => {
     const clickEdit = () => {
         setShowEdit(!showEdit)
     }
-    
+
 
     const editProject = (e) => {
         e.preventDefault()
@@ -124,51 +124,51 @@ const ProjectPage = () => {
             }
             {showEdit &&
                 <>
-                <form onSubmit={editProject} >
-                    {errors.length > 0 &&
-                        <div>Please enter project name</div>
-                    }
-                    <label>Project Name:</label>
-                    <div id='project-change-name' >
-                        <input 
-                            type='text'
-                            name='projectName'
-                            value={projectName}
-                            placeholder='Project name'
-                            onChange={(e) => setProjectName(e.target.value)}>
-                        </input>
-                    </div>
-
-                    <div>
-                        <label>Color: </label>
-                        <div id='project-change-color' style={{width:'auto'}}>
-                        <select
-                            name='color'
-                            value={color}
-                            onChange={(e)=> setColor(e.target.value)}>
-                            <option value={'Red'}>Red</option>
-                            <option value={'Blue'}>Blue</option>
-                            <option value={'Yellow'}>Yellow</option>
-                            <option value={'Green'}>Green</option>
-                            <option value={'Purple'}>Purple</option>
-                            <option value={'Orange'}>Orange</option>
-                            <option value={'Pink'}>Pink</option>
-                            <option value={'white'}>None</option>
-                        </select>
+                    <form onSubmit={editProject} >
+                        {errors.length > 0 &&
+                            <div>Please enter project name</div>
+                        }
+                        <label>Project Name:</label>
+                        <div id='project-change-name' >
+                            <input
+                                type='text'
+                                name='projectName'
+                                value={projectName}
+                                placeholder='Project name'
+                                onChange={(e) => setProjectName(e.target.value)}>
+                            </input>
                         </div>
-                    </div>
-                    {errors.length === 0 &&
-                        <button id='project-edit-submit' type='submit'>Submit</button>
-                    }
 
-                    <button id='project-edit-cancel' onClick={() => setShowEdit(!showEdit)}>Cancel</button>
-                </form>
+                        <div>
+                            <label>Color: </label>
+                            <div id='project-change-color' style={{ width: 'auto' }}>
+                                <select
+                                    name='color'
+                                    value={color}
+                                    onChange={(e) => setColor(e.target.value)}>
+                                    <option value={'white'}>None</option>
+                                    <option value={'Red'}>Red</option>
+                                    <option value={'Blue'}>Blue</option>
+                                    <option value={'Yellow'}>Yellow</option>
+                                    <option value={'Green'}>Green</option>
+                                    <option value={'Purple'}>Purple</option>
+                                    <option value={'Orange'}>Orange</option>
+                                    <option value={'Pink'}>Pink</option>
+                                </select>
+                            </div>
+                        </div>
+                        {errors.length === 0 &&
+                            <button id='project-edit-submit' type='submit'>Submit</button>
+                        }
+
+                        <button id='project-edit-cancel' onClick={() => setShowEdit(!showEdit)}>Cancel</button>
+                    </form>
                 </>}
 
             <div id='tasks-container'>
                 {/* tasklist component but with projectTasks */}
-                <TaskList condition={'project'} projectId={id}/>
-                <NewTaskButton PID={id}/>        
+                <TaskList condition={'project'} projectId={id} />
+                <NewTaskButton PID={id} />
             </div>
         </div>
     )
