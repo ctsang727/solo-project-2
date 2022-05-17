@@ -14,9 +14,10 @@ const AddTaskForm = ({ setAddTask, addTask, onClose, open, cancelFuncs, setIsOpe
         const mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
         const yyyy = today.getFullYear();
 
-        const current = mm + '/' + dd + '/' + yyyy;
+        const current = yyyy + '-' + mm + '-' + dd;
         return current
     }
+    
     //Note for projectId implementation: when creating new task, cant assign to project
     //must be in the project already, create new task, and the task will be assigned to the project
     const userId = useSelector(state => state.session.user.id)
@@ -32,7 +33,7 @@ const AddTaskForm = ({ setAddTask, addTask, onClose, open, cancelFuncs, setIsOpe
     const [dueDate, setDueDate] = useState(currentDate)
     //care project
     const [projectId, setProject] = useState(null || PID)
-    console.log('1', PID)
+
 
 
     const [labels, setLabels] = useState(null)
@@ -60,7 +61,6 @@ const AddTaskForm = ({ setAddTask, addTask, onClose, open, cancelFuncs, setIsOpe
 
     const createTask = e => {
         e.preventDefault()
-        console.log('!!!', projectId)
         if (!projectId) {
             const newTask = {
                 userId,
@@ -73,7 +73,6 @@ const AddTaskForm = ({ setAddTask, addTask, onClose, open, cancelFuncs, setIsOpe
             }
             if (addTask === true) setAddTask(false)
             else if (!open) onClose(e)
-            console.log('no project ID', projectId)
             return dispatch(createTaskThunk(newTask))
         } else {
             const newTask = {
@@ -110,7 +109,7 @@ const AddTaskForm = ({ setAddTask, addTask, onClose, open, cancelFuncs, setIsOpe
     // }
 
 
-
+    
     return (
         <div id='content'>
             <form id='add-task' onSubmit={createTask}>
@@ -128,7 +127,7 @@ const AddTaskForm = ({ setAddTask, addTask, onClose, open, cancelFuncs, setIsOpe
                 </div>
                 {errors.includes('description error') &&
                     <div>*Please enter description</div>}
-                <div>
+                
                     <label>Description (required)</label>
                     <textarea
                         id='text-area'
@@ -137,13 +136,13 @@ const AddTaskForm = ({ setAddTask, addTask, onClose, open, cancelFuncs, setIsOpe
                         value={taskDesc}
                         placeholder='Description'
                         onChange={(e) => setTaskDesc(e.target.value)} />
-                </div>
+                
                 <div id='second-block'>
                     <div id='date'>
                         <labels>Due Date</labels>
                         <input
                             type='date'
-                            min={new Date().toISOString().split('T')[0]}
+                            min={currentDate()}
                             name='dueDate'
                             value={dueDate}
                             onChange={(e) => setDueDate(e.target.value)} />

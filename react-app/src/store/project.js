@@ -38,7 +38,6 @@ export const createProjectThunk = project => async dispatch => {
     });
 
     if (res.ok) {
-        console.log('res ok')
         const data = await res.json()
         dispatch(newProject(data))
         return data
@@ -66,7 +65,7 @@ export const getAllProjectTasksThunk = projectId => async dispatch => {
 }
 
 export const deleteProjectThunk = projectId => async dispatch => {
-    console.log('DELETE THIES', projectId)
+  
     const res = await fetch(`/api/projects/delete/${projectId}`, {
         method: 'DELETE',
     })
@@ -79,7 +78,7 @@ export const deleteProjectThunk = projectId => async dispatch => {
 }
 
 export const editProjectThunk = project => async dispatch => {
-    console.log('HERER')
+    
     const res= await fetch(`/api/projects/edit/${project.id}`, {
         method: 'PUT',
         headers: { "Content-Type": "application/json" },
@@ -117,8 +116,7 @@ const projectReducer = (state = {}, action) => {
             //console.log(action.payload.project_tasks.length === 0)
             if (action.payload.project_tasks.length === 0) return state
             else {
-                console.log('else')
-                console.log('ACTION PAYLOAD', action.payload)
+
                 action.payload.project_tasks.forEach(task => {
                 newState[task.id] = task
             })
@@ -128,9 +126,9 @@ const projectReducer = (state = {}, action) => {
 
         case DEL_PROJECT:
             newState = { ...state };
-            console.log('<<<<>>>>>', newState)
+            
             delete newState[action.payload.id]
-            console.log('<<<<>>>>>', newState)
+            
             
             return newState;
 

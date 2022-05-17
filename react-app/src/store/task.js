@@ -94,7 +94,7 @@ export const getTodayTasksThunk = (userId) => async dispatch => {
 // }
 
 export const createTaskThunk = (task) => async dispatch => {
-    console.log('THUNK TASK', JSON.stringify(task))
+    
     const res = await fetch('/api/tasks/new', {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -110,7 +110,7 @@ export const createTaskThunk = (task) => async dispatch => {
 }
 
 export const editTaskThunk = (task) => async dispatch => {
-    console.log('EDIT THUNK', task)
+    
     const res = await fetch(`/api/tasks/edit/${task.taskId}`, {
         method: 'PUT',
         headers: { "Content-Type": "application/json" },

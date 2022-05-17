@@ -24,7 +24,7 @@ const AddProjectForm = ({ onClose, open, cancelFuncs }) => {
 
     const createProject = e => {
         e.preventDefault()
-        console.log('submit good')
+        
         const newProject = {
             userId,
             projectName,

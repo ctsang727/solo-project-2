@@ -18,9 +18,9 @@ const NewTaskButton = ({PID}) => {
 
     const cancelFuncs = (e) => {
         e.preventDefault()
-        console.log('working?')
+        
         setAddTask(!addTask)
-        console.log(addTask)
+        
     }
 
 
