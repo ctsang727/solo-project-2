@@ -11,6 +11,33 @@ body{
   margin: 0;
 }
 
+#light a:hover{
+  background-color: rgba(255, 255, 255, 0.171);
+  border-radius: 5px;
+}
+
+#dark a:hover{
+  background-color: gray;
+  border-radius: 5px;
+}
+
+#dark button:hover{
+  background-color: gray;
+  border-radius: 5px;
+}
+
+/* #light a {
+  color:black;
+  text-decoration: none;
+  font-family: 'Roboto', sans-serif;
+}
+
+#dark a {
+  color:white;
+  text-decoration: none;
+  font-family: 'Roboto', sans-serif;
+} */
+
 #light h1{
   color: black;
 

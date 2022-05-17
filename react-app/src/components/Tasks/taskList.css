@@ -8,13 +8,15 @@
     padding: 0px;
     font-weight: 200;
 }
-#task-name {
+#tasklist-task-name {
     margin: 0;
+    
 }
-#task-name p{
+#tasklist-task-name p{
     font-size:16px;
     margin-bottom: 10px;
     margin-top:10px;
+    
 }
 
 #task-info-grid-1{

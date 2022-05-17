@@ -29,7 +29,7 @@ const Modal2 = ({ children, open, onClose, theme }) => {
     
     
     if (!open) {
-        console.log('not open')
+        
         return null
     }
 

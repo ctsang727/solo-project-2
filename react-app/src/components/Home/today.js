@@ -24,14 +24,14 @@ const TodayPage = () => {
     //const [showEditForm, setShowEditIndex] = useState(null)
 
     useEffect(() => {
-        console.log("USEEEFFFEEEECTTT")
+        
         dispatch(getTodayTasksThunk(userId))
     }, [dispatch, userId]);
 
     useEffect(() => {
         
         setTasks(Object.values(tasksObj))
-        console.log('test', tasksObj)
+        
     }, [ tasksObj, setTasks])
 
     const currentDate = () => {

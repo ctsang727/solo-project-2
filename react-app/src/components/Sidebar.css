@@ -32,6 +32,11 @@
 #light .one-project a{
     text-decoration:none;
     color: black;
+    padding-right:5px;
+}
+
+#light .one-project a:hover{
+    background-color: rgba(236, 236, 236, 0.904);
 }
 
 #dark .one-project a{
@@ -55,7 +60,7 @@
 }
 
 .navlink-div:hover {
-    background-color: gray;
+    background-color:  rgba(236, 236, 236, 0.904);
 }
 
 #projects-side-div{
@@ -81,6 +86,20 @@
 #project-button{
     visibility: hidden;
     margin-top: 3px;
+    display: flex;
+    border-radius: 50%;
+}
+
+#light #project-button:hover{
+    background-color: #de4c4a;
+    color:white;
+    cursor: pointer;
+}
+
+#dark #project-button:hover{
+    background-color: #de4c4a;
+    color:white;
+    cursor: pointer;
 }
 
 .one-project{

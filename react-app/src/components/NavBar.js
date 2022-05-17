@@ -71,7 +71,7 @@ const NavBar = ({ toggleTheme, theme }) => {
               <AddTaskForm onClose={e => { e.stopPropagation(); setIsOpen(false) }} ></AddTaskForm>
             </Modal2>
           </button>
-          <NavLink to='/about'><i style={{ fontSize: '20px' }} class="material-icons">info_outline</i></NavLink>
+          <NavLink to='/about' style={{color:'white', textDecoration:'none', fontFamily:"'Roboto', sans-serif", padding:'5px'}}>About</NavLink>
           <div>
             <ReactSwitch onChange={toggleTheme} checked={theme === 'dark'} />
           </div>

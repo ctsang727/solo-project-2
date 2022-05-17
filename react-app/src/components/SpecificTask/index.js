@@ -40,7 +40,6 @@ const SpecificTask = () => {
     const [taskDesc, setTaskDesc] = useState(tasksObj[taskId]?.description)
 
     const [projectId, setProject] = useState(tasksObj[taskId]?.project_id || null)
-    console.log(projectId)
     const [labels, setLabels] = useState(tasksObj[taskId]?.labels || null)
     const [priority, setPriority] = useState(tasksObj[taskId]?.priority || null)
 
@@ -58,6 +57,13 @@ const SpecificTask = () => {
         setErrors(errors)
     }, [taskName, taskDesc])
 
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+
+    today = mm + '/' + dd + '/' + yyyy;
+    
 
     const convertDate = (date) => {
         const dateValue = tasksObj[taskId]?.due_date
@@ -79,7 +85,7 @@ const SpecificTask = () => {
         return stringSetDueDate
     }
     const [dueDate, setDueDate] = useState(convertDate(tasksObj[taskId]?.due_date))
-
+    
 
     //edit related
 
@@ -89,20 +95,20 @@ const SpecificTask = () => {
 
     const editTask = e => {
         e.preventDefault()
-        console.log('test')
-        if (projectId === 'None'){
-          const editTask = {
-            taskId,
-            userId,
-            taskName,
-            taskDesc,
-            dueDate,
-            projectId: null,
-            labels,
-            priority
-        }
-        setShowEdit(!showEdit)
-        return dispatch(editTaskThunk(editTask))  
+        
+        if (projectId === 'None') {
+            const editTask = {
+                taskId,
+                userId,
+                taskName,
+                taskDesc,
+                dueDate,
+                projectId: null,
+                labels,
+                priority
+            }
+            setShowEdit(!showEdit)
+            return dispatch(editTaskThunk(editTask))
         } else {
             const editTask = {
                 taskId,
@@ -115,9 +121,9 @@ const SpecificTask = () => {
                 priority
             }
             setShowEdit(!showEdit)
-            return dispatch(editTaskThunk(editTask)) 
+            return dispatch(editTaskThunk(editTask))
         }
-        
+
     }
 
     function isEmpty(obj) {
@@ -157,9 +163,6 @@ const SpecificTask = () => {
         fontWeight: 'lighter',
         margin: '10px',
     }
-
-
-
 
 
     return (
@@ -212,7 +215,7 @@ const SpecificTask = () => {
                             <input
                                 type='date'
                                 name='dueDate'
-                                min={new Date().toISOString().split('T')[0]}
+                                min={convertDate(today)}
                                 value={dueDate}
                                 onChange={(e) => setDueDate(e.target.value)} />
                         </div>
@@ -244,7 +247,7 @@ const SpecificTask = () => {
                                 name='projectId'
                                 value={projectId}
                                 onChange={(e) => setProject(e.target.value)}>
-                                    <option
+                                <option
                                     value={null}
                                 >None</option>
                                 {projectStateArr.map(project =>
@@ -252,7 +255,7 @@ const SpecificTask = () => {
                                         value={project?.id}>
                                         {project?.project_name}
                                     </option>)}
-                                
+
                             </select>
                         </div>
                         {errors.length > 0 &&

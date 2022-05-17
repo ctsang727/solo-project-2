@@ -82,16 +82,16 @@ const Sidebar = ( { toggleTheme, theme } ) => {
       <div id='projects-side-div'>
         <div id='projects-header'>
           <div id='projects-text'>
-            <h3>Projects</h3>
+            <h3 style={{paddingRight:'3px'}}>Projects</h3>
           </div>
           {userId && 
           <div id='project-button' >
             
-            <i onClick={() => setIsOpen(true)} style={{ fontSize: '18px' }} className="material-icons">add</i>
+            <i onClick={() => setIsOpen(true)} style={{ fontSize: '18px'}} className="material-icons">add</i>
             <Modal2 theme={theme} open={isOpen} setisOpen={setIsOpen} onClose={e => { e.stopPropagation(); setIsOpen(false) }}>
               <AddProjectForm onClose={e => { e.stopPropagation(); setIsOpen(false) }} theme={theme}></AddProjectForm>
             </Modal2>
-            {/* <i onClick={showAddProjectForm} style={{ fontSize: '18px' }} className="material-icons">add</i> */}
+            
           </div>
           }
         </div>
