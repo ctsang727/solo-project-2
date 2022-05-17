@@ -9,6 +9,7 @@ import LoginForm from './auth/LoginForm';
 import SignUpForm from './auth/SignUpForm';
 import Modal2 from './Modal2/modal2';
 import ReactSwitch from 'react-switch';
+import ReactTooltip from 'react-tooltip';
 import './NavBar.css'
 
 
@@ -66,7 +67,10 @@ const NavBar = ({ toggleTheme, theme }) => {
       {user &&
         <div className='nav-div'>
           <button onClick={() => setIsOpen(true)}>
-            <i style={{ fontSize: '20px' }} class="material-icons">add</i>
+            <i data-tip data-for='add-tooltip' style={{ fontSize: '20px' }} class="material-icons">add</i>
+            <ReactTooltip id="add-tooltip" place="top" effect="solid">
+                                                    Quick Add Task 
+                                                </ReactTooltip>
             <Modal2 theme={theme} open={isOpen} setisOpen={setIsOpen} onClose={e => { e.stopPropagation(); setIsOpen(false) }}>
               <AddTaskForm onClose={e => { e.stopPropagation(); setIsOpen(false) }} ></AddTaskForm>
             </Modal2>

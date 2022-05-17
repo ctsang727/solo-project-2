@@ -36,12 +36,18 @@
 }
 
 #light .one-project a:hover{
-    background-color: rgba(236, 236, 236, 0.904);
+    background-color: rgba(236, 236, 236, 0.568);
+    border-radius:5px;
+}
+#dark .one-project a:hover{
+    background-color: rgba(236, 236, 236, 0.473);
+    border-radius:5px;
 }
 
 #dark .one-project a{
     text-decoration:none;
     color: white;
+    padding-right:5px;
 }
 
 

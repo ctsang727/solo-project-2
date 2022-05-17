@@ -16,10 +16,10 @@ body{
   border-radius: 5px;
 }
 
-#dark a:hover{
+/* #dark a:hover{
   background-color: gray;
   border-radius: 5px;
-}
+} */
 
 #dark button:hover{
   background-color: gray;
@@ -133,6 +133,34 @@ body{
   font-family: "Roboto", "sans-serif";
 }
 
+.form-div{
+  margin:5px;
+  
+}
+
+.form-div input, textarea, select{
+  font-family: "Roboto", "sans-serif";
+  width: 60%;
+}
+.form-div textarea{
+  font-family: "Roboto", "sans-serif";
+  width: 60%;
+  height: 50px;
+}
+
+#form-part-2{
+  display: flex;
+  
+}
+
+#form-part-2 input{
+  width:auto;
+  
+}
+#form-part-2 select{
+  width:auto;
+  
+}
 
 
 #dark #sign-up-form{

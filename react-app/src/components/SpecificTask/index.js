@@ -57,18 +57,18 @@ const SpecificTask = () => {
         setErrors(errors)
     }, [taskName, taskDesc])
 
-    var today = new Date();
-    var dd = String(today.getDate()).padStart(2, '0');
-    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-    var yyyy = today.getFullYear();
+    let today = new Date();
+    let dd = String(today.getDate()).padStart(2, '0');
+    let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    let yyyy = today.getFullYear();
 
-    today = mm + '/' + dd + '/' + yyyy;
-    
+    today = yyyy + '-' + mm + '-' + dd;
+
+
 
     const convertDate = (date) => {
-        const dateValue = tasksObj[taskId]?.due_date
         const monthName = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-        const taskMonth = dateValue?.split(' ').slice(1, 4)[1]
+        const taskMonth = date?.split(' ').slice(1, 4)[1]
         const monthNameIdx = monthName.find(month => month === taskMonth)
         const monthNum = () => {
             const number = monthName.indexOf(monthNameIdx) + 1
@@ -79,13 +79,13 @@ const SpecificTask = () => {
                 return number.toString()
             }
         }
-        const dayNum = dateValue?.split(' ').slice(1, 4)[0]
-        const yearNum = dateValue?.split(' ').slice(1, 4)[2]
+        const dayNum = date?.split(' ').slice(1, 4)[0]
+        const yearNum = date?.split(' ').slice(1, 4)[2]
         const stringSetDueDate = yearNum + '-' + monthNum() + '-' + dayNum
         return stringSetDueDate
     }
     const [dueDate, setDueDate] = useState(convertDate(tasksObj[taskId]?.due_date))
-    
+
 
     //edit related
 
@@ -95,7 +95,7 @@ const SpecificTask = () => {
 
     const editTask = e => {
         e.preventDefault()
-        
+
         if (projectId === 'None') {
             const editTask = {
                 taskId,
@@ -186,77 +186,91 @@ const SpecificTask = () => {
                     <div>
                         {errors.length > 0 &&
                             <>*Please enter task name</>
-
                         }
 
                     </div>
 
                     <form style={{ display: 'flex', flexDirection: 'column' }} onSubmit={editTask} >
 
-                        <div>
+                        <div className='form-div'>
                             <label>Task name (required): </label>
-                            <input
-                                type='text'
-                                name='taskName'
-                                value={taskName}
-                                onChange={(e) => setTaskName(e.target.value)}
-                            ></input>
+                            <div >
+                                <input
+                                    type='text'
+                                    name='taskName'
+                                    value={taskName}
+                                    onChange={(e) => setTaskName(e.target.value)}
+                                ></input>
+                            </div>
                         </div>
-                        <div>
+                        <div className='form-div'>
                             <label>Description (required):  </label>
-                            <textarea
-                                type='text'
-                                name='taskDesc'
-                                value={taskDesc}
-                                onChange={(e) => setTaskDesc(e.target.value)} />
+                            <div>
+                                <textarea
+                                    type='text'
+                                    name='taskDesc'
+                                    value={taskDesc}
+                                    onChange={(e) => setTaskDesc(e.target.value)} />
+                            </div>
                         </div>
-                        <div>
-                            <label>Due date: </label>
-                            <input
-                                type='date'
-                                name='dueDate'
-                                min={convertDate(today)}
-                                value={dueDate}
-                                onChange={(e) => setDueDate(e.target.value)} />
-                        </div>
-                        <div>
-                            <label>Priority: </label>
-                            <select
-                                name='priority'
-                                value={priority}
-                                onChange={(e) => setPriority(e.target.value)}>
-                                <option value={0}>0</option>
-                                <option value={1}>1</option>
-                                <option value={2}>2</option>
-                                <option value={3}>3</option>
-                                <option value={4}>4</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label>Labels </label>
-                            <input
-                                type='text'
-                                name='labels'
-                                value={labels}
-                                placeholder='Labels'
-                                onChange={(e) => setLabels(e.target.value)} />
-                        </div>
-                        <div>
-                            <label>Project: </label>
-                            <select
-                                name='projectId'
-                                value={projectId}
-                                onChange={(e) => setProject(e.target.value)}>
-                                <option
-                                    value={null}
-                                >None</option>
-                                {projectStateArr.map(project =>
-                                    <option
-                                        value={project?.id}>
-                                        {project?.project_name}
-                                    </option>)}
+                        <div id='form-part-2'>
+                            <div className='form-div'>
+                                <label>Due date: </label>
+                                <div>
+                                    <input
+                                        type='date'
+                                        name='dueDate'
+                                        min={today}
+                                        value={dueDate}
+                                        onChange={(e) => setDueDate(e.target.value)} />
+                                </div>
+                            </div>
+                            <div className='form-div'>
+                                <label>Priority: </label>
+                                <div>
+                                    <select
+                                        name='priority'
+                                        value={priority}
+                                        onChange={(e) => setPriority(e.target.value)}>
+                                        <option value={0}>0</option>
+                                        <option value={1}>1</option>
+                                        <option value={2}>2</option>
+                                        <option value={3}>3</option>
+                                        <option value={4}>4</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div className='form-div'>
+                                <label>Labels: </label>
+                                <div>
+                                    <input
+                                        type='text'
+                                        name='labels'
+                                        value={labels}
+                                        placeholder='Labels'
+                                        onChange={(e) => setLabels(e.target.value)} />
+                                </div>
+                            </div>
+                            <div className='form-div'>
+                                <label>Project: </label>
+                                <div>
 
-                            </select>
+                                    <select
+                                        name='projectId'
+                                        value={projectId}
+                                        onChange={(e) => setProject(e.target.value)}>
+                                        <option
+                                            value={null}
+                                        >None</option>
+                                        {projectStateArr.map(project =>
+                                            <option
+                                                value={project?.id}>
+                                                {project?.project_name}
+                                            </option>)}
+
+                                    </select>
+                                </div>
+                            </div>
                         </div>
                         {errors.length > 0 &&
                             <div>
