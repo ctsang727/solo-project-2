@@ -12,3 +12,11 @@
    background-image: url('https://sswlhc.org/wp-content/uploads/2021/08/Reminder.png');
 }
 
+#light #splash-main p a{
+    color:black;
+}
+
+#dark #splash-main p a{
+    color: white;
+}
+

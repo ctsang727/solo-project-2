@@ -8,3 +8,23 @@
     color: black;
     background-color: white;
   }
+
+  #dark .form-div-submit input{
+    color:white;
+    background-color: #1f1f1f;
+    width: 90%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 5px;
+    border: 1px solid gray;
+  }
+  
+  #light .form-div-submit input{
+    color: black;
+    background-color: white;
+    width: 90%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 5px;
+    border: 1px solid gray;
+  }

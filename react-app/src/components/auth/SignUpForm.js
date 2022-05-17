@@ -7,7 +7,7 @@ import { hideModal } from '../../store/modal';
 import './SignUpForm.css'
 
 
-const SignUpForm = ({setloginOpen, setSignUpOpen}) => {
+const SignUpForm = ({ setloginOpen, setSignUpOpen }) => {
   const [errors, setErrors] = useState([]);
   // const [disabled, setDisabled] = useState()
   const [username, setUsername] = useState('');
@@ -39,11 +39,11 @@ const SignUpForm = ({setloginOpen, setSignUpOpen}) => {
     if (email.length < 1) {
       setErrors([...errors, 'Please enter email'])
     }
-    if (email.length < 1){
+    if (email.length < 1) {
       console.log('\n\n\n\n\n\n\n\n\n TEST')
       setErrors([...errors, 'test'])
     }
-      
+
     if (password.length < 1) {
       setErrors([...errors, 'Please enter password'])
     }
@@ -99,43 +99,51 @@ const SignUpForm = ({setloginOpen, setSignUpOpen}) => {
         </div>
         <div>
           <label>User Name </label>
-          <input
-            type='text'
-            name='username'
-            onChange={(e) => setUsername(e.target.value)}
-            value={username}
-          ></input>
+          <div className='form-div-submit'>
+            <input
+              type='text'
+              name='username'
+              onChange={(e) => setUsername(e.target.value)}
+              value={username}
+            ></input>
+          </div>
         </div>
         <div>
           <label>Email </label>
-          <input
-            type='text'
-            name='email'
-            onChange={e => setEmail(e.target.value)}
-            value={email}
-          ></input>
+          <div className='form-div-submit'>
+            <input
+              type='text'
+              name='email'
+              onChange={e => setEmail(e.target.value)}
+              value={email}
+            ></input>
+          </div>
         </div>
-        <div>
+        <div >
           <label>Password </label>
-          <input
-            type='password'
-            name='password'
-            onChange={e => setPassword(e.target.value)}
-            value={password}
-          ></input>
+          <div className='form-div-submit'>
+            <input
+              type='password'
+              name='password'
+              onChange={e => setPassword(e.target.value)}
+              value={password}
+            ></input>
+          </div>
         </div>
-        <div>
+        <div >
           <label>Repeat Password </label>
-          <input
-            type='password'
-            name='repeat_password'
-            onChange={e => setRepeatPassword(e.target.value)}
-            value={repeatPassword}
+          <div className='form-div-submit'>
+            <input
+              type='password'
+              name='repeat_password'
+              onChange={e => setRepeatPassword(e.target.value)}
+              value={repeatPassword}
 
-          ></input>
+            ></input>
+          </div>
         </div>
         <button style={SignUpButtonStyle} type='submit'>Sign Up</button>
-        <button style={SignUpButtonStyle} onClick={() => {setloginOpen(true); setSignUpOpen(false)}}>Already signed up? Log in!</button>
+        <button style={SignUpButtonStyle} onClick={() => { setloginOpen(true); setSignUpOpen(false) }}>Already signed up? Log in!</button>
       </form>
     </div>
   );

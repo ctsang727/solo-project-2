@@ -40,11 +40,11 @@ function App() {
     })();
   }, [dispatch]);
 
-  
+
 
   const toggleTheme = () => {
     setTheme((currTheme) => (currTheme === "light" ? "dark" : "light"));
-    
+
   }
 
   useEffect(() => {
@@ -57,58 +57,53 @@ function App() {
 
   localStorage.setItem("DARK_MODE", theme);
 
-  
+
 
   return (
     <BrowserRouter>
       <ThemeContext.Provider value={{ theme, setTheme }}>
         <div id={theme}>
-        <NavBar id={theme} toggleTheme={toggleTheme} theme={theme} setTheme={setTheme} >
-        
-        </NavBar>
-        <Modal />
-        <Sidebar id={theme} toggleTheme={toggleTheme} theme={theme} setTheme={setTheme}/>
-        <Switch>
-          {/* <Route path='/login' exact={true}>
-          <LoginForm />
-        </Route>
-        <Route path='/sign-up' exact={true}>
-          <SignUpForm />
-        </Route> */}
-          <Route path='/' exact={true} >
-            <SplashPage />
-          </Route>
+          <NavBar id={theme} toggleTheme={toggleTheme} theme={theme} setTheme={setTheme} >
 
-          <Route exact path='/about' component={AboutPage} />
+          </NavBar>
+          <Modal />
+          <Sidebar id={theme} toggleTheme={toggleTheme} theme={theme} setTheme={setTheme} />
+          <Switch >
+            
+            <Route   path='/' exact={true} >
+              <SplashPage id={theme}/>
+            </Route>
 
-          <ProtectedRoute exact path='/users'  >
-            <UsersList />
-          </ProtectedRoute>
+            <Route exact path='/about' component={AboutPage} />
 
-          <ProtectedRoute path='/users/:userId' exact={true} >
-            <User />
-          </ProtectedRoute>
+            <ProtectedRoute exact path='/users'  >
+              <UsersList />
+            </ProtectedRoute>
 
-          <ProtectedRoute path='/app/task/:taskId'>
-            <SpecificTask />
-          </ProtectedRoute>
+            <ProtectedRoute path='/users/:userId' exact={true} >
+              <User />
+            </ProtectedRoute>
 
-          <ProtectedRoute exact path='/test' component={TaskList}>
-          </ProtectedRoute>
+            <ProtectedRoute path='/app/task/:taskId'>
+              <SpecificTask />
+            </ProtectedRoute>
 
-          <ProtectedRoute path='/app' exact={true} >
-            <HomePage />
-          </ProtectedRoute>
+            <ProtectedRoute exact path='/test' component={TaskList}>
+            </ProtectedRoute>
 
-          <ProtectedRoute path='/app/projects/:id' exact={true} >
-            <ProjectPage />
-          </ProtectedRoute>
+            <ProtectedRoute path='/app' exact={true} >
+              <HomePage />
+            </ProtectedRoute>
 
-          <ProtectedRoute>
-            <TodayPage path='/app/today/' exact={true} />
-          </ProtectedRoute>
+            <ProtectedRoute path='/app/projects/:id' exact={true} >
+              <ProjectPage />
+            </ProtectedRoute>
 
-        </Switch>
+            <ProtectedRoute>
+              <TodayPage path='/app/today/' exact={true} />
+            </ProtectedRoute>
+
+          </Switch>
         </div>
       </ThemeContext.Provider>
     </BrowserRouter>

@@ -23,7 +23,7 @@ body{
     
 }
 
-.nav-div div{
+.nav-div div h3{
     cursor: pointer;
     font-family: "Roboto, sans-serif";
     
