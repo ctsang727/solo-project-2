@@ -123,12 +123,14 @@ const ProjectPage = () => {
                 </div>
             }
             {showEdit &&
-                <><form onSubmit={editProject} >
+                <>
+                <form onSubmit={editProject} >
                     {errors.length > 0 &&
                         <div>Please enter project name</div>
                     }
-                    <div id='project-change-name'>
-                        <input
+                    <label>Project Name:</label>
+                    <div id='project-change-name' >
+                        <input 
                             type='text'
                             name='projectName'
                             value={projectName}
@@ -139,6 +141,7 @@ const ProjectPage = () => {
 
                     <div>
                         <label>Color: </label>
+                        <div id='project-change-color' style={{width:'auto'}}>
                         <select
                             name='color'
                             value={color}
@@ -148,6 +151,7 @@ const ProjectPage = () => {
                             <option value={'yellow'}>Yellow</option>
                             <option value={'white'}>None</option>
                         </select>
+                        </div>
                     </div>
                     {errors.length === 0 &&
                         <button id='project-edit-submit' type='submit'>Submit</button>
