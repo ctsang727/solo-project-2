@@ -146,9 +146,13 @@ const ProjectPage = () => {
                             name='color'
                             value={color}
                             onChange={(e)=> setColor(e.target.value)}>
-                            <option value={'red'}>Red</option>
-                            <option value={'blue'}>Blue</option>
-                            <option value={'yellow'}>Yellow</option>
+                            <option value={'Red'}>Red</option>
+                            <option value={'Blue'}>Blue</option>
+                            <option value={'Yellow'}>Yellow</option>
+                            <option value={'Green'}>Green</option>
+                            <option value={'Purple'}>Purple</option>
+                            <option value={'Orange'}>Orange</option>
+                            <option value={'Pink'}>Pink</option>
                             <option value={'white'}>None</option>
                         </select>
                         </div>
