@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {  useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Redirect, useHistory } from 'react-router-dom';
 import { login } from '../../store/session';
 
@@ -30,9 +30,10 @@ const LoginForm = ({ setSignUpOpen, setloginOpen }) => {
     const data = await dispatch(login(email, password));
     if (data) {
       setErrors(data);
+    } else {
+      setloginOpen(false)
+      history.push('/app/today') 
     }
-
-    history.push('/app')
   };
 
   // if (user) {
@@ -58,39 +59,39 @@ const LoginForm = ({ setSignUpOpen, setloginOpen }) => {
   }
 
   return (
-    
-      <form id='log-in-form' onSubmit={onLogin}>
-        <div>
-          {errors.map((error, ind) => (
-            <div key={ind}>{error}</div>
-          ))}
-        </div>
-        <div>
-          <label htmlFor='email'>Email: </label>
-          <input
-            name='email'
-            type='text'
-            placeholder='Email'
-            value={email}
-            onChange={e => setEmail(e.target.value)}
-          />
-        </div>
-        <div>
-          <label htmlFor='password'>Password: </label>
-          <input
-            name='password'
-            type='password'
-            placeholder='Password'
-            value={password}
-            onChange={e => setPassword(e.target.value)}
-          />
 
-        </div>
-        <button style={AuthButtons} type='submit'>Login</button>
-        <button style={AuthButtons} onClick={() => { setloginOpen(false); setSignUpOpen(true) }}>Sign Up</button>
-        <button style={AuthButtons} onClick={demoLogin}>Demo</button>
-      </form>
-    
+    <form id='log-in-form' onSubmit={onLogin}>
+      <div>
+        {errors.map((error, ind) => (
+          <div key={ind}>{error}</div>
+        ))}
+      </div>
+      <div>
+        <label htmlFor='email'>Email: </label>
+        <input
+          name='email'
+          type='text'
+          placeholder='Email'
+          value={email}
+          onChange={e => setEmail(e.target.value)}
+        />
+      </div>
+      <div>
+        <label htmlFor='password'>Password: </label>
+        <input
+          name='password'
+          type='password'
+          placeholder='Password'
+          value={password}
+          onChange={e => setPassword(e.target.value)}
+        />
+
+      </div>
+      <button style={AuthButtons} type='submit'>Login</button>
+      <button style={AuthButtons} onClick={() => { setloginOpen(false); setSignUpOpen(true) }}>Sign Up</button>
+      <button style={AuthButtons} onClick={demoLogin}>Demo</button>
+    </form>
+
   );
 };
 
