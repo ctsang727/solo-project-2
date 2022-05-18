@@ -46,7 +46,7 @@ export const createProjectThunk = project => async dispatch => {
 
 export const getAllProjectsThunk = (userId) => async dispatch => {
     const res = await fetch(`/api/projects/${userId}`)
-
+    //console.log('\n\n id?', userId)
     if (res.ok) {
         const data = await res.json()
         dispatch(getAllProjects(data))
@@ -56,6 +56,7 @@ export const getAllProjectsThunk = (userId) => async dispatch => {
 
 export const getAllProjectTasksThunk = projectId => async dispatch => {
     const res = await fetch(`/api/projects/tasks/${projectId}`)
+    
 
     if (res.ok) {
         const data = await res.json()
@@ -104,25 +105,26 @@ const projectReducer = (state = {}, action) => {
 
         case GET_PROJECTS:
             newState = { ...state };
-            //console.log(action.payload)
+            console.log('??', action.payload)
             action.payload.projects?.forEach(project => {
                 newState[project.id] = project
             })
+            console.log('newState', newState)
             return newState;
 
-        case GET_PROJECT_TASKS:
-            newState = { ...state };
-            // console.log('ACTIONPAYLOAD', action.payload)
-            //console.log(action.payload.project_tasks.length === 0)
-            if (action.payload.project_tasks.length === 0) return state
-            else {
+        // case GET_PROJECT_TASKS:
+        //     newState = { ...state };
+        //     // console.log('ACTIONPAYLOAD', action.payload)
+        //     //console.log(action.payload.project_tasks.length === 0)
+        //     if (action.payload.project_tasks.length === 0) return state
+        //     else {
 
-                action.payload.project_tasks.forEach(task => {
-                newState[task.id] = task
-            })
+        //         action.payload.project_tasks.forEach(task => {
+        //         newState[task.id] = task
+        //     })
             
-            }
-            return newState;
+        //     }
+        //     return newState;
 
         case DEL_PROJECT:
             newState = { ...state };
@@ -133,6 +135,7 @@ const projectReducer = (state = {}, action) => {
             return newState;
 
         case CLEAR_PROJECTS:
+            console.log('clear')
             return {}
 
             

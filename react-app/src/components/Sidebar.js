@@ -25,27 +25,27 @@ const Sidebar = ( { toggleTheme, theme } ) => {
   const [projects, setProjects] = useState([])
 
   const userId = useSelector(state => state.session.user?.id)
-  const projectsObj = useSelector(state => state.projects)
+  const projectsObj = useSelector(state => state?.projects)
   const projectsArr = Object.values(projectsObj)
   
-
-
-
+  console.log('projectsObj', projectsObj)
+  console.log('projectsArr', projectsArr)
+  console.log('\n\n', projects)
   useEffect(() => {
-    //console.log('dispatching', userId)    
     dispatch(getAllProjectsThunk(userId))
-  }, [dispatch, userId])
+  }, [dispatch, userId, ])
 
   useEffect(() => {
+    
     setProjects(Object.values(projectsObj))
-  }, [projectsObj])
+  }, [projectsObj, setProjects])
 
 
 
   const isProject = (array) => {
     const filterProject = []
     projects.forEach(project => {
-      if (project?.project_name !== undefined) {
+      if (project?.project_name) {
         filterProject.push(project)
       }
 
@@ -98,7 +98,7 @@ const Sidebar = ( { toggleTheme, theme } ) => {
 
         {userId &&
           <div id='current-projects'>
-            {isProject(projectsArr).map(project =>
+            {isProject(projects).map(project =>
               <div className='one-project' key={project.id}>
                 <NavLink style={navLinkStyle} to={`/app/projects/${project.id}`}><i style={{ margin: '10px', color: `${project.color}` }} class="fa-solid fa-circle"></i>{project.project_name}</NavLink>
               </div>)

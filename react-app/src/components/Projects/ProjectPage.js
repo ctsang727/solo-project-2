@@ -69,7 +69,7 @@ const ProjectPage = () => {
 
     useEffect(() => {
         //console.log('useeffect')
-        //dispatch(getAllTasksThunk(userId))
+        dispatch(getAllTasksThunk(userId))
         dispatch(getAllProjectTasksThunk(id))
 
     }, [dispatch, id, userId]);
