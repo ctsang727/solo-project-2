@@ -47,11 +47,11 @@ const NavBar = ({ toggleTheme, theme }) => {
 
       {!user &&
         <div className='nav-div'>
-          <div style={{ fontFamily: "'Roboto', sans-serif" }} onClick={() => setloginOpen(true)}>LOG IN</div>
+          <div style={{ fontFamily: "'Roboto', sans-serif", color:'white' }} onClick={() => setloginOpen(true)}>LOG IN</div>
           <Modal2 theme={theme} open={loginOpen} onClose={e => { e.stopPropagation(); setloginOpen(false) }}>
             <LoginForm open={signUpOpen} setloginOpen={setloginOpen} setSignUpOpen={setSignUpOpen} />
           </Modal2>
-          <div style={{ fontFamily: "'Roboto', sans-serif" }} onClick={() => setSignUpOpen(true)}>SIGN UP</div>
+          <div style={{ fontFamily: "'Roboto', sans-serif", color:'white'  }} onClick={() => setSignUpOpen(true)}>SIGN UP</div>
           <Modal2 theme={theme} open={signUpOpen} setisOpen={setIsOpen} onClose={e => { e.stopPropagation(); setSignUpOpen(false) }}>
             <SignUpForm open={loginOpen} setloginOpen={setloginOpen} setSignUpOpen={setSignUpOpen} />
           </Modal2>
