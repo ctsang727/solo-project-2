@@ -87,8 +87,9 @@ const ProjectPage = () => {
         e.preventDefault()
         await projectTasks.forEach(task => dispatch(deleteTaskThunk(task.id)))
         await dispatch(deleteProjectThunk(+id))
-        await dispatch(getAllTasksThunk(userId))
+        //await dispatch(getAllTasksThunk(userId))
         history.push('/app')
+        window.location.reload(false);
     }
 
     const clickEdit = () => {
