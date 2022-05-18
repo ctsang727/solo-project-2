@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux'
-import { Redirect, useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux'
+import {  useHistory } from 'react-router-dom';
 import { signUp } from '../../store/session';
-import { hideModal } from '../../store/modal';
-// import LoginForm from './LoginForm';
+
 import './SignUpForm.css'
 
 
@@ -14,7 +13,7 @@ const SignUpForm = ({ setloginOpen, setSignUpOpen }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
-  const user = useSelector(state => state.session.user);
+  //const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
   const history = useHistory();
 
