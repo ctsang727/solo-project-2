@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 // import { showModal, setCurrentModal } from '../../store/modal'
 // import { useDispatch } from 'react-redux';
 import LoginForm from '../auth/LoginForm';
+import { useSelector } from 'react-redux';
 import SignUpForm from '../auth/SignUpForm';
 import './splash.css'
 import Modal2 from '../Modal2/modal2';
+import { useHistory } from 'react-router-dom';
 
 const splashButtonStyle = {
     backgroundColor: ' #db4c3f',
@@ -16,10 +18,11 @@ const splashButtonStyle = {
     justifyContent: 'center'
 }
 
-const SplashPage = ({ theme }) => {
+const SplashPage = ({ toggleTheme, theme }) => {
     // const dispatch = useDispatch()
     // const [isOpen, setIsOpen] = useState(false)
-
+    const user = useSelector(state => state.session.user);
+    const history = useHistory();
     // const showLoginForm = () => {
     //     dispatch(setCurrentModal(LoginForm));
     //     dispatch(showModal())
@@ -29,9 +32,17 @@ const SplashPage = ({ theme }) => {
     //     dispatch(setCurrentModal(SignUpForm));
     //     dispatch(showModal())
     // }
-    console.log(theme)
+    if (user) {
+        history.push('/app')
+    }
+    const [isOpen, setIsOpen] = useState(false)
+
     const [loginOpen, setloginOpen] = useState(false)
     const [signUpOpen, setSignUpOpen] = useState(false)
+
+    useEffect(() => {
+        console.log(signUpOpen)
+    }, [signUpOpen])
     return (
         <div id='splash-main' >
             <h1>Welcome!</h1>
@@ -44,6 +55,7 @@ const SplashPage = ({ theme }) => {
                 Create projects to keep all your tasks organized.
             </p>
             <p>Log in or sign up to start!</p>
+
             <div style={{ display: 'flex' }}>
                 <div style={splashButtonStyle} onClick={() => setloginOpen(true)}>LOG IN</div>
                 <Modal2 theme={theme} open={loginOpen} onClose={e => { e.stopPropagation(); setloginOpen(false) }}>
@@ -51,10 +63,11 @@ const SplashPage = ({ theme }) => {
                 </Modal2>
 
                 <div style={splashButtonStyle} onClick={() => setSignUpOpen(true)}>SIGN UP</div>
-                <Modal2 theme={theme} open={signUpOpen} onClose={e => { e.stopPropagation(); setSignUpOpen(false) }}>
+                <Modal2 theme={theme} open={signUpOpen}  onClose={e => { e.stopPropagation(); setSignUpOpen(false) }}>
                     <SignUpForm open={loginOpen} setloginOpen={setloginOpen} setSignUpOpen={setSignUpOpen} />
                 </Modal2>
             </div>
+
             <p >Made by Christopher Tsang</p>
             <p ><a style={{ fontWeight: 'bold' }} href="https://github.com/ctsang727">Github </a></p>
             <p ><a style={{ fontWeight: 'bold' }} href="https://github.com/ctsang727/solo-project-2">Project Repo </a></p>

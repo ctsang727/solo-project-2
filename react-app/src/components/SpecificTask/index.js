@@ -297,7 +297,7 @@ const SpecificTask = () => {
                         {errors.length === 0 &&
                             <div>
                                 <button style={editButtonStyle} type='submit'>Save</button>
-                                <button style={deleteButtonStyle} onClick={clickEdit}>Cancel</button>
+                                <button style={deleteButtonStyle} onClick={() => clickEdit}>Cancel</button>
                             </div>
                         }
 
