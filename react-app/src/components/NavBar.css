@@ -81,5 +81,17 @@ body{
     font-family: "Roboto", "sans-serif";
 }
 
+#dark #navContainer button:hover{
+    background-color: gray;
+    border-radius: 5px;
+    
+  }
+
+  #dark #navContainer a:hover{
+    background-color: gray;
+    border-radius: 5px;
+  }
+
+
 
 

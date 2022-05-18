@@ -63,6 +63,7 @@ const SpecificTask = () => {
     let yyyy = today.getFullYear();
 
     today = yyyy + '-' + mm + '-' + dd;
+    
 
 
 
@@ -84,8 +85,19 @@ const SpecificTask = () => {
         const stringSetDueDate = yearNum + '-' + monthNum() + '-' + dayNum
         return stringSetDueDate
     }
-    const [dueDate, setDueDate] = useState(convertDate(tasksObj[taskId]?.due_date))
-
+    // console.log('date 1', convertDate(tasksObj[taskId]?.due_date))
+    // console.log('date 2', today)
+    // console.log(today === convertDate(tasksObj[taskId]?.due_date))
+    
+    const [dueDate, setDueDate] = useState(convertDate(tasksObj[taskId]?.due_date) < today ? today:convertDate(tasksObj[taskId]?.due_date))
+    
+    const formatDate = (date) => {
+        const dateArr = date.split('-')
+        const newDate = dateArr[1] + '/' + dateArr[2] + '/' + dateArr[0]
+        return newDate
+        
+    }
+    
 
     //edit related
 
@@ -177,6 +189,11 @@ const SpecificTask = () => {
                         <div>
                             <h5>
                                 {tasksObj[taskId].description}
+                            </h5>
+                        </div>
+                        <div>
+                            <h5>
+                                {formatDate(convertDate(tasksObj[taskId]?.due_date))}
                             </h5>
                         </div>
                     </div></>

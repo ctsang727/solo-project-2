@@ -139,7 +139,7 @@ const AddTaskForm = ({ setAddTask, addTask, onClose, open, cancelFuncs, setIsOpe
 
                 <div id='second-block'>
                     <div id='date'>
-                        <labels>Due Date</labels>
+                        <labels>Due Date:</labels>
                         <input
                             type='date'
                             min={currentDate()}
