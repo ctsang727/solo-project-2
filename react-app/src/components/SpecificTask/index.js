@@ -63,7 +63,7 @@ const SpecificTask = () => {
     let yyyy = today.getFullYear();
 
     today = yyyy + '-' + mm + '-' + dd;
-    
+
 
 
 
@@ -88,16 +88,16 @@ const SpecificTask = () => {
     // console.log('date 1', convertDate(tasksObj[taskId]?.due_date))
     // console.log('date 2', today)
     // console.log(today === convertDate(tasksObj[taskId]?.due_date))
-    
-    const [dueDate, setDueDate] = useState(convertDate(tasksObj[taskId]?.due_date) < today ? today:convertDate(tasksObj[taskId]?.due_date))
-    
+
+    const [dueDate, setDueDate] = useState(convertDate(tasksObj[taskId]?.due_date) < today ? today : convertDate(tasksObj[taskId]?.due_date))
+
     const formatDate = (date) => {
         const dateArr = date.split('-')
         const newDate = dateArr[1] + '/' + dateArr[2] + '/' + dateArr[0]
         return newDate
-        
+
     }
-    
+
 
     //edit related
 
@@ -291,13 +291,21 @@ const SpecificTask = () => {
                         </div>
                         {errors.length > 0 &&
                             <div>
-                                <button style={deleteButtonStyle} onClick={clickEdit}>Cancel</button>
+                                <button style={deleteButtonStyle} onClick={console.log('test')}>Cancel</button>
                             </div>
                         }
                         {errors.length === 0 &&
                             <div>
                                 <button style={editButtonStyle} type='submit'>Save</button>
-                                <button style={deleteButtonStyle} onClick={() => clickEdit}>Cancel</button>
+                                <button style={deleteButtonStyle}
+                                    onClick={() => {
+                                        setTaskName(tasksObj[taskId]?.task_name);
+                                        setTaskDesc(tasksObj[taskId]?.description);
+                                        setProject(tasksObj[taskId]?.project_id || null);
+                                        setLabels(tasksObj[taskId]?.labels || null);
+                                        setPriority(tasksObj[taskId]?.priority || null);
+                                        setShowEdit(!showEdit);
+                                    }}>Cancel</button>
                             </div>
                         }
 
