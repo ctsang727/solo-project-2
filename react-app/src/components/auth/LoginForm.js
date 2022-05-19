@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Redirect, useHistory } from 'react-router-dom';
 import { login } from '../../store/session';
+import { getAllTasksThunk } from '../../store/task';
 
 import './LoginForm.css'
 
@@ -9,7 +10,7 @@ const LoginForm = ({ setSignUpOpen, setloginOpen }) => {
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  // const user = useSelector(state => state.session.user);
+  const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -32,20 +33,20 @@ const LoginForm = ({ setSignUpOpen, setloginOpen }) => {
       setErrors(data);
     } else {
       setloginOpen(false)
-      history.push('/app/today')
+      history.push('/app')
     }
   };
 
-  // if (user) {
-  //   console.log(user.id)
-  //   dispatch(getAllTasksThunk(user.id))
-  //   console.log('good')
-  //   dispatch(hideModal())
-  //   history.push('/app')
-  //   //window.location.reload(false);
-  //   return <Redirect to='/app' />;
+  if (user) {
+    // console.log(user.id)
+    dispatch(getAllTasksThunk(user.id))
+    // console.log('good')
+    
+    // history.push('/app')
+    //window.location.reload(false);
+    // return <Redirect to='/app' />;
 
-  // }
+  }
 
 
   const demoLogin = async (e) => {

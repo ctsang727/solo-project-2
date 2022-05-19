@@ -68,10 +68,10 @@ function App() {
           </NavBar>
           <Modal />
           <Sidebar id={theme} toggleTheme={toggleTheme} theme={theme} setTheme={setTheme} />
-          <Switch >
+          <Switch  >
             
             <Route   path='/' exact={true} >
-              <SplashPage id={theme}/>
+              <SplashPage id={theme} toggleTheme={toggleTheme} theme={theme} setTheme={setTheme} />
             </Route>
 
             <Route exact path='/about' component={AboutPage} />

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import {  useHistory } from 'react-router-dom';
 import { signUp } from '../../store/session';
 
@@ -13,7 +13,7 @@ const SignUpForm = ({ setloginOpen, setSignUpOpen }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
-  //const user = useSelector(state => state.session.user);
+  const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -63,36 +63,24 @@ const SignUpForm = ({ setloginOpen, setSignUpOpen }) => {
         setErrors(data)
       }
       //dispatch(hideModal())
-      history.push('/app')
+      //history.push('/app')
 
     }
 
   };
-  // const initialProjectData = {
-  //   userId: 1,
-  //   projectName: 'Inbox',
-  //   color: 'none'
-  // }
-  // return dispatch(createProjectThunk(initialProjectData))
-  // const showLoginForm = () => {
-  //   dispatch(setCurrentModal(LoginForm))
-  // }
 
 
 
 
-  // if (user) {
-  //   dispatch(hideModal())
-  //   // initialProject()
-  //   history.push('/app')
-  //   return <Redirect to='/app' />;
-  // }
+  if (user) {
+ 
+    history.push('/app')
+    
+  }
 
 
   return (
     <div id='sign-up-form'>
-
-
       <form onSubmit={onSignUp}>
         <div>
           {errors.map((error, ind) => (
