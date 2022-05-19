@@ -35,7 +35,7 @@ const SplashPage = ({ toggleTheme, theme }) => {
     if (user) {
         history.push('/app')
     }
-    const [isOpen, setIsOpen] = useState(false)
+
 
     const [loginOpen, setloginOpen] = useState(false)
     const [signUpOpen, setSignUpOpen] = useState(false)
