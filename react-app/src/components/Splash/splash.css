@@ -1,22 +1,68 @@
-#light #splash-main{
-    margin-left: 35%;
+#light #splash-main {
+    margin-left: 30%;
     background-repeat: no-repeat;
     font-family: "roboto", sans-serif;
-   background-image: url('https://sswlhc.org/wp-content/uploads/2021/08/Reminder.png');
-}   
+    
+}
 
-#dark #splash-main{
-    margin-left: 35%;
+#dark #splash-main {
+    margin-left: 30%;
     background-repeat: no-repeat;
     font-family: "roboto", sans-serif;
-   background-image: url('https://sswlhc.org/wp-content/uploads/2021/08/Reminder.png');
+    
 }
 
-#light #splash-main p a{
-    color:black;
+#light #splash-main p a {
+    color: black;
 }
 
-#dark #splash-main p a{
+#dark #splash-main p a {
     color: white;
 }
 
+#light #splash-main img{
+    width:50%;
+    height: 70%;
+    
+}
+
+#dark #splash-main img{
+    width:50%;
+    height: 70%;
+    bottom: 0;
+}
+
+#light #splash-main i {
+    color: black;
+    text-decoration: none;
+    font-size: 36px;
+    margin:10px;
+}
+
+#dark #splash-main i {
+    color: white;
+    text-decoration: none;
+    font-size: 36px;
+    margin:10px;
+
+}
+
+#light #buttons-and-icons {
+    display: flex;
+    align-items: center;
+
+}
+
+#dark #buttons-and-icons {
+    display: flex;
+    align-items: center;
+}
+
+#light #buttons-and-icons div:hover {
+    cursor: pointer;
+
+}
+
+#dark #buttons-and-icons div:hover {
+    cursor: pointer;
+}

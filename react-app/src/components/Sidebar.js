@@ -59,6 +59,8 @@ const Sidebar = ( { toggleTheme, theme } ) => {
 
 
   return (
+    <>
+    {userId &&
     <div className='sidebar-container'>
       <div id='today-side-div'>
         <div className='navlink-div'>
@@ -96,7 +98,7 @@ const Sidebar = ( { toggleTheme, theme } ) => {
           }
         </div>
 
-        {userId &&
+        
           <div id='current-projects'>
             {isProject(projects).map(project =>
               <div className='one-project' key={project.id}>
@@ -105,12 +107,14 @@ const Sidebar = ( { toggleTheme, theme } ) => {
 
             }
           </div>
-        }
+        
 
       </div>
       <div></div>
 
     </div>
+  }
+  </>
   );
 };
 
