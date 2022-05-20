@@ -45,18 +45,6 @@ const SpecificTask = () => {
 
     const [errors, setErrors] = useState([])
 
-    useEffect(() => {
-        const errors = []
-        if (taskName?.replace(/\s+/g, '').length === 0) {
-            errors.push('No task name')
-        }
-        if (taskDesc?.replace(/\s+/g, '').length === 0) {
-            errors.push('No desc')
-        }
-
-        setErrors(errors)
-    }, [taskName, taskDesc])
-
     let today = new Date();
     let dd = String(today.getDate()).padStart(2, '0');
     let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
@@ -85,11 +73,26 @@ const SpecificTask = () => {
         const stringSetDueDate = yearNum + '-' + monthNum() + '-' + dayNum
         return stringSetDueDate
     }
-    // console.log('date 1', convertDate(tasksObj[taskId]?.due_date))
-    // console.log('date 2', today)
-    // console.log(today === convertDate(tasksObj[taskId]?.due_date))
+
 
     const [dueDate, setDueDate] = useState(convertDate(tasksObj[taskId]?.due_date) < today ? today : convertDate(tasksObj[taskId]?.due_date))
+
+
+    useEffect(() => {
+        const errors = []
+        if (taskName?.replace(/\s+/g, '').length === 0 || taskName?.length < 1) {
+            errors.push('Please enter task name')
+        }
+        if (taskDesc?.replace(/\s+/g, '').length === 0) {
+            errors.push('Please enter a description')
+        }
+        if (dueDate < today) {
+            errors.push('Invalid date')
+        }
+
+
+        setErrors(errors)
+    }, [taskName, taskDesc, dueDate])
 
     const formatDate = (date) => {
         const dateArr = date.split('-')
@@ -202,7 +205,13 @@ const SpecificTask = () => {
                 <>
                     <div>
                         {errors.length > 0 &&
-                            <>*Please enter task name</>
+                            <>
+                                <ul>
+                                    {errors.map(error => (
+                                        <li>{error}</li>
+                                    ))}
+                                </ul>
+                            </>
                         }
 
                     </div>
@@ -291,7 +300,15 @@ const SpecificTask = () => {
                         </div>
                         {errors.length > 0 &&
                             <div>
-                                <button style={deleteButtonStyle} onClick={console.log('test')}>Cancel</button>
+                                <button style={deleteButtonStyle} onClick={() => {
+                                    setTaskName(tasksObj[taskId]?.task_name);
+                                    setTaskDesc(tasksObj[taskId]?.description);
+                                    setDueDate(convertDate(tasksObj[taskId]?.due_date) < today ? today : convertDate(tasksObj[taskId]?.due_date))
+                                    setProject(tasksObj[taskId]?.project_id || null);
+                                    setLabels(tasksObj[taskId]?.labels || null);
+                                    setPriority(tasksObj[taskId]?.priority || null);
+                                    setShowEdit(!showEdit);
+                                }}>Cancel</button>
                             </div>
                         }
                         {errors.length === 0 &&
@@ -301,6 +318,7 @@ const SpecificTask = () => {
                                     onClick={() => {
                                         setTaskName(tasksObj[taskId]?.task_name);
                                         setTaskDesc(tasksObj[taskId]?.description);
+                                        setDueDate(convertDate(tasksObj[taskId]?.due_date) < today ? today : convertDate(tasksObj[taskId]?.due_date))
                                         setProject(tasksObj[taskId]?.project_id || null);
                                         setLabels(tasksObj[taskId]?.labels || null);
                                         setPriority(tasksObj[taskId]?.priority || null);
