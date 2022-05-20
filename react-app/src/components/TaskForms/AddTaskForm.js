@@ -17,6 +17,8 @@ const AddTaskForm = ({ setAddTask, addTask, onClose, open, cancelFuncs, setIsOpe
         const current = yyyy + '-' + mm + '-' + dd;
         return current
     }
+    const today = currentDate()
+    
 
     //Note for projectId implementation: when creating new task, cant assign to project
     //must be in the project already, create new task, and the task will be assigned to the project
@@ -48,13 +50,17 @@ const AddTaskForm = ({ setAddTask, addTask, onClose, open, cancelFuncs, setIsOpe
         if (taskName.replace(/\s+/g, '').length === 0) {
             errors.push('No task name')
         }
-        //if taskname is too long
+       
         if (taskDesc.replace(/\s+/g, '').length === 0) {
             errors.push('description error')
         }
 
+        if (dueDate < today) {
+            errors.push('date error')
+        }
+
         setErrors(errors)
-    }, [taskName, taskDesc])
+    }, [taskName, taskDesc, dueDate, today])
 
 
     // 
@@ -139,11 +145,13 @@ const AddTaskForm = ({ setAddTask, addTask, onClose, open, cancelFuncs, setIsOpe
 
                 <div id='second-block'>
                     <div id='date'>
+                    {errors.includes('date error') &&
+                    <div style={{color: 'red'}}>*Invalid date</div>}
                         <labels>Due Date:</labels>
                         <input
                             type='date'
-                            min={currentDate()}
                             name='dueDate'
+                            min={today}
                             value={dueDate}
                             onChange={(e) => setDueDate(e.target.value)} />
                     </div>
