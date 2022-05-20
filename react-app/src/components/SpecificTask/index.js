@@ -45,14 +45,16 @@ const SpecificTask = () => {
 
     const [errors, setErrors] = useState([])
 
-    let today = new Date();
-    let dd = String(today.getDate()).padStart(2, '0');
-    let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-    let yyyy = today.getFullYear();
+    const currentDate = () => {
+        const today = new Date();
+        const dd = String(today.getDate()).padStart(2, '0');
+        const mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+        const yyyy = today.getFullYear();
 
-    today = yyyy + '-' + mm + '-' + dd;
-
-
+        const current = yyyy + '-' + mm + '-' + dd;
+        return current
+    }
+    const today = currentDate()
 
 
     const convertDate = (date) => {
@@ -92,7 +94,7 @@ const SpecificTask = () => {
 
 
         setErrors(errors)
-    }, [taskName, taskDesc, dueDate])
+    }, [taskName, taskDesc, dueDate, today])
 
     const formatDate = (date) => {
         const dateArr = date.split('-')
