@@ -3,6 +3,7 @@
     background-repeat: no-repeat;
     font-family: "roboto", sans-serif;
     background-image: url('./greencheck.png');
+    height: 100vh;
     
 }
 
@@ -11,6 +12,7 @@
     background-repeat: no-repeat;
     font-family: "roboto", sans-serif;
     background-image: url('./greencheck.png');
+    height: 100vh;
     
 }
 
@@ -52,6 +54,7 @@
 #light #buttons-and-icons {
     display: flex;
     align-items: center;
+    
 
 }
 
@@ -62,15 +65,16 @@
 
 #light #buttons-and-icons div:hover {
     cursor: pointer;
+    
 
+}
+#light #buttons-and-icons a:hover {
+    cursor: pointer;
+    background: none;
 }
 
 #dark #buttons-and-icons div:hover {
     cursor: pointer;
+    background: none;
 }
 
-#image-splash {
-    height: 100px;
-    width: 100px;
-    
-}

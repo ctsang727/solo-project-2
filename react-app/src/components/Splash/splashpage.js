@@ -74,10 +74,7 @@ const SplashPage = ({ toggleTheme, theme }) => {
                     <a style={{ fontWeight: 'bold' }} href="https://www.linkedin.com/in/christopher-tsang-827b1b127/"><i class="fa-brands fa-linkedin-in"></i> </a>
                 </div>
             </div>
-            <div id='image-splash'>
-                <img alt='productivity' src='./todo-list.jpg'></img>
-
-            </div>
+           
 
 
 
