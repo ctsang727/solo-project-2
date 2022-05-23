@@ -3,7 +3,7 @@
 
 ## Hey! at a Glance
 
-Hey! You Have Stuff To Do (Hey!) is a full stack app that allows users to keep track of all the things they need to do. Logged in users can quickly jot down what they need to get done and once the task is complete a simple double click will mark the task complete. Users can also create a project and have specific tasks under that project. This app should help users stay organized and become more productive whether it's something small like remembering to make a phone call or planning/executing a long-term project. 
+Hey! You Have Stuff To Do (Hey!) is a full stack app that allows users to keep track of all the things they need to do. Logged in users can quickly jot down what they need to get done and once the task is complete a simple click on the checkmark will mark the task complete. Users can also create a project and have specific tasks under that project. This app should help users stay organized and become more productive whether it's something small like remembering to make a phone call or planning/executing a long-term project. 
 
 Access to live site: [Hey! You have stuff to do!](https://hey-stuff-to-do.herokuapp.com/)
 
@@ -25,6 +25,17 @@ src="https://camo.githubusercontent.com/f7b8dd3ec5e0959272f5015575d66b6b6231329b
 <img src="https://camo.githubusercontent.com/da7acacadecf91d6dc02efcd2be086bb6d78ddff19a1b7a0ab2755a6fda8b1e9/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f64657669636f6e732f64657669636f6e2f69636f6e732f68746d6c352f68746d6c352d6f726967696e616c2e737667" alt="React" width="50"/>
 <img src="https://camo.githubusercontent.com/dc9e7e657b4cd5ba7d819d1a9ce61434bd0ddbb94287d7476b186bd783b62279/68747470733a2f2f63646e2e6a7364656c6976722e6e65742f67682f64657669636f6e732f64657669636f6e2f69636f6e732f6769742f6769742d6f726967696e616c2e737667" alt="React" width="50"/>
 </div>
+
+## Screenshots
+
+# Splash page
+![splash](https://user-images.githubusercontent.com/93690907/169756170-7ecfd22b-f645-42e7-8303-6973bbe81d60.png)
+# All of today's tasks
+![today](https://user-images.githubusercontent.com/93690907/169756183-2601309a-38bd-41f0-aebb-c3031cf1dd4b.png)
+# Complete your task by hitting the checkmark
+![today-hover](https://user-images.githubusercontent.com/93690907/169756195-aae76385-0913-4f2b-8e2c-ef7694e32601.png)
+# Specific project pages to stay organized
+![project](https://user-images.githubusercontent.com/93690907/169756199-0794d4bf-5d38-4fb3-af2f-5de2d1ce4415.png)
 
 
 ## Future Implementation Ideas
