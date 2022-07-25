@@ -26,11 +26,11 @@ const Sidebar = ( { toggleTheme, theme } ) => {
 
   const userId = useSelector(state => state.session.user?.id)
   const projectsObj = useSelector(state => state?.projects)
-  const projectsArr = Object.values(projectsObj)
+  //const projectsArr = Object.values(projectsObj)
   
-  console.log('projectsObj', projectsObj)
-  console.log('projectsArr', projectsArr)
-  console.log('\n\n', projects)
+  // console.log('projectsObj', projectsObj)
+  // console.log('projectsArr', projectsArr)
+  // console.log('\n\n', projects)
   useEffect(() => {
     dispatch(getAllProjectsThunk(userId))
   }, [dispatch, userId, ])

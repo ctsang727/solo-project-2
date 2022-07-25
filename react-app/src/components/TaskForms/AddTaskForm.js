@@ -18,7 +18,7 @@ const AddTaskForm = ({ setAddTask, addTask, onClose, open, cancelFuncs, setIsOpe
         return current
     }
     const today = currentDate()
-    
+
 
     //Note for projectId implementation: when creating new task, cant assign to project
     //must be in the project already, create new task, and the task will be assigned to the project
@@ -50,7 +50,7 @@ const AddTaskForm = ({ setAddTask, addTask, onClose, open, cancelFuncs, setIsOpe
         if (taskName.replace(/\s+/g, '').length === 0) {
             errors.push('No task name')
         }
-       
+
         if (taskDesc.replace(/\s+/g, '').length === 0) {
             errors.push('description error')
         }
@@ -145,8 +145,8 @@ const AddTaskForm = ({ setAddTask, addTask, onClose, open, cancelFuncs, setIsOpe
 
                 <div id='second-block'>
                     <div id='date'>
-                    {errors.includes('date error') &&
-                    <div style={{color: 'red'}}>*Invalid date</div>}
+                        {errors.includes('date error') &&
+                            <div style={{ color: 'red' }}>*Invalid date</div>}
                         <labels>Due Date:</labels>
                         <input
                             type='date'
@@ -156,34 +156,34 @@ const AddTaskForm = ({ setAddTask, addTask, onClose, open, cancelFuncs, setIsOpe
                             onChange={(e) => setDueDate(e.target.value)} />
                     </div>
 
-                    <div id='third-block'>
+
+                    <div>
+                        <label>Priority: </label>
+                        <select
+                            name='priority'
+                            value={priority}
+                            onChange={(e) => setPriority(e.target.value)}>
+                            <option value={0}>0</option>
+                            <option value={1}>1</option>
+                            <option value={2}>2</option>
+                            <option value={3}>3</option>
+                            <option value={4}>4</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label>Labels: </label>
                         <div>
-                            <label>Priority: </label>
-                            <select
-                                name='priority'
-                                value={priority}
-                                onChange={(e) => setPriority(e.target.value)}>
-                                <option value={0}>0</option>
-                                <option value={1}>1</option>
-                                <option value={2}>2</option>
-                                <option value={3}>3</option>
-                                <option value={4}>4</option>
-                            </select>
+                            <input
+                                type='text'
+                                name='labels'
+                                value={labels}
+                                placeholder='Labels'
+                                onChange={(e) => setLabels(e.target.value)} />
                         </div>
+                    </div>
+                    <div>
+                        <label>Project: </label>
                         <div>
-                            <label>Labels: </label>
-                            <div>
-                                <input
-                                    type='text'
-                                    name='labels'
-                                    value={labels}
-                                    placeholder='Labels'
-                                    onChange={(e) => setLabels(e.target.value)} />
-                            </div>
-                        </div>
-                        <div>
-                            <label>Project: </label>
-                            <div>
                             <select
                                 name='projectId'
                                 value={projectId}
@@ -197,8 +197,8 @@ const AddTaskForm = ({ setAddTask, addTask, onClose, open, cancelFuncs, setIsOpe
                                         {project?.project_name}
                                     </option>)}
                             </select>
-                            </div>  
                         </div>
+
                     </div>
                 </div>
 

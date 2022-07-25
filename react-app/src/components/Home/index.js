@@ -23,7 +23,7 @@ const HomePage = () => {
 
 
     useEffect(() => {
-        console.log("USEEEFFFEEEECTTT")
+        //console.log("USEEEFFFEEEECTTT")
         dispatch(getAllTasksThunk(userId))
     }, [dispatch, userId]);
 
@@ -68,12 +68,19 @@ const HomePage = () => {
     tasks.sort(compare)
     const condition = 'inbox';
     return (
-        <div id='inbox-container'>
-            <h1>Inbox</h1>
-            <TaskList condition={condition}/>
-            <NewTaskButton/>
-           
-        </div>
+        <>
+            <div id='inbox-large-container'>
+                <div id='inbox-container'>
+
+                    <h1>Inbox</h1>
+
+                    <TaskList condition={condition} />
+
+                    <NewTaskButton />
+
+                </div>
+            </div>
+        </>
     )
 
 }
