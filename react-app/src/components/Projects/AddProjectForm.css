@@ -83,6 +83,7 @@
     border-radius: 5px;
     background-color: white;
     height:20px;
+    font-family: 'Roboto', 'sans-serif';
 }
 
 #content2 form select{
@@ -92,7 +93,10 @@
     
     
 }
-
+#content2 form select option{
+    font-family: 'Roboto', 'sans-serif';
+    font-size: 16px;
+}
 #content2 form div{
     margin: 20px;
 }
