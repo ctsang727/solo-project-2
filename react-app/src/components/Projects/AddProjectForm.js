@@ -61,14 +61,13 @@ const AddProjectForm = ({ onClose, open, cancelFuncs }) => {
                         name='color'
                         value={color}
                         onChange={e => setColor(e.target.value)}>
-                        <option value={'white'}>None</option>
-                        <option value={'Red'}>Red</option>
-                        <option value={'Blue'}>Blue</option>
-                        <option value={'Yellow'}>Yellow</option>
-                        <option value={'Green'}>Green</option>
-                        <option value={'Purple'}>Purple</option>
-                        <option value={'Orange'}>Orange</option>
-                        <option value={'Pink'}>Pink</option>
+                        <option style={{color:'Gray'}} value={'White'}>None</option>
+                        <option style={{color:'#DC143C'}} value={'#DC143C'}>Red</option>
+                        <option style={{color:'#0096FF'}} value={'#0096FF'}>Blue</option>
+                        <option style={{color:'#FFBF00'}} value={'#FFBF00'}>Yellow</option>
+                        <option style={{color:'Green'}} value={'Green'}>Green</option>
+                        <option style={{color:'Purple'}} value={'Purple'}>Purple</option>
+                        <option style={{color:'Pink'}} value={'Pink'}>Pink</option>
                     </select>
                 </div>
 
