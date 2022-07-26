@@ -1,20 +1,30 @@
 #light #splash-main {
-    margin-left: 30%;
+    
     background-repeat: no-repeat;
     font-family: "roboto", sans-serif;
     background-image: url('./greencheck.png');
-    height: 100vh;
+    background-position: center;
+    height: 90vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
     
 }
 
 #dark #splash-main {
-    margin-left: 30%;
+    
     background-repeat: no-repeat;
     font-family: "roboto", sans-serif;
     background-image: url('./greencheck.png');
-    height: 100vh;
+    background-position-x: center;
+    height: 90vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 3rem;
     
 }
+
 
 #light #splash-main p a {
     color: black;

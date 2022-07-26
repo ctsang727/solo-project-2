@@ -42,7 +42,7 @@ const AddProjectForm = ({ onClose, open, cancelFuncs }) => {
 
             <form id='add-project-form' onSubmit={createProject}>
                 {errors.length > 0 &&
-                    <div> *Please enter project name </div>
+                    <div style={{color:'#DC143C'}}> *Please enter project name </div>
                 }
                 <div>
                     <label>Project name (required): </label>
