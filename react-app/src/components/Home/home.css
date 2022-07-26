@@ -1,9 +1,16 @@
-#inbox-container{
-    margin-left:30%;
-    margin-right: 20%;
-    font-family: 'Roboto', sans-serif;
-    
+
+#inbox-large-container h1 {
+    font-size: 20px;
+
 }
+
+#inbox-large-container{
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+    font-family: 'Roboto', sans-serif;
+}
+
 
 
 .one-task {
@@ -25,12 +32,12 @@
     border-radius: 5px;
 }
 
-#task-info{
+#task-info {
     text-decoration: none;
 
 }
 
-.task-info p{
+.task-info p {
     font-size: 12px;
     color: grey;
     margin-top: 0;
@@ -38,7 +45,7 @@
 
 .task-name {
     display: grid;
-    
+
 }
 
 
@@ -60,4 +67,3 @@
 #all-tasks-ul li {
     margin: 5px;
 }
-

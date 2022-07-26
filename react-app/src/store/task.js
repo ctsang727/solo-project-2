@@ -194,7 +194,7 @@ const taskReducer = (state = {}, action) => {
         
         case DEL_TASK:
             newState = { ...state };
-            console.log('!!!!!!', action.taskId)
+            //console.log('!!!!!!', action.taskId)
             delete newState[action.taskId.id];
             return newState;
 

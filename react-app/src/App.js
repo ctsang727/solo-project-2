@@ -48,7 +48,7 @@ function App() {
   }
 
   useEffect(() => {
-    console.log(`Is in dark mode? ${theme}`);
+    //console.log(`Is in dark mode? ${theme}`);
   }, [theme]);
 
   if (!loaded) {
