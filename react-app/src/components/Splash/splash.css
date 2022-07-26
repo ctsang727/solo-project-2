@@ -3,11 +3,12 @@
     background-repeat: no-repeat;
     font-family: "roboto", sans-serif;
     background-image: url('./greencheck.png');
-    background-position: center;
+    background-position-x: center;
     height: 90vh;
     display: flex;
     align-items: center;
     flex-direction: column;
+    margin-top: 3rem;
     
 }
 
@@ -71,6 +72,7 @@
 #dark #buttons-and-icons {
     display: flex;
     align-items: center;
+   
 }
 
 #light #buttons-and-icons div:hover {
