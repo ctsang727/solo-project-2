@@ -21,6 +21,7 @@ h3{
 #tasks-container {
     display: grid;
     grid-template-columns: 1fr;
+    width: 150%;
     
 }
 
