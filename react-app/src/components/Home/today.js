@@ -24,15 +24,15 @@ const TodayPage = () => {
     //const [showEditForm, setShowEditIndex] = useState(null)
 
     useEffect(() => {
-        
+
         dispatch(getTodayTasksThunk(userId))
     }, [dispatch, userId]);
 
     useEffect(() => {
-        
+
         setTasks(Object.values(tasksObj))
-        
-    }, [ tasksObj, setTasks])
+
+    }, [tasksObj, setTasks])
 
     const currentDate = () => {
         const month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -83,27 +83,30 @@ const TodayPage = () => {
         }
     }
     tasks.sort(compare)
-    
-    const [isOpen, setIsOpen] = useState(false)
-    
 
-    
-    const condition = 'today' 
+    const [isOpen, setIsOpen] = useState(false)
+
+
+
+    const condition = 'today'
 
     return (
         <div className='main-page'>
-            
-            <Modal2 open={isOpen} setisOpen={setIsOpen} onClose={e => {e.stopPropagation();setIsOpen(false)}}>
-                <AddTaskForm open={isOpen} setIsOpen={setIsOpen} onClose={() => setIsOpen(false)}/>
-            </Modal2>
-            
-            <h1 id='h1-home'>HEY YOU HAVE STUFF TO DO!</h1>
-            <div id='home-date'>
-                <h2 >Today</h2>
-                <h4>{currentDate()}</h4>
+            <div id='inner-main'>
+                <Modal2 open={isOpen} setisOpen={setIsOpen} onClose={e => { e.stopPropagation(); setIsOpen(false) }}>
+                    <AddTaskForm open={isOpen} setIsOpen={setIsOpen} onClose={() => setIsOpen(false)} />
+                </Modal2>
+
+                <div id='home-date'>
+                    <h2 >Today</h2>
+                    <h4>{currentDate()}</h4>
+                </div>
+                <TaskList condition={condition} />
+                <NewTaskButton />
+
             </div>
-            <TaskList condition={condition}/>
-            <NewTaskButton/>
+
+
         </div>
     )
 

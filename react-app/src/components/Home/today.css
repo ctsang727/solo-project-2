@@ -12,17 +12,28 @@ h3{
     text-decoration: none;
 }
 
+#home-date h2 h4{
+    font-size: 20px;
+}
+
+#inner-main{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+   
+}
+
 .main-page {
     font-family: 'Roboto', sans-serif;
-    margin-left: 30%;
-    margin-right: 10%;
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
 }
 
 #tasks-container {
     display: grid;
     grid-template-columns: 1fr;
-    width: 150%;
-    
+    width:150%;
 }
 
 
