@@ -184,140 +184,126 @@ const SpecificTask = () => {
 
     return (
         <div className='main-page'>
-            <h1>HEY YOU HAVE STUFF TO DO!</h1>
-            {!isEmpty(tasksObj) && !showEdit &&
-                <>
-                    <div>
-                        <h3>
-                            {tasksObj[taskId].task_name}
-                        </h3>
+            <div id='project-inner-main-page'>
+                <h1>HEY YOU HAVE STUFF TO DO!</h1>
+                {!isEmpty(tasksObj) && !showEdit &&
+                    <>
                         <div>
-                            <h5>
-                                {tasksObj[taskId].description}
-                            </h5>
-                        </div>
-                        <div>
-                            <h5>
-                                {formatDate(convertDate(tasksObj[taskId]?.due_date))}
-                            </h5>
-                        </div>
-                    </div></>
-            }
-            {showEdit &&
-                <>
-                    <div>
-                        {errors.length > 0 &&
-                            <>
-                                <ul>
-                                    {errors.map(error => (
-                                        <li>{error}</li>
-                                    ))}
-                                </ul>
-                            </>
-                        }
-
-                    </div>
-
-                    <form style={{ display: 'flex', flexDirection: 'column' }} onSubmit={editTask} >
-
-                        <div className='form-div'>
-                            <label>Task name (required): </label>
-                            <div >
-                                <input
-                                    type='text'
-                                    name='taskName'
-                                    value={taskName}
-                                    onChange={(e) => setTaskName(e.target.value)}
-                                ></input>
-                            </div>
-                        </div>
-                        <div className='form-div'>
-                            <label>Description (required):  </label>
+                            <h3>
+                                {tasksObj[taskId].task_name}
+                            </h3>
                             <div>
-                                <textarea
-                                    type='text'
-                                    name='taskDesc'
-                                    value={taskDesc}
-                                    onChange={(e) => setTaskDesc(e.target.value)} />
+                                <h5>
+                                    {tasksObj[taskId].description}
+                                </h5>
                             </div>
+                            <div>
+                                <h5>
+                                    {formatDate(convertDate(tasksObj[taskId]?.due_date))}
+                                </h5>
+                            </div>
+                        </div></>
+                }
+                {showEdit &&
+                    <>
+                        <div>
+                            {errors.length > 0 &&
+                                <>
+                                    <ul>
+                                        {errors.map(error => (
+                                            <li>{error}</li>
+                                        ))}
+                                    </ul>
+                                </>
+                            }
+
                         </div>
-                        <div id='form-part-2'>
+
+                        <form style={{ display: 'flex', flexDirection: 'column' }} onSubmit={editTask} >
+
                             <div className='form-div'>
-                                <label>Due date: </label>
-                                <div>
-                                    <input
-                                        type='date'
-                                        name='dueDate'
-                                        min={today}
-                                        value={dueDate}
-                                        onChange={(e) => setDueDate(e.target.value)} />
-                                </div>
-                            </div>
-                            <div className='form-div'>
-                                <label>Priority: </label>
-                                <div>
-                                    <select
-                                        name='priority'
-                                        value={priority}
-                                        onChange={(e) => setPriority(e.target.value)}>
-                                        <option value={0}>0</option>
-                                        <option value={1}>1</option>
-                                        <option value={2}>2</option>
-                                        <option value={3}>3</option>
-                                        <option value={4}>4</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div className='form-div'>
-                                <label>Labels: </label>
-                                <div>
+                                <label>Task name (required): </label>
+                                <div >
                                     <input
                                         type='text'
-                                        name='labels'
-                                        value={labels}
-                                        placeholder='Labels'
-                                        onChange={(e) => setLabels(e.target.value)} />
+                                        name='taskName'
+                                        value={taskName}
+                                        onChange={(e) => setTaskName(e.target.value)}
+                                    ></input>
                                 </div>
                             </div>
                             <div className='form-div'>
-                                <label>Project: </label>
+                                <label>Description (required):  </label>
                                 <div>
-
-                                    <select
-                                        name='projectId'
-                                        value={projectId}
-                                        onChange={(e) => setProject(e.target.value)}>
-                                        <option
-                                            value={null}
-                                        >None</option>
-                                        {projectStateArr.map(project =>
-                                            <option
-                                                value={project?.id}>
-                                                {project?.project_name}
-                                            </option>)}
-
-                                    </select>
+                                    <textarea
+                                        type='text'
+                                        name='taskDesc'
+                                        value={taskDesc}
+                                        onChange={(e) => setTaskDesc(e.target.value)} />
                                 </div>
                             </div>
-                        </div>
-                        {errors.length > 0 &&
-                            <div>
-                                <button style={deleteButtonStyle} onClick={() => {
-                                    setTaskName(tasksObj[taskId]?.task_name);
-                                    setTaskDesc(tasksObj[taskId]?.description);
-                                    setDueDate(convertDate(tasksObj[taskId]?.due_date) < today ? today : convertDate(tasksObj[taskId]?.due_date))
-                                    setProject(tasksObj[taskId]?.project_id || null);
-                                    setLabels(tasksObj[taskId]?.labels || null);
-                                    setPriority(tasksObj[taskId]?.priority || null);
-                                    setShowEdit(!showEdit);
-                                }}>Cancel</button>
+                            <div id='form-part-2'>
+                                <div className='form-div'>
+                                    <label>Due date: </label>
+                                    <div>
+                                        <input
+                                            type='date'
+                                            name='dueDate'
+                                            min={today}
+                                            value={dueDate}
+                                            onChange={(e) => setDueDate(e.target.value)} />
+                                    </div>
+                                </div>
+                                <div className='form-div'>
+                                    <label>Priority: </label>
+                                    <div>
+                                        <select
+                                            name='priority'
+                                            value={priority}
+                                            onChange={(e) => setPriority(e.target.value)}>
+                                            <option value={0}>0</option>
+                                            <option value={1}>1</option>
+                                            <option value={2}>2</option>
+                                            <option value={3}>3</option>
+                                            <option value={4}>4</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div className='form-div'>
+                                    <label>Labels: </label>
+                                    <div>
+                                        <input
+                                            type='text'
+                                            name='labels'
+                                            value={labels}
+                                            placeholder='Labels'
+                                            onChange={(e) => setLabels(e.target.value)} />
+                                    </div>
+                                </div>
+                                <div className='form-div'>
+                                    <label>Project: </label>
+                                    <div>
+
+                                        <select
+                                            name='projectId'
+                                            value={projectId}
+                                            onChange={(e) => setProject(e.target.value)}>
+                                            <option
+                                                value={null}
+                                            >None</option>
+                                            {projectStateArr.map(project =>
+                                                <option
+                                                    value={project?.id}>
+                                                    {project?.project_name}
+                                                </option>)}
+
+                                        </select>
+                                    </div>
+                                </div>
                             </div>
-                        }
-                        {errors.length === 0 &&
-                            <div>
-                                <button style={editButtonStyle} type='submit'>Save</button>
-                                <button style={deleteButtonStyle}
-                                    onClick={() => {
+                            {errors.length > 0 &&
+                                <div>
+                                    <button style={deleteButtonStyle} onClick={() => {
                                         setTaskName(tasksObj[taskId]?.task_name);
                                         setTaskDesc(tasksObj[taskId]?.description);
                                         setDueDate(convertDate(tasksObj[taskId]?.due_date) < today ? today : convertDate(tasksObj[taskId]?.due_date))
@@ -326,21 +312,37 @@ const SpecificTask = () => {
                                         setPriority(tasksObj[taskId]?.priority || null);
                                         setShowEdit(!showEdit);
                                     }}>Cancel</button>
-                            </div>
-                        }
+                                </div>
+                            }
+                            {errors.length === 0 &&
+                                <div>
+                                    <button style={editButtonStyle} type='submit'>Save</button>
+                                    <button style={deleteButtonStyle}
+                                        onClick={() => {
+                                            setTaskName(tasksObj[taskId]?.task_name);
+                                            setTaskDesc(tasksObj[taskId]?.description);
+                                            setDueDate(convertDate(tasksObj[taskId]?.due_date) < today ? today : convertDate(tasksObj[taskId]?.due_date))
+                                            setProject(tasksObj[taskId]?.project_id || null);
+                                            setLabels(tasksObj[taskId]?.labels || null);
+                                            setPriority(tasksObj[taskId]?.priority || null);
+                                            setShowEdit(!showEdit);
+                                        }}>Cancel</button>
+                                </div>
+                            }
 
-                    </form>
+                        </form>
 
-                </>}
+                    </>}
 
 
-            {!showEdit &&
-                <div>
-                    <button style={editButtonStyle} onClick={clickEdit}>Edit</button>
-                    {/* <button onClick={showEditTaskForm}>Edit</button> */}
-                    <button style={deleteButtonStyle} onClick={onDelete}>Delete</button>
-                </div>
-            }
+                {!showEdit &&
+                    <div>
+                        <button style={editButtonStyle} onClick={clickEdit}>Edit</button>
+                        {/* <button onClick={showEditTaskForm}>Edit</button> */}
+                        <button style={deleteButtonStyle} onClick={onDelete}>Delete</button>
+                    </div>
+                }
+            </div>
         </div >
     )
 
