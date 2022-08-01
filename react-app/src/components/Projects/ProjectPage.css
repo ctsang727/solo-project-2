@@ -1,14 +1,29 @@
 #project-page-buttons button{
-    background-color: red;
     background-color: #de4c4a;
     border-color: #de4c4a ;
     color: #fff ;
-    padding:10px;
+    padding:5px;
     border-radius: 5px;
     font-family: 'Roboto', sans-serif;
     font-size: 14px;
     font-weight: lighter;
-    margin: 10px;
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+
+}
+
+#project-page-buttons button i{
+    font-size: 16px;
+    margin: 0px 5px;
+}
+
+.project-main-page{
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+    flex-direction: column;
+    align-items: center;
 }
 
 .ptask-info h3{
@@ -60,10 +75,25 @@
 }
 
 #project-change-color select{
-    width: 10%;
+    width: auto;
     border-radius: 5px;
     margin-top:10px;
     margin-bottom: 10px;
     padding:5px;
     font-family: 'Roboto', sans-serif;
+}
+
+#project-head{
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+#project-head h1{
+    font-size: 24px;
+}
+
+#project-tasks-container{
+    display: grid;
+    grid-template-columns: 1fr;
 }
