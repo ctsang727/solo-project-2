@@ -41,7 +41,7 @@ const SplashPage = ({ toggleTheme, theme }) => {
     const [signUpOpen, setSignUpOpen] = useState(false)
 
     useEffect(() => {
-        console.log(signUpOpen)
+        //console.log(signUpOpen)
     }, [signUpOpen])
     return (
         <div id='splash-main' >

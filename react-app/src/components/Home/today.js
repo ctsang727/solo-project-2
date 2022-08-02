@@ -7,6 +7,7 @@ import './today.css'
 import Modal2 from '../Modal2/modal2';
 import TaskList from '../Tasks';
 import NewTaskButton from '../NewTaskButton';
+import SpecificTask from '../SpecificTask';
 
 
 
@@ -86,7 +87,7 @@ const TodayPage = () => {
 
     const [isOpen, setIsOpen] = useState(false)
 
-
+    const [testOpen, settestOpen] = useState(false)
 
     const condition = 'today'
 
@@ -96,6 +97,10 @@ const TodayPage = () => {
                 <Modal2 open={isOpen} setisOpen={setIsOpen} onClose={e => { e.stopPropagation(); setIsOpen(false) }}>
                     <AddTaskForm open={isOpen} setIsOpen={setIsOpen} onClose={() => setIsOpen(false)} />
                 </Modal2>
+
+                
+                
+                
 
                 <div id='home-date'>
                     <h2 >Today</h2>

@@ -9,7 +9,7 @@ import UsersList from './components/UsersList';
 import User from './components/User';
 import { authenticate } from './store/session';
 import HomePage from './components/Home/index';
-import Modal from './components/Modal/Modal'
+//import Modal from './components/Modal/Modal'
 import SpecificTask from './components/SpecificTask';
 import Sidebar from './components/Sidebar';
 import ProjectPage from './components/Projects/ProjectPage';
@@ -66,7 +66,7 @@ function App() {
           <NavBar id={theme} toggleTheme={toggleTheme} theme={theme} setTheme={setTheme} >
 
           </NavBar>
-          <Modal />
+          {/* <Modal /> */}
           <Sidebar id={theme} toggleTheme={toggleTheme} theme={theme} setTheme={setTheme} />
           <Switch  >
             
