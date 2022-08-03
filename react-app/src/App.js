@@ -18,6 +18,7 @@ import AboutPage from './components/About';
 import TodayPage from './components/Home/today';
 import TaskList from './components/Tasks';
 import './index.css'
+import NotFound from './components/NotFound/NotFound';
 
 
 export const ThemeContext = createContext(null)
@@ -69,12 +70,14 @@ function App() {
           {/* <Modal /> */}
           <Sidebar id={theme} toggleTheme={toggleTheme} theme={theme} setTheme={setTheme} />
           <Switch  >
-            
-            <Route   path='/' exact={true} >
+
+            <Route path='/' exact={true} >
               <SplashPage id={theme} toggleTheme={toggleTheme} theme={theme} setTheme={setTheme} />
             </Route>
 
             <Route exact path='/about' component={AboutPage} />
+
+
 
             <ProtectedRoute exact path='/users'  >
               <UsersList />
@@ -99,9 +102,17 @@ function App() {
               <ProjectPage />
             </ProtectedRoute>
 
-            <ProtectedRoute>
-              <TodayPage path='/app/today/' exact={true} />
+            <ProtectedRoute path='/app/today/' exact={true}>
+              <TodayPage/>
             </ProtectedRoute>
+            <ProtectedRoute path='/app/*'>
+              <NotFound/>
+            </ProtectedRoute>
+            <ProtectedRoute path='/app/today/*'>
+              <NotFound/>
+            </ProtectedRoute>
+
+
 
           </Switch>
         </div>
