@@ -105,11 +105,11 @@ const projectReducer = (state = {}, action) => {
 
         case GET_PROJECTS:
             newState = { ...state };
-            console.log('??', action.payload)
+            //console.log('??', action.payload)
             action.payload.projects?.forEach(project => {
                 newState[project.id] = project
             })
-            console.log('newState', newState)
+            //console.log('newState', newState)
             return newState;
 
         // case GET_PROJECT_TASKS:
@@ -135,7 +135,7 @@ const projectReducer = (state = {}, action) => {
             return newState;
 
         case CLEAR_PROJECTS:
-            console.log('clear')
+            //console.log('clear')
             return {}
 
             

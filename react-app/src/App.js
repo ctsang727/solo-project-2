@@ -9,7 +9,7 @@ import UsersList from './components/UsersList';
 import User from './components/User';
 import { authenticate } from './store/session';
 import HomePage from './components/Home/index';
-import Modal from './components/Modal/Modal'
+//import Modal from './components/Modal/Modal'
 import SpecificTask from './components/SpecificTask';
 import Sidebar from './components/Sidebar';
 import ProjectPage from './components/Projects/ProjectPage';
@@ -18,6 +18,7 @@ import AboutPage from './components/About';
 import TodayPage from './components/Home/today';
 import TaskList from './components/Tasks';
 import './index.css'
+import NotFound from './components/NotFound/NotFound';
 
 
 export const ThemeContext = createContext(null)
@@ -66,15 +67,17 @@ function App() {
           <NavBar id={theme} toggleTheme={toggleTheme} theme={theme} setTheme={setTheme} >
 
           </NavBar>
-          <Modal />
+          {/* <Modal /> */}
           <Sidebar id={theme} toggleTheme={toggleTheme} theme={theme} setTheme={setTheme} />
           <Switch  >
-            
-            <Route   path='/' exact={true} >
+
+            <Route path='/' exact={true} >
               <SplashPage id={theme} toggleTheme={toggleTheme} theme={theme} setTheme={setTheme} />
             </Route>
 
             <Route exact path='/about' component={AboutPage} />
+
+
 
             <ProtectedRoute exact path='/users'  >
               <UsersList />
@@ -99,9 +102,17 @@ function App() {
               <ProjectPage />
             </ProtectedRoute>
 
-            <ProtectedRoute>
-              <TodayPage path='/app/today/' exact={true} />
+            <ProtectedRoute path='/app/today/' exact={true}>
+              <TodayPage/>
             </ProtectedRoute>
+            <ProtectedRoute path='/app/*'>
+              <NotFound/>
+            </ProtectedRoute>
+            <ProtectedRoute path='/app/today/*'>
+              <NotFound/>
+            </ProtectedRoute>
+
+
 
           </Switch>
         </div>

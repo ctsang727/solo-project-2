@@ -97,6 +97,8 @@ const TodayPage = () => {
                     <AddTaskForm open={isOpen} setIsOpen={setIsOpen} onClose={() => setIsOpen(false)} />
                 </Modal2>
 
+                
+
                 <div id='home-date'>
                     <h2 >Today</h2>
                     <h4>{currentDate()}</h4>

@@ -148,6 +148,7 @@
     border: 1px solid black;
     padding: 8px;
     border-radius: 5px;
+    cursor: pointer;
 }
 
 #dark .cancel-add-task{
@@ -155,4 +156,5 @@
     border: 1px solid white;
     padding: 8px;
     border-radius: 5px;
+    cursor: pointer;
 }

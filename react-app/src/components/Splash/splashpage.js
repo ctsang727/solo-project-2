@@ -41,7 +41,7 @@ const SplashPage = ({ toggleTheme, theme }) => {
     const [signUpOpen, setSignUpOpen] = useState(false)
 
     useEffect(() => {
-        console.log(signUpOpen)
+        //console.log(signUpOpen)
     }, [signUpOpen])
     return (
         <div id='splash-main' >
@@ -51,7 +51,7 @@ const SplashPage = ({ toggleTheme, theme }) => {
                     <h2>Hey! You have stuff to do!</h2>
                     <p>This web app is a clone of Todoist, a to-do list app.</p>
                     <p>Simply add tasks to your to-do list by hitting the '+' buttons or 'Add Task' button. <br></br>
-                        When completed, double click the check button to mark complete and move on to your next task.
+                        When completed, click the check button to mark complete and move on to your next task.
                     </p>
                     <p>
                         Create projects to keep all your tasks organized.
