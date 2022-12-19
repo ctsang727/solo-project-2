@@ -2,3 +2,13 @@ heroku run -a <app_name> flask db upgrade
 heroku run -a <app_name> flask seed all
 
 heroku run -a <app_name> flask db downgrade
+
+
+
+in /solo-project-2
+-pipenv shell
+-flask run
+
+frontend
+- cd react-app
+- npm start 

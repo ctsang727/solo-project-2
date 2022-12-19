@@ -11,6 +11,7 @@ import Modal2 from './Modal2/modal2';
 import ReactSwitch from 'react-switch';
 import ReactTooltip from 'react-tooltip';
 import './NavBar.css'
+import Test from './test/test';
 
 
 
@@ -74,6 +75,7 @@ const NavBar = ({ toggleTheme, theme }) => {
             <Modal2 theme={theme} open={isOpen} setisOpen={setIsOpen} onClose={e => { e.stopPropagation(); setIsOpen(false) }}>
               <AddTaskForm onClose={e => { e.stopPropagation(); setIsOpen(false) }} ></AddTaskForm>
             </Modal2>
+            
           </button>
           <NavLink to='/about' style={{ color: 'white', textDecoration: 'none', fontFamily: "'Roboto', sans-serif", padding: '5px' }}>About</NavLink>
           <div>
