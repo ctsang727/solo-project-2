@@ -5,7 +5,7 @@ from datetime import date, datetime, timedelta
 today = date.today()
 upcoming = date(today.year + 1, today.month, today.day)
 
-print('\n\n\n', upcoming > today)
+#print('\n\n\n', upcoming > today)
 task_routes = Blueprint('tasks', __name__)
 
 @task_routes.route('/<int:id>')
@@ -21,18 +21,18 @@ def today_tasks(id):
     tasks = Task.query.filter_by(user_id = id).filter_by(due_date = today)
 
 
-    for task in tasks: 
-        print('--------------', task.task_to_dict(), '----------')
+    # for task in tasks: 
+    #     print('--------------', task.task_to_dict(), '----------')
     return {'tasks': [task.task_to_dict() for task in tasks]}
 
 @task_routes.route('/upcoming/<int:id>')
 def upcoming_tasks(id):
-    print('############')
+    #print('############')
     tasks = Task.query.filter(and_(user_id = id), (due_date < today))
 
 
-    for task in tasks: 
-        print('@@@--------------', task.task_to_dict(), '----------')
+    # for task in tasks: 
+    #     print('@@@--------------', task.task_to_dict(), '----------')
     return {'tasks': [task.task_to_dict() for task in tasks]}
 
 @task_routes.route('/specific/<int:id>')

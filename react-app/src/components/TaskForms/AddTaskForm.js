@@ -5,7 +5,7 @@ import { getAllProjectsThunk } from '../../store/project';
 import './AddTaskForm.css'
 
 const AddTaskForm = ({ setAddTask, addTask, onClose, open, cancelFuncs, setIsOpen, PID }) => {
-
+    
     const dispatch = useDispatch();
 
     const currentDate = () => {
@@ -35,12 +35,8 @@ const AddTaskForm = ({ setAddTask, addTask, onClose, open, cancelFuncs, setIsOpe
     const [dueDate, setDueDate] = useState(currentDate)
     //care project
     const [projectId, setProject] = useState(null || PID)
-
-
-
     const [labels, setLabels] = useState(null)
     const [priority, setPriority] = useState(0)
-
 
     const [errors, setErrors] = useState([])
 
@@ -92,7 +88,7 @@ const AddTaskForm = ({ setAddTask, addTask, onClose, open, cancelFuncs, setIsOpe
             }
             if (addTask === true) setAddTask(false)
             else if (!open) onClose(e)
-            console.log('there is a project ID', projectId)
+            //console.log('there is a project ID', projectId)
 
 
             return dispatch(createTaskThunk(newTask))

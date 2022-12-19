@@ -40,7 +40,7 @@ const SignUpForm = ({ setloginOpen, setSignUpOpen }) => {
       setErrors([...errors, 'Please enter email'])
     }
     if (email.length < 1) {
-      console.log('\n\n\n\n\n\n\n\n\n TEST')
+      //console.log('\n\n\n\n\n\n\n\n\n TEST')
       setErrors([...errors, 'test'])
     }
 

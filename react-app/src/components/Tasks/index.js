@@ -119,6 +119,7 @@ const TaskList = ({condition, projectId}) => {
                         <div className='one-task' key={task?.id} onMouseEnter={() => setDeleteIndex(task.id)} onMouseLeave={() => setDeleteIndex(null)}>
                             {/* <div onClick={() => redirect(task?.id)} className='task-name'> */}
                             {/* onClick={() => setDeleteIndex(deleteIndex => deleteIndex === task.id ? null : task.id)} */}
+                            {/* once we hover, we have the task id, can manipulate that task */}
                             <div id='task-check' >
                                 {deleteIndex === task.id &&
                                     <div value={task?.id} >
@@ -128,7 +129,7 @@ const TaskList = ({condition, projectId}) => {
                                         </ReactTooltip>
                                     </div>
                                 }
-
+                                
                                 {deleteIndex !== task.id &&
                                     <div>
                                         <i className="material-icons">check</i>
@@ -141,6 +142,7 @@ const TaskList = ({condition, projectId}) => {
                                     <div id='task-info-grid-1'>
                                         <div id='tasklist-task-name'>
                                             <p> {task?.task_name} </p>
+                                            
                                         </div>
                                         <div className='one-desc' key={task?.id}>
                                             <p> {task?.description} </p>

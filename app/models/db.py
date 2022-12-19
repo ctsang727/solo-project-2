@@ -1,14 +1,27 @@
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 
+import os 
+environment = os.getenv("FLASK_ENV")
+SCHEMA = os.environ.get("SCHEMA")
+
 db = SQLAlchemy()
+
+def add_prefix_for_prod(attr):
+    if environment == "production":
+        return f"{SCHEMA}.{attr}"
+    else:
+        return attr
 
 class Task(db.Model):
     __tablename__ = 'tasks'
 
+    if environment == "production":
+        __table_args__ = {'schema': SCHEMA}
+
     id = db.Column(db.Integer, primary_key=True, nullable=False)
-    user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
-    project_id = db.Column(db.Integer, db.ForeignKey("projects.id"))
+    user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")))
+    project_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("projects.id")))
     task_name = db.Column(db.String(255), nullable=False)
     description = db.Column(db.Text(), nullable=False)
     due_date = db.Column(db.Date, nullable=False)
@@ -35,13 +48,16 @@ class Task(db.Model):
 class Project(db.Model):
     __tablename__ = 'projects'
 
+    if environment == "production":
+        __table_args__ = {'schema': SCHEMA}
+
     id = db.Column(db.Integer, primary_key=True, nullable=False)
-    user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")))
     project_name = db.Column(db.String(255), nullable=False)
     color = db.Column(db.String)
     created_at = db.Column(db.DateTime, default=datetime.now(), nullable=False)
     updated_at = db.Column(db.DateTime, default=datetime.now(), nullable=False)
-    # onupdate=db.func.current_timestamp()
+    
 
 
     tasks = db.relationship('Task', backref='projects', cascade='all, delete')
@@ -52,5 +68,5 @@ class Project(db.Model):
             'user_id': self.user_id,
             'project_name':self.project_name,
             'color': self.color, 
-            #'tasks': [t_to_dict() for t in self.tasks]
+            
         }
