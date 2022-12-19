@@ -16,7 +16,7 @@ def seed():
     # seed_tasks()
     # seed_projects()
 
-    if environmnet == 'production':
+    if environment == 'production':
         db.session.execute(f"TRUNCATE table {SCHEMA}.users RESTART IDENTITY CASCADE;")
         db.session.commit()
     seed_users()
